@@ -31,6 +31,8 @@ flutter:
       android:
         package: org.naji.td.tdlib
         pluginClass: TdlibPlugin
+      ios:
+        pluginClass: TdlibPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

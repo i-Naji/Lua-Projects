@@ -1,0 +1,4 @@
+module libtdjson [system][extern_c] {
+    header "td/td_json_client.h"
+    export *
+}
