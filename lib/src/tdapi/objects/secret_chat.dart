@@ -3,13 +3,14 @@ part of '../tdapi.dart';
 class SecretChat extends TdObject {
   /// Represents a secret chat
   SecretChat(
-      {this.id,
-      this.userId,
-      this.state,
-      this.isOutbound,
-      this.ttl,
-      this.keyHash,
-      this.layer});
+      {required this.id,
+      required this.userId,
+      required this.state,
+      required this.isOutbound,
+      required this.ttl,
+      required this.keyHash,
+      required this.layer,
+      this.extra});
 
   /// [id] Secret chat identifier
   int id;
@@ -33,18 +34,21 @@ class SecretChat extends TdObject {
   int layer;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  SecretChat.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.userId = json['user_id'];
-    this.state = SecretChatState.fromJson(json['state'] ?? <String, dynamic>{});
-    this.isOutbound = json['is_outbound'];
-    this.ttl = json['ttl'];
-    this.keyHash = json['key_hash'];
-    this.layer = json['layer'];
-    this.extra = json['@extra'];
+  factory SecretChat.fromJson(Map<String, dynamic> json) {
+    return SecretChat(
+      id: json['id'] ?? 0,
+      userId: json['user_id'] ?? 0,
+      state: SecretChatState.fromJson(json['state'] ?? <String, dynamic>{}),
+      isOutbound: json['is_outbound'] ?? false,
+      ttl: json['ttl'] ?? 0,
+      keyHash: json['key_hash'] ?? "",
+      layer: json['layer'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -53,7 +57,7 @@ class SecretChat extends TdObject {
       "@type": CONSTRUCTOR,
       "id": this.id,
       "user_id": this.userId,
-      "state": this.state == null ? null : this.state.toJson(),
+      "state": this.state.toJson(),
       "is_outbound": this.isOutbound,
       "ttl": this.ttl,
       "key_hash": this.keyHash,

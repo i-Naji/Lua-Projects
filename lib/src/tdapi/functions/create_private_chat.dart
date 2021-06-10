@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class CreatePrivateChat extends TdFunction {
   /// Returns an existing chat corresponding to a given user
-  CreatePrivateChat({this.userId, this.force});
+  CreatePrivateChat({required this.userId, required this.force, this.extra});
 
   /// [userId] User identifier
   int userId;
@@ -14,7 +14,13 @@ class CreatePrivateChat extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CreatePrivateChat.fromJson(Map<String, dynamic> json);
+  factory CreatePrivateChat.fromJson(Map<String, dynamic> json) {
+    return CreatePrivateChat(
+      userId: json['user_id'] ?? 0,
+      force: json['force'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

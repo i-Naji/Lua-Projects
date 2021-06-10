@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GetStatisticalGraph extends TdFunction {
   /// Loads an asynchronous or a zoomed in statistical graph
-  GetStatisticalGraph({this.chatId, this.token, this.x});
+  GetStatisticalGraph(
+      {required this.chatId, required this.token, required this.x, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -17,7 +18,14 @@ class GetStatisticalGraph extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetStatisticalGraph.fromJson(Map<String, dynamic> json);
+  factory GetStatisticalGraph.fromJson(Map<String, dynamic> json) {
+    return GetStatisticalGraph(
+      chatId: json['chat_id'] ?? 0,
+      token: json['token'] ?? "",
+      x: json['x'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class StorageStatistics extends TdObject {
   /// Contains the exact storage usage statistics split by chats and file type
-  StorageStatistics({this.size, this.count, this.byChat});
+  StorageStatistics(
+      {required this.size,
+      required this.count,
+      required this.byChat,
+      this.extra});
 
   /// [size] Total size of files
   int size;
@@ -14,17 +18,20 @@ class StorageStatistics extends TdObject {
   List<StorageStatisticsByChat> byChat;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  StorageStatistics.fromJson(Map<String, dynamic> json) {
-    this.size = json['size'];
-    this.count = json['count'];
-    this.byChat = List<StorageStatisticsByChat>.from((json['by_chat'] ?? [])
-        .map((item) =>
-            StorageStatisticsByChat.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory StorageStatistics.fromJson(Map<String, dynamic> json) {
+    return StorageStatistics(
+      size: json['size'] ?? 0,
+      count: json['count'] ?? 0,
+      byChat: List<StorageStatisticsByChat>.from((json['by_chat'] ?? [])
+          .map((item) =>
+              StorageStatisticsByChat.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

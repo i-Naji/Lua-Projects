@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class TdError extends TdObject {
   /// An object of this type can be returned on every function call, in case of an error
-  TdError({this.code, this.message});
+  TdError({required this.code, required this.message, this.extra});
 
   /// [code] Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
   int code;
@@ -11,13 +11,16 @@ class TdError extends TdObject {
   String message;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  TdError.fromJson(Map<String, dynamic> json) {
-    this.code = json['code'];
-    this.message = json['message'];
-    this.extra = json['@extra'];
+  factory TdError.fromJson(Map<String, dynamic> json) {
+    return TdError(
+      code: json['code'] ?? 0,
+      message: json['message'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

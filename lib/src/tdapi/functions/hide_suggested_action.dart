@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class HideSuggestedAction extends TdFunction {
   /// Hides a suggested action
-  HideSuggestedAction({this.action});
+  HideSuggestedAction({required this.action, this.extra});
 
   /// [action] Suggested action to hide
   SuggestedAction action;
@@ -11,13 +11,18 @@ class HideSuggestedAction extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  HideSuggestedAction.fromJson(Map<String, dynamic> json);
+  factory HideSuggestedAction.fromJson(Map<String, dynamic> json) {
+    return HideSuggestedAction(
+      action: SuggestedAction.fromJson(json['action'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "action": this.action == null ? null : this.action.toJson(),
+      "action": this.action.toJson(),
       "@extra": this.extra,
     };
   }

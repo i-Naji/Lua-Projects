@@ -2,7 +2,13 @@ part of '../tdapi.dart';
 
 class File extends TdObject {
   /// Represents a file
-  File({this.id, this.size, this.expectedSize, this.local, this.remote});
+  File(
+      {required this.id,
+      required this.size,
+      required this.expectedSize,
+      required this.local,
+      required this.remote,
+      this.extra});
 
   /// [id] Unique file identifier
   int id;
@@ -20,16 +26,19 @@ class File extends TdObject {
   RemoteFile remote;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  File.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.size = json['size'];
-    this.expectedSize = json['expected_size'];
-    this.local = LocalFile.fromJson(json['local'] ?? <String, dynamic>{});
-    this.remote = RemoteFile.fromJson(json['remote'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory File.fromJson(Map<String, dynamic> json) {
+    return File(
+      id: json['id'] ?? 0,
+      size: json['size'] ?? 0,
+      expectedSize: json['expected_size'] ?? 0,
+      local: LocalFile.fromJson(json['local'] ?? <String, dynamic>{}),
+      remote: RemoteFile.fromJson(json['remote'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -39,8 +48,8 @@ class File extends TdObject {
       "id": this.id,
       "size": this.size,
       "expected_size": this.expectedSize,
-      "local": this.local == null ? null : this.local.toJson(),
-      "remote": this.remote == null ? null : this.remote.toJson(),
+      "local": this.local.toJson(),
+      "remote": this.remote.toJson(),
     };
   }
 

@@ -3,14 +3,15 @@ part of '../tdapi.dart';
 class ChatInviteLinkInfo extends TdObject {
   /// Contains information about a chat invite link
   ChatInviteLinkInfo(
-      {this.chatId,
-      this.accessibleFor,
-      this.type,
-      this.title,
+      {required this.chatId,
+      required this.accessibleFor,
+      required this.type,
+      required this.title,
       this.photo,
-      this.memberCount,
-      this.memberUserIds,
-      this.isPublic});
+      required this.memberCount,
+      required this.memberUserIds,
+      required this.isPublic,
+      this.extra});
 
   /// [chatId] Chat identifier of the invite link; 0 if the user has no access to the chat before joining
   int chatId;
@@ -25,7 +26,7 @@ class ChatInviteLinkInfo extends TdObject {
   String title;
 
   /// [photo] Chat photo; may be null
-  ChatPhotoInfo photo;
+  ChatPhotoInfo? photo;
 
   /// [memberCount] Number of members in the chat
   int memberCount;
@@ -37,20 +38,23 @@ class ChatInviteLinkInfo extends TdObject {
   bool isPublic;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  ChatInviteLinkInfo.fromJson(Map<String, dynamic> json) {
-    this.chatId = json['chat_id'];
-    this.accessibleFor = json['accessible_for'];
-    this.type = ChatType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.photo = ChatPhotoInfo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.memberCount = json['member_count'];
-    this.memberUserIds = List<int>.from(
-        (json['member_user_ids'] ?? []).map((item) => item).toList());
-    this.isPublic = json['is_public'];
-    this.extra = json['@extra'];
+  factory ChatInviteLinkInfo.fromJson(Map<String, dynamic> json) {
+    return ChatInviteLinkInfo(
+      chatId: json['chat_id'] ?? 0,
+      accessibleFor: json['accessible_for'] ?? 0,
+      type: ChatType.fromJson(json['type'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      photo: ChatPhotoInfo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      memberCount: json['member_count'] ?? 0,
+      memberUserIds: List<int>.from(
+          (json['member_user_ids'] ?? []).map((item) => item ?? 0).toList()),
+      isPublic: json['is_public'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -59,9 +63,9 @@ class ChatInviteLinkInfo extends TdObject {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
       "accessible_for": this.accessibleFor,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "title": this.title,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
       "member_count": this.memberCount,
       "member_user_ids": this.memberUserIds.map((i) => i).toList(),
       "is_public": this.isPublic,

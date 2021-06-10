@@ -3,7 +3,10 @@ part of '../tdapi.dart';
 class SetFileGenerationProgress extends TdFunction {
   /// Informs TDLib on a file generation progress
   SetFileGenerationProgress(
-      {this.generationId, this.expectedSize, this.localPrefixSize});
+      {required this.generationId,
+      required this.expectedSize,
+      required this.localPrefixSize,
+      this.extra});
 
   /// [generationId] The identifier of the generation process
   int generationId;
@@ -18,7 +21,14 @@ class SetFileGenerationProgress extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetFileGenerationProgress.fromJson(Map<String, dynamic> json);
+  factory SetFileGenerationProgress.fromJson(Map<String, dynamic> json) {
+    return SetFileGenerationProgress(
+      generationId: int.tryParse(json['generation_id'] ?? "") ?? 0,
+      expectedSize: json['expected_size'] ?? 0,
+      localPrefixSize: json['local_prefix_size'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

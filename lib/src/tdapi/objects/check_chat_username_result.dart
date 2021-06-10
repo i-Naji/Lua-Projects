@@ -23,7 +23,7 @@ class CheckChatUsernameResult extends TdObject {
       case CheckChatUsernameResultPublicGroupsUnavailable.CONSTRUCTOR:
         return CheckChatUsernameResultPublicGroupsUnavailable.fromJson(json);
       default:
-        return null;
+        return CheckChatUsernameResult();
     }
   }
 
@@ -40,14 +40,17 @@ class CheckChatUsernameResult extends TdObject {
 
 class CheckChatUsernameResultOk extends CheckChatUsernameResult {
   /// The username can be set
-  CheckChatUsernameResultOk();
+  CheckChatUsernameResultOk({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CheckChatUsernameResultOk.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory CheckChatUsernameResultOk.fromJson(Map<String, dynamic> json) {
+    return CheckChatUsernameResultOk(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -65,14 +68,18 @@ class CheckChatUsernameResultOk extends CheckChatUsernameResult {
 
 class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult {
   /// The username is invalid
-  CheckChatUsernameResultUsernameInvalid();
+  CheckChatUsernameResultUsernameInvalid({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CheckChatUsernameResultUsernameInvalid.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory CheckChatUsernameResultUsernameInvalid.fromJson(
+      Map<String, dynamic> json) {
+    return CheckChatUsernameResultUsernameInvalid(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -90,14 +97,18 @@ class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult {
 
 class CheckChatUsernameResultUsernameOccupied extends CheckChatUsernameResult {
   /// The username is occupied
-  CheckChatUsernameResultUsernameOccupied();
+  CheckChatUsernameResultUsernameOccupied({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CheckChatUsernameResultUsernameOccupied.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory CheckChatUsernameResultUsernameOccupied.fromJson(
+      Map<String, dynamic> json) {
+    return CheckChatUsernameResultUsernameOccupied(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -116,15 +127,18 @@ class CheckChatUsernameResultUsernameOccupied extends CheckChatUsernameResult {
 class CheckChatUsernameResultPublicChatsTooMuch
     extends CheckChatUsernameResult {
   /// The user has too much chats with username, one of them should be made private first
-  CheckChatUsernameResultPublicChatsTooMuch();
+  CheckChatUsernameResultPublicChatsTooMuch({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CheckChatUsernameResultPublicChatsTooMuch.fromJson(
+  factory CheckChatUsernameResultPublicChatsTooMuch.fromJson(
       Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+    return CheckChatUsernameResultPublicChatsTooMuch(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -143,15 +157,18 @@ class CheckChatUsernameResultPublicChatsTooMuch
 class CheckChatUsernameResultPublicGroupsUnavailable
     extends CheckChatUsernameResult {
   /// The user can't be a member of a public supergroup
-  CheckChatUsernameResultPublicGroupsUnavailable();
+  CheckChatUsernameResultPublicGroupsUnavailable({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CheckChatUsernameResultPublicGroupsUnavailable.fromJson(
+  factory CheckChatUsernameResultPublicGroupsUnavailable.fromJson(
       Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+    return CheckChatUsernameResultPublicGroupsUnavailable(
+      extra: json['@extra'],
+    );
   }
 
   @override

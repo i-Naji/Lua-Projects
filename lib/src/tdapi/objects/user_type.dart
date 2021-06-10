@@ -20,7 +20,7 @@ class UserType extends TdObject {
       case UserTypeUnknown.CONSTRUCTOR:
         return UserTypeUnknown.fromJson(json);
       default:
-        return null;
+        return UserType();
     }
   }
 
@@ -40,7 +40,9 @@ class UserTypeRegular extends UserType {
   UserTypeRegular();
 
   /// Parse from a json
-  UserTypeRegular.fromJson(Map<String, dynamic> json);
+  factory UserTypeRegular.fromJson(Map<String, dynamic> json) {
+    return UserTypeRegular();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -60,7 +62,9 @@ class UserTypeDeleted extends UserType {
   UserTypeDeleted();
 
   /// Parse from a json
-  UserTypeDeleted.fromJson(Map<String, dynamic> json);
+  factory UserTypeDeleted.fromJson(Map<String, dynamic> json) {
+    return UserTypeDeleted();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -78,11 +82,11 @@ class UserTypeDeleted extends UserType {
 class UserTypeBot extends UserType {
   /// A bot (see https://core.telegram.org/bots)
   UserTypeBot(
-      {this.canJoinGroups,
-      this.canReadAllGroupMessages,
-      this.isInline,
-      this.inlineQueryPlaceholder,
-      this.needLocation});
+      {required this.canJoinGroups,
+      required this.canReadAllGroupMessages,
+      required this.isInline,
+      required this.inlineQueryPlaceholder,
+      required this.needLocation});
 
   /// [canJoinGroups] True, if the bot can be invited to basic group and supergroup chats
   bool canJoinGroups;
@@ -100,12 +104,14 @@ class UserTypeBot extends UserType {
   bool needLocation;
 
   /// Parse from a json
-  UserTypeBot.fromJson(Map<String, dynamic> json) {
-    this.canJoinGroups = json['can_join_groups'];
-    this.canReadAllGroupMessages = json['can_read_all_group_messages'];
-    this.isInline = json['is_inline'];
-    this.inlineQueryPlaceholder = json['inline_query_placeholder'];
-    this.needLocation = json['need_location'];
+  factory UserTypeBot.fromJson(Map<String, dynamic> json) {
+    return UserTypeBot(
+      canJoinGroups: json['can_join_groups'] ?? false,
+      canReadAllGroupMessages: json['can_read_all_group_messages'] ?? false,
+      isInline: json['is_inline'] ?? false,
+      inlineQueryPlaceholder: json['inline_query_placeholder'] ?? "",
+      needLocation: json['need_location'] ?? false,
+    );
   }
 
   @override
@@ -131,7 +137,9 @@ class UserTypeUnknown extends UserType {
   UserTypeUnknown();
 
   /// Parse from a json
-  UserTypeUnknown.fromJson(Map<String, dynamic> json);
+  factory UserTypeUnknown.fromJson(Map<String, dynamic> json) {
+    return UserTypeUnknown();
+  }
 
   @override
   Map<String, dynamic> toJson() {

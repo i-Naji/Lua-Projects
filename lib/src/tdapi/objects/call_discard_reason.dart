@@ -23,7 +23,7 @@ class CallDiscardReason extends TdObject {
       case CallDiscardReasonHungUp.CONSTRUCTOR:
         return CallDiscardReasonHungUp.fromJson(json);
       default:
-        return null;
+        return CallDiscardReason();
     }
   }
 
@@ -43,7 +43,9 @@ class CallDiscardReasonEmpty extends CallDiscardReason {
   CallDiscardReasonEmpty();
 
   /// Parse from a json
-  CallDiscardReasonEmpty.fromJson(Map<String, dynamic> json);
+  factory CallDiscardReasonEmpty.fromJson(Map<String, dynamic> json) {
+    return CallDiscardReasonEmpty();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -63,7 +65,9 @@ class CallDiscardReasonMissed extends CallDiscardReason {
   CallDiscardReasonMissed();
 
   /// Parse from a json
-  CallDiscardReasonMissed.fromJson(Map<String, dynamic> json);
+  factory CallDiscardReasonMissed.fromJson(Map<String, dynamic> json) {
+    return CallDiscardReasonMissed();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -83,7 +87,9 @@ class CallDiscardReasonDeclined extends CallDiscardReason {
   CallDiscardReasonDeclined();
 
   /// Parse from a json
-  CallDiscardReasonDeclined.fromJson(Map<String, dynamic> json);
+  factory CallDiscardReasonDeclined.fromJson(Map<String, dynamic> json) {
+    return CallDiscardReasonDeclined();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -103,7 +109,9 @@ class CallDiscardReasonDisconnected extends CallDiscardReason {
   CallDiscardReasonDisconnected();
 
   /// Parse from a json
-  CallDiscardReasonDisconnected.fromJson(Map<String, dynamic> json);
+  factory CallDiscardReasonDisconnected.fromJson(Map<String, dynamic> json) {
+    return CallDiscardReasonDisconnected();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -123,7 +131,9 @@ class CallDiscardReasonHungUp extends CallDiscardReason {
   CallDiscardReasonHungUp();
 
   /// Parse from a json
-  CallDiscardReasonHungUp.fromJson(Map<String, dynamic> json);
+  factory CallDiscardReasonHungUp.fromJson(Map<String, dynamic> json) {
+    return CallDiscardReasonHungUp();
+  }
 
   @override
   Map<String, dynamic> toJson() {

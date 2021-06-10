@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class EditMessageReplyMarkup extends TdFunction {
   /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
-  EditMessageReplyMarkup({this.chatId, this.messageId, this.replyMarkup});
+  EditMessageReplyMarkup(
+      {required this.chatId,
+      required this.messageId,
+      required this.replyMarkup,
+      this.extra});
 
   /// [chatId] The chat the message belongs to
   int chatId;
@@ -17,7 +21,15 @@ class EditMessageReplyMarkup extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  EditMessageReplyMarkup.fromJson(Map<String, dynamic> json);
+  factory EditMessageReplyMarkup.fromJson(Map<String, dynamic> json) {
+    return EditMessageReplyMarkup(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -25,8 +37,7 @@ class EditMessageReplyMarkup extends TdFunction {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
       "message_id": this.messageId,
-      "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
+      "reply_markup": this.replyMarkup.toJson(),
       "@extra": this.extra,
     };
   }

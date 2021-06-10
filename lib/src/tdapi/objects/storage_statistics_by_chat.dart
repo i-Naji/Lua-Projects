@@ -3,7 +3,10 @@ part of '../tdapi.dart';
 class StorageStatisticsByChat extends TdObject {
   /// Contains the storage usage statistics for a specific chat
   StorageStatisticsByChat(
-      {this.chatId, this.size, this.count, this.byFileType});
+      {required this.chatId,
+      required this.size,
+      required this.count,
+      required this.byFileType});
 
   /// [chatId] Chat identifier; 0 if none
   int chatId;
@@ -18,15 +21,17 @@ class StorageStatisticsByChat extends TdObject {
   List<StorageStatisticsByFileType> byFileType;
 
   /// Parse from a json
-  StorageStatisticsByChat.fromJson(Map<String, dynamic> json) {
-    this.chatId = json['chat_id'];
-    this.size = json['size'];
-    this.count = json['count'];
-    this.byFileType = List<StorageStatisticsByFileType>.from(
-        (json['by_file_type'] ?? [])
-            .map((item) => StorageStatisticsByFileType.fromJson(
-                item ?? <String, dynamic>{}))
-            .toList());
+  factory StorageStatisticsByChat.fromJson(Map<String, dynamic> json) {
+    return StorageStatisticsByChat(
+      chatId: json['chat_id'] ?? 0,
+      size: json['size'] ?? 0,
+      count: json['count'] ?? 0,
+      byFileType: List<StorageStatisticsByFileType>.from(
+          (json['by_file_type'] ?? [])
+              .map((item) => StorageStatisticsByFileType.fromJson(
+                  item ?? <String, dynamic>{}))
+              .toList()),
+    );
   }
 
   @override

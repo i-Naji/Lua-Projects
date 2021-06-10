@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class InputPersonalDocument extends TdObject {
   /// A personal document to be saved to Telegram Passport
-  InputPersonalDocument({this.files, this.translation});
+  InputPersonalDocument({required this.files, required this.translation});
 
   /// [files] List of files containing the pages of the document
   List<InputFile> files;
@@ -11,13 +11,15 @@ class InputPersonalDocument extends TdObject {
   List<InputFile> translation;
 
   /// Parse from a json
-  InputPersonalDocument.fromJson(Map<String, dynamic> json) {
-    this.files = List<InputFile>.from((json['files'] ?? [])
-        .map((item) => InputFile.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.translation = List<InputFile>.from((json['translation'] ?? [])
-        .map((item) => InputFile.fromJson(item ?? <String, dynamic>{}))
-        .toList());
+  factory InputPersonalDocument.fromJson(Map<String, dynamic> json) {
+    return InputPersonalDocument(
+      files: List<InputFile>.from((json['files'] ?? [])
+          .map((item) => InputFile.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      translation: List<InputFile>.from((json['translation'] ?? [])
+          .map((item) => InputFile.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+    );
   }
 
   @override

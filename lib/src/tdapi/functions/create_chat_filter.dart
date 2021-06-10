@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class CreateChatFilter extends TdFunction {
   /// Creates new chat filter. Returns information about the created chat filter
-  CreateChatFilter({this.filter});
+  CreateChatFilter({required this.filter, this.extra});
 
   /// [filter] Chat filter
   ChatFilter filter;
@@ -11,13 +11,18 @@ class CreateChatFilter extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CreateChatFilter.fromJson(Map<String, dynamic> json);
+  factory CreateChatFilter.fromJson(Map<String, dynamic> json) {
+    return CreateChatFilter(
+      filter: ChatFilter.fromJson(json['filter'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "filter": this.filter == null ? null : this.filter.toJson(),
+      "filter": this.filter.toJson(),
       "@extra": this.extra,
     };
   }

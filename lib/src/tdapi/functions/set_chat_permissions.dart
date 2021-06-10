@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class SetChatPermissions extends TdFunction {
   /// Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
-  SetChatPermissions({this.chatId, this.permissions});
+  SetChatPermissions(
+      {required this.chatId, required this.permissions, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -14,15 +15,21 @@ class SetChatPermissions extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetChatPermissions.fromJson(Map<String, dynamic> json);
+  factory SetChatPermissions.fromJson(Map<String, dynamic> json) {
+    return SetChatPermissions(
+      chatId: json['chat_id'] ?? 0,
+      permissions:
+          ChatPermissions.fromJson(json['permissions'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
-      "permissions":
-          this.permissions == null ? null : this.permissions.toJson(),
+      "permissions": this.permissions.toJson(),
       "@extra": this.extra,
     };
   }

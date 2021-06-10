@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class TerminateSession extends TdFunction {
   /// Terminates a session of the current user
-  TerminateSession({this.sessionId});
+  TerminateSession({required this.sessionId, this.extra});
 
   /// [sessionId] Session identifier
   int sessionId;
@@ -11,7 +11,12 @@ class TerminateSession extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  TerminateSession.fromJson(Map<String, dynamic> json);
+  factory TerminateSession.fromJson(Map<String, dynamic> json) {
+    return TerminateSession(
+      sessionId: int.tryParse(json['session_id'] ?? "") ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

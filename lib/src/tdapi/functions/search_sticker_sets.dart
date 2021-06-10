@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SearchStickerSets extends TdFunction {
   /// Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
-  SearchStickerSets({this.query});
+  SearchStickerSets({required this.query, this.extra});
 
   /// [query] Query to search for
   String query;
@@ -11,7 +11,12 @@ class SearchStickerSets extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SearchStickerSets.fromJson(Map<String, dynamic> json);
+  factory SearchStickerSets.fromJson(Map<String, dynamic> json) {
+    return SearchStickerSets(
+      query: json['query'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

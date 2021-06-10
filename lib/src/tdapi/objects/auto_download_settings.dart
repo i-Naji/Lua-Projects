@@ -3,14 +3,14 @@ part of '../tdapi.dart';
 class AutoDownloadSettings extends TdObject {
   /// Contains auto-download settings
   AutoDownloadSettings(
-      {this.isAutoDownloadEnabled,
-      this.maxPhotoFileSize,
-      this.maxVideoFileSize,
-      this.maxOtherFileSize,
-      this.videoUploadBitrate,
-      this.preloadLargeVideos,
-      this.preloadNextAudio,
-      this.useLessDataForCalls});
+      {required this.isAutoDownloadEnabled,
+      required this.maxPhotoFileSize,
+      required this.maxVideoFileSize,
+      required this.maxOtherFileSize,
+      required this.videoUploadBitrate,
+      required this.preloadLargeVideos,
+      required this.preloadNextAudio,
+      required this.useLessDataForCalls});
 
   /// [isAutoDownloadEnabled] True, if the auto-download is enabled
   bool isAutoDownloadEnabled;
@@ -37,15 +37,17 @@ class AutoDownloadSettings extends TdObject {
   bool useLessDataForCalls;
 
   /// Parse from a json
-  AutoDownloadSettings.fromJson(Map<String, dynamic> json) {
-    this.isAutoDownloadEnabled = json['is_auto_download_enabled'];
-    this.maxPhotoFileSize = json['max_photo_file_size'];
-    this.maxVideoFileSize = json['max_video_file_size'];
-    this.maxOtherFileSize = json['max_other_file_size'];
-    this.videoUploadBitrate = json['video_upload_bitrate'];
-    this.preloadLargeVideos = json['preload_large_videos'];
-    this.preloadNextAudio = json['preload_next_audio'];
-    this.useLessDataForCalls = json['use_less_data_for_calls'];
+  factory AutoDownloadSettings.fromJson(Map<String, dynamic> json) {
+    return AutoDownloadSettings(
+      isAutoDownloadEnabled: json['is_auto_download_enabled'] ?? false,
+      maxPhotoFileSize: json['max_photo_file_size'] ?? 0,
+      maxVideoFileSize: json['max_video_file_size'] ?? 0,
+      maxOtherFileSize: json['max_other_file_size'] ?? 0,
+      videoUploadBitrate: json['video_upload_bitrate'] ?? 0,
+      preloadLargeVideos: json['preload_large_videos'] ?? false,
+      preloadNextAudio: json['preload_next_audio'] ?? false,
+      useLessDataForCalls: json['use_less_data_for_calls'] ?? false,
+    );
   }
 
   @override

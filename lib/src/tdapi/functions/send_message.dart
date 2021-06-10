@@ -3,12 +3,13 @@ part of '../tdapi.dart';
 class SendMessage extends TdFunction {
   /// Sends a message. Returns the sent message
   SendMessage(
-      {this.chatId,
-      this.messageThreadId,
-      this.replyToMessageId,
-      this.options,
-      this.replyMarkup,
-      this.inputMessageContent});
+      {required this.chatId,
+      required this.messageThreadId,
+      required this.replyToMessageId,
+      required this.options,
+      required this.replyMarkup,
+      required this.inputMessageContent,
+      this.extra});
 
   /// [chatId] Target chat
   int chatId;
@@ -32,7 +33,20 @@ class SendMessage extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SendMessage.fromJson(Map<String, dynamic> json);
+  factory SendMessage.fromJson(Map<String, dynamic> json) {
+    return SendMessage(
+      chatId: json['chat_id'] ?? 0,
+      messageThreadId: json['message_thread_id'] ?? 0,
+      replyToMessageId: json['reply_to_message_id'] ?? 0,
+      options:
+          MessageSendOptions.fromJson(json['options'] ?? <String, dynamic>{}),
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -41,12 +55,9 @@ class SendMessage extends TdFunction {
       "chat_id": this.chatId,
       "message_thread_id": this.messageThreadId,
       "reply_to_message_id": this.replyToMessageId,
-      "options": this.options == null ? null : this.options.toJson(),
-      "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+      "options": this.options.toJson(),
+      "reply_markup": this.replyMarkup.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
       "@extra": this.extra,
     };
   }

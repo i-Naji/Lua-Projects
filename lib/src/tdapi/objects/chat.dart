@@ -3,31 +3,32 @@ part of '../tdapi.dart';
 class Chat extends TdObject {
   /// A chat. (Can be a private chat, basic group, supergroup, or secret chat)
   Chat(
-      {this.id,
-      this.type,
-      this.title,
+      {required this.id,
+      required this.type,
+      required this.title,
       this.photo,
-      this.permissions,
+      required this.permissions,
       this.lastMessage,
-      this.positions,
-      this.isMarkedAsUnread,
-      this.isBlocked,
-      this.hasScheduledMessages,
-      this.canBeDeletedOnlyForSelf,
-      this.canBeDeletedForAllUsers,
-      this.canBeReported,
-      this.defaultDisableNotification,
-      this.unreadCount,
-      this.lastReadInboxMessageId,
-      this.lastReadOutboxMessageId,
-      this.unreadMentionCount,
-      this.notificationSettings,
+      required this.positions,
+      required this.isMarkedAsUnread,
+      required this.isBlocked,
+      required this.hasScheduledMessages,
+      required this.canBeDeletedOnlyForSelf,
+      required this.canBeDeletedForAllUsers,
+      required this.canBeReported,
+      required this.defaultDisableNotification,
+      required this.unreadCount,
+      required this.lastReadInboxMessageId,
+      required this.lastReadOutboxMessageId,
+      required this.unreadMentionCount,
+      required this.notificationSettings,
       this.actionBar,
-      this.voiceChatGroupCallId,
-      this.isVoiceChatEmpty,
-      this.replyMarkupMessageId,
+      required this.voiceChatGroupCallId,
+      required this.isVoiceChatEmpty,
+      required this.replyMarkupMessageId,
       this.draftMessage,
-      this.clientData});
+      required this.clientData,
+      this.extra});
 
   /// [id] Chat unique identifier
   int id;
@@ -39,13 +40,13 @@ class Chat extends TdObject {
   String title;
 
   /// [photo] Chat photo; may be null
-  ChatPhotoInfo photo;
+  ChatPhotoInfo? photo;
 
   /// [permissions] Actions that non-administrator chat members are allowed to take in the chat
   ChatPermissions permissions;
 
   /// [lastMessage] Last message in the chat; may be null
-  Message lastMessage;
+  Message? lastMessage;
 
   /// [positions] Positions of the chat in chat lists
   List<ChatPosition> positions;
@@ -87,7 +88,7 @@ class Chat extends TdObject {
   ChatNotificationSettings notificationSettings;
 
   /// [actionBar] Describes actions which should be possible to do through a chat action bar; may be null
-  ChatActionBar actionBar;
+  ChatActionBar? actionBar;
 
   /// [voiceChatGroupCallId] Group call identifier of an active voice chat; 0 if none or unknown. The voice chat can be received through the method getGroupCall
   int voiceChatGroupCallId;
@@ -99,49 +100,52 @@ class Chat extends TdObject {
   int replyMarkupMessageId;
 
   /// [draftMessage] A draft of a message in the chat; may be null
-  DraftMessage draftMessage;
+  DraftMessage? draftMessage;
 
   /// [clientData] Contains application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
   String clientData;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Chat.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.type = ChatType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.photo = ChatPhotoInfo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.permissions =
-        ChatPermissions.fromJson(json['permissions'] ?? <String, dynamic>{});
-    this.lastMessage =
-        Message.fromJson(json['last_message'] ?? <String, dynamic>{});
-    this.positions = List<ChatPosition>.from((json['positions'] ?? [])
-        .map((item) => ChatPosition.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.isMarkedAsUnread = json['is_marked_as_unread'];
-    this.isBlocked = json['is_blocked'];
-    this.hasScheduledMessages = json['has_scheduled_messages'];
-    this.canBeDeletedOnlyForSelf = json['can_be_deleted_only_for_self'];
-    this.canBeDeletedForAllUsers = json['can_be_deleted_for_all_users'];
-    this.canBeReported = json['can_be_reported'];
-    this.defaultDisableNotification = json['default_disable_notification'];
-    this.unreadCount = json['unread_count'];
-    this.lastReadInboxMessageId = json['last_read_inbox_message_id'];
-    this.lastReadOutboxMessageId = json['last_read_outbox_message_id'];
-    this.unreadMentionCount = json['unread_mention_count'];
-    this.notificationSettings = ChatNotificationSettings.fromJson(
-        json['notification_settings'] ?? <String, dynamic>{});
-    this.actionBar =
-        ChatActionBar.fromJson(json['action_bar'] ?? <String, dynamic>{});
-    this.voiceChatGroupCallId = json['voice_chat_group_call_id'];
-    this.isVoiceChatEmpty = json['is_voice_chat_empty'];
-    this.replyMarkupMessageId = json['reply_markup_message_id'];
-    this.draftMessage =
-        DraftMessage.fromJson(json['draft_message'] ?? <String, dynamic>{});
-    this.clientData = json['client_data'];
-    this.extra = json['@extra'];
+  factory Chat.fromJson(Map<String, dynamic> json) {
+    return Chat(
+      id: json['id'] ?? 0,
+      type: ChatType.fromJson(json['type'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      photo: ChatPhotoInfo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      permissions:
+          ChatPermissions.fromJson(json['permissions'] ?? <String, dynamic>{}),
+      lastMessage:
+          Message.fromJson(json['last_message'] ?? <String, dynamic>{}),
+      positions: List<ChatPosition>.from((json['positions'] ?? [])
+          .map((item) => ChatPosition.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      isMarkedAsUnread: json['is_marked_as_unread'] ?? false,
+      isBlocked: json['is_blocked'] ?? false,
+      hasScheduledMessages: json['has_scheduled_messages'] ?? false,
+      canBeDeletedOnlyForSelf: json['can_be_deleted_only_for_self'] ?? false,
+      canBeDeletedForAllUsers: json['can_be_deleted_for_all_users'] ?? false,
+      canBeReported: json['can_be_reported'] ?? false,
+      defaultDisableNotification: json['default_disable_notification'] ?? false,
+      unreadCount: json['unread_count'] ?? 0,
+      lastReadInboxMessageId: json['last_read_inbox_message_id'] ?? 0,
+      lastReadOutboxMessageId: json['last_read_outbox_message_id'] ?? 0,
+      unreadMentionCount: json['unread_mention_count'] ?? 0,
+      notificationSettings: ChatNotificationSettings.fromJson(
+          json['notification_settings'] ?? <String, dynamic>{}),
+      actionBar:
+          ChatActionBar.fromJson(json['action_bar'] ?? <String, dynamic>{}),
+      voiceChatGroupCallId: json['voice_chat_group_call_id'] ?? 0,
+      isVoiceChatEmpty: json['is_voice_chat_empty'] ?? false,
+      replyMarkupMessageId: json['reply_markup_message_id'] ?? 0,
+      draftMessage:
+          DraftMessage.fromJson(json['draft_message'] ?? <String, dynamic>{}),
+      clientData: json['client_data'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -149,13 +153,12 @@ class Chat extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "title": this.title,
-      "photo": this.photo == null ? null : this.photo.toJson(),
-      "permissions":
-          this.permissions == null ? null : this.permissions.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
+      "permissions": this.permissions.toJson(),
       "last_message":
-          this.lastMessage == null ? null : this.lastMessage.toJson(),
+          this.lastMessage == null ? null : this.lastMessage!.toJson(),
       "positions": this.positions.map((i) => i.toJson()).toList(),
       "is_marked_as_unread": this.isMarkedAsUnread,
       "is_blocked": this.isBlocked,
@@ -168,15 +171,13 @@ class Chat extends TdObject {
       "last_read_inbox_message_id": this.lastReadInboxMessageId,
       "last_read_outbox_message_id": this.lastReadOutboxMessageId,
       "unread_mention_count": this.unreadMentionCount,
-      "notification_settings": this.notificationSettings == null
-          ? null
-          : this.notificationSettings.toJson(),
-      "action_bar": this.actionBar == null ? null : this.actionBar.toJson(),
+      "notification_settings": this.notificationSettings.toJson(),
+      "action_bar": this.actionBar == null ? null : this.actionBar!.toJson(),
       "voice_chat_group_call_id": this.voiceChatGroupCallId,
       "is_voice_chat_empty": this.isVoiceChatEmpty,
       "reply_markup_message_id": this.replyMarkupMessageId,
       "draft_message":
-          this.draftMessage == null ? null : this.draftMessage.toJson(),
+          this.draftMessage == null ? null : this.draftMessage!.toJson(),
       "client_data": this.clientData,
     };
   }

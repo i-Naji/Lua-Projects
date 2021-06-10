@@ -59,7 +59,7 @@ class TextEntityType extends TdObject {
       case TextEntityTypeMentionName.CONSTRUCTOR:
         return TextEntityTypeMentionName.fromJson(json);
       default:
-        return null;
+        return TextEntityType();
     }
   }
 
@@ -79,7 +79,9 @@ class TextEntityTypeMention extends TextEntityType {
   TextEntityTypeMention();
 
   /// Parse from a json
-  TextEntityTypeMention.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeMention.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeMention();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -99,7 +101,9 @@ class TextEntityTypeHashtag extends TextEntityType {
   TextEntityTypeHashtag();
 
   /// Parse from a json
-  TextEntityTypeHashtag.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeHashtag.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeHashtag();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -119,7 +123,9 @@ class TextEntityTypeCashtag extends TextEntityType {
   TextEntityTypeCashtag();
 
   /// Parse from a json
-  TextEntityTypeCashtag.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeCashtag.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeCashtag();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -139,7 +145,9 @@ class TextEntityTypeBotCommand extends TextEntityType {
   TextEntityTypeBotCommand();
 
   /// Parse from a json
-  TextEntityTypeBotCommand.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeBotCommand.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeBotCommand();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -159,7 +167,9 @@ class TextEntityTypeUrl extends TextEntityType {
   TextEntityTypeUrl();
 
   /// Parse from a json
-  TextEntityTypeUrl.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeUrl.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeUrl();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -179,7 +189,9 @@ class TextEntityTypeEmailAddress extends TextEntityType {
   TextEntityTypeEmailAddress();
 
   /// Parse from a json
-  TextEntityTypeEmailAddress.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeEmailAddress.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeEmailAddress();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -199,7 +211,9 @@ class TextEntityTypePhoneNumber extends TextEntityType {
   TextEntityTypePhoneNumber();
 
   /// Parse from a json
-  TextEntityTypePhoneNumber.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypePhoneNumber.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypePhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -219,7 +233,9 @@ class TextEntityTypeBankCardNumber extends TextEntityType {
   TextEntityTypeBankCardNumber();
 
   /// Parse from a json
-  TextEntityTypeBankCardNumber.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeBankCardNumber.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeBankCardNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -239,7 +255,9 @@ class TextEntityTypeBold extends TextEntityType {
   TextEntityTypeBold();
 
   /// Parse from a json
-  TextEntityTypeBold.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeBold.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeBold();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -259,7 +277,9 @@ class TextEntityTypeItalic extends TextEntityType {
   TextEntityTypeItalic();
 
   /// Parse from a json
-  TextEntityTypeItalic.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeItalic.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeItalic();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -279,7 +299,9 @@ class TextEntityTypeUnderline extends TextEntityType {
   TextEntityTypeUnderline();
 
   /// Parse from a json
-  TextEntityTypeUnderline.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeUnderline.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeUnderline();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -299,7 +321,9 @@ class TextEntityTypeStrikethrough extends TextEntityType {
   TextEntityTypeStrikethrough();
 
   /// Parse from a json
-  TextEntityTypeStrikethrough.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeStrikethrough.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeStrikethrough();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -319,7 +343,9 @@ class TextEntityTypeCode extends TextEntityType {
   TextEntityTypeCode();
 
   /// Parse from a json
-  TextEntityTypeCode.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypeCode.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeCode();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -339,7 +365,9 @@ class TextEntityTypePre extends TextEntityType {
   TextEntityTypePre();
 
   /// Parse from a json
-  TextEntityTypePre.fromJson(Map<String, dynamic> json);
+  factory TextEntityTypePre.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypePre();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -356,14 +384,16 @@ class TextEntityTypePre extends TextEntityType {
 
 class TextEntityTypePreCode extends TextEntityType {
   /// Text that must be formatted as if inside pre, and code HTML tags
-  TextEntityTypePreCode({this.language});
+  TextEntityTypePreCode({required this.language});
 
   /// [language] Programming language of the code; as defined by the sender
   String language;
 
   /// Parse from a json
-  TextEntityTypePreCode.fromJson(Map<String, dynamic> json) {
-    this.language = json['language'];
+  factory TextEntityTypePreCode.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypePreCode(
+      language: json['language'] ?? "",
+    );
   }
 
   @override
@@ -382,14 +412,16 @@ class TextEntityTypePreCode extends TextEntityType {
 
 class TextEntityTypeTextUrl extends TextEntityType {
   /// A text description shown instead of a raw URL
-  TextEntityTypeTextUrl({this.url});
+  TextEntityTypeTextUrl({required this.url});
 
   /// [url] HTTP or tg:// URL to be opened when the link is clicked
   String url;
 
   /// Parse from a json
-  TextEntityTypeTextUrl.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
+  factory TextEntityTypeTextUrl.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeTextUrl(
+      url: json['url'] ?? "",
+    );
   }
 
   @override
@@ -408,14 +440,16 @@ class TextEntityTypeTextUrl extends TextEntityType {
 
 class TextEntityTypeMentionName extends TextEntityType {
   /// A text shows instead of a raw mention of the user (e.g., when the user has no username)
-  TextEntityTypeMentionName({this.userId});
+  TextEntityTypeMentionName({required this.userId});
 
   /// [userId] Identifier of the mentioned user
   int userId;
 
   /// Parse from a json
-  TextEntityTypeMentionName.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
+  factory TextEntityTypeMentionName.fromJson(Map<String, dynamic> json) {
+    return TextEntityTypeMentionName(
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override

@@ -47,7 +47,7 @@ class PassportElementType extends TdObject {
       case PassportElementTypeEmailAddress.CONSTRUCTOR:
         return PassportElementTypeEmailAddress.fromJson(json);
       default:
-        return null;
+        return PassportElementType();
     }
   }
 
@@ -67,7 +67,10 @@ class PassportElementTypePersonalDetails extends PassportElementType {
   PassportElementTypePersonalDetails();
 
   /// Parse from a json
-  PassportElementTypePersonalDetails.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypePersonalDetails.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementTypePersonalDetails();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -87,7 +90,9 @@ class PassportElementTypePassport extends PassportElementType {
   PassportElementTypePassport();
 
   /// Parse from a json
-  PassportElementTypePassport.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypePassport.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypePassport();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -107,7 +112,9 @@ class PassportElementTypeDriverLicense extends PassportElementType {
   PassportElementTypeDriverLicense();
 
   /// Parse from a json
-  PassportElementTypeDriverLicense.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeDriverLicense.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypeDriverLicense();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -127,7 +134,9 @@ class PassportElementTypeIdentityCard extends PassportElementType {
   PassportElementTypeIdentityCard();
 
   /// Parse from a json
-  PassportElementTypeIdentityCard.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeIdentityCard.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypeIdentityCard();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -147,7 +156,10 @@ class PassportElementTypeInternalPassport extends PassportElementType {
   PassportElementTypeInternalPassport();
 
   /// Parse from a json
-  PassportElementTypeInternalPassport.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeInternalPassport.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementTypeInternalPassport();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -167,7 +179,9 @@ class PassportElementTypeAddress extends PassportElementType {
   PassportElementTypeAddress();
 
   /// Parse from a json
-  PassportElementTypeAddress.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeAddress.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypeAddress();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -187,7 +201,9 @@ class PassportElementTypeUtilityBill extends PassportElementType {
   PassportElementTypeUtilityBill();
 
   /// Parse from a json
-  PassportElementTypeUtilityBill.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeUtilityBill.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypeUtilityBill();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -207,7 +223,9 @@ class PassportElementTypeBankStatement extends PassportElementType {
   PassportElementTypeBankStatement();
 
   /// Parse from a json
-  PassportElementTypeBankStatement.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeBankStatement.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypeBankStatement();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -227,7 +245,10 @@ class PassportElementTypeRentalAgreement extends PassportElementType {
   PassportElementTypeRentalAgreement();
 
   /// Parse from a json
-  PassportElementTypeRentalAgreement.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeRentalAgreement.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementTypeRentalAgreement();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -247,7 +268,10 @@ class PassportElementTypePassportRegistration extends PassportElementType {
   PassportElementTypePassportRegistration();
 
   /// Parse from a json
-  PassportElementTypePassportRegistration.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypePassportRegistration.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementTypePassportRegistration();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -267,7 +291,10 @@ class PassportElementTypeTemporaryRegistration extends PassportElementType {
   PassportElementTypeTemporaryRegistration();
 
   /// Parse from a json
-  PassportElementTypeTemporaryRegistration.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeTemporaryRegistration.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementTypeTemporaryRegistration();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -287,7 +314,9 @@ class PassportElementTypePhoneNumber extends PassportElementType {
   PassportElementTypePhoneNumber();
 
   /// Parse from a json
-  PassportElementTypePhoneNumber.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypePhoneNumber.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypePhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -307,7 +336,9 @@ class PassportElementTypeEmailAddress extends PassportElementType {
   PassportElementTypeEmailAddress();
 
   /// Parse from a json
-  PassportElementTypeEmailAddress.fromJson(Map<String, dynamic> json);
+  factory PassportElementTypeEmailAddress.fromJson(Map<String, dynamic> json) {
+    return PassportElementTypeEmailAddress();
+  }
 
   @override
   Map<String, dynamic> toJson() {

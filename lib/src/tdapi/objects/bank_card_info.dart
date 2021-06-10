@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class BankCardInfo extends TdObject {
   /// Information about a bank card
-  BankCardInfo({this.title, this.actions});
+  BankCardInfo({required this.title, required this.actions, this.extra});
 
   /// [title] Title of the bank card description
   String title;
@@ -11,16 +11,19 @@ class BankCardInfo extends TdObject {
   List<BankCardActionOpenUrl> actions;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  BankCardInfo.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.actions = List<BankCardActionOpenUrl>.from((json['actions'] ?? [])
-        .map((item) =>
-            BankCardActionOpenUrl.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory BankCardInfo.fromJson(Map<String, dynamic> json) {
+    return BankCardInfo(
+      title: json['title'] ?? "",
+      actions: List<BankCardActionOpenUrl>.from((json['actions'] ?? [])
+          .map((item) =>
+              BankCardActionOpenUrl.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

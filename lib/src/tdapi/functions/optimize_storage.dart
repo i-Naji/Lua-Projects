@@ -3,15 +3,16 @@ part of '../tdapi.dart';
 class OptimizeStorage extends TdFunction {
   /// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
   OptimizeStorage(
-      {this.size,
-      this.ttl,
-      this.count,
-      this.immunityDelay,
-      this.fileTypes,
-      this.chatIds,
-      this.excludeChatIds,
-      this.returnDeletedFileStatistics,
-      this.chatLimit});
+      {required this.size,
+      required this.ttl,
+      required this.count,
+      required this.immunityDelay,
+      required this.fileTypes,
+      required this.chatIds,
+      required this.excludeChatIds,
+      required this.returnDeletedFileStatistics,
+      required this.chatLimit,
+      this.extra});
 
   /// [size] Limit on the total size of files after deletion. Pass -1 to use the default limit
   int size;
@@ -44,7 +45,25 @@ class OptimizeStorage extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  OptimizeStorage.fromJson(Map<String, dynamic> json);
+  factory OptimizeStorage.fromJson(Map<String, dynamic> json) {
+    return OptimizeStorage(
+      size: json['size'] ?? 0,
+      ttl: json['ttl'] ?? 0,
+      count: json['count'] ?? 0,
+      immunityDelay: json['immunity_delay'] ?? 0,
+      fileTypes: List<FileType>.from((json['file_types'] ?? [])
+          .map((item) => FileType.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      chatIds: List<int>.from(
+          (json['chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+      excludeChatIds: List<int>.from(
+          (json['exclude_chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+      returnDeletedFileStatistics:
+          json['return_deleted_file_statistics'] ?? false,
+      chatLimit: json['chat_limit'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

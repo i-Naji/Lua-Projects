@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SearchChats extends TdFunction {
   /// Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
-  SearchChats({this.query, this.limit});
+  SearchChats({required this.query, required this.limit, this.extra});
 
   /// [query] Query to search for. If the query is empty, returns up to 20 recently found chats
   String query;
@@ -14,7 +14,13 @@ class SearchChats extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SearchChats.fromJson(Map<String, dynamic> json);
+  factory SearchChats.fromJson(Map<String, dynamic> json) {
+    return SearchChats(
+      query: json['query'] ?? "",
+      limit: json['limit'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

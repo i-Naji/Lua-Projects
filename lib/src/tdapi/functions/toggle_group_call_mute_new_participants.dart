@@ -3,7 +3,9 @@ part of '../tdapi.dart';
 class ToggleGroupCallMuteNewParticipants extends TdFunction {
   /// Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires can_manage_voice_chats rights in the corresponding chat and allowed_change_mute_mew_participants group call flag
   ToggleGroupCallMuteNewParticipants(
-      {this.groupCallId, this.muteNewParticipants});
+      {required this.groupCallId,
+      required this.muteNewParticipants,
+      this.extra});
 
   /// [groupCallId] Group call identifier
   int groupCallId;
@@ -15,7 +17,14 @@ class ToggleGroupCallMuteNewParticipants extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  ToggleGroupCallMuteNewParticipants.fromJson(Map<String, dynamic> json);
+  factory ToggleGroupCallMuteNewParticipants.fromJson(
+      Map<String, dynamic> json) {
+    return ToggleGroupCallMuteNewParticipants(
+      groupCallId: json['group_call_id'] ?? 0,
+      muteNewParticipants: json['mute_new_participants'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

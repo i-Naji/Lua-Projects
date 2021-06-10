@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetMe extends TdFunction {
   /// Returns the current user
-  GetMe();
+  GetMe({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetMe.fromJson(Map<String, dynamic> json);
+  factory GetMe.fromJson(Map<String, dynamic> json) {
+    return GetMe(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

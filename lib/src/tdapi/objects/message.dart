@@ -3,36 +3,37 @@ part of '../tdapi.dart';
 class Message extends TdObject {
   /// Describes a message
   Message(
-      {this.id,
-      this.sender,
-      this.chatId,
+      {required this.id,
+      required this.sender,
+      required this.chatId,
       this.sendingState,
       this.schedulingState,
-      this.isOutgoing,
-      this.isPinned,
-      this.canBeEdited,
-      this.canBeForwarded,
-      this.canBeDeletedOnlyForSelf,
-      this.canBeDeletedForAllUsers,
-      this.canGetStatistics,
-      this.canGetMessageThread,
-      this.isChannelPost,
-      this.containsUnreadMention,
-      this.date,
-      this.editDate,
+      required this.isOutgoing,
+      required this.isPinned,
+      required this.canBeEdited,
+      required this.canBeForwarded,
+      required this.canBeDeletedOnlyForSelf,
+      required this.canBeDeletedForAllUsers,
+      required this.canGetStatistics,
+      required this.canGetMessageThread,
+      required this.isChannelPost,
+      required this.containsUnreadMention,
+      required this.date,
+      required this.editDate,
       this.forwardInfo,
       this.interactionInfo,
-      this.replyInChatId,
-      this.replyToMessageId,
-      this.messageThreadId,
-      this.ttl,
-      this.ttlExpiresIn,
-      this.viaBotUserId,
-      this.authorSignature,
-      this.mediaAlbumId,
-      this.restrictionReason,
-      this.content,
-      this.replyMarkup});
+      required this.replyInChatId,
+      required this.replyToMessageId,
+      required this.messageThreadId,
+      required this.ttl,
+      required this.ttlExpiresIn,
+      required this.viaBotUserId,
+      required this.authorSignature,
+      required this.mediaAlbumId,
+      required this.restrictionReason,
+      required this.content,
+      this.replyMarkup,
+      this.extra});
 
   /// [id] Message identifier; unique for the chat to which the message belongs
   int id;
@@ -44,10 +45,10 @@ class Message extends TdObject {
   int chatId;
 
   /// [sendingState] Information about the sending state of the message; may be null
-  MessageSendingState sendingState;
+  MessageSendingState? sendingState;
 
   /// [schedulingState] Information about the scheduling state of the message; may be null
-  MessageSchedulingState schedulingState;
+  MessageSchedulingState? schedulingState;
 
   /// [isOutgoing] True, if the message is outgoing
   bool isOutgoing;
@@ -86,10 +87,10 @@ class Message extends TdObject {
   int editDate;
 
   /// [forwardInfo] Information about the initial message sender; may be null
-  MessageForwardInfo forwardInfo;
+  MessageForwardInfo? forwardInfo;
 
   /// [interactionInfo] Information about interactions with the message; may be null
-  MessageInteractionInfo interactionInfo;
+  MessageInteractionInfo? interactionInfo;
 
   /// [replyInChatId] If non-zero, the identifier of the chat to which the replied message belongs; Currently, only messages in the Replies chat can have different reply_in_chat_id and chat_id
   int replyInChatId;
@@ -122,50 +123,52 @@ class Message extends TdObject {
   MessageContent content;
 
   /// [replyMarkup] Reply markup for the message; may be null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Message.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.sender = MessageSender.fromJson(json['sender'] ?? <String, dynamic>{});
-    this.chatId = json['chat_id'];
-    this.sendingState = MessageSendingState.fromJson(
-        json['sending_state'] ?? <String, dynamic>{});
-    this.schedulingState = MessageSchedulingState.fromJson(
-        json['scheduling_state'] ?? <String, dynamic>{});
-    this.isOutgoing = json['is_outgoing'];
-    this.isPinned = json['is_pinned'];
-    this.canBeEdited = json['can_be_edited'];
-    this.canBeForwarded = json['can_be_forwarded'];
-    this.canBeDeletedOnlyForSelf = json['can_be_deleted_only_for_self'];
-    this.canBeDeletedForAllUsers = json['can_be_deleted_for_all_users'];
-    this.canGetStatistics = json['can_get_statistics'];
-    this.canGetMessageThread = json['can_get_message_thread'];
-    this.isChannelPost = json['is_channel_post'];
-    this.containsUnreadMention = json['contains_unread_mention'];
-    this.date = json['date'];
-    this.editDate = json['edit_date'];
-    this.forwardInfo = MessageForwardInfo.fromJson(
-        json['forward_info'] ?? <String, dynamic>{});
-    this.interactionInfo = MessageInteractionInfo.fromJson(
-        json['interaction_info'] ?? <String, dynamic>{});
-    this.replyInChatId = json['reply_in_chat_id'];
-    this.replyToMessageId = json['reply_to_message_id'];
-    this.messageThreadId = json['message_thread_id'];
-    this.ttl = json['ttl'];
-    this.ttlExpiresIn = json['ttl_expires_in'];
-    this.viaBotUserId = json['via_bot_user_id'];
-    this.authorSignature = json['author_signature'];
-    this.mediaAlbumId = int.tryParse(json['media_album_id'] ?? "");
-    this.restrictionReason = json['restriction_reason'];
-    this.content =
-        MessageContent.fromJson(json['content'] ?? <String, dynamic>{});
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      id: json['id'] ?? 0,
+      sender: MessageSender.fromJson(json['sender'] ?? <String, dynamic>{}),
+      chatId: json['chat_id'] ?? 0,
+      sendingState: MessageSendingState.fromJson(
+          json['sending_state'] ?? <String, dynamic>{}),
+      schedulingState: MessageSchedulingState.fromJson(
+          json['scheduling_state'] ?? <String, dynamic>{}),
+      isOutgoing: json['is_outgoing'] ?? false,
+      isPinned: json['is_pinned'] ?? false,
+      canBeEdited: json['can_be_edited'] ?? false,
+      canBeForwarded: json['can_be_forwarded'] ?? false,
+      canBeDeletedOnlyForSelf: json['can_be_deleted_only_for_self'] ?? false,
+      canBeDeletedForAllUsers: json['can_be_deleted_for_all_users'] ?? false,
+      canGetStatistics: json['can_get_statistics'] ?? false,
+      canGetMessageThread: json['can_get_message_thread'] ?? false,
+      isChannelPost: json['is_channel_post'] ?? false,
+      containsUnreadMention: json['contains_unread_mention'] ?? false,
+      date: json['date'] ?? 0,
+      editDate: json['edit_date'] ?? 0,
+      forwardInfo: MessageForwardInfo.fromJson(
+          json['forward_info'] ?? <String, dynamic>{}),
+      interactionInfo: MessageInteractionInfo.fromJson(
+          json['interaction_info'] ?? <String, dynamic>{}),
+      replyInChatId: json['reply_in_chat_id'] ?? 0,
+      replyToMessageId: json['reply_to_message_id'] ?? 0,
+      messageThreadId: json['message_thread_id'] ?? 0,
+      ttl: json['ttl'] ?? 0,
+      ttlExpiresIn: json['ttl_expires_in'] ?? 0,
+      viaBotUserId: json['via_bot_user_id'] ?? 0,
+      authorSignature: json['author_signature'] ?? "",
+      mediaAlbumId: int.tryParse(json['media_album_id'] ?? "") ?? 0,
+      restrictionReason: json['restriction_reason'] ?? "",
+      content: MessageContent.fromJson(json['content'] ?? <String, dynamic>{}),
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -173,12 +176,12 @@ class Message extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "sender": this.sender == null ? null : this.sender.toJson(),
+      "sender": this.sender.toJson(),
       "chat_id": this.chatId,
       "sending_state":
-          this.sendingState == null ? null : this.sendingState.toJson(),
+          this.sendingState == null ? null : this.sendingState!.toJson(),
       "scheduling_state":
-          this.schedulingState == null ? null : this.schedulingState.toJson(),
+          this.schedulingState == null ? null : this.schedulingState!.toJson(),
       "is_outgoing": this.isOutgoing,
       "is_pinned": this.isPinned,
       "can_be_edited": this.canBeEdited,
@@ -192,9 +195,9 @@ class Message extends TdObject {
       "date": this.date,
       "edit_date": this.editDate,
       "forward_info":
-          this.forwardInfo == null ? null : this.forwardInfo.toJson(),
+          this.forwardInfo == null ? null : this.forwardInfo!.toJson(),
       "interaction_info":
-          this.interactionInfo == null ? null : this.interactionInfo.toJson(),
+          this.interactionInfo == null ? null : this.interactionInfo!.toJson(),
       "reply_in_chat_id": this.replyInChatId,
       "reply_to_message_id": this.replyToMessageId,
       "message_thread_id": this.messageThreadId,
@@ -204,9 +207,9 @@ class Message extends TdObject {
       "author_signature": this.authorSignature,
       "media_album_id": this.mediaAlbumId,
       "restriction_reason": this.restrictionReason,
-      "content": this.content == null ? null : this.content.toJson(),
+      "content": this.content.toJson(),
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
     };
   }
 

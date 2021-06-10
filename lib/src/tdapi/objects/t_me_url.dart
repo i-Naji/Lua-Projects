@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class TMeUrl extends TdObject {
   /// Represents a URL linking to an internal Telegram entity
-  TMeUrl({this.url, this.type});
+  TMeUrl({required this.url, required this.type});
 
   /// [url] URL
   String url;
@@ -11,9 +11,11 @@ class TMeUrl extends TdObject {
   TMeUrlType type;
 
   /// Parse from a json
-  TMeUrl.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
-    this.type = TMeUrlType.fromJson(json['type'] ?? <String, dynamic>{});
+  factory TMeUrl.fromJson(Map<String, dynamic> json) {
+    return TMeUrl(
+      url: json['url'] ?? "",
+      type: TMeUrlType.fromJson(json['type'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -21,7 +23,7 @@ class TMeUrl extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "url": this.url,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
     };
   }
 

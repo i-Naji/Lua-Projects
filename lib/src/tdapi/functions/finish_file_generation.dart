@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class FinishFileGeneration extends TdFunction {
   /// Finishes the file generation
-  FinishFileGeneration({this.generationId, this.error});
+  FinishFileGeneration(
+      {required this.generationId, required this.error, this.extra});
 
   /// [generationId] The identifier of the generation process
   int generationId;
@@ -14,14 +15,20 @@ class FinishFileGeneration extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  FinishFileGeneration.fromJson(Map<String, dynamic> json);
+  factory FinishFileGeneration.fromJson(Map<String, dynamic> json) {
+    return FinishFileGeneration(
+      generationId: int.tryParse(json['generation_id'] ?? "") ?? 0,
+      error: TdError.fromJson(json['error'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "generation_id": this.generationId,
-      "error": this.error == null ? null : this.error.toJson(),
+      "error": this.error.toJson(),
       "@extra": this.extra,
     };
   }

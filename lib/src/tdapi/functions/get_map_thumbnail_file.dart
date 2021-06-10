@@ -3,12 +3,13 @@ part of '../tdapi.dart';
 class GetMapThumbnailFile extends TdFunction {
   /// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
   GetMapThumbnailFile(
-      {this.location,
-      this.zoom,
-      this.width,
-      this.height,
-      this.scale,
-      this.chatId});
+      {required this.location,
+      required this.zoom,
+      required this.width,
+      required this.height,
+      required this.scale,
+      required this.chatId,
+      this.extra});
 
   /// [location] Location of the map center
   Location location;
@@ -32,13 +33,23 @@ class GetMapThumbnailFile extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetMapThumbnailFile.fromJson(Map<String, dynamic> json);
+  factory GetMapThumbnailFile.fromJson(Map<String, dynamic> json) {
+    return GetMapThumbnailFile(
+      location: Location.fromJson(json['location'] ?? <String, dynamic>{}),
+      zoom: json['zoom'] ?? 0,
+      width: json['width'] ?? 0,
+      height: json['height'] ?? 0,
+      scale: json['scale'] ?? 0,
+      chatId: json['chat_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location.toJson(),
       "zoom": this.zoom,
       "width": this.width,
       "height": this.height,

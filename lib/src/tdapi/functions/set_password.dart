@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class SetPassword extends TdFunction {
   /// Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
   SetPassword(
-      {this.oldPassword,
-      this.newPassword,
-      this.newHint,
-      this.setRecoveryEmailAddress,
-      this.newRecoveryEmailAddress});
+      {required this.oldPassword,
+      required this.newPassword,
+      required this.newHint,
+      required this.setRecoveryEmailAddress,
+      required this.newRecoveryEmailAddress,
+      this.extra});
 
   /// [oldPassword] Previous password of the user
   String oldPassword;
@@ -28,7 +29,16 @@ class SetPassword extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetPassword.fromJson(Map<String, dynamic> json);
+  factory SetPassword.fromJson(Map<String, dynamic> json) {
+    return SetPassword(
+      oldPassword: json['old_password'] ?? "",
+      newPassword: json['new_password'] ?? "",
+      newHint: json['new_hint'] ?? "",
+      setRecoveryEmailAddress: json['set_recovery_email_address'] ?? false,
+      newRecoveryEmailAddress: json['new_recovery_email_address'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

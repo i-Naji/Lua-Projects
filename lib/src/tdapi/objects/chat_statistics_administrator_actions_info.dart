@@ -3,10 +3,10 @@ part of '../tdapi.dart';
 class ChatStatisticsAdministratorActionsInfo extends TdObject {
   /// Contains statistics about administrator actions done by a user
   ChatStatisticsAdministratorActionsInfo(
-      {this.userId,
-      this.deletedMessageCount,
-      this.bannedUserCount,
-      this.restrictedUserCount});
+      {required this.userId,
+      required this.deletedMessageCount,
+      required this.bannedUserCount,
+      required this.restrictedUserCount});
 
   /// [userId] Administrator user identifier
   int userId;
@@ -21,11 +21,14 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject {
   int restrictedUserCount;
 
   /// Parse from a json
-  ChatStatisticsAdministratorActionsInfo.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
-    this.deletedMessageCount = json['deleted_message_count'];
-    this.bannedUserCount = json['banned_user_count'];
-    this.restrictedUserCount = json['restricted_user_count'];
+  factory ChatStatisticsAdministratorActionsInfo.fromJson(
+      Map<String, dynamic> json) {
+    return ChatStatisticsAdministratorActionsInfo(
+      userId: json['user_id'] ?? 0,
+      deletedMessageCount: json['deleted_message_count'] ?? 0,
+      bannedUserCount: json['banned_user_count'] ?? 0,
+      restrictedUserCount: json['restricted_user_count'] ?? 0,
+    );
   }
 
   @override

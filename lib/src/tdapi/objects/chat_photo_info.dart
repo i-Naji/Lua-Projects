@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class ChatPhotoInfo extends TdObject {
   /// Contains basic information about the photo of a chat
-  ChatPhotoInfo({this.small, this.big, this.hasAnimation});
+  ChatPhotoInfo(
+      {required this.small, required this.big, required this.hasAnimation});
 
   /// [small] A small (160x160) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed
   File small;
@@ -14,18 +15,20 @@ class ChatPhotoInfo extends TdObject {
   bool hasAnimation;
 
   /// Parse from a json
-  ChatPhotoInfo.fromJson(Map<String, dynamic> json) {
-    this.small = File.fromJson(json['small'] ?? <String, dynamic>{});
-    this.big = File.fromJson(json['big'] ?? <String, dynamic>{});
-    this.hasAnimation = json['has_animation'];
+  factory ChatPhotoInfo.fromJson(Map<String, dynamic> json) {
+    return ChatPhotoInfo(
+      small: File.fromJson(json['small'] ?? <String, dynamic>{}),
+      big: File.fromJson(json['big'] ?? <String, dynamic>{}),
+      hasAnimation: json['has_animation'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "small": this.small == null ? null : this.small.toJson(),
-      "big": this.big == null ? null : this.big.toJson(),
+      "small": this.small.toJson(),
+      "big": this.big.toJson(),
       "has_animation": this.hasAnimation,
     };
   }

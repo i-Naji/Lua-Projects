@@ -3,13 +3,14 @@ part of '../tdapi.dart';
 class AnswerInlineQuery extends TdFunction {
   /// Sets the result of an inline query; for bots only
   AnswerInlineQuery(
-      {this.inlineQueryId,
-      this.isPersonal,
-      this.results,
-      this.cacheTime,
-      this.nextOffset,
-      this.switchPmText,
-      this.switchPmParameter});
+      {required this.inlineQueryId,
+      required this.isPersonal,
+      required this.results,
+      required this.cacheTime,
+      required this.nextOffset,
+      required this.switchPmText,
+      required this.switchPmParameter,
+      this.extra});
 
   /// [inlineQueryId] Identifier of the inline query
   int inlineQueryId;
@@ -36,7 +37,21 @@ class AnswerInlineQuery extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AnswerInlineQuery.fromJson(Map<String, dynamic> json);
+  factory AnswerInlineQuery.fromJson(Map<String, dynamic> json) {
+    return AnswerInlineQuery(
+      inlineQueryId: int.tryParse(json['inline_query_id'] ?? "") ?? 0,
+      isPersonal: json['is_personal'] ?? false,
+      results: List<InputInlineQueryResult>.from((json['results'] ?? [])
+          .map((item) =>
+              InputInlineQueryResult.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      cacheTime: json['cache_time'] ?? 0,
+      nextOffset: json['next_offset'] ?? "",
+      switchPmText: json['switch_pm_text'] ?? "",
+      switchPmParameter: json['switch_pm_parameter'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

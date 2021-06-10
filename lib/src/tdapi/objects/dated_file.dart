@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class DatedFile extends TdObject {
   /// File with the date it was uploaded
-  DatedFile({this.file, this.date});
+  DatedFile({required this.file, required this.date});
 
   /// [file] The file
   File file;
@@ -11,16 +11,18 @@ class DatedFile extends TdObject {
   int date;
 
   /// Parse from a json
-  DatedFile.fromJson(Map<String, dynamic> json) {
-    this.file = File.fromJson(json['file'] ?? <String, dynamic>{});
-    this.date = json['date'];
+  factory DatedFile.fromJson(Map<String, dynamic> json) {
+    return DatedFile(
+      file: File.fromJson(json['file'] ?? <String, dynamic>{}),
+      date: json['date'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "file": this.file == null ? null : this.file.toJson(),
+      "file": this.file.toJson(),
       "date": this.date,
     };
   }

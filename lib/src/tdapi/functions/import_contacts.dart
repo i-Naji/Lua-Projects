@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class ImportContacts extends TdFunction {
   /// Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
-  ImportContacts({this.contacts});
+  ImportContacts({required this.contacts, this.extra});
 
   /// [contacts] The list of contacts to import or edit; contacts' vCard are ignored and are not imported
   List<Contact> contacts;
@@ -11,7 +11,14 @@ class ImportContacts extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  ImportContacts.fromJson(Map<String, dynamic> json);
+  factory ImportContacts.fromJson(Map<String, dynamic> json) {
+    return ImportContacts(
+      contacts: List<Contact>.from((json['contacts'] ?? [])
+          .map((item) => Contact.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

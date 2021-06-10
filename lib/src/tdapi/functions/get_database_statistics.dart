@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetDatabaseStatistics extends TdFunction {
   /// Returns database statistics
-  GetDatabaseStatistics();
+  GetDatabaseStatistics({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetDatabaseStatistics.fromJson(Map<String, dynamic> json);
+  factory GetDatabaseStatistics.fromJson(Map<String, dynamic> json) {
+    return GetDatabaseStatistics(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

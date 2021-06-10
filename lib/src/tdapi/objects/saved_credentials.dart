@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SavedCredentials extends TdObject {
   /// Contains information about saved card credentials
-  SavedCredentials({this.id, this.title});
+  SavedCredentials({required this.id, required this.title});
 
   /// [id] Unique identifier of the saved credentials
   String id;
@@ -11,9 +11,11 @@ class SavedCredentials extends TdObject {
   String title;
 
   /// Parse from a json
-  SavedCredentials.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
+  factory SavedCredentials.fromJson(Map<String, dynamic> json) {
+    return SavedCredentials(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+    );
   }
 
   @override

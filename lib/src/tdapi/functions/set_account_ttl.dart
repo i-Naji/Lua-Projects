@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SetAccountTtl extends TdFunction {
   /// Changes the period of inactivity after which the account of the current user will automatically be deleted
-  SetAccountTtl({this.ttl});
+  SetAccountTtl({required this.ttl, this.extra});
 
   /// [ttl] New account TTL
   AccountTtl ttl;
@@ -11,13 +11,18 @@ class SetAccountTtl extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetAccountTtl.fromJson(Map<String, dynamic> json);
+  factory SetAccountTtl.fromJson(Map<String, dynamic> json) {
+    return SetAccountTtl(
+      ttl: AccountTtl.fromJson(json['ttl'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "ttl": this.ttl == null ? null : this.ttl.toJson(),
+      "ttl": this.ttl.toJson(),
       "@extra": this.extra,
     };
   }

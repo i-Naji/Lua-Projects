@@ -3,12 +3,13 @@ part of '../tdapi.dart';
 class Background extends TdObject {
   /// Describes a chat background
   Background(
-      {this.id,
-      this.isDefault,
-      this.isDark,
-      this.name,
+      {required this.id,
+      required this.isDefault,
+      required this.isDark,
+      required this.name,
       this.document,
-      this.type});
+      required this.type,
+      this.extra});
 
   /// [id] Unique background identifier
   int id;
@@ -23,23 +24,26 @@ class Background extends TdObject {
   String name;
 
   /// [document] Document with the background; may be null. Null only for filled backgrounds
-  Document document;
+  Document? document;
 
   /// [type] Type of the background
   BackgroundType type;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Background.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.isDefault = json['is_default'];
-    this.isDark = json['is_dark'];
-    this.name = json['name'];
-    this.document = Document.fromJson(json['document'] ?? <String, dynamic>{});
-    this.type = BackgroundType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory Background.fromJson(Map<String, dynamic> json) {
+    return Background(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      isDefault: json['is_default'] ?? false,
+      isDark: json['is_dark'] ?? false,
+      name: json['name'] ?? "",
+      document: Document.fromJson(json['document'] ?? <String, dynamic>{}),
+      type: BackgroundType.fromJson(json['type'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -50,8 +54,8 @@ class Background extends TdObject {
       "is_default": this.isDefault,
       "is_dark": this.isDark,
       "name": this.name,
-      "document": this.document == null ? null : this.document.toJson(),
-      "type": this.type == null ? null : this.type.toJson(),
+      "document": this.document == null ? null : this.document!.toJson(),
+      "type": this.type.toJson(),
     };
   }
 

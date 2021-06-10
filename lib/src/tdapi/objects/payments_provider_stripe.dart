@@ -3,10 +3,10 @@ part of '../tdapi.dart';
 class PaymentsProviderStripe extends TdObject {
   /// Stripe payment provider
   PaymentsProviderStripe(
-      {this.publishableKey,
-      this.needCountry,
-      this.needPostalCode,
-      this.needCardholderName});
+      {required this.publishableKey,
+      required this.needCountry,
+      required this.needPostalCode,
+      required this.needCardholderName});
 
   /// [publishableKey] Stripe API publishable key
   String publishableKey;
@@ -21,11 +21,13 @@ class PaymentsProviderStripe extends TdObject {
   bool needCardholderName;
 
   /// Parse from a json
-  PaymentsProviderStripe.fromJson(Map<String, dynamic> json) {
-    this.publishableKey = json['publishable_key'];
-    this.needCountry = json['need_country'];
-    this.needPostalCode = json['need_postal_code'];
-    this.needCardholderName = json['need_cardholder_name'];
+  factory PaymentsProviderStripe.fromJson(Map<String, dynamic> json) {
+    return PaymentsProviderStripe(
+      publishableKey: json['publishable_key'] ?? "",
+      needCountry: json['need_country'] ?? false,
+      needPostalCode: json['need_postal_code'] ?? false,
+      needCardholderName: json['need_cardholder_name'] ?? false,
+    );
   }
 
   @override

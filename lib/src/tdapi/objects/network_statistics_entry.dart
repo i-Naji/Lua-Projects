@@ -14,7 +14,7 @@ class NetworkStatisticsEntry extends TdObject {
       case NetworkStatisticsEntryCall.CONSTRUCTOR:
         return NetworkStatisticsEntryCall.fromJson(json);
       default:
-        return null;
+        return NetworkStatisticsEntry();
     }
   }
 
@@ -32,7 +32,10 @@ class NetworkStatisticsEntry extends TdObject {
 class NetworkStatisticsEntryFile extends NetworkStatisticsEntry {
   /// Contains information about the total amount of data that was used to send and receive files
   NetworkStatisticsEntryFile(
-      {this.fileType, this.networkType, this.sentBytes, this.receivedBytes});
+      {required this.fileType,
+      required this.networkType,
+      required this.sentBytes,
+      required this.receivedBytes});
 
   /// [fileType] Type of the file the data is part of
   FileType fileType;
@@ -47,21 +50,22 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry {
   int receivedBytes;
 
   /// Parse from a json
-  NetworkStatisticsEntryFile.fromJson(Map<String, dynamic> json) {
-    this.fileType = FileType.fromJson(json['file_type'] ?? <String, dynamic>{});
-    this.networkType =
-        NetworkType.fromJson(json['network_type'] ?? <String, dynamic>{});
-    this.sentBytes = json['sent_bytes'];
-    this.receivedBytes = json['received_bytes'];
+  factory NetworkStatisticsEntryFile.fromJson(Map<String, dynamic> json) {
+    return NetworkStatisticsEntryFile(
+      fileType: FileType.fromJson(json['file_type'] ?? <String, dynamic>{}),
+      networkType:
+          NetworkType.fromJson(json['network_type'] ?? <String, dynamic>{}),
+      sentBytes: json['sent_bytes'] ?? 0,
+      receivedBytes: json['received_bytes'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "file_type": this.fileType == null ? null : this.fileType.toJson(),
-      "network_type":
-          this.networkType == null ? null : this.networkType.toJson(),
+      "file_type": this.fileType.toJson(),
+      "network_type": this.networkType.toJson(),
       "sent_bytes": this.sentBytes,
       "received_bytes": this.receivedBytes,
     };
@@ -76,7 +80,10 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry {
 class NetworkStatisticsEntryCall extends NetworkStatisticsEntry {
   /// Contains information about the total amount of data that was used for calls
   NetworkStatisticsEntryCall(
-      {this.networkType, this.sentBytes, this.receivedBytes, this.duration});
+      {required this.networkType,
+      required this.sentBytes,
+      required this.receivedBytes,
+      required this.duration});
 
   /// [networkType] Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
   NetworkType networkType;
@@ -91,20 +98,21 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry {
   double duration;
 
   /// Parse from a json
-  NetworkStatisticsEntryCall.fromJson(Map<String, dynamic> json) {
-    this.networkType =
-        NetworkType.fromJson(json['network_type'] ?? <String, dynamic>{});
-    this.sentBytes = json['sent_bytes'];
-    this.receivedBytes = json['received_bytes'];
-    this.duration = json['duration'];
+  factory NetworkStatisticsEntryCall.fromJson(Map<String, dynamic> json) {
+    return NetworkStatisticsEntryCall(
+      networkType:
+          NetworkType.fromJson(json['network_type'] ?? <String, dynamic>{}),
+      sentBytes: json['sent_bytes'] ?? 0,
+      receivedBytes: json['received_bytes'] ?? 0,
+      duration: json['duration'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "network_type":
-          this.networkType == null ? null : this.networkType.toJson(),
+      "network_type": this.networkType.toJson(),
       "sent_bytes": this.sentBytes,
       "received_bytes": this.receivedBytes,
       "duration": this.duration,

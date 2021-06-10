@@ -20,7 +20,7 @@ class TMeUrlType extends TdObject {
       case TMeUrlTypeStickerSet.CONSTRUCTOR:
         return TMeUrlTypeStickerSet.fromJson(json);
       default:
-        return null;
+        return TMeUrlType();
     }
   }
 
@@ -37,14 +37,16 @@ class TMeUrlType extends TdObject {
 
 class TMeUrlTypeUser extends TMeUrlType {
   /// A URL linking to a user
-  TMeUrlTypeUser({this.userId});
+  TMeUrlTypeUser({required this.userId});
 
   /// [userId] Identifier of the user
   int userId;
 
   /// Parse from a json
-  TMeUrlTypeUser.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
+  factory TMeUrlTypeUser.fromJson(Map<String, dynamic> json) {
+    return TMeUrlTypeUser(
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override
@@ -63,14 +65,16 @@ class TMeUrlTypeUser extends TMeUrlType {
 
 class TMeUrlTypeSupergroup extends TMeUrlType {
   /// A URL linking to a public supergroup or channel
-  TMeUrlTypeSupergroup({this.supergroupId});
+  TMeUrlTypeSupergroup({required this.supergroupId});
 
   /// [supergroupId] Identifier of the supergroup or channel
   int supergroupId;
 
   /// Parse from a json
-  TMeUrlTypeSupergroup.fromJson(Map<String, dynamic> json) {
-    this.supergroupId = json['supergroup_id'];
+  factory TMeUrlTypeSupergroup.fromJson(Map<String, dynamic> json) {
+    return TMeUrlTypeSupergroup(
+      supergroupId: json['supergroup_id'] ?? 0,
+    );
   }
 
   @override
@@ -89,22 +93,23 @@ class TMeUrlTypeSupergroup extends TMeUrlType {
 
 class TMeUrlTypeChatInvite extends TMeUrlType {
   /// A chat invite link
-  TMeUrlTypeChatInvite({this.info});
+  TMeUrlTypeChatInvite({required this.info});
 
   /// [info] Chat invite link info
   ChatInviteLinkInfo info;
 
   /// Parse from a json
-  TMeUrlTypeChatInvite.fromJson(Map<String, dynamic> json) {
-    this.info =
-        ChatInviteLinkInfo.fromJson(json['info'] ?? <String, dynamic>{});
+  factory TMeUrlTypeChatInvite.fromJson(Map<String, dynamic> json) {
+    return TMeUrlTypeChatInvite(
+      info: ChatInviteLinkInfo.fromJson(json['info'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "info": this.info == null ? null : this.info.toJson(),
+      "info": this.info.toJson(),
     };
   }
 
@@ -116,14 +121,16 @@ class TMeUrlTypeChatInvite extends TMeUrlType {
 
 class TMeUrlTypeStickerSet extends TMeUrlType {
   /// A URL linking to a sticker set
-  TMeUrlTypeStickerSet({this.stickerSetId});
+  TMeUrlTypeStickerSet({required this.stickerSetId});
 
   /// [stickerSetId] Identifier of the sticker set
   int stickerSetId;
 
   /// Parse from a json
-  TMeUrlTypeStickerSet.fromJson(Map<String, dynamic> json) {
-    this.stickerSetId = int.tryParse(json['sticker_set_id'] ?? "");
+  factory TMeUrlTypeStickerSet.fromJson(Map<String, dynamic> json) {
+    return TMeUrlTypeStickerSet(
+      stickerSetId: int.tryParse(json['sticker_set_id'] ?? "") ?? 0,
+    );
   }
 
   @override

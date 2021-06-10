@@ -20,7 +20,7 @@ class KeyboardButtonType extends TdObject {
       case KeyboardButtonTypeRequestPoll.CONSTRUCTOR:
         return KeyboardButtonTypeRequestPoll.fromJson(json);
       default:
-        return null;
+        return KeyboardButtonType();
     }
   }
 
@@ -40,7 +40,9 @@ class KeyboardButtonTypeText extends KeyboardButtonType {
   KeyboardButtonTypeText();
 
   /// Parse from a json
-  KeyboardButtonTypeText.fromJson(Map<String, dynamic> json);
+  factory KeyboardButtonTypeText.fromJson(Map<String, dynamic> json) {
+    return KeyboardButtonTypeText();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -60,7 +62,10 @@ class KeyboardButtonTypeRequestPhoneNumber extends KeyboardButtonType {
   KeyboardButtonTypeRequestPhoneNumber();
 
   /// Parse from a json
-  KeyboardButtonTypeRequestPhoneNumber.fromJson(Map<String, dynamic> json);
+  factory KeyboardButtonTypeRequestPhoneNumber.fromJson(
+      Map<String, dynamic> json) {
+    return KeyboardButtonTypeRequestPhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -80,7 +85,10 @@ class KeyboardButtonTypeRequestLocation extends KeyboardButtonType {
   KeyboardButtonTypeRequestLocation();
 
   /// Parse from a json
-  KeyboardButtonTypeRequestLocation.fromJson(Map<String, dynamic> json);
+  factory KeyboardButtonTypeRequestLocation.fromJson(
+      Map<String, dynamic> json) {
+    return KeyboardButtonTypeRequestLocation();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -97,7 +105,8 @@ class KeyboardButtonTypeRequestLocation extends KeyboardButtonType {
 
 class KeyboardButtonTypeRequestPoll extends KeyboardButtonType {
   /// A button that allows the user to create and send a poll when pressed; available only in private chats
-  KeyboardButtonTypeRequestPoll({this.forceRegular, this.forceQuiz});
+  KeyboardButtonTypeRequestPoll(
+      {required this.forceRegular, required this.forceQuiz});
 
   /// [forceRegular] If true, only regular polls must be allowed to create
   bool forceRegular;
@@ -106,9 +115,11 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType {
   bool forceQuiz;
 
   /// Parse from a json
-  KeyboardButtonTypeRequestPoll.fromJson(Map<String, dynamic> json) {
-    this.forceRegular = json['force_regular'];
-    this.forceQuiz = json['force_quiz'];
+  factory KeyboardButtonTypeRequestPoll.fromJson(Map<String, dynamic> json) {
+    return KeyboardButtonTypeRequestPoll(
+      forceRegular: json['force_regular'] ?? false,
+      forceQuiz: json['force_quiz'] ?? false,
+    );
   }
 
   @override

@@ -41,7 +41,7 @@ class AuthorizationState extends TdObject {
       case AuthorizationStateClosed.CONSTRUCTOR:
         return AuthorizationStateClosed.fromJson(json);
       default:
-        return null;
+        return AuthorizationState();
     }
   }
 
@@ -58,14 +58,18 @@ class AuthorizationState extends TdObject {
 
 class AuthorizationStateWaitTdlibParameters extends AuthorizationState {
   /// TDLib needs TdlibParameters for initialization
-  AuthorizationStateWaitTdlibParameters();
+  AuthorizationStateWaitTdlibParameters({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitTdlibParameters.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory AuthorizationStateWaitTdlibParameters.fromJson(
+      Map<String, dynamic> json) {
+    return AuthorizationStateWaitTdlibParameters(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -83,18 +87,22 @@ class AuthorizationStateWaitTdlibParameters extends AuthorizationState {
 
 class AuthorizationStateWaitEncryptionKey extends AuthorizationState {
   /// TDLib needs an encryption key to decrypt the local database
-  AuthorizationStateWaitEncryptionKey({this.isEncrypted});
+  AuthorizationStateWaitEncryptionKey({required this.isEncrypted, this.extra});
 
   /// [isEncrypted] True, if the database is currently encrypted
   bool isEncrypted;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitEncryptionKey.fromJson(Map<String, dynamic> json) {
-    this.isEncrypted = json['is_encrypted'];
-    this.extra = json['@extra'];
+  factory AuthorizationStateWaitEncryptionKey.fromJson(
+      Map<String, dynamic> json) {
+    return AuthorizationStateWaitEncryptionKey(
+      isEncrypted: json['is_encrypted'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -113,14 +121,18 @@ class AuthorizationStateWaitEncryptionKey extends AuthorizationState {
 
 class AuthorizationStateWaitPhoneNumber extends AuthorizationState {
   /// TDLib needs the user's phone number to authorize. Call
-  AuthorizationStateWaitPhoneNumber();
+  AuthorizationStateWaitPhoneNumber({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitPhoneNumber.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory AuthorizationStateWaitPhoneNumber.fromJson(
+      Map<String, dynamic> json) {
+    return AuthorizationStateWaitPhoneNumber(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -138,26 +150,29 @@ class AuthorizationStateWaitPhoneNumber extends AuthorizationState {
 
 class AuthorizationStateWaitCode extends AuthorizationState {
   /// TDLib needs the user's authentication code to authorize
-  AuthorizationStateWaitCode({this.codeInfo});
+  AuthorizationStateWaitCode({required this.codeInfo, this.extra});
 
   /// [codeInfo] Information about the authorization code that was sent
   AuthenticationCodeInfo codeInfo;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitCode.fromJson(Map<String, dynamic> json) {
-    this.codeInfo = AuthenticationCodeInfo.fromJson(
-        json['code_info'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory AuthorizationStateWaitCode.fromJson(Map<String, dynamic> json) {
+    return AuthorizationStateWaitCode(
+      codeInfo: AuthenticationCodeInfo.fromJson(
+          json['code_info'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "code_info": this.codeInfo == null ? null : this.codeInfo.toJson(),
+      "code_info": this.codeInfo.toJson(),
     };
   }
 
@@ -169,19 +184,23 @@ class AuthorizationStateWaitCode extends AuthorizationState {
 
 class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState {
   /// The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
-  AuthorizationStateWaitOtherDeviceConfirmation({this.link});
+  AuthorizationStateWaitOtherDeviceConfirmation(
+      {required this.link, this.extra});
 
   /// [link] A tg:// URL for the QR code. The link will be updated frequently
   String link;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitOtherDeviceConfirmation.fromJson(
+  factory AuthorizationStateWaitOtherDeviceConfirmation.fromJson(
       Map<String, dynamic> json) {
-    this.link = json['link'];
-    this.extra = json['@extra'];
+    return AuthorizationStateWaitOtherDeviceConfirmation(
+      link: json['link'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -200,27 +219,31 @@ class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState {
 
 class AuthorizationStateWaitRegistration extends AuthorizationState {
   /// The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration
-  AuthorizationStateWaitRegistration({this.termsOfService});
+  AuthorizationStateWaitRegistration(
+      {required this.termsOfService, this.extra});
 
   /// [termsOfService] Telegram terms of service
   TermsOfService termsOfService;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitRegistration.fromJson(Map<String, dynamic> json) {
-    this.termsOfService = TermsOfService.fromJson(
-        json['terms_of_service'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory AuthorizationStateWaitRegistration.fromJson(
+      Map<String, dynamic> json) {
+    return AuthorizationStateWaitRegistration(
+      termsOfService: TermsOfService.fromJson(
+          json['terms_of_service'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "terms_of_service":
-          this.termsOfService == null ? null : this.termsOfService.toJson(),
+      "terms_of_service": this.termsOfService.toJson(),
     };
   }
 
@@ -233,9 +256,10 @@ class AuthorizationStateWaitRegistration extends AuthorizationState {
 class AuthorizationStateWaitPassword extends AuthorizationState {
   /// The user has been authorized, but needs to enter a password to start using the application
   AuthorizationStateWaitPassword(
-      {this.passwordHint,
-      this.hasRecoveryEmailAddress,
-      this.recoveryEmailAddressPattern});
+      {required this.passwordHint,
+      required this.hasRecoveryEmailAddress,
+      required this.recoveryEmailAddressPattern,
+      this.extra});
 
   /// [passwordHint] Hint for the password; may be empty
   String passwordHint;
@@ -247,14 +271,17 @@ class AuthorizationStateWaitPassword extends AuthorizationState {
   String recoveryEmailAddressPattern;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateWaitPassword.fromJson(Map<String, dynamic> json) {
-    this.passwordHint = json['password_hint'];
-    this.hasRecoveryEmailAddress = json['has_recovery_email_address'];
-    this.recoveryEmailAddressPattern = json['recovery_email_address_pattern'];
-    this.extra = json['@extra'];
+  factory AuthorizationStateWaitPassword.fromJson(Map<String, dynamic> json) {
+    return AuthorizationStateWaitPassword(
+      passwordHint: json['password_hint'] ?? "",
+      hasRecoveryEmailAddress: json['has_recovery_email_address'] ?? false,
+      recoveryEmailAddressPattern: json['recovery_email_address_pattern'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -275,14 +302,17 @@ class AuthorizationStateWaitPassword extends AuthorizationState {
 
 class AuthorizationStateReady extends AuthorizationState {
   /// The user has been successfully authorized. TDLib is now ready to answer queries
-  AuthorizationStateReady();
+  AuthorizationStateReady({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateReady.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory AuthorizationStateReady.fromJson(Map<String, dynamic> json) {
+    return AuthorizationStateReady(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -300,14 +330,17 @@ class AuthorizationStateReady extends AuthorizationState {
 
 class AuthorizationStateLoggingOut extends AuthorizationState {
   /// The user is currently logging out
-  AuthorizationStateLoggingOut();
+  AuthorizationStateLoggingOut({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateLoggingOut.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory AuthorizationStateLoggingOut.fromJson(Map<String, dynamic> json) {
+    return AuthorizationStateLoggingOut(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -325,14 +358,17 @@ class AuthorizationStateLoggingOut extends AuthorizationState {
 
 class AuthorizationStateClosing extends AuthorizationState {
   /// TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
-  AuthorizationStateClosing();
+  AuthorizationStateClosing({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateClosing.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory AuthorizationStateClosing.fromJson(Map<String, dynamic> json) {
+    return AuthorizationStateClosing(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -350,14 +386,17 @@ class AuthorizationStateClosing extends AuthorizationState {
 
 class AuthorizationStateClosed extends AuthorizationState {
   /// TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to. with error code 500. To continue working, one should create a new instance of the TDLib client
-  AuthorizationStateClosed();
+  AuthorizationStateClosed({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthorizationStateClosed.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory AuthorizationStateClosed.fromJson(Map<String, dynamic> json) {
+    return AuthorizationStateClosed(
+      extra: json['@extra'],
+    );
   }
 
   @override

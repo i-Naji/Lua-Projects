@@ -3,7 +3,11 @@ part of '../tdapi.dart';
 class GetLoginUrl extends TdFunction {
   /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
   GetLoginUrl(
-      {this.chatId, this.messageId, this.buttonId, this.allowWriteAccess});
+      {required this.chatId,
+      required this.messageId,
+      required this.buttonId,
+      required this.allowWriteAccess,
+      this.extra});
 
   /// [chatId] Chat identifier of the message with the button
   int chatId;
@@ -21,7 +25,15 @@ class GetLoginUrl extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetLoginUrl.fromJson(Map<String, dynamic> json);
+  factory GetLoginUrl.fromJson(Map<String, dynamic> json) {
+    return GetLoginUrl(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      buttonId: json['button_id'] ?? 0,
+      allowWriteAccess: json['allow_write_access'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

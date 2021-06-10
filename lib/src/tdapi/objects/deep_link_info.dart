@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class DeepLinkInfo extends TdObject {
   /// Contains information about a tg:// deep link
-  DeepLinkInfo({this.text, this.needUpdateApplication});
+  DeepLinkInfo(
+      {required this.text, required this.needUpdateApplication, this.extra});
 
   /// [text] Text to be shown to the user
   FormattedText text;
@@ -11,20 +12,23 @@ class DeepLinkInfo extends TdObject {
   bool needUpdateApplication;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  DeepLinkInfo.fromJson(Map<String, dynamic> json) {
-    this.text = FormattedText.fromJson(json['text'] ?? <String, dynamic>{});
-    this.needUpdateApplication = json['need_update_application'];
-    this.extra = json['@extra'];
+  factory DeepLinkInfo.fromJson(Map<String, dynamic> json) {
+    return DeepLinkInfo(
+      text: FormattedText.fromJson(json['text'] ?? <String, dynamic>{}),
+      needUpdateApplication: json['need_update_application'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "text": this.text == null ? null : this.text.toJson(),
+      "text": this.text.toJson(),
       "need_update_application": this.needUpdateApplication,
     };
   }

@@ -3,11 +3,11 @@ part of '../tdapi.dart';
 class PollOption extends TdObject {
   /// Describes one answer option of a poll
   PollOption(
-      {this.text,
-      this.voterCount,
-      this.votePercentage,
-      this.isChosen,
-      this.isBeingChosen});
+      {required this.text,
+      required this.voterCount,
+      required this.votePercentage,
+      required this.isChosen,
+      required this.isBeingChosen});
 
   /// [text] Option text, 1-100 characters
   String text;
@@ -25,12 +25,14 @@ class PollOption extends TdObject {
   bool isBeingChosen;
 
   /// Parse from a json
-  PollOption.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
-    this.voterCount = json['voter_count'];
-    this.votePercentage = json['vote_percentage'];
-    this.isChosen = json['is_chosen'];
-    this.isBeingChosen = json['is_being_chosen'];
+  factory PollOption.fromJson(Map<String, dynamic> json) {
+    return PollOption(
+      text: json['text'] ?? "",
+      voterCount: json['voter_count'] ?? 0,
+      votePercentage: json['vote_percentage'] ?? 0,
+      isChosen: json['is_chosen'] ?? false,
+      isBeingChosen: json['is_being_chosen'] ?? false,
+    );
   }
 
   @override

@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class GetArchivedStickerSets extends TdFunction {
   /// Returns a list of archived sticker sets
-  GetArchivedStickerSets({this.isMasks, this.offsetStickerSetId, this.limit});
+  GetArchivedStickerSets(
+      {required this.isMasks,
+      required this.offsetStickerSetId,
+      required this.limit,
+      this.extra});
 
   /// [isMasks] Pass true to return mask stickers sets; pass false to return ordinary sticker sets
   bool isMasks;
@@ -17,7 +21,15 @@ class GetArchivedStickerSets extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetArchivedStickerSets.fromJson(Map<String, dynamic> json);
+  factory GetArchivedStickerSets.fromJson(Map<String, dynamic> json) {
+    return GetArchivedStickerSets(
+      isMasks: json['is_masks'] ?? false,
+      offsetStickerSetId:
+          int.tryParse(json['offset_sticker_set_id'] ?? "") ?? 0,
+      limit: json['limit'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

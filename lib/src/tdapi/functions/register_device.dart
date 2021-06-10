@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class RegisterDevice extends TdFunction {
   /// Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
-  RegisterDevice({this.deviceToken, this.otherUserIds});
+  RegisterDevice(
+      {required this.deviceToken, required this.otherUserIds, this.extra});
 
   /// [deviceToken] Device token
   DeviceToken deviceToken;
@@ -14,14 +15,21 @@ class RegisterDevice extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  RegisterDevice.fromJson(Map<String, dynamic> json);
+  factory RegisterDevice.fromJson(Map<String, dynamic> json) {
+    return RegisterDevice(
+      deviceToken:
+          DeviceToken.fromJson(json['device_token'] ?? <String, dynamic>{}),
+      otherUserIds: List<int>.from(
+          (json['other_user_ids'] ?? []).map((item) => item ?? 0).toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "device_token":
-          this.deviceToken == null ? null : this.deviceToken.toJson(),
+      "device_token": this.deviceToken.toJson(),
       "other_user_ids": this.otherUserIds.map((i) => i).toList(),
       "@extra": this.extra,
     };

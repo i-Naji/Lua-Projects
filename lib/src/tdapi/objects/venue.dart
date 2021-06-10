@@ -3,12 +3,12 @@ part of '../tdapi.dart';
 class Venue extends TdObject {
   /// Describes a venue
   Venue(
-      {this.location,
-      this.title,
-      this.address,
-      this.provider,
-      this.id,
-      this.type});
+      {required this.location,
+      required this.title,
+      required this.address,
+      required this.provider,
+      required this.id,
+      required this.type});
 
   /// [location] Venue location; as defined by the sender
   Location location;
@@ -29,20 +29,22 @@ class Venue extends TdObject {
   String type;
 
   /// Parse from a json
-  Venue.fromJson(Map<String, dynamic> json) {
-    this.location = Location.fromJson(json['location'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.address = json['address'];
-    this.provider = json['provider'];
-    this.id = json['id'];
-    this.type = json['type'];
+  factory Venue.fromJson(Map<String, dynamic> json) {
+    return Venue(
+      location: Location.fromJson(json['location'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      address: json['address'] ?? "",
+      provider: json['provider'] ?? "",
+      id: json['id'] ?? "",
+      type: json['type'] ?? "",
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location.toJson(),
       "title": this.title,
       "address": this.address,
       "provider": this.provider,

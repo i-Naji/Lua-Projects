@@ -20,7 +20,7 @@ class NotificationGroupType extends TdObject {
       case NotificationGroupTypeCalls.CONSTRUCTOR:
         return NotificationGroupTypeCalls.fromJson(json);
       default:
-        return null;
+        return NotificationGroupType();
     }
   }
 
@@ -40,7 +40,9 @@ class NotificationGroupTypeMessages extends NotificationGroupType {
   NotificationGroupTypeMessages();
 
   /// Parse from a json
-  NotificationGroupTypeMessages.fromJson(Map<String, dynamic> json);
+  factory NotificationGroupTypeMessages.fromJson(Map<String, dynamic> json) {
+    return NotificationGroupTypeMessages();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -60,7 +62,9 @@ class NotificationGroupTypeMentions extends NotificationGroupType {
   NotificationGroupTypeMentions();
 
   /// Parse from a json
-  NotificationGroupTypeMentions.fromJson(Map<String, dynamic> json);
+  factory NotificationGroupTypeMentions.fromJson(Map<String, dynamic> json) {
+    return NotificationGroupTypeMentions();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -80,7 +84,9 @@ class NotificationGroupTypeSecretChat extends NotificationGroupType {
   NotificationGroupTypeSecretChat();
 
   /// Parse from a json
-  NotificationGroupTypeSecretChat.fromJson(Map<String, dynamic> json);
+  factory NotificationGroupTypeSecretChat.fromJson(Map<String, dynamic> json) {
+    return NotificationGroupTypeSecretChat();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -100,7 +106,9 @@ class NotificationGroupTypeCalls extends NotificationGroupType {
   NotificationGroupTypeCalls();
 
   /// Parse from a json
-  NotificationGroupTypeCalls.fromJson(Map<String, dynamic> json);
+  factory NotificationGroupTypeCalls.fromJson(Map<String, dynamic> json) {
+    return NotificationGroupTypeCalls();
+  }
 
   @override
   Map<String, dynamic> toJson() {

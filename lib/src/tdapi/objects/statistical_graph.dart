@@ -17,7 +17,7 @@ class StatisticalGraph extends TdObject {
       case StatisticalGraphError.CONSTRUCTOR:
         return StatisticalGraphError.fromJson(json);
       default:
-        return null;
+        return StatisticalGraph();
     }
   }
 
@@ -34,7 +34,8 @@ class StatisticalGraph extends TdObject {
 
 class StatisticalGraphData extends StatisticalGraph {
   /// A graph data
-  StatisticalGraphData({this.jsonData, this.zoomToken});
+  StatisticalGraphData(
+      {required this.jsonData, required this.zoomToken, this.extra});
 
   /// [jsonData] Graph data in JSON format
   String jsonData;
@@ -43,13 +44,16 @@ class StatisticalGraphData extends StatisticalGraph {
   String zoomToken;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  StatisticalGraphData.fromJson(Map<String, dynamic> json) {
-    this.jsonData = json['json_data'];
-    this.zoomToken = json['zoom_token'];
-    this.extra = json['@extra'];
+  factory StatisticalGraphData.fromJson(Map<String, dynamic> json) {
+    return StatisticalGraphData(
+      jsonData: json['json_data'] ?? "",
+      zoomToken: json['zoom_token'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -69,18 +73,21 @@ class StatisticalGraphData extends StatisticalGraph {
 
 class StatisticalGraphAsync extends StatisticalGraph {
   /// The graph data to be asynchronously loaded through getStatisticalGraph
-  StatisticalGraphAsync({this.token});
+  StatisticalGraphAsync({required this.token, this.extra});
 
   /// [token] The token to use for data loading
   String token;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  StatisticalGraphAsync.fromJson(Map<String, dynamic> json) {
-    this.token = json['token'];
-    this.extra = json['@extra'];
+  factory StatisticalGraphAsync.fromJson(Map<String, dynamic> json) {
+    return StatisticalGraphAsync(
+      token: json['token'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -99,18 +106,21 @@ class StatisticalGraphAsync extends StatisticalGraph {
 
 class StatisticalGraphError extends StatisticalGraph {
   /// An error message to be shown to the user instead of the graph
-  StatisticalGraphError({this.errorMessage});
+  StatisticalGraphError({required this.errorMessage, this.extra});
 
   /// [errorMessage] The error message
   String errorMessage;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  StatisticalGraphError.fromJson(Map<String, dynamic> json) {
-    this.errorMessage = json['error_message'];
-    this.extra = json['@extra'];
+  factory StatisticalGraphError.fromJson(Map<String, dynamic> json) {
+    return StatisticalGraphError(
+      errorMessage: json['error_message'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

@@ -3,7 +3,11 @@ part of '../tdapi.dart';
 class PhotoSize extends TdObject {
   /// Describes an image in JPEG format
   PhotoSize(
-      {this.type, this.photo, this.width, this.height, this.progressiveSizes});
+      {required this.type,
+      required this.photo,
+      required this.width,
+      required this.height,
+      required this.progressiveSizes});
 
   /// [type] Image type (see https://core.telegram.org/constructor/photoSize)
   String type;
@@ -21,13 +25,15 @@ class PhotoSize extends TdObject {
   List<int> progressiveSizes;
 
   /// Parse from a json
-  PhotoSize.fromJson(Map<String, dynamic> json) {
-    this.type = json['type'];
-    this.photo = File.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.width = json['width'];
-    this.height = json['height'];
-    this.progressiveSizes = List<int>.from(
-        (json['progressive_sizes'] ?? []).map((item) => item).toList());
+  factory PhotoSize.fromJson(Map<String, dynamic> json) {
+    return PhotoSize(
+      type: json['type'] ?? "",
+      photo: File.fromJson(json['photo'] ?? <String, dynamic>{}),
+      width: json['width'] ?? 0,
+      height: json['height'] ?? 0,
+      progressiveSizes: List<int>.from(
+          (json['progressive_sizes'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -35,7 +41,7 @@ class PhotoSize extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "type": this.type,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo.toJson(),
       "width": this.width,
       "height": this.height,
       "progressive_sizes": this.progressiveSizes.map((i) => i).toList(),

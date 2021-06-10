@@ -2,20 +2,23 @@ part of '../tdapi.dart';
 
 class TMeUrls extends TdObject {
   /// Contains a list of t.me URLs
-  TMeUrls({this.urls});
+  TMeUrls({required this.urls, this.extra});
 
   /// [urls] List of URLs
   List<TMeUrl> urls;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  TMeUrls.fromJson(Map<String, dynamic> json) {
-    this.urls = List<TMeUrl>.from((json['urls'] ?? [])
-        .map((item) => TMeUrl.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory TMeUrls.fromJson(Map<String, dynamic> json) {
+    return TMeUrls(
+      urls: List<TMeUrl>.from((json['urls'] ?? [])
+          .map((item) => TMeUrl.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

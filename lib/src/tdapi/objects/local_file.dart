@@ -3,14 +3,14 @@ part of '../tdapi.dart';
 class LocalFile extends TdObject {
   /// Represents a local file
   LocalFile(
-      {this.path,
-      this.canBeDownloaded,
-      this.canBeDeleted,
-      this.isDownloadingActive,
-      this.isDownloadingCompleted,
-      this.downloadOffset,
-      this.downloadedPrefixSize,
-      this.downloadedSize});
+      {required this.path,
+      required this.canBeDownloaded,
+      required this.canBeDeleted,
+      required this.isDownloadingActive,
+      required this.isDownloadingCompleted,
+      required this.downloadOffset,
+      required this.downloadedPrefixSize,
+      required this.downloadedSize});
 
   /// [path] Local path to the locally available file part; may be empty
   String path;
@@ -37,15 +37,17 @@ class LocalFile extends TdObject {
   int downloadedSize;
 
   /// Parse from a json
-  LocalFile.fromJson(Map<String, dynamic> json) {
-    this.path = json['path'];
-    this.canBeDownloaded = json['can_be_downloaded'];
-    this.canBeDeleted = json['can_be_deleted'];
-    this.isDownloadingActive = json['is_downloading_active'];
-    this.isDownloadingCompleted = json['is_downloading_completed'];
-    this.downloadOffset = json['download_offset'];
-    this.downloadedPrefixSize = json['downloaded_prefix_size'];
-    this.downloadedSize = json['downloaded_size'];
+  factory LocalFile.fromJson(Map<String, dynamic> json) {
+    return LocalFile(
+      path: json['path'] ?? "",
+      canBeDownloaded: json['can_be_downloaded'] ?? false,
+      canBeDeleted: json['can_be_deleted'] ?? false,
+      isDownloadingActive: json['is_downloading_active'] ?? false,
+      isDownloadingCompleted: json['is_downloading_completed'] ?? false,
+      downloadOffset: json['download_offset'] ?? 0,
+      downloadedPrefixSize: json['downloaded_prefix_size'] ?? 0,
+      downloadedSize: json['downloaded_size'] ?? 0,
+    );
   }
 
   @override

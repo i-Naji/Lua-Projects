@@ -14,7 +14,7 @@ class InputSticker extends TdObject {
       case InputStickerAnimated.CONSTRUCTOR:
         return InputStickerAnimated.fromJson(json);
       default:
-        return null;
+        return InputSticker();
     }
   }
 
@@ -31,7 +31,8 @@ class InputSticker extends TdObject {
 
 class InputStickerStatic extends InputSticker {
   /// A static sticker in PNG format, which will be converted to WEBP server-side
-  InputStickerStatic({this.sticker, this.emojis, this.maskPosition});
+  InputStickerStatic(
+      {required this.sticker, required this.emojis, this.maskPosition});
 
   /// [sticker] PNG image with the sticker; must be up to 512 KB in size and fit in a 512x512 square
   InputFile sticker;
@@ -40,24 +41,26 @@ class InputStickerStatic extends InputSticker {
   String emojis;
 
   /// [maskPosition] For masks, position where the mask should be placed; may be null
-  MaskPosition maskPosition;
+  MaskPosition? maskPosition;
 
   /// Parse from a json
-  InputStickerStatic.fromJson(Map<String, dynamic> json) {
-    this.sticker = InputFile.fromJson(json['sticker'] ?? <String, dynamic>{});
-    this.emojis = json['emojis'];
-    this.maskPosition =
-        MaskPosition.fromJson(json['mask_position'] ?? <String, dynamic>{});
+  factory InputStickerStatic.fromJson(Map<String, dynamic> json) {
+    return InputStickerStatic(
+      sticker: InputFile.fromJson(json['sticker'] ?? <String, dynamic>{}),
+      emojis: json['emojis'] ?? "",
+      maskPosition:
+          MaskPosition.fromJson(json['mask_position'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
       "emojis": this.emojis,
       "mask_position":
-          this.maskPosition == null ? null : this.maskPosition.toJson(),
+          this.maskPosition == null ? null : this.maskPosition!.toJson(),
     };
   }
 
@@ -69,7 +72,7 @@ class InputStickerStatic extends InputSticker {
 
 class InputStickerAnimated extends InputSticker {
   /// An animated sticker in TGS format
-  InputStickerAnimated({this.sticker, this.emojis});
+  InputStickerAnimated({required this.sticker, required this.emojis});
 
   /// [sticker] File with the animated sticker. Only local or uploaded within a week files are supported. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
   InputFile sticker;
@@ -78,16 +81,18 @@ class InputStickerAnimated extends InputSticker {
   String emojis;
 
   /// Parse from a json
-  InputStickerAnimated.fromJson(Map<String, dynamic> json) {
-    this.sticker = InputFile.fromJson(json['sticker'] ?? <String, dynamic>{});
-    this.emojis = json['emojis'];
+  factory InputStickerAnimated.fromJson(Map<String, dynamic> json) {
+    return InputStickerAnimated(
+      sticker: InputFile.fromJson(json['sticker'] ?? <String, dynamic>{}),
+      emojis: json['emojis'] ?? "",
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
       "emojis": this.emojis,
     };
   }

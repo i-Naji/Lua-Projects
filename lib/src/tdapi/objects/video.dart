@@ -3,16 +3,16 @@ part of '../tdapi.dart';
 class Video extends TdObject {
   /// Describes a video file
   Video(
-      {this.duration,
-      this.width,
-      this.height,
-      this.fileName,
-      this.mimeType,
-      this.hasStickers,
-      this.supportsStreaming,
+      {required this.duration,
+      required this.width,
+      required this.height,
+      required this.fileName,
+      required this.mimeType,
+      required this.hasStickers,
+      required this.supportsStreaming,
       this.minithumbnail,
       this.thumbnail,
-      this.video});
+      required this.video});
 
   /// [duration] Duration of the video, in seconds; as defined by the sender
   int duration;
@@ -36,28 +36,29 @@ class Video extends TdObject {
   bool supportsStreaming;
 
   /// [minithumbnail] Video minithumbnail; may be null
-  Minithumbnail minithumbnail;
+  Minithumbnail? minithumbnail;
 
   /// [thumbnail] Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// [video] File containing the video
   File video;
 
   /// Parse from a json
-  Video.fromJson(Map<String, dynamic> json) {
-    this.duration = json['duration'];
-    this.width = json['width'];
-    this.height = json['height'];
-    this.fileName = json['file_name'];
-    this.mimeType = json['mime_type'];
-    this.hasStickers = json['has_stickers'];
-    this.supportsStreaming = json['supports_streaming'];
-    this.minithumbnail =
-        Minithumbnail.fromJson(json['minithumbnail'] ?? <String, dynamic>{});
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
-    this.video = File.fromJson(json['video'] ?? <String, dynamic>{});
+  factory Video.fromJson(Map<String, dynamic> json) {
+    return Video(
+      duration: json['duration'] ?? 0,
+      width: json['width'] ?? 0,
+      height: json['height'] ?? 0,
+      fileName: json['file_name'] ?? "",
+      mimeType: json['mime_type'] ?? "",
+      hasStickers: json['has_stickers'] ?? false,
+      supportsStreaming: json['supports_streaming'] ?? false,
+      minithumbnail:
+          Minithumbnail.fromJson(json['minithumbnail'] ?? <String, dynamic>{}),
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+      video: File.fromJson(json['video'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -72,9 +73,9 @@ class Video extends TdObject {
       "has_stickers": this.hasStickers,
       "supports_streaming": this.supportsStreaming,
       "minithumbnail":
-          this.minithumbnail == null ? null : this.minithumbnail.toJson(),
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
-      "video": this.video == null ? null : this.video.toJson(),
+          this.minithumbnail == null ? null : this.minithumbnail!.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
+      "video": this.video.toJson(),
     };
   }
 

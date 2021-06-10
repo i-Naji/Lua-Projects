@@ -20,7 +20,7 @@ class CanTransferOwnershipResult extends TdObject {
       case CanTransferOwnershipResultSessionTooFresh.CONSTRUCTOR:
         return CanTransferOwnershipResultSessionTooFresh.fromJson(json);
       default:
-        return null;
+        return CanTransferOwnershipResult();
     }
   }
 
@@ -37,14 +37,17 @@ class CanTransferOwnershipResult extends TdObject {
 
 class CanTransferOwnershipResultOk extends CanTransferOwnershipResult {
   /// The session can be used
-  CanTransferOwnershipResultOk();
+  CanTransferOwnershipResultOk({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CanTransferOwnershipResultOk.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory CanTransferOwnershipResultOk.fromJson(Map<String, dynamic> json) {
+    return CanTransferOwnershipResultOk(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -63,14 +66,18 @@ class CanTransferOwnershipResultOk extends CanTransferOwnershipResult {
 class CanTransferOwnershipResultPasswordNeeded
     extends CanTransferOwnershipResult {
   /// The 2-step verification needs to be enabled first
-  CanTransferOwnershipResultPasswordNeeded();
+  CanTransferOwnershipResultPasswordNeeded({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CanTransferOwnershipResultPasswordNeeded.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory CanTransferOwnershipResultPasswordNeeded.fromJson(
+      Map<String, dynamic> json) {
+    return CanTransferOwnershipResultPasswordNeeded(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -89,19 +96,23 @@ class CanTransferOwnershipResultPasswordNeeded
 class CanTransferOwnershipResultPasswordTooFresh
     extends CanTransferOwnershipResult {
   /// The 2-step verification was enabled recently, user needs to wait
-  CanTransferOwnershipResultPasswordTooFresh({this.retryAfter});
+  CanTransferOwnershipResultPasswordTooFresh(
+      {required this.retryAfter, this.extra});
 
   /// [retryAfter] Time left before the session can be used to transfer ownership of a chat, in seconds
   int retryAfter;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CanTransferOwnershipResultPasswordTooFresh.fromJson(
+  factory CanTransferOwnershipResultPasswordTooFresh.fromJson(
       Map<String, dynamic> json) {
-    this.retryAfter = json['retry_after'];
-    this.extra = json['@extra'];
+    return CanTransferOwnershipResultPasswordTooFresh(
+      retryAfter: json['retry_after'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -121,19 +132,23 @@ class CanTransferOwnershipResultPasswordTooFresh
 class CanTransferOwnershipResultSessionTooFresh
     extends CanTransferOwnershipResult {
   /// The session was created recently, user needs to wait
-  CanTransferOwnershipResultSessionTooFresh({this.retryAfter});
+  CanTransferOwnershipResultSessionTooFresh(
+      {required this.retryAfter, this.extra});
 
   /// [retryAfter] Time left before the session can be used to transfer ownership of a chat, in seconds
   int retryAfter;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CanTransferOwnershipResultSessionTooFresh.fromJson(
+  factory CanTransferOwnershipResultSessionTooFresh.fromJson(
       Map<String, dynamic> json) {
-    this.retryAfter = json['retry_after'];
-    this.extra = json['@extra'];
+    return CanTransferOwnershipResultSessionTooFresh(
+      retryAfter: json['retry_after'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override

@@ -3,7 +3,9 @@ part of '../tdapi.dart';
 class ToggleSupergroupIsAllHistoryAvailable extends TdFunction {
   /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info rights
   ToggleSupergroupIsAllHistoryAvailable(
-      {this.supergroupId, this.isAllHistoryAvailable});
+      {required this.supergroupId,
+      required this.isAllHistoryAvailable,
+      this.extra});
 
   /// [supergroupId] The identifier of the supergroup
   int supergroupId;
@@ -15,7 +17,14 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  ToggleSupergroupIsAllHistoryAvailable.fromJson(Map<String, dynamic> json);
+  factory ToggleSupergroupIsAllHistoryAvailable.fromJson(
+      Map<String, dynamic> json) {
+    return ToggleSupergroupIsAllHistoryAvailable(
+      supergroupId: json['supergroup_id'] ?? 0,
+      isAllHistoryAvailable: json['is_all_history_available'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

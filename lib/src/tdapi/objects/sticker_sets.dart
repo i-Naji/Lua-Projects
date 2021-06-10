@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class StickerSets extends TdObject {
   /// Represents a list of sticker sets
-  StickerSets({this.totalCount, this.sets});
+  StickerSets({required this.totalCount, required this.sets, this.extra});
 
   /// [totalCount] Approximate total number of sticker sets found
   int totalCount;
@@ -11,15 +11,18 @@ class StickerSets extends TdObject {
   List<StickerSetInfo> sets;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  StickerSets.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.sets = List<StickerSetInfo>.from((json['sets'] ?? [])
-        .map((item) => StickerSetInfo.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory StickerSets.fromJson(Map<String, dynamic> json) {
+    return StickerSets(
+      totalCount: json['total_count'] ?? 0,
+      sets: List<StickerSetInfo>.from((json['sets'] ?? [])
+          .map((item) => StickerSetInfo.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

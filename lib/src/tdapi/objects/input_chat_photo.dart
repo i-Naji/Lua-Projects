@@ -17,7 +17,7 @@ class InputChatPhoto extends TdObject {
       case InputChatPhotoAnimation.CONSTRUCTOR:
         return InputChatPhotoAnimation.fromJson(json);
       default:
-        return null;
+        return InputChatPhoto();
     }
   }
 
@@ -34,14 +34,16 @@ class InputChatPhoto extends TdObject {
 
 class InputChatPhotoPrevious extends InputChatPhoto {
   /// A previously used profile photo of the current user
-  InputChatPhotoPrevious({this.chatPhotoId});
+  InputChatPhotoPrevious({required this.chatPhotoId});
 
   /// [chatPhotoId] Identifier of the profile photo to reuse
   int chatPhotoId;
 
   /// Parse from a json
-  InputChatPhotoPrevious.fromJson(Map<String, dynamic> json) {
-    this.chatPhotoId = int.tryParse(json['chat_photo_id'] ?? "");
+  factory InputChatPhotoPrevious.fromJson(Map<String, dynamic> json) {
+    return InputChatPhotoPrevious(
+      chatPhotoId: int.tryParse(json['chat_photo_id'] ?? "") ?? 0,
+    );
   }
 
   @override
@@ -60,21 +62,23 @@ class InputChatPhotoPrevious extends InputChatPhoto {
 
 class InputChatPhotoStatic extends InputChatPhoto {
   /// A static photo in JPEG format
-  InputChatPhotoStatic({this.photo});
+  InputChatPhotoStatic({required this.photo});
 
   /// [photo] Photo to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
   InputFile photo;
 
   /// Parse from a json
-  InputChatPhotoStatic.fromJson(Map<String, dynamic> json) {
-    this.photo = InputFile.fromJson(json['photo'] ?? <String, dynamic>{});
+  factory InputChatPhotoStatic.fromJson(Map<String, dynamic> json) {
+    return InputChatPhotoStatic(
+      photo: InputFile.fromJson(json['photo'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo.toJson(),
     };
   }
 
@@ -86,7 +90,8 @@ class InputChatPhotoStatic extends InputChatPhoto {
 
 class InputChatPhotoAnimation extends InputChatPhoto {
   /// An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 800 and be at most 2MB in size
-  InputChatPhotoAnimation({this.animation, this.mainFrameTimestamp});
+  InputChatPhotoAnimation(
+      {required this.animation, required this.mainFrameTimestamp});
 
   /// [animation] Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
   InputFile animation;
@@ -95,17 +100,18 @@ class InputChatPhotoAnimation extends InputChatPhoto {
   double mainFrameTimestamp;
 
   /// Parse from a json
-  InputChatPhotoAnimation.fromJson(Map<String, dynamic> json) {
-    this.animation =
-        InputFile.fromJson(json['animation'] ?? <String, dynamic>{});
-    this.mainFrameTimestamp = json['main_frame_timestamp'];
+  factory InputChatPhotoAnimation.fromJson(Map<String, dynamic> json) {
+    return InputChatPhotoAnimation(
+      animation: InputFile.fromJson(json['animation'] ?? <String, dynamic>{}),
+      mainFrameTimestamp: json['main_frame_timestamp'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "animation": this.animation == null ? null : this.animation.toJson(),
+      "animation": this.animation.toJson(),
       "main_frame_timestamp": this.mainFrameTimestamp,
     };
   }

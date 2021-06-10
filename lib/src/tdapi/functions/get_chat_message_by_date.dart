@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetChatMessageByDate extends TdFunction {
   /// Returns the last message sent in a chat no later than the specified date
-  GetChatMessageByDate({this.chatId, this.date});
+  GetChatMessageByDate({required this.chatId, required this.date, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -14,7 +14,13 @@ class GetChatMessageByDate extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetChatMessageByDate.fromJson(Map<String, dynamic> json);
+  factory GetChatMessageByDate.fromJson(Map<String, dynamic> json) {
+    return GetChatMessageByDate(
+      chatId: json['chat_id'] ?? 0,
+      date: json['date'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -56,7 +56,7 @@ class FileType extends TdObject {
       case FileTypeWallpaper.CONSTRUCTOR:
         return FileTypeWallpaper.fromJson(json);
       default:
-        return null;
+        return FileType();
     }
   }
 
@@ -76,7 +76,9 @@ class FileTypeNone extends FileType {
   FileTypeNone();
 
   /// Parse from a json
-  FileTypeNone.fromJson(Map<String, dynamic> json);
+  factory FileTypeNone.fromJson(Map<String, dynamic> json) {
+    return FileTypeNone();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -96,7 +98,9 @@ class FileTypeAnimation extends FileType {
   FileTypeAnimation();
 
   /// Parse from a json
-  FileTypeAnimation.fromJson(Map<String, dynamic> json);
+  factory FileTypeAnimation.fromJson(Map<String, dynamic> json) {
+    return FileTypeAnimation();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -116,7 +120,9 @@ class FileTypeAudio extends FileType {
   FileTypeAudio();
 
   /// Parse from a json
-  FileTypeAudio.fromJson(Map<String, dynamic> json);
+  factory FileTypeAudio.fromJson(Map<String, dynamic> json) {
+    return FileTypeAudio();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -136,7 +142,9 @@ class FileTypeDocument extends FileType {
   FileTypeDocument();
 
   /// Parse from a json
-  FileTypeDocument.fromJson(Map<String, dynamic> json);
+  factory FileTypeDocument.fromJson(Map<String, dynamic> json) {
+    return FileTypeDocument();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -156,7 +164,9 @@ class FileTypePhoto extends FileType {
   FileTypePhoto();
 
   /// Parse from a json
-  FileTypePhoto.fromJson(Map<String, dynamic> json);
+  factory FileTypePhoto.fromJson(Map<String, dynamic> json) {
+    return FileTypePhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -176,7 +186,9 @@ class FileTypeProfilePhoto extends FileType {
   FileTypeProfilePhoto();
 
   /// Parse from a json
-  FileTypeProfilePhoto.fromJson(Map<String, dynamic> json);
+  factory FileTypeProfilePhoto.fromJson(Map<String, dynamic> json) {
+    return FileTypeProfilePhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -196,7 +208,9 @@ class FileTypeSecret extends FileType {
   FileTypeSecret();
 
   /// Parse from a json
-  FileTypeSecret.fromJson(Map<String, dynamic> json);
+  factory FileTypeSecret.fromJson(Map<String, dynamic> json) {
+    return FileTypeSecret();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -216,7 +230,9 @@ class FileTypeSecretThumbnail extends FileType {
   FileTypeSecretThumbnail();
 
   /// Parse from a json
-  FileTypeSecretThumbnail.fromJson(Map<String, dynamic> json);
+  factory FileTypeSecretThumbnail.fromJson(Map<String, dynamic> json) {
+    return FileTypeSecretThumbnail();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -236,7 +252,9 @@ class FileTypeSecure extends FileType {
   FileTypeSecure();
 
   /// Parse from a json
-  FileTypeSecure.fromJson(Map<String, dynamic> json);
+  factory FileTypeSecure.fromJson(Map<String, dynamic> json) {
+    return FileTypeSecure();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -256,7 +274,9 @@ class FileTypeSticker extends FileType {
   FileTypeSticker();
 
   /// Parse from a json
-  FileTypeSticker.fromJson(Map<String, dynamic> json);
+  factory FileTypeSticker.fromJson(Map<String, dynamic> json) {
+    return FileTypeSticker();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -276,7 +296,9 @@ class FileTypeThumbnail extends FileType {
   FileTypeThumbnail();
 
   /// Parse from a json
-  FileTypeThumbnail.fromJson(Map<String, dynamic> json);
+  factory FileTypeThumbnail.fromJson(Map<String, dynamic> json) {
+    return FileTypeThumbnail();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -296,7 +318,9 @@ class FileTypeUnknown extends FileType {
   FileTypeUnknown();
 
   /// Parse from a json
-  FileTypeUnknown.fromJson(Map<String, dynamic> json);
+  factory FileTypeUnknown.fromJson(Map<String, dynamic> json) {
+    return FileTypeUnknown();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -316,7 +340,9 @@ class FileTypeVideo extends FileType {
   FileTypeVideo();
 
   /// Parse from a json
-  FileTypeVideo.fromJson(Map<String, dynamic> json);
+  factory FileTypeVideo.fromJson(Map<String, dynamic> json) {
+    return FileTypeVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -336,7 +362,9 @@ class FileTypeVideoNote extends FileType {
   FileTypeVideoNote();
 
   /// Parse from a json
-  FileTypeVideoNote.fromJson(Map<String, dynamic> json);
+  factory FileTypeVideoNote.fromJson(Map<String, dynamic> json) {
+    return FileTypeVideoNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -356,7 +384,9 @@ class FileTypeVoiceNote extends FileType {
   FileTypeVoiceNote();
 
   /// Parse from a json
-  FileTypeVoiceNote.fromJson(Map<String, dynamic> json);
+  factory FileTypeVoiceNote.fromJson(Map<String, dynamic> json) {
+    return FileTypeVoiceNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -376,7 +406,9 @@ class FileTypeWallpaper extends FileType {
   FileTypeWallpaper();
 
   /// Parse from a json
-  FileTypeWallpaper.fromJson(Map<String, dynamic> json);
+  factory FileTypeWallpaper.fromJson(Map<String, dynamic> json) {
+    return FileTypeWallpaper();
+  }
 
   @override
   Map<String, dynamic> toJson() {

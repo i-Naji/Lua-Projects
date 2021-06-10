@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class AddStickerToSet extends TdFunction {
   /// Adds a new sticker to a set; for bots only. Returns the sticker set
-  AddStickerToSet({this.userId, this.name, this.sticker});
+  AddStickerToSet(
+      {required this.userId,
+      required this.name,
+      required this.sticker,
+      this.extra});
 
   /// [userId] Sticker set owner
   int userId;
@@ -17,7 +21,14 @@ class AddStickerToSet extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AddStickerToSet.fromJson(Map<String, dynamic> json);
+  factory AddStickerToSet.fromJson(Map<String, dynamic> json) {
+    return AddStickerToSet(
+      userId: json['user_id'] ?? 0,
+      name: json['name'] ?? "",
+      sticker: InputSticker.fromJson(json['sticker'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -25,7 +36,7 @@ class AddStickerToSet extends TdFunction {
       "@type": CONSTRUCTOR,
       "user_id": this.userId,
       "name": this.name,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
       "@extra": this.extra,
     };
   }

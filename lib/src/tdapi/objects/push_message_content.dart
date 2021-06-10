@@ -86,7 +86,7 @@ class PushMessageContent extends TdObject {
       case PushMessageContentMediaAlbum.CONSTRUCTOR:
         return PushMessageContentMediaAlbum.fromJson(json);
       default:
-        return null;
+        return PushMessageContent();
     }
   }
 
@@ -103,14 +103,16 @@ class PushMessageContent extends TdObject {
 
 class PushMessageContentHidden extends PushMessageContent {
   /// A general message with hidden content
-  PushMessageContentHidden({this.isPinned});
+  PushMessageContentHidden({required this.isPinned});
 
   /// [isPinned] True, if the message is a pinned message with the specified content
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentHidden.fromJson(Map<String, dynamic> json) {
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentHidden.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentHidden(
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -129,10 +131,11 @@ class PushMessageContentHidden extends PushMessageContent {
 
 class PushMessageContentAnimation extends PushMessageContent {
   /// An animation message (GIF-style).
-  PushMessageContentAnimation({this.animation, this.caption, this.isPinned});
+  PushMessageContentAnimation(
+      {this.animation, required this.caption, required this.isPinned});
 
   /// [animation] Message content; may be null
-  Animation animation;
+  Animation? animation;
 
   /// [caption] Animation caption
   String caption;
@@ -141,18 +144,19 @@ class PushMessageContentAnimation extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentAnimation.fromJson(Map<String, dynamic> json) {
-    this.animation =
-        Animation.fromJson(json['animation'] ?? <String, dynamic>{});
-    this.caption = json['caption'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentAnimation.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentAnimation(
+      animation: Animation.fromJson(json['animation'] ?? <String, dynamic>{}),
+      caption: json['caption'] ?? "",
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "animation": this.animation == null ? null : this.animation.toJson(),
+      "animation": this.animation == null ? null : this.animation!.toJson(),
       "caption": this.caption,
       "is_pinned": this.isPinned,
     };
@@ -166,25 +170,27 @@ class PushMessageContentAnimation extends PushMessageContent {
 
 class PushMessageContentAudio extends PushMessageContent {
   /// An audio message
-  PushMessageContentAudio({this.audio, this.isPinned});
+  PushMessageContentAudio({this.audio, required this.isPinned});
 
   /// [audio] Message content; may be null
-  Audio audio;
+  Audio? audio;
 
   /// [isPinned] True, if the message is a pinned message with the specified content
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentAudio.fromJson(Map<String, dynamic> json) {
-    this.audio = Audio.fromJson(json['audio'] ?? <String, dynamic>{});
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentAudio.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentAudio(
+      audio: Audio.fromJson(json['audio'] ?? <String, dynamic>{}),
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "audio": this.audio == null ? null : this.audio.toJson(),
+      "audio": this.audio == null ? null : this.audio!.toJson(),
       "is_pinned": this.isPinned,
     };
   }
@@ -197,7 +203,7 @@ class PushMessageContentAudio extends PushMessageContent {
 
 class PushMessageContentContact extends PushMessageContent {
   /// A message with a user contact
-  PushMessageContentContact({this.name, this.isPinned});
+  PushMessageContentContact({required this.name, required this.isPinned});
 
   /// [name] Contact's name
   String name;
@@ -206,9 +212,11 @@ class PushMessageContentContact extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentContact.fromJson(Map<String, dynamic> json) {
-    this.name = json['name'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentContact.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentContact(
+      name: json['name'] ?? "",
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -231,7 +239,10 @@ class PushMessageContentContactRegistered extends PushMessageContent {
   PushMessageContentContactRegistered();
 
   /// Parse from a json
-  PushMessageContentContactRegistered.fromJson(Map<String, dynamic> json);
+  factory PushMessageContentContactRegistered.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentContactRegistered();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -248,25 +259,27 @@ class PushMessageContentContactRegistered extends PushMessageContent {
 
 class PushMessageContentDocument extends PushMessageContent {
   /// A document message (a general file)
-  PushMessageContentDocument({this.document, this.isPinned});
+  PushMessageContentDocument({this.document, required this.isPinned});
 
   /// [document] Message content; may be null
-  Document document;
+  Document? document;
 
   /// [isPinned] True, if the message is a pinned message with the specified content
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentDocument.fromJson(Map<String, dynamic> json) {
-    this.document = Document.fromJson(json['document'] ?? <String, dynamic>{});
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentDocument.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentDocument(
+      document: Document.fromJson(json['document'] ?? <String, dynamic>{}),
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "document": this.document == null ? null : this.document.toJson(),
+      "document": this.document == null ? null : this.document!.toJson(),
       "is_pinned": this.isPinned,
     };
   }
@@ -279,7 +292,7 @@ class PushMessageContentDocument extends PushMessageContent {
 
 class PushMessageContentGame extends PushMessageContent {
   /// A message with a game
-  PushMessageContentGame({this.title, this.isPinned});
+  PushMessageContentGame({required this.title, required this.isPinned});
 
   /// [title] Game title, empty for pinned game message
   String title;
@@ -288,9 +301,11 @@ class PushMessageContentGame extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentGame.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentGame.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentGame(
+      title: json['title'] ?? "",
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -310,7 +325,8 @@ class PushMessageContentGame extends PushMessageContent {
 
 class PushMessageContentGameScore extends PushMessageContent {
   /// A new high score was achieved in a game
-  PushMessageContentGameScore({this.title, this.score, this.isPinned});
+  PushMessageContentGameScore(
+      {required this.title, required this.score, required this.isPinned});
 
   /// [title] Game title, empty for pinned message
   String title;
@@ -322,10 +338,12 @@ class PushMessageContentGameScore extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentGameScore.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.score = json['score'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentGameScore.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentGameScore(
+      title: json['title'] ?? "",
+      score: json['score'] ?? 0,
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -346,7 +364,7 @@ class PushMessageContentGameScore extends PushMessageContent {
 
 class PushMessageContentInvoice extends PushMessageContent {
   /// A message with an invoice from a bot
-  PushMessageContentInvoice({this.price, this.isPinned});
+  PushMessageContentInvoice({required this.price, required this.isPinned});
 
   /// [price] Product price
   String price;
@@ -355,9 +373,11 @@ class PushMessageContentInvoice extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentInvoice.fromJson(Map<String, dynamic> json) {
-    this.price = json['price'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentInvoice.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentInvoice(
+      price: json['price'] ?? "",
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -377,7 +397,7 @@ class PushMessageContentInvoice extends PushMessageContent {
 
 class PushMessageContentLocation extends PushMessageContent {
   /// A message with a location
-  PushMessageContentLocation({this.isLive, this.isPinned});
+  PushMessageContentLocation({required this.isLive, required this.isPinned});
 
   /// [isLive] True, if the location is live
   bool isLive;
@@ -386,9 +406,11 @@ class PushMessageContentLocation extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentLocation.fromJson(Map<String, dynamic> json) {
-    this.isLive = json['is_live'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentLocation.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentLocation(
+      isLive: json['is_live'] ?? false,
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -409,10 +431,13 @@ class PushMessageContentLocation extends PushMessageContent {
 class PushMessageContentPhoto extends PushMessageContent {
   /// A photo message
   PushMessageContentPhoto(
-      {this.photo, this.caption, this.isSecret, this.isPinned});
+      {this.photo,
+      required this.caption,
+      required this.isSecret,
+      required this.isPinned});
 
   /// [photo] Message content; may be null
-  Photo photo;
+  Photo? photo;
 
   /// [caption] Photo caption
   String caption;
@@ -424,18 +449,20 @@ class PushMessageContentPhoto extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentPhoto.fromJson(Map<String, dynamic> json) {
-    this.photo = Photo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.caption = json['caption'];
-    this.isSecret = json['is_secret'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentPhoto.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentPhoto(
+      photo: Photo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      caption: json['caption'] ?? "",
+      isSecret: json['is_secret'] ?? false,
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
       "caption": this.caption,
       "is_secret": this.isSecret,
       "is_pinned": this.isPinned,
@@ -450,7 +477,10 @@ class PushMessageContentPhoto extends PushMessageContent {
 
 class PushMessageContentPoll extends PushMessageContent {
   /// A message with a poll
-  PushMessageContentPoll({this.question, this.isRegular, this.isPinned});
+  PushMessageContentPoll(
+      {required this.question,
+      required this.isRegular,
+      required this.isPinned});
 
   /// [question] Poll question
   String question;
@@ -462,10 +492,12 @@ class PushMessageContentPoll extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentPoll.fromJson(Map<String, dynamic> json) {
-    this.question = json['question'];
-    this.isRegular = json['is_regular'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentPoll.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentPoll(
+      question: json['question'] ?? "",
+      isRegular: json['is_regular'] ?? false,
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -489,7 +521,10 @@ class PushMessageContentScreenshotTaken extends PushMessageContent {
   PushMessageContentScreenshotTaken();
 
   /// Parse from a json
-  PushMessageContentScreenshotTaken.fromJson(Map<String, dynamic> json);
+  factory PushMessageContentScreenshotTaken.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentScreenshotTaken();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -506,10 +541,11 @@ class PushMessageContentScreenshotTaken extends PushMessageContent {
 
 class PushMessageContentSticker extends PushMessageContent {
   /// A message with a sticker
-  PushMessageContentSticker({this.sticker, this.emoji, this.isPinned});
+  PushMessageContentSticker(
+      {this.sticker, required this.emoji, required this.isPinned});
 
   /// [sticker] Message content; may be null
-  Sticker sticker;
+  Sticker? sticker;
 
   /// [emoji] Emoji corresponding to the sticker; may be empty
   String emoji;
@@ -518,17 +554,19 @@ class PushMessageContentSticker extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentSticker.fromJson(Map<String, dynamic> json) {
-    this.sticker = Sticker.fromJson(json['sticker'] ?? <String, dynamic>{});
-    this.emoji = json['emoji'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentSticker.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentSticker(
+      sticker: Sticker.fromJson(json['sticker'] ?? <String, dynamic>{}),
+      emoji: json['emoji'] ?? "",
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker == null ? null : this.sticker!.toJson(),
       "emoji": this.emoji,
       "is_pinned": this.isPinned,
     };
@@ -542,7 +580,7 @@ class PushMessageContentSticker extends PushMessageContent {
 
 class PushMessageContentText extends PushMessageContent {
   /// A text message
-  PushMessageContentText({this.text, this.isPinned});
+  PushMessageContentText({required this.text, required this.isPinned});
 
   /// [text] Message text
   String text;
@@ -551,9 +589,11 @@ class PushMessageContentText extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentText.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentText.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentText(
+      text: json['text'] ?? "",
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
@@ -574,10 +614,13 @@ class PushMessageContentText extends PushMessageContent {
 class PushMessageContentVideo extends PushMessageContent {
   /// A video message
   PushMessageContentVideo(
-      {this.video, this.caption, this.isSecret, this.isPinned});
+      {this.video,
+      required this.caption,
+      required this.isSecret,
+      required this.isPinned});
 
   /// [video] Message content; may be null
-  Video video;
+  Video? video;
 
   /// [caption] Video caption
   String caption;
@@ -589,18 +632,20 @@ class PushMessageContentVideo extends PushMessageContent {
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentVideo.fromJson(Map<String, dynamic> json) {
-    this.video = Video.fromJson(json['video'] ?? <String, dynamic>{});
-    this.caption = json['caption'];
-    this.isSecret = json['is_secret'];
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentVideo.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentVideo(
+      video: Video.fromJson(json['video'] ?? <String, dynamic>{}),
+      caption: json['caption'] ?? "",
+      isSecret: json['is_secret'] ?? false,
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "video": this.video == null ? null : this.video.toJson(),
+      "video": this.video == null ? null : this.video!.toJson(),
       "caption": this.caption,
       "is_secret": this.isSecret,
       "is_pinned": this.isPinned,
@@ -615,26 +660,27 @@ class PushMessageContentVideo extends PushMessageContent {
 
 class PushMessageContentVideoNote extends PushMessageContent {
   /// A video note message
-  PushMessageContentVideoNote({this.videoNote, this.isPinned});
+  PushMessageContentVideoNote({this.videoNote, required this.isPinned});
 
   /// [videoNote] Message content; may be null
-  VideoNote videoNote;
+  VideoNote? videoNote;
 
   /// [isPinned] True, if the message is a pinned message with the specified content
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentVideoNote.fromJson(Map<String, dynamic> json) {
-    this.videoNote =
-        VideoNote.fromJson(json['video_note'] ?? <String, dynamic>{});
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentVideoNote.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentVideoNote(
+      videoNote: VideoNote.fromJson(json['video_note'] ?? <String, dynamic>{}),
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "video_note": this.videoNote == null ? null : this.videoNote.toJson(),
+      "video_note": this.videoNote == null ? null : this.videoNote!.toJson(),
       "is_pinned": this.isPinned,
     };
   }
@@ -647,26 +693,27 @@ class PushMessageContentVideoNote extends PushMessageContent {
 
 class PushMessageContentVoiceNote extends PushMessageContent {
   /// A voice note message
-  PushMessageContentVoiceNote({this.voiceNote, this.isPinned});
+  PushMessageContentVoiceNote({this.voiceNote, required this.isPinned});
 
   /// [voiceNote] Message content; may be null
-  VoiceNote voiceNote;
+  VoiceNote? voiceNote;
 
   /// [isPinned] True, if the message is a pinned message with the specified content
   bool isPinned;
 
   /// Parse from a json
-  PushMessageContentVoiceNote.fromJson(Map<String, dynamic> json) {
-    this.voiceNote =
-        VoiceNote.fromJson(json['voice_note'] ?? <String, dynamic>{});
-    this.isPinned = json['is_pinned'];
+  factory PushMessageContentVoiceNote.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentVoiceNote(
+      voiceNote: VoiceNote.fromJson(json['voice_note'] ?? <String, dynamic>{}),
+      isPinned: json['is_pinned'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "voice_note": this.voiceNote == null ? null : this.voiceNote.toJson(),
+      "voice_note": this.voiceNote == null ? null : this.voiceNote!.toJson(),
       "is_pinned": this.isPinned,
     };
   }
@@ -682,7 +729,10 @@ class PushMessageContentBasicGroupChatCreate extends PushMessageContent {
   PushMessageContentBasicGroupChatCreate();
 
   /// Parse from a json
-  PushMessageContentBasicGroupChatCreate.fromJson(Map<String, dynamic> json);
+  factory PushMessageContentBasicGroupChatCreate.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentBasicGroupChatCreate();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -700,7 +750,9 @@ class PushMessageContentBasicGroupChatCreate extends PushMessageContent {
 class PushMessageContentChatAddMembers extends PushMessageContent {
   /// New chat members were invited to a group
   PushMessageContentChatAddMembers(
-      {this.memberName, this.isCurrentUser, this.isReturned});
+      {required this.memberName,
+      required this.isCurrentUser,
+      required this.isReturned});
 
   /// [memberName] Name of the added member
   String memberName;
@@ -712,10 +764,12 @@ class PushMessageContentChatAddMembers extends PushMessageContent {
   bool isReturned;
 
   /// Parse from a json
-  PushMessageContentChatAddMembers.fromJson(Map<String, dynamic> json) {
-    this.memberName = json['member_name'];
-    this.isCurrentUser = json['is_current_user'];
-    this.isReturned = json['is_returned'];
+  factory PushMessageContentChatAddMembers.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentChatAddMembers(
+      memberName: json['member_name'] ?? "",
+      isCurrentUser: json['is_current_user'] ?? false,
+      isReturned: json['is_returned'] ?? false,
+    );
   }
 
   @override
@@ -739,7 +793,10 @@ class PushMessageContentChatChangePhoto extends PushMessageContent {
   PushMessageContentChatChangePhoto();
 
   /// Parse from a json
-  PushMessageContentChatChangePhoto.fromJson(Map<String, dynamic> json);
+  factory PushMessageContentChatChangePhoto.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentChatChangePhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -756,14 +813,17 @@ class PushMessageContentChatChangePhoto extends PushMessageContent {
 
 class PushMessageContentChatChangeTitle extends PushMessageContent {
   /// A chat title was edited
-  PushMessageContentChatChangeTitle({this.title});
+  PushMessageContentChatChangeTitle({required this.title});
 
   /// [title] New chat title
   String title;
 
   /// Parse from a json
-  PushMessageContentChatChangeTitle.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
+  factory PushMessageContentChatChangeTitle.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentChatChangeTitle(
+      title: json['title'] ?? "",
+    );
   }
 
   @override
@@ -783,7 +843,9 @@ class PushMessageContentChatChangeTitle extends PushMessageContent {
 class PushMessageContentChatDeleteMember extends PushMessageContent {
   /// A chat member was deleted
   PushMessageContentChatDeleteMember(
-      {this.memberName, this.isCurrentUser, this.isLeft});
+      {required this.memberName,
+      required this.isCurrentUser,
+      required this.isLeft});
 
   /// [memberName] Name of the deleted member
   String memberName;
@@ -795,10 +857,13 @@ class PushMessageContentChatDeleteMember extends PushMessageContent {
   bool isLeft;
 
   /// Parse from a json
-  PushMessageContentChatDeleteMember.fromJson(Map<String, dynamic> json) {
-    this.memberName = json['member_name'];
-    this.isCurrentUser = json['is_current_user'];
-    this.isLeft = json['is_left'];
+  factory PushMessageContentChatDeleteMember.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentChatDeleteMember(
+      memberName: json['member_name'] ?? "",
+      isCurrentUser: json['is_current_user'] ?? false,
+      isLeft: json['is_left'] ?? false,
+    );
   }
 
   @override
@@ -822,7 +887,9 @@ class PushMessageContentChatJoinByLink extends PushMessageContent {
   PushMessageContentChatJoinByLink();
 
   /// Parse from a json
-  PushMessageContentChatJoinByLink.fromJson(Map<String, dynamic> json);
+  factory PushMessageContentChatJoinByLink.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentChatJoinByLink();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -839,14 +906,17 @@ class PushMessageContentChatJoinByLink extends PushMessageContent {
 
 class PushMessageContentMessageForwards extends PushMessageContent {
   /// A forwarded messages
-  PushMessageContentMessageForwards({this.totalCount});
+  PushMessageContentMessageForwards({required this.totalCount});
 
   /// [totalCount] Number of forwarded messages
   int totalCount;
 
   /// Parse from a json
-  PushMessageContentMessageForwards.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
+  factory PushMessageContentMessageForwards.fromJson(
+      Map<String, dynamic> json) {
+    return PushMessageContentMessageForwards(
+      totalCount: json['total_count'] ?? 0,
+    );
   }
 
   @override
@@ -866,11 +936,11 @@ class PushMessageContentMessageForwards extends PushMessageContent {
 class PushMessageContentMediaAlbum extends PushMessageContent {
   /// A media album
   PushMessageContentMediaAlbum(
-      {this.totalCount,
-      this.hasPhotos,
-      this.hasVideos,
-      this.hasAudios,
-      this.hasDocuments});
+      {required this.totalCount,
+      required this.hasPhotos,
+      required this.hasVideos,
+      required this.hasAudios,
+      required this.hasDocuments});
 
   /// [totalCount] Number of messages in the album
   int totalCount;
@@ -888,12 +958,14 @@ class PushMessageContentMediaAlbum extends PushMessageContent {
   bool hasDocuments;
 
   /// Parse from a json
-  PushMessageContentMediaAlbum.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.hasPhotos = json['has_photos'];
-    this.hasVideos = json['has_videos'];
-    this.hasAudios = json['has_audios'];
-    this.hasDocuments = json['has_documents'];
+  factory PushMessageContentMediaAlbum.fromJson(Map<String, dynamic> json) {
+    return PushMessageContentMediaAlbum(
+      totalCount: json['total_count'] ?? 0,
+      hasPhotos: json['has_photos'] ?? false,
+      hasVideos: json['has_videos'] ?? false,
+      hasAudios: json['has_audios'] ?? false,
+      hasDocuments: json['has_documents'] ?? false,
+    );
   }
 
   @override

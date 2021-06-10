@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class ParseTextEntities extends TdFunction {
   /// Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
-  ParseTextEntities({this.text, this.parseMode});
+  ParseTextEntities({required this.text, required this.parseMode, this.extra});
 
   /// [text] The text to parse
   String text;
@@ -14,14 +14,21 @@ class ParseTextEntities extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  ParseTextEntities.fromJson(Map<String, dynamic> json);
+  factory ParseTextEntities.fromJson(Map<String, dynamic> json) {
+    return ParseTextEntities(
+      text: json['text'] ?? "",
+      parseMode:
+          TextParseMode.fromJson(json['parse_mode'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "text": this.text,
-      "parse_mode": this.parseMode == null ? null : this.parseMode.toJson(),
+      "parse_mode": this.parseMode.toJson(),
       "@extra": this.extra,
     };
   }

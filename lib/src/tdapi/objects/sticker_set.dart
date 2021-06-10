@@ -3,19 +3,20 @@ part of '../tdapi.dart';
 class StickerSet extends TdObject {
   /// Represents a sticker set
   StickerSet(
-      {this.id,
-      this.title,
-      this.name,
+      {required this.id,
+      required this.title,
+      required this.name,
       this.thumbnail,
-      this.thumbnailOutline,
-      this.isInstalled,
-      this.isArchived,
-      this.isOfficial,
-      this.isAnimated,
-      this.isMasks,
-      this.isViewed,
-      this.stickers,
-      this.emojis});
+      required this.thumbnailOutline,
+      required this.isInstalled,
+      required this.isArchived,
+      required this.isOfficial,
+      required this.isAnimated,
+      required this.isMasks,
+      required this.isViewed,
+      required this.stickers,
+      required this.emojis,
+      this.extra});
 
   /// [id] Identifier of the sticker set
   int id;
@@ -27,7 +28,7 @@ class StickerSet extends TdObject {
   String name;
 
   /// [thumbnail] Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// [thumbnailOutline] Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
   List<ClosedVectorPath> thumbnailOutline;
@@ -57,33 +58,35 @@ class StickerSet extends TdObject {
   List<Emojis> emojis;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  StickerSet.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.title = json['title'];
-    this.name = json['name'];
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
-    this.thumbnailOutline = List<ClosedVectorPath>.from(
-        (json['thumbnail_outline'] ?? [])
-            .map((item) =>
-                ClosedVectorPath.fromJson(item ?? <String, dynamic>{}))
-            .toList());
-    this.isInstalled = json['is_installed'];
-    this.isArchived = json['is_archived'];
-    this.isOfficial = json['is_official'];
-    this.isAnimated = json['is_animated'];
-    this.isMasks = json['is_masks'];
-    this.isViewed = json['is_viewed'];
-    this.stickers = List<Sticker>.from((json['stickers'] ?? [])
-        .map((item) => Sticker.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.emojis = List<Emojis>.from((json['emojis'] ?? [])
-        .map((item) => Emojis.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory StickerSet.fromJson(Map<String, dynamic> json) {
+    return StickerSet(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      title: json['title'] ?? "",
+      name: json['name'] ?? "",
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+      thumbnailOutline: List<ClosedVectorPath>.from(
+          (json['thumbnail_outline'] ?? [])
+              .map((item) =>
+                  ClosedVectorPath.fromJson(item ?? <String, dynamic>{}))
+              .toList()),
+      isInstalled: json['is_installed'] ?? false,
+      isArchived: json['is_archived'] ?? false,
+      isOfficial: json['is_official'] ?? false,
+      isAnimated: json['is_animated'] ?? false,
+      isMasks: json['is_masks'] ?? false,
+      isViewed: json['is_viewed'] ?? false,
+      stickers: List<Sticker>.from((json['stickers'] ?? [])
+          .map((item) => Sticker.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      emojis: List<Emojis>.from((json['emojis'] ?? [])
+          .map((item) => Emojis.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -93,7 +96,7 @@ class StickerSet extends TdObject {
       "id": this.id,
       "title": this.title,
       "name": this.name,
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
       "thumbnail_outline":
           this.thumbnailOutline.map((i) => i.toJson()).toList(),
       "is_installed": this.isInstalled,

@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class SendChatAction extends TdFunction {
   /// Sends a notification about user activity in a chat
-  SendChatAction({this.chatId, this.messageThreadId, this.action});
+  SendChatAction(
+      {required this.chatId,
+      required this.messageThreadId,
+      required this.action,
+      this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -17,7 +21,14 @@ class SendChatAction extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SendChatAction.fromJson(Map<String, dynamic> json);
+  factory SendChatAction.fromJson(Map<String, dynamic> json) {
+    return SendChatAction(
+      chatId: json['chat_id'] ?? 0,
+      messageThreadId: json['message_thread_id'] ?? 0,
+      action: ChatAction.fromJson(json['action'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -25,7 +36,7 @@ class SendChatAction extends TdFunction {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
       "message_thread_id": this.messageThreadId,
-      "action": this.action == null ? null : this.action.toJson(),
+      "action": this.action.toJson(),
       "@extra": this.extra,
     };
   }

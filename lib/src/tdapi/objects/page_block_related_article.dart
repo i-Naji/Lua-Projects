@@ -3,12 +3,12 @@ part of '../tdapi.dart';
 class PageBlockRelatedArticle extends TdObject {
   /// Contains information about a related article
   PageBlockRelatedArticle(
-      {this.url,
-      this.title,
-      this.description,
+      {required this.url,
+      required this.title,
+      required this.description,
       this.photo,
-      this.author,
-      this.publishDate});
+      required this.author,
+      required this.publishDate});
 
   /// [url] Related article URL
   String url;
@@ -20,7 +20,7 @@ class PageBlockRelatedArticle extends TdObject {
   String description;
 
   /// [photo] Article photo; may be null
-  Photo photo;
+  Photo? photo;
 
   /// [author] Article author; may be empty
   String author;
@@ -29,13 +29,15 @@ class PageBlockRelatedArticle extends TdObject {
   int publishDate;
 
   /// Parse from a json
-  PageBlockRelatedArticle.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
-    this.title = json['title'];
-    this.description = json['description'];
-    this.photo = Photo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.author = json['author'];
-    this.publishDate = json['publish_date'];
+  factory PageBlockRelatedArticle.fromJson(Map<String, dynamic> json) {
+    return PageBlockRelatedArticle(
+      url: json['url'] ?? "",
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      photo: Photo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      author: json['author'] ?? "",
+      publishDate: json['publish_date'] ?? 0,
+    );
   }
 
   @override
@@ -45,7 +47,7 @@ class PageBlockRelatedArticle extends TdObject {
       "url": this.url,
       "title": this.title,
       "description": this.description,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
       "author": this.author,
       "publish_date": this.publishDate,
     };

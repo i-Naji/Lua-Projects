@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetPasswordState extends TdFunction {
   /// Returns the current state of 2-step verification
-  GetPasswordState();
+  GetPasswordState({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetPasswordState.fromJson(Map<String, dynamic> json);
+  factory GetPasswordState.fromJson(Map<String, dynamic> json) {
+    return GetPasswordState(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

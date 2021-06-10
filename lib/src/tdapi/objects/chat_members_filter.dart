@@ -29,7 +29,7 @@ class ChatMembersFilter extends TdObject {
       case ChatMembersFilterBots.CONSTRUCTOR:
         return ChatMembersFilterBots.fromJson(json);
       default:
-        return null;
+        return ChatMembersFilter();
     }
   }
 
@@ -49,7 +49,9 @@ class ChatMembersFilterContacts extends ChatMembersFilter {
   ChatMembersFilterContacts();
 
   /// Parse from a json
-  ChatMembersFilterContacts.fromJson(Map<String, dynamic> json);
+  factory ChatMembersFilterContacts.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterContacts();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -69,7 +71,9 @@ class ChatMembersFilterAdministrators extends ChatMembersFilter {
   ChatMembersFilterAdministrators();
 
   /// Parse from a json
-  ChatMembersFilterAdministrators.fromJson(Map<String, dynamic> json);
+  factory ChatMembersFilterAdministrators.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterAdministrators();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -89,7 +93,9 @@ class ChatMembersFilterMembers extends ChatMembersFilter {
   ChatMembersFilterMembers();
 
   /// Parse from a json
-  ChatMembersFilterMembers.fromJson(Map<String, dynamic> json);
+  factory ChatMembersFilterMembers.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterMembers();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -106,14 +112,16 @@ class ChatMembersFilterMembers extends ChatMembersFilter {
 
 class ChatMembersFilterMention extends ChatMembersFilter {
   /// Returns users which can be mentioned in the chat
-  ChatMembersFilterMention({this.messageThreadId});
+  ChatMembersFilterMention({required this.messageThreadId});
 
   /// [messageThreadId] If non-zero, the identifier of the current message thread
   int messageThreadId;
 
   /// Parse from a json
-  ChatMembersFilterMention.fromJson(Map<String, dynamic> json) {
-    this.messageThreadId = json['message_thread_id'];
+  factory ChatMembersFilterMention.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterMention(
+      messageThreadId: json['message_thread_id'] ?? 0,
+    );
   }
 
   @override
@@ -135,7 +143,9 @@ class ChatMembersFilterRestricted extends ChatMembersFilter {
   ChatMembersFilterRestricted();
 
   /// Parse from a json
-  ChatMembersFilterRestricted.fromJson(Map<String, dynamic> json);
+  factory ChatMembersFilterRestricted.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterRestricted();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -155,7 +165,9 @@ class ChatMembersFilterBanned extends ChatMembersFilter {
   ChatMembersFilterBanned();
 
   /// Parse from a json
-  ChatMembersFilterBanned.fromJson(Map<String, dynamic> json);
+  factory ChatMembersFilterBanned.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterBanned();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -175,7 +187,9 @@ class ChatMembersFilterBots extends ChatMembersFilter {
   ChatMembersFilterBots();
 
   /// Parse from a json
-  ChatMembersFilterBots.fromJson(Map<String, dynamic> json);
+  factory ChatMembersFilterBots.fromJson(Map<String, dynamic> json) {
+    return ChatMembersFilterBots();
+  }
 
   @override
   Map<String, dynamic> toJson() {

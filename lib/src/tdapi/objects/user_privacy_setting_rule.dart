@@ -32,7 +32,7 @@ class UserPrivacySettingRule extends TdObject {
       case UserPrivacySettingRuleRestrictChatMembers.CONSTRUCTOR:
         return UserPrivacySettingRuleRestrictChatMembers.fromJson(json);
       default:
-        return null;
+        return UserPrivacySettingRule();
     }
   }
 
@@ -52,7 +52,9 @@ class UserPrivacySettingRuleAllowAll extends UserPrivacySettingRule {
   UserPrivacySettingRuleAllowAll();
 
   /// Parse from a json
-  UserPrivacySettingRuleAllowAll.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingRuleAllowAll.fromJson(Map<String, dynamic> json) {
+    return UserPrivacySettingRuleAllowAll();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -72,7 +74,10 @@ class UserPrivacySettingRuleAllowContacts extends UserPrivacySettingRule {
   UserPrivacySettingRuleAllowContacts();
 
   /// Parse from a json
-  UserPrivacySettingRuleAllowContacts.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingRuleAllowContacts.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingRuleAllowContacts();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -89,15 +94,17 @@ class UserPrivacySettingRuleAllowContacts extends UserPrivacySettingRule {
 
 class UserPrivacySettingRuleAllowUsers extends UserPrivacySettingRule {
   /// A rule to allow certain specified users to do something
-  UserPrivacySettingRuleAllowUsers({this.userIds});
+  UserPrivacySettingRuleAllowUsers({required this.userIds});
 
   /// [userIds] The user identifiers, total number of users in all rules must not exceed 1000
   List<int> userIds;
 
   /// Parse from a json
-  UserPrivacySettingRuleAllowUsers.fromJson(Map<String, dynamic> json) {
-    this.userIds =
-        List<int>.from((json['user_ids'] ?? []).map((item) => item).toList());
+  factory UserPrivacySettingRuleAllowUsers.fromJson(Map<String, dynamic> json) {
+    return UserPrivacySettingRuleAllowUsers(
+      userIds: List<int>.from(
+          (json['user_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -116,15 +123,18 @@ class UserPrivacySettingRuleAllowUsers extends UserPrivacySettingRule {
 
 class UserPrivacySettingRuleAllowChatMembers extends UserPrivacySettingRule {
   /// A rule to allow all members of certain specified basic groups and supergroups to doing something
-  UserPrivacySettingRuleAllowChatMembers({this.chatIds});
+  UserPrivacySettingRuleAllowChatMembers({required this.chatIds});
 
   /// [chatIds] The chat identifiers, total number of chats in all rules must not exceed 20
   List<int> chatIds;
 
   /// Parse from a json
-  UserPrivacySettingRuleAllowChatMembers.fromJson(Map<String, dynamic> json) {
-    this.chatIds =
-        List<int>.from((json['chat_ids'] ?? []).map((item) => item).toList());
+  factory UserPrivacySettingRuleAllowChatMembers.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingRuleAllowChatMembers(
+      chatIds: List<int>.from(
+          (json['chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -146,7 +156,10 @@ class UserPrivacySettingRuleRestrictAll extends UserPrivacySettingRule {
   UserPrivacySettingRuleRestrictAll();
 
   /// Parse from a json
-  UserPrivacySettingRuleRestrictAll.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingRuleRestrictAll.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingRuleRestrictAll();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -166,7 +179,10 @@ class UserPrivacySettingRuleRestrictContacts extends UserPrivacySettingRule {
   UserPrivacySettingRuleRestrictContacts();
 
   /// Parse from a json
-  UserPrivacySettingRuleRestrictContacts.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingRuleRestrictContacts.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingRuleRestrictContacts();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -183,15 +199,18 @@ class UserPrivacySettingRuleRestrictContacts extends UserPrivacySettingRule {
 
 class UserPrivacySettingRuleRestrictUsers extends UserPrivacySettingRule {
   /// A rule to restrict all specified users from doing something
-  UserPrivacySettingRuleRestrictUsers({this.userIds});
+  UserPrivacySettingRuleRestrictUsers({required this.userIds});
 
   /// [userIds] The user identifiers, total number of users in all rules must not exceed 1000
   List<int> userIds;
 
   /// Parse from a json
-  UserPrivacySettingRuleRestrictUsers.fromJson(Map<String, dynamic> json) {
-    this.userIds =
-        List<int>.from((json['user_ids'] ?? []).map((item) => item).toList());
+  factory UserPrivacySettingRuleRestrictUsers.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingRuleRestrictUsers(
+      userIds: List<int>.from(
+          (json['user_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -210,16 +229,18 @@ class UserPrivacySettingRuleRestrictUsers extends UserPrivacySettingRule {
 
 class UserPrivacySettingRuleRestrictChatMembers extends UserPrivacySettingRule {
   /// A rule to restrict all members of specified basic groups and supergroups from doing something
-  UserPrivacySettingRuleRestrictChatMembers({this.chatIds});
+  UserPrivacySettingRuleRestrictChatMembers({required this.chatIds});
 
   /// [chatIds] The chat identifiers, total number of chats in all rules must not exceed 20
   List<int> chatIds;
 
   /// Parse from a json
-  UserPrivacySettingRuleRestrictChatMembers.fromJson(
+  factory UserPrivacySettingRuleRestrictChatMembers.fromJson(
       Map<String, dynamic> json) {
-    this.chatIds =
-        List<int>.from((json['chat_ids'] ?? []).map((item) => item).toList());
+    return UserPrivacySettingRuleRestrictChatMembers(
+      chatIds: List<int>.from(
+          (json['chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override

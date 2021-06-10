@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GroupCallJoinResponse extends TdObject {
   /// Describes a join response for interaction with tgcalls
-  GroupCallJoinResponse({this.payload, this.candidates});
+  GroupCallJoinResponse(
+      {required this.payload, required this.candidates, this.extra});
 
   /// [payload] Join response payload to pass to tgcalls
   GroupCallPayload payload;
@@ -11,25 +12,28 @@ class GroupCallJoinResponse extends TdObject {
   List<GroupCallJoinResponseCandidate> candidates;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  GroupCallJoinResponse.fromJson(Map<String, dynamic> json) {
-    this.payload =
-        GroupCallPayload.fromJson(json['payload'] ?? <String, dynamic>{});
-    this.candidates = List<GroupCallJoinResponseCandidate>.from(
-        (json['candidates'] ?? [])
-            .map((item) => GroupCallJoinResponseCandidate.fromJson(
-                item ?? <String, dynamic>{}))
-            .toList());
-    this.extra = json['@extra'];
+  factory GroupCallJoinResponse.fromJson(Map<String, dynamic> json) {
+    return GroupCallJoinResponse(
+      payload:
+          GroupCallPayload.fromJson(json['payload'] ?? <String, dynamic>{}),
+      candidates: List<GroupCallJoinResponseCandidate>.from(
+          (json['candidates'] ?? [])
+              .map((item) => GroupCallJoinResponseCandidate.fromJson(
+                  item ?? <String, dynamic>{}))
+              .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "payload": this.payload == null ? null : this.payload.toJson(),
+      "payload": this.payload.toJson(),
       "candidates": this.candidates.map((i) => i.toJson()).toList(),
     };
   }

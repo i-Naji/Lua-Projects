@@ -14,7 +14,7 @@ class MessageSendingState extends TdObject {
       case MessageSendingStateFailed.CONSTRUCTOR:
         return MessageSendingStateFailed.fromJson(json);
       default:
-        return null;
+        return MessageSendingState();
     }
   }
 
@@ -34,7 +34,9 @@ class MessageSendingStatePending extends MessageSendingState {
   MessageSendingStatePending();
 
   /// Parse from a json
-  MessageSendingStatePending.fromJson(Map<String, dynamic> json);
+  factory MessageSendingStatePending.fromJson(Map<String, dynamic> json) {
+    return MessageSendingStatePending();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -52,7 +54,10 @@ class MessageSendingStatePending extends MessageSendingState {
 class MessageSendingStateFailed extends MessageSendingState {
   /// The message failed to be sent
   MessageSendingStateFailed(
-      {this.errorCode, this.errorMessage, this.canRetry, this.retryAfter});
+      {required this.errorCode,
+      required this.errorMessage,
+      required this.canRetry,
+      required this.retryAfter});
 
   /// [errorCode] An error code; 0 if unknown
   int errorCode;
@@ -67,11 +72,13 @@ class MessageSendingStateFailed extends MessageSendingState {
   double retryAfter;
 
   /// Parse from a json
-  MessageSendingStateFailed.fromJson(Map<String, dynamic> json) {
-    this.errorCode = json['error_code'];
-    this.errorMessage = json['error_message'];
-    this.canRetry = json['can_retry'];
-    this.retryAfter = json['retry_after'];
+  factory MessageSendingStateFailed.fromJson(Map<String, dynamic> json) {
+    return MessageSendingStateFailed(
+      errorCode: json['error_code'] ?? 0,
+      errorMessage: json['error_message'] ?? "",
+      canRetry: json['can_retry'] ?? false,
+      retryAfter: json['retry_after'] ?? 0,
+    );
   }
 
   @override

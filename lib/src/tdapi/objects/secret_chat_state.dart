@@ -17,7 +17,7 @@ class SecretChatState extends TdObject {
       case SecretChatStateClosed.CONSTRUCTOR:
         return SecretChatStateClosed.fromJson(json);
       default:
-        return null;
+        return SecretChatState();
     }
   }
 
@@ -37,7 +37,9 @@ class SecretChatStatePending extends SecretChatState {
   SecretChatStatePending();
 
   /// Parse from a json
-  SecretChatStatePending.fromJson(Map<String, dynamic> json);
+  factory SecretChatStatePending.fromJson(Map<String, dynamic> json) {
+    return SecretChatStatePending();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -57,7 +59,9 @@ class SecretChatStateReady extends SecretChatState {
   SecretChatStateReady();
 
   /// Parse from a json
-  SecretChatStateReady.fromJson(Map<String, dynamic> json);
+  factory SecretChatStateReady.fromJson(Map<String, dynamic> json) {
+    return SecretChatStateReady();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -77,7 +81,9 @@ class SecretChatStateClosed extends SecretChatState {
   SecretChatStateClosed();
 
   /// Parse from a json
-  SecretChatStateClosed.fromJson(Map<String, dynamic> json);
+  factory SecretChatStateClosed.fromJson(Map<String, dynamic> json) {
+    return SecretChatStateClosed();
+  }
 
   @override
   Map<String, dynamic> toJson() {

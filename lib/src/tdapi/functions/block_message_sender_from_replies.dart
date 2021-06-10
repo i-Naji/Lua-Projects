@@ -3,10 +3,11 @@ part of '../tdapi.dart';
 class BlockMessageSenderFromReplies extends TdFunction {
   /// Blocks an original sender of a message in the Replies chat
   BlockMessageSenderFromReplies(
-      {this.messageId,
-      this.deleteMessage,
-      this.deleteAllMessages,
-      this.reportSpam});
+      {required this.messageId,
+      required this.deleteMessage,
+      required this.deleteAllMessages,
+      required this.reportSpam,
+      this.extra});
 
   /// [messageId] The identifier of an incoming message in the Replies chat
   int messageId;
@@ -24,7 +25,15 @@ class BlockMessageSenderFromReplies extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  BlockMessageSenderFromReplies.fromJson(Map<String, dynamic> json);
+  factory BlockMessageSenderFromReplies.fromJson(Map<String, dynamic> json) {
+    return BlockMessageSenderFromReplies(
+      messageId: json['message_id'] ?? 0,
+      deleteMessage: json['delete_message'] ?? false,
+      deleteAllMessages: json['delete_all_messages'] ?? false,
+      reportSpam: json['report_spam'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

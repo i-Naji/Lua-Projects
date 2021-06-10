@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GroupCallPayloadFingerprint extends TdObject {
   /// Describes a payload fingerprint for interaction with tgcalls
-  GroupCallPayloadFingerprint({this.hash, this.setup, this.fingerprint});
+  GroupCallPayloadFingerprint(
+      {required this.hash, required this.setup, required this.fingerprint});
 
   /// [hash] Value of the field hash
   String hash;
@@ -14,10 +15,12 @@ class GroupCallPayloadFingerprint extends TdObject {
   String fingerprint;
 
   /// Parse from a json
-  GroupCallPayloadFingerprint.fromJson(Map<String, dynamic> json) {
-    this.hash = json['hash'];
-    this.setup = json['setup'];
-    this.fingerprint = json['fingerprint'];
+  factory GroupCallPayloadFingerprint.fromJson(Map<String, dynamic> json) {
+    return GroupCallPayloadFingerprint(
+      hash: json['hash'] ?? "",
+      setup: json['setup'] ?? "",
+      fingerprint: json['fingerprint'] ?? "",
+    );
   }
 
   @override

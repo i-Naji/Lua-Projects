@@ -47,7 +47,7 @@ class ChatAction extends TdObject {
       case ChatActionCancel.CONSTRUCTOR:
         return ChatActionCancel.fromJson(json);
       default:
-        return null;
+        return ChatAction();
     }
   }
 
@@ -67,7 +67,9 @@ class ChatActionTyping extends ChatAction {
   ChatActionTyping();
 
   /// Parse from a json
-  ChatActionTyping.fromJson(Map<String, dynamic> json);
+  factory ChatActionTyping.fromJson(Map<String, dynamic> json) {
+    return ChatActionTyping();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -87,7 +89,9 @@ class ChatActionRecordingVideo extends ChatAction {
   ChatActionRecordingVideo();
 
   /// Parse from a json
-  ChatActionRecordingVideo.fromJson(Map<String, dynamic> json);
+  factory ChatActionRecordingVideo.fromJson(Map<String, dynamic> json) {
+    return ChatActionRecordingVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -104,14 +108,16 @@ class ChatActionRecordingVideo extends ChatAction {
 
 class ChatActionUploadingVideo extends ChatAction {
   /// The user is uploading a video
-  ChatActionUploadingVideo({this.progress});
+  ChatActionUploadingVideo({required this.progress});
 
   /// [progress] Upload progress, as a percentage
   int progress;
 
   /// Parse from a json
-  ChatActionUploadingVideo.fromJson(Map<String, dynamic> json) {
-    this.progress = json['progress'];
+  factory ChatActionUploadingVideo.fromJson(Map<String, dynamic> json) {
+    return ChatActionUploadingVideo(
+      progress: json['progress'] ?? 0,
+    );
   }
 
   @override
@@ -133,7 +139,9 @@ class ChatActionRecordingVoiceNote extends ChatAction {
   ChatActionRecordingVoiceNote();
 
   /// Parse from a json
-  ChatActionRecordingVoiceNote.fromJson(Map<String, dynamic> json);
+  factory ChatActionRecordingVoiceNote.fromJson(Map<String, dynamic> json) {
+    return ChatActionRecordingVoiceNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -150,14 +158,16 @@ class ChatActionRecordingVoiceNote extends ChatAction {
 
 class ChatActionUploadingVoiceNote extends ChatAction {
   /// The user is uploading a voice note
-  ChatActionUploadingVoiceNote({this.progress});
+  ChatActionUploadingVoiceNote({required this.progress});
 
   /// [progress] Upload progress, as a percentage
   int progress;
 
   /// Parse from a json
-  ChatActionUploadingVoiceNote.fromJson(Map<String, dynamic> json) {
-    this.progress = json['progress'];
+  factory ChatActionUploadingVoiceNote.fromJson(Map<String, dynamic> json) {
+    return ChatActionUploadingVoiceNote(
+      progress: json['progress'] ?? 0,
+    );
   }
 
   @override
@@ -176,14 +186,16 @@ class ChatActionUploadingVoiceNote extends ChatAction {
 
 class ChatActionUploadingPhoto extends ChatAction {
   /// The user is uploading a photo
-  ChatActionUploadingPhoto({this.progress});
+  ChatActionUploadingPhoto({required this.progress});
 
   /// [progress] Upload progress, as a percentage
   int progress;
 
   /// Parse from a json
-  ChatActionUploadingPhoto.fromJson(Map<String, dynamic> json) {
-    this.progress = json['progress'];
+  factory ChatActionUploadingPhoto.fromJson(Map<String, dynamic> json) {
+    return ChatActionUploadingPhoto(
+      progress: json['progress'] ?? 0,
+    );
   }
 
   @override
@@ -202,14 +214,16 @@ class ChatActionUploadingPhoto extends ChatAction {
 
 class ChatActionUploadingDocument extends ChatAction {
   /// The user is uploading a document
-  ChatActionUploadingDocument({this.progress});
+  ChatActionUploadingDocument({required this.progress});
 
   /// [progress] Upload progress, as a percentage
   int progress;
 
   /// Parse from a json
-  ChatActionUploadingDocument.fromJson(Map<String, dynamic> json) {
-    this.progress = json['progress'];
+  factory ChatActionUploadingDocument.fromJson(Map<String, dynamic> json) {
+    return ChatActionUploadingDocument(
+      progress: json['progress'] ?? 0,
+    );
   }
 
   @override
@@ -231,7 +245,9 @@ class ChatActionChoosingLocation extends ChatAction {
   ChatActionChoosingLocation();
 
   /// Parse from a json
-  ChatActionChoosingLocation.fromJson(Map<String, dynamic> json);
+  factory ChatActionChoosingLocation.fromJson(Map<String, dynamic> json) {
+    return ChatActionChoosingLocation();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -251,7 +267,9 @@ class ChatActionChoosingContact extends ChatAction {
   ChatActionChoosingContact();
 
   /// Parse from a json
-  ChatActionChoosingContact.fromJson(Map<String, dynamic> json);
+  factory ChatActionChoosingContact.fromJson(Map<String, dynamic> json) {
+    return ChatActionChoosingContact();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -271,7 +289,9 @@ class ChatActionStartPlayingGame extends ChatAction {
   ChatActionStartPlayingGame();
 
   /// Parse from a json
-  ChatActionStartPlayingGame.fromJson(Map<String, dynamic> json);
+  factory ChatActionStartPlayingGame.fromJson(Map<String, dynamic> json) {
+    return ChatActionStartPlayingGame();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -291,7 +311,9 @@ class ChatActionRecordingVideoNote extends ChatAction {
   ChatActionRecordingVideoNote();
 
   /// Parse from a json
-  ChatActionRecordingVideoNote.fromJson(Map<String, dynamic> json);
+  factory ChatActionRecordingVideoNote.fromJson(Map<String, dynamic> json) {
+    return ChatActionRecordingVideoNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -308,14 +330,16 @@ class ChatActionRecordingVideoNote extends ChatAction {
 
 class ChatActionUploadingVideoNote extends ChatAction {
   /// The user is uploading a video note
-  ChatActionUploadingVideoNote({this.progress});
+  ChatActionUploadingVideoNote({required this.progress});
 
   /// [progress] Upload progress, as a percentage
   int progress;
 
   /// Parse from a json
-  ChatActionUploadingVideoNote.fromJson(Map<String, dynamic> json) {
-    this.progress = json['progress'];
+  factory ChatActionUploadingVideoNote.fromJson(Map<String, dynamic> json) {
+    return ChatActionUploadingVideoNote(
+      progress: json['progress'] ?? 0,
+    );
   }
 
   @override
@@ -337,7 +361,9 @@ class ChatActionCancel extends ChatAction {
   ChatActionCancel();
 
   /// Parse from a json
-  ChatActionCancel.fromJson(Map<String, dynamic> json);
+  factory ChatActionCancel.fromJson(Map<String, dynamic> json) {
+    return ChatActionCancel();
+  }
 
   @override
   Map<String, dynamic> toJson() {

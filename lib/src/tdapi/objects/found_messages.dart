@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class FoundMessages extends TdObject {
   /// Contains a list of messages found by a search
-  FoundMessages({this.totalCount, this.messages, this.nextOffset});
+  FoundMessages(
+      {required this.totalCount,
+      required this.messages,
+      required this.nextOffset,
+      this.extra});
 
   /// [totalCount] Approximate total count of messages found; -1 if unknown
   int totalCount;
@@ -14,16 +18,19 @@ class FoundMessages extends TdObject {
   String nextOffset;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  FoundMessages.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.messages = List<Message>.from((json['messages'] ?? [])
-        .map((item) => Message.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.nextOffset = json['next_offset'];
-    this.extra = json['@extra'];
+  factory FoundMessages.fromJson(Map<String, dynamic> json) {
+    return FoundMessages(
+      totalCount: json['total_count'] ?? 0,
+      messages: List<Message>.from((json['messages'] ?? [])
+          .map((item) => Message.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      nextOffset: json['next_offset'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

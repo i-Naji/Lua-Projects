@@ -29,7 +29,7 @@ class TopChatCategory extends TdObject {
       case TopChatCategoryForwardChats.CONSTRUCTOR:
         return TopChatCategoryForwardChats.fromJson(json);
       default:
-        return null;
+        return TopChatCategory();
     }
   }
 
@@ -49,7 +49,9 @@ class TopChatCategoryUsers extends TopChatCategory {
   TopChatCategoryUsers();
 
   /// Parse from a json
-  TopChatCategoryUsers.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryUsers.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryUsers();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -69,7 +71,9 @@ class TopChatCategoryBots extends TopChatCategory {
   TopChatCategoryBots();
 
   /// Parse from a json
-  TopChatCategoryBots.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryBots.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryBots();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -89,7 +93,9 @@ class TopChatCategoryGroups extends TopChatCategory {
   TopChatCategoryGroups();
 
   /// Parse from a json
-  TopChatCategoryGroups.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryGroups.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryGroups();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -109,7 +115,9 @@ class TopChatCategoryChannels extends TopChatCategory {
   TopChatCategoryChannels();
 
   /// Parse from a json
-  TopChatCategoryChannels.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryChannels.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryChannels();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -129,7 +137,9 @@ class TopChatCategoryInlineBots extends TopChatCategory {
   TopChatCategoryInlineBots();
 
   /// Parse from a json
-  TopChatCategoryInlineBots.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryInlineBots.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryInlineBots();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -149,7 +159,9 @@ class TopChatCategoryCalls extends TopChatCategory {
   TopChatCategoryCalls();
 
   /// Parse from a json
-  TopChatCategoryCalls.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryCalls.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryCalls();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -169,7 +181,9 @@ class TopChatCategoryForwardChats extends TopChatCategory {
   TopChatCategoryForwardChats();
 
   /// Parse from a json
-  TopChatCategoryForwardChats.fromJson(Map<String, dynamic> json);
+  factory TopChatCategoryForwardChats.fromJson(Map<String, dynamic> json) {
+    return TopChatCategoryForwardChats();
+  }
 
   @override
   Map<String, dynamic> toJson() {

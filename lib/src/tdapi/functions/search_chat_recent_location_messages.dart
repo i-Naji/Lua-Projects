@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class SearchChatRecentLocationMessages extends TdFunction {
   /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
-  SearchChatRecentLocationMessages({this.chatId, this.limit});
+  SearchChatRecentLocationMessages(
+      {required this.chatId, required this.limit, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -14,7 +15,13 @@ class SearchChatRecentLocationMessages extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SearchChatRecentLocationMessages.fromJson(Map<String, dynamic> json);
+  factory SearchChatRecentLocationMessages.fromJson(Map<String, dynamic> json) {
+    return SearchChatRecentLocationMessages(
+      chatId: json['chat_id'] ?? 0,
+      limit: json['limit'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

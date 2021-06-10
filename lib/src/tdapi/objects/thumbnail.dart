@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class Thumbnail extends TdObject {
   /// Represents a thumbnail
-  Thumbnail({this.format, this.width, this.height, this.file});
+  Thumbnail(
+      {required this.format,
+      required this.width,
+      required this.height,
+      required this.file});
 
   /// [format] Thumbnail format
   ThumbnailFormat format;
@@ -17,22 +21,23 @@ class Thumbnail extends TdObject {
   File file;
 
   /// Parse from a json
-  Thumbnail.fromJson(Map<String, dynamic> json) {
-    this.format =
-        ThumbnailFormat.fromJson(json['format'] ?? <String, dynamic>{});
-    this.width = json['width'];
-    this.height = json['height'];
-    this.file = File.fromJson(json['file'] ?? <String, dynamic>{});
+  factory Thumbnail.fromJson(Map<String, dynamic> json) {
+    return Thumbnail(
+      format: ThumbnailFormat.fromJson(json['format'] ?? <String, dynamic>{}),
+      width: json['width'] ?? 0,
+      height: json['height'] ?? 0,
+      file: File.fromJson(json['file'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "format": this.format == null ? null : this.format.toJson(),
+      "format": this.format.toJson(),
       "width": this.width,
       "height": this.height,
-      "file": this.file == null ? null : this.file.toJson(),
+      "file": this.file.toJson(),
     };
   }
 

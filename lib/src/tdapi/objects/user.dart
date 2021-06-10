@@ -3,22 +3,23 @@ part of '../tdapi.dart';
 class User extends TdObject {
   /// Represents a user
   User(
-      {this.id,
-      this.firstName,
-      this.lastName,
-      this.username,
-      this.phoneNumber,
-      this.status,
+      {required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.username,
+      required this.phoneNumber,
+      required this.status,
       this.profilePhoto,
-      this.isContact,
-      this.isMutualContact,
-      this.isVerified,
-      this.isSupport,
-      this.restrictionReason,
-      this.isScam,
-      this.haveAccess,
-      this.type,
-      this.languageCode});
+      required this.isContact,
+      required this.isMutualContact,
+      required this.isVerified,
+      required this.isSupport,
+      required this.restrictionReason,
+      required this.isScam,
+      required this.haveAccess,
+      required this.type,
+      required this.languageCode,
+      this.extra});
 
   /// [id] User identifier
   int id;
@@ -39,7 +40,7 @@ class User extends TdObject {
   UserStatus status;
 
   /// [profilePhoto] Profile photo of the user; may be null
-  ProfilePhoto profilePhoto;
+  ProfilePhoto? profilePhoto;
 
   /// [isContact] The user is a contact of the current user
   bool isContact;
@@ -69,28 +70,31 @@ class User extends TdObject {
   String languageCode;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  User.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.firstName = json['first_name'];
-    this.lastName = json['last_name'];
-    this.username = json['username'];
-    this.phoneNumber = json['phone_number'];
-    this.status = UserStatus.fromJson(json['status'] ?? <String, dynamic>{});
-    this.profilePhoto =
-        ProfilePhoto.fromJson(json['profile_photo'] ?? <String, dynamic>{});
-    this.isContact = json['is_contact'];
-    this.isMutualContact = json['is_mutual_contact'];
-    this.isVerified = json['is_verified'];
-    this.isSupport = json['is_support'];
-    this.restrictionReason = json['restriction_reason'];
-    this.isScam = json['is_scam'];
-    this.haveAccess = json['have_access'];
-    this.type = UserType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.languageCode = json['language_code'];
-    this.extra = json['@extra'];
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'] ?? 0,
+      firstName: json['first_name'] ?? "",
+      lastName: json['last_name'] ?? "",
+      username: json['username'] ?? "",
+      phoneNumber: json['phone_number'] ?? "",
+      status: UserStatus.fromJson(json['status'] ?? <String, dynamic>{}),
+      profilePhoto:
+          ProfilePhoto.fromJson(json['profile_photo'] ?? <String, dynamic>{}),
+      isContact: json['is_contact'] ?? false,
+      isMutualContact: json['is_mutual_contact'] ?? false,
+      isVerified: json['is_verified'] ?? false,
+      isSupport: json['is_support'] ?? false,
+      restrictionReason: json['restriction_reason'] ?? "",
+      isScam: json['is_scam'] ?? false,
+      haveAccess: json['have_access'] ?? false,
+      type: UserType.fromJson(json['type'] ?? <String, dynamic>{}),
+      languageCode: json['language_code'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -102,9 +106,9 @@ class User extends TdObject {
       "last_name": this.lastName,
       "username": this.username,
       "phone_number": this.phoneNumber,
-      "status": this.status == null ? null : this.status.toJson(),
+      "status": this.status.toJson(),
       "profile_photo":
-          this.profilePhoto == null ? null : this.profilePhoto.toJson(),
+          this.profilePhoto == null ? null : this.profilePhoto!.toJson(),
       "is_contact": this.isContact,
       "is_mutual_contact": this.isMutualContact,
       "is_verified": this.isVerified,
@@ -112,7 +116,7 @@ class User extends TdObject {
       "restriction_reason": this.restrictionReason,
       "is_scam": this.isScam,
       "have_access": this.haveAccess,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "language_code": this.languageCode,
     };
   }

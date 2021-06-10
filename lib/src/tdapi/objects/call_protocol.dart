@@ -3,11 +3,11 @@ part of '../tdapi.dart';
 class CallProtocol extends TdObject {
   /// Specifies the supported call protocols
   CallProtocol(
-      {this.udpP2p,
-      this.udpReflector,
-      this.minLayer,
-      this.maxLayer,
-      this.libraryVersions});
+      {required this.udpP2p,
+      required this.udpReflector,
+      required this.minLayer,
+      required this.maxLayer,
+      required this.libraryVersions});
 
   /// [udpP2p] True, if UDP peer-to-peer connections are supported
   bool udpP2p;
@@ -25,13 +25,15 @@ class CallProtocol extends TdObject {
   List<String> libraryVersions;
 
   /// Parse from a json
-  CallProtocol.fromJson(Map<String, dynamic> json) {
-    this.udpP2p = json['udp_p2p'];
-    this.udpReflector = json['udp_reflector'];
-    this.minLayer = json['min_layer'];
-    this.maxLayer = json['max_layer'];
-    this.libraryVersions = List<String>.from(
-        (json['library_versions'] ?? []).map((item) => item).toList());
+  factory CallProtocol.fromJson(Map<String, dynamic> json) {
+    return CallProtocol(
+      udpP2p: json['udp_p2p'] ?? false,
+      udpReflector: json['udp_reflector'] ?? false,
+      minLayer: json['min_layer'] ?? 0,
+      maxLayer: json['max_layer'] ?? 0,
+      libraryVersions: List<String>.from(
+          (json['library_versions'] ?? []).map((item) => item ?? "").toList()),
+    );
   }
 
   @override

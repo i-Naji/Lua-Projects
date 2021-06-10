@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class MessageLink extends TdObject {
   /// Contains an HTTPS link to a message in a supergroup or channel
-  MessageLink({this.link, this.isPublic});
+  MessageLink({required this.link, required this.isPublic, this.extra});
 
   /// [link] Message link
   String link;
@@ -11,13 +11,16 @@ class MessageLink extends TdObject {
   bool isPublic;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  MessageLink.fromJson(Map<String, dynamic> json) {
-    this.link = json['link'];
-    this.isPublic = json['is_public'];
-    this.extra = json['@extra'];
+  factory MessageLink.fromJson(Map<String, dynamic> json) {
+    return MessageLink(
+      link: json['link'] ?? "",
+      isPublic: json['is_public'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override

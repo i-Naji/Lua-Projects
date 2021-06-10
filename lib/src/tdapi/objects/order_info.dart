@@ -3,7 +3,11 @@ part of '../tdapi.dart';
 class OrderInfo extends TdObject {
   /// Order information
   OrderInfo(
-      {this.name, this.phoneNumber, this.emailAddress, this.shippingAddress});
+      {required this.name,
+      required this.phoneNumber,
+      required this.emailAddress,
+      this.shippingAddress,
+      this.extra});
 
   /// [name] Name of the user
   String name;
@@ -15,19 +19,22 @@ class OrderInfo extends TdObject {
   String emailAddress;
 
   /// [shippingAddress] Shipping address for this order; may be null
-  Address shippingAddress;
+  Address? shippingAddress;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  OrderInfo.fromJson(Map<String, dynamic> json) {
-    this.name = json['name'];
-    this.phoneNumber = json['phone_number'];
-    this.emailAddress = json['email_address'];
-    this.shippingAddress =
-        Address.fromJson(json['shipping_address'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory OrderInfo.fromJson(Map<String, dynamic> json) {
+    return OrderInfo(
+      name: json['name'] ?? "",
+      phoneNumber: json['phone_number'] ?? "",
+      emailAddress: json['email_address'] ?? "",
+      shippingAddress:
+          Address.fromJson(json['shipping_address'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -38,7 +45,7 @@ class OrderInfo extends TdObject {
       "phone_number": this.phoneNumber,
       "email_address": this.emailAddress,
       "shipping_address":
-          this.shippingAddress == null ? null : this.shippingAddress.toJson(),
+          this.shippingAddress == null ? null : this.shippingAddress!.toJson(),
     };
   }
 

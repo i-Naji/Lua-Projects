@@ -17,7 +17,7 @@ class ChatList extends TdObject {
       case ChatListFilter.CONSTRUCTOR:
         return ChatListFilter.fromJson(json);
       default:
-        return null;
+        return ChatList();
     }
   }
 
@@ -37,7 +37,9 @@ class ChatListMain extends ChatList {
   ChatListMain();
 
   /// Parse from a json
-  ChatListMain.fromJson(Map<String, dynamic> json);
+  factory ChatListMain.fromJson(Map<String, dynamic> json) {
+    return ChatListMain();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -57,7 +59,9 @@ class ChatListArchive extends ChatList {
   ChatListArchive();
 
   /// Parse from a json
-  ChatListArchive.fromJson(Map<String, dynamic> json);
+  factory ChatListArchive.fromJson(Map<String, dynamic> json) {
+    return ChatListArchive();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -74,14 +78,16 @@ class ChatListArchive extends ChatList {
 
 class ChatListFilter extends ChatList {
   /// A list of chats belonging to a chat filter
-  ChatListFilter({this.chatFilterId});
+  ChatListFilter({required this.chatFilterId});
 
   /// [chatFilterId] Chat filter identifier
   int chatFilterId;
 
   /// Parse from a json
-  ChatListFilter.fromJson(Map<String, dynamic> json) {
-    this.chatFilterId = json['chat_filter_id'];
+  factory ChatListFilter.fromJson(Map<String, dynamic> json) {
+    return ChatListFilter(
+      chatFilterId: json['chat_filter_id'] ?? 0,
+    );
   }
 
   @override

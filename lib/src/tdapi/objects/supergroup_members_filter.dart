@@ -32,7 +32,7 @@ class SupergroupMembersFilter extends TdObject {
       case SupergroupMembersFilterBots.CONSTRUCTOR:
         return SupergroupMembersFilterBots.fromJson(json);
       default:
-        return null;
+        return SupergroupMembersFilter();
     }
   }
 
@@ -52,7 +52,9 @@ class SupergroupMembersFilterRecent extends SupergroupMembersFilter {
   SupergroupMembersFilterRecent();
 
   /// Parse from a json
-  SupergroupMembersFilterRecent.fromJson(Map<String, dynamic> json);
+  factory SupergroupMembersFilterRecent.fromJson(Map<String, dynamic> json) {
+    return SupergroupMembersFilterRecent();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -69,14 +71,16 @@ class SupergroupMembersFilterRecent extends SupergroupMembersFilter {
 
 class SupergroupMembersFilterContacts extends SupergroupMembersFilter {
   /// Returns contacts of the user, which are members of the supergroup or channel
-  SupergroupMembersFilterContacts({this.query});
+  SupergroupMembersFilterContacts({required this.query});
 
   /// [query] Query to search for
   String query;
 
   /// Parse from a json
-  SupergroupMembersFilterContacts.fromJson(Map<String, dynamic> json) {
-    this.query = json['query'];
+  factory SupergroupMembersFilterContacts.fromJson(Map<String, dynamic> json) {
+    return SupergroupMembersFilterContacts(
+      query: json['query'] ?? "",
+    );
   }
 
   @override
@@ -98,7 +102,10 @@ class SupergroupMembersFilterAdministrators extends SupergroupMembersFilter {
   SupergroupMembersFilterAdministrators();
 
   /// Parse from a json
-  SupergroupMembersFilterAdministrators.fromJson(Map<String, dynamic> json);
+  factory SupergroupMembersFilterAdministrators.fromJson(
+      Map<String, dynamic> json) {
+    return SupergroupMembersFilterAdministrators();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -115,14 +122,16 @@ class SupergroupMembersFilterAdministrators extends SupergroupMembersFilter {
 
 class SupergroupMembersFilterSearch extends SupergroupMembersFilter {
   /// Used to search for supergroup or channel members via a (string) query
-  SupergroupMembersFilterSearch({this.query});
+  SupergroupMembersFilterSearch({required this.query});
 
   /// [query] Query to search for
   String query;
 
   /// Parse from a json
-  SupergroupMembersFilterSearch.fromJson(Map<String, dynamic> json) {
-    this.query = json['query'];
+  factory SupergroupMembersFilterSearch.fromJson(Map<String, dynamic> json) {
+    return SupergroupMembersFilterSearch(
+      query: json['query'] ?? "",
+    );
   }
 
   @override
@@ -141,14 +150,17 @@ class SupergroupMembersFilterSearch extends SupergroupMembersFilter {
 
 class SupergroupMembersFilterRestricted extends SupergroupMembersFilter {
   /// Returns restricted supergroup members; can be used only by administrators
-  SupergroupMembersFilterRestricted({this.query});
+  SupergroupMembersFilterRestricted({required this.query});
 
   /// [query] Query to search for
   String query;
 
   /// Parse from a json
-  SupergroupMembersFilterRestricted.fromJson(Map<String, dynamic> json) {
-    this.query = json['query'];
+  factory SupergroupMembersFilterRestricted.fromJson(
+      Map<String, dynamic> json) {
+    return SupergroupMembersFilterRestricted(
+      query: json['query'] ?? "",
+    );
   }
 
   @override
@@ -167,14 +179,16 @@ class SupergroupMembersFilterRestricted extends SupergroupMembersFilter {
 
 class SupergroupMembersFilterBanned extends SupergroupMembersFilter {
   /// Returns users banned from the supergroup or channel; can be used only by administrators
-  SupergroupMembersFilterBanned({this.query});
+  SupergroupMembersFilterBanned({required this.query});
 
   /// [query] Query to search for
   String query;
 
   /// Parse from a json
-  SupergroupMembersFilterBanned.fromJson(Map<String, dynamic> json) {
-    this.query = json['query'];
+  factory SupergroupMembersFilterBanned.fromJson(Map<String, dynamic> json) {
+    return SupergroupMembersFilterBanned(
+      query: json['query'] ?? "",
+    );
   }
 
   @override
@@ -193,7 +207,8 @@ class SupergroupMembersFilterBanned extends SupergroupMembersFilter {
 
 class SupergroupMembersFilterMention extends SupergroupMembersFilter {
   /// Returns users which can be mentioned in the supergroup
-  SupergroupMembersFilterMention({this.query, this.messageThreadId});
+  SupergroupMembersFilterMention(
+      {required this.query, required this.messageThreadId});
 
   /// [query] Query to search for
   String query;
@@ -202,9 +217,11 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter {
   int messageThreadId;
 
   /// Parse from a json
-  SupergroupMembersFilterMention.fromJson(Map<String, dynamic> json) {
-    this.query = json['query'];
-    this.messageThreadId = json['message_thread_id'];
+  factory SupergroupMembersFilterMention.fromJson(Map<String, dynamic> json) {
+    return SupergroupMembersFilterMention(
+      query: json['query'] ?? "",
+      messageThreadId: json['message_thread_id'] ?? 0,
+    );
   }
 
   @override
@@ -227,7 +244,9 @@ class SupergroupMembersFilterBots extends SupergroupMembersFilter {
   SupergroupMembersFilterBots();
 
   /// Parse from a json
-  SupergroupMembersFilterBots.fromJson(Map<String, dynamic> json);
+  factory SupergroupMembersFilterBots.fromJson(Map<String, dynamic> json) {
+    return SupergroupMembersFilterBots();
+  }
 
   @override
   Map<String, dynamic> toJson() {

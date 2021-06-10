@@ -4,18 +4,19 @@ class UserFullInfo extends TdObject {
   /// Contains full information about a user
   UserFullInfo(
       {this.photo,
-      this.isBlocked,
-      this.canBeCalled,
-      this.supportsVideoCalls,
-      this.hasPrivateCalls,
-      this.needPhoneNumberPrivacyException,
-      this.bio,
-      this.shareText,
-      this.groupInCommonCount,
-      this.botInfo});
+      required this.isBlocked,
+      required this.canBeCalled,
+      required this.supportsVideoCalls,
+      required this.hasPrivateCalls,
+      required this.needPhoneNumberPrivacyException,
+      required this.bio,
+      required this.shareText,
+      required this.groupInCommonCount,
+      this.botInfo,
+      this.extra});
 
   /// [photo] User profile photo; may be null
-  ChatPhoto photo;
+  ChatPhoto? photo;
 
   /// [isBlocked] True, if the user is blocked by the current user
   bool isBlocked;
@@ -42,32 +43,35 @@ class UserFullInfo extends TdObject {
   int groupInCommonCount;
 
   /// [botInfo] If the user is a bot, information about the bot; may be null
-  BotInfo botInfo;
+  BotInfo? botInfo;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  UserFullInfo.fromJson(Map<String, dynamic> json) {
-    this.photo = ChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.isBlocked = json['is_blocked'];
-    this.canBeCalled = json['can_be_called'];
-    this.supportsVideoCalls = json['supports_video_calls'];
-    this.hasPrivateCalls = json['has_private_calls'];
-    this.needPhoneNumberPrivacyException =
-        json['need_phone_number_privacy_exception'];
-    this.bio = json['bio'];
-    this.shareText = json['share_text'];
-    this.groupInCommonCount = json['group_in_common_count'];
-    this.botInfo = BotInfo.fromJson(json['bot_info'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory UserFullInfo.fromJson(Map<String, dynamic> json) {
+    return UserFullInfo(
+      photo: ChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{}),
+      isBlocked: json['is_blocked'] ?? false,
+      canBeCalled: json['can_be_called'] ?? false,
+      supportsVideoCalls: json['supports_video_calls'] ?? false,
+      hasPrivateCalls: json['has_private_calls'] ?? false,
+      needPhoneNumberPrivacyException:
+          json['need_phone_number_privacy_exception'] ?? false,
+      bio: json['bio'] ?? "",
+      shareText: json['share_text'] ?? "",
+      groupInCommonCount: json['group_in_common_count'] ?? 0,
+      botInfo: BotInfo.fromJson(json['bot_info'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
       "is_blocked": this.isBlocked,
       "can_be_called": this.canBeCalled,
       "supports_video_calls": this.supportsVideoCalls,
@@ -77,7 +81,7 @@ class UserFullInfo extends TdObject {
       "bio": this.bio,
       "share_text": this.shareText,
       "group_in_common_count": this.groupInCommonCount,
-      "bot_info": this.botInfo == null ? null : this.botInfo.toJson(),
+      "bot_info": this.botInfo == null ? null : this.botInfo!.toJson(),
     };
   }
 

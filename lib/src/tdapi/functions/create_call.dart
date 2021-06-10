@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class CreateCall extends TdFunction {
   /// Creates a new call
-  CreateCall({this.userId, this.protocol, this.isVideo});
+  CreateCall(
+      {required this.userId,
+      required this.protocol,
+      required this.isVideo,
+      this.extra});
 
   /// [userId] Identifier of the user to be called
   int userId;
@@ -17,14 +21,21 @@ class CreateCall extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CreateCall.fromJson(Map<String, dynamic> json);
+  factory CreateCall.fromJson(Map<String, dynamic> json) {
+    return CreateCall(
+      userId: json['user_id'] ?? 0,
+      protocol: CallProtocol.fromJson(json['protocol'] ?? <String, dynamic>{}),
+      isVideo: json['is_video'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "user_id": this.userId,
-      "protocol": this.protocol == null ? null : this.protocol.toJson(),
+      "protocol": this.protocol.toJson(),
       "is_video": this.isVideo,
       "@extra": this.extra,
     };

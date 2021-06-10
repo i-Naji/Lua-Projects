@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class DeleteMessages extends TdFunction {
   /// Deletes messages
-  DeleteMessages({this.chatId, this.messageIds, this.revoke});
+  DeleteMessages(
+      {required this.chatId,
+      required this.messageIds,
+      required this.revoke,
+      this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -17,7 +21,15 @@ class DeleteMessages extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  DeleteMessages.fromJson(Map<String, dynamic> json);
+  factory DeleteMessages.fromJson(Map<String, dynamic> json) {
+    return DeleteMessages(
+      chatId: json['chat_id'] ?? 0,
+      messageIds: List<int>.from(
+          (json['message_ids'] ?? []).map((item) => item ?? 0).toList()),
+      revoke: json['revoke'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

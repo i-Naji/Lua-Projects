@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class ProfilePhoto extends TdObject {
   /// Describes a user profile photo
-  ProfilePhoto({this.id, this.small, this.big, this.hasAnimation});
+  ProfilePhoto(
+      {required this.id,
+      required this.small,
+      required this.big,
+      required this.hasAnimation});
 
   /// [id] Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
   int id;
@@ -17,11 +21,13 @@ class ProfilePhoto extends TdObject {
   bool hasAnimation;
 
   /// Parse from a json
-  ProfilePhoto.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.small = File.fromJson(json['small'] ?? <String, dynamic>{});
-    this.big = File.fromJson(json['big'] ?? <String, dynamic>{});
-    this.hasAnimation = json['has_animation'];
+  factory ProfilePhoto.fromJson(Map<String, dynamic> json) {
+    return ProfilePhoto(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      small: File.fromJson(json['small'] ?? <String, dynamic>{}),
+      big: File.fromJson(json['big'] ?? <String, dynamic>{}),
+      hasAnimation: json['has_animation'] ?? false,
+    );
   }
 
   @override
@@ -29,8 +35,8 @@ class ProfilePhoto extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "small": this.small == null ? null : this.small.toJson(),
-      "big": this.big == null ? null : this.big.toJson(),
+      "small": this.small.toJson(),
+      "big": this.big.toJson(),
       "has_animation": this.hasAnimation,
     };
   }

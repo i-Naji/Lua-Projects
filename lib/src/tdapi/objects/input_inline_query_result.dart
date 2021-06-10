@@ -44,7 +44,7 @@ class InputInlineQueryResult extends TdObject {
       case InputInlineQueryResultVoiceNote.CONSTRUCTOR:
         return InputInlineQueryResultVoiceNote.fromJson(json);
       default:
-        return null;
+        return InputInlineQueryResult();
     }
   }
 
@@ -62,17 +62,17 @@ class InputInlineQueryResult extends TdObject {
 class InputInlineQueryResultAnimation extends InputInlineQueryResult {
   /// Represents a link to an animated GIF or an animated (i.e. without sound) H.264/MPEG-4 AVC video
   InputInlineQueryResultAnimation(
-      {this.id,
-      this.title,
-      this.thumbnailUrl,
-      this.thumbnailMimeType,
-      this.videoUrl,
-      this.videoMimeType,
-      this.videoDuration,
-      this.videoWidth,
-      this.videoHeight,
+      {required this.id,
+      required this.title,
+      required this.thumbnailUrl,
+      required this.thumbnailMimeType,
+      required this.videoUrl,
+      required this.videoMimeType,
+      required this.videoDuration,
+      required this.videoWidth,
+      required this.videoHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -102,26 +102,28 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult {
   int videoHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultAnimation.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.thumbnailMimeType = json['thumbnail_mime_type'];
-    this.videoUrl = json['video_url'];
-    this.videoMimeType = json['video_mime_type'];
-    this.videoDuration = json['video_duration'];
-    this.videoWidth = json['video_width'];
-    this.videoHeight = json['video_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultAnimation.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultAnimation(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      thumbnailMimeType: json['thumbnail_mime_type'] ?? "",
+      videoUrl: json['video_url'] ?? "",
+      videoMimeType: json['video_mime_type'] ?? "",
+      videoDuration: json['video_duration'] ?? 0,
+      videoWidth: json['video_width'] ?? 0,
+      videoHeight: json['video_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -138,10 +140,8 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult {
       "video_width": this.videoWidth,
       "video_height": this.videoHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -154,16 +154,16 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult {
 class InputInlineQueryResultArticle extends InputInlineQueryResult {
   /// Represents a link to an article or web page
   InputInlineQueryResultArticle(
-      {this.id,
-      this.url,
-      this.hideUrl,
-      this.title,
-      this.description,
-      this.thumbnailUrl,
-      this.thumbnailWidth,
-      this.thumbnailHeight,
+      {required this.id,
+      required this.url,
+      required this.hideUrl,
+      required this.title,
+      required this.description,
+      required this.thumbnailUrl,
+      required this.thumbnailWidth,
+      required this.thumbnailHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -190,25 +190,27 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
   int thumbnailHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultArticle.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.url = json['url'];
-    this.hideUrl = json['hide_url'];
-    this.title = json['title'];
-    this.description = json['description'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.thumbnailWidth = json['thumbnail_width'];
-    this.thumbnailHeight = json['thumbnail_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultArticle.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultArticle(
+      id: json['id'] ?? "",
+      url: json['url'] ?? "",
+      hideUrl: json['hide_url'] ?? false,
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      thumbnailWidth: json['thumbnail_width'] ?? 0,
+      thumbnailHeight: json['thumbnail_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -224,10 +226,8 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
       "thumbnail_width": this.thumbnailWidth,
       "thumbnail_height": this.thumbnailHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -240,13 +240,13 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult {
 class InputInlineQueryResultAudio extends InputInlineQueryResult {
   /// Represents a link to an MP3 audio file
   InputInlineQueryResultAudio(
-      {this.id,
-      this.title,
-      this.performer,
-      this.audioUrl,
-      this.audioDuration,
+      {required this.id,
+      required this.title,
+      required this.performer,
+      required this.audioUrl,
+      required this.audioDuration,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -264,22 +264,24 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult {
   int audioDuration;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultAudio.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.performer = json['performer'];
-    this.audioUrl = json['audio_url'];
-    this.audioDuration = json['audio_duration'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultAudio.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultAudio(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      performer: json['performer'] ?? "",
+      audioUrl: json['audio_url'] ?? "",
+      audioDuration: json['audio_duration'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -292,10 +294,8 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult {
       "audio_url": this.audioUrl,
       "audio_duration": this.audioDuration,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -308,13 +308,13 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult {
 class InputInlineQueryResultContact extends InputInlineQueryResult {
   /// Represents a user contact
   InputInlineQueryResultContact(
-      {this.id,
-      this.contact,
-      this.thumbnailUrl,
-      this.thumbnailWidth,
-      this.thumbnailHeight,
+      {required this.id,
+      required this.contact,
+      required this.thumbnailUrl,
+      required this.thumbnailWidth,
+      required this.thumbnailHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -332,22 +332,24 @@ class InputInlineQueryResultContact extends InputInlineQueryResult {
   int thumbnailHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultContact.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.contact = Contact.fromJson(json['contact'] ?? <String, dynamic>{});
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.thumbnailWidth = json['thumbnail_width'];
-    this.thumbnailHeight = json['thumbnail_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultContact.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultContact(
+      id: json['id'] ?? "",
+      contact: Contact.fromJson(json['contact'] ?? <String, dynamic>{}),
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      thumbnailWidth: json['thumbnail_width'] ?? 0,
+      thumbnailHeight: json['thumbnail_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -355,15 +357,13 @@ class InputInlineQueryResultContact extends InputInlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "contact": this.contact == null ? null : this.contact.toJson(),
+      "contact": this.contact.toJson(),
       "thumbnail_url": this.thumbnailUrl,
       "thumbnail_width": this.thumbnailWidth,
       "thumbnail_height": this.thumbnailHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -376,16 +376,16 @@ class InputInlineQueryResultContact extends InputInlineQueryResult {
 class InputInlineQueryResultDocument extends InputInlineQueryResult {
   /// Represents a link to a file
   InputInlineQueryResultDocument(
-      {this.id,
-      this.title,
-      this.description,
-      this.documentUrl,
-      this.mimeType,
-      this.thumbnailUrl,
-      this.thumbnailWidth,
-      this.thumbnailHeight,
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.documentUrl,
+      required this.mimeType,
+      required this.thumbnailUrl,
+      required this.thumbnailWidth,
+      required this.thumbnailHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -412,25 +412,27 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult {
   int thumbnailHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultDocument.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.description = json['description'];
-    this.documentUrl = json['document_url'];
-    this.mimeType = json['mime_type'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.thumbnailWidth = json['thumbnail_width'];
-    this.thumbnailHeight = json['thumbnail_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultDocument.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultDocument(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      documentUrl: json['document_url'] ?? "",
+      mimeType: json['mime_type'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      thumbnailWidth: json['thumbnail_width'] ?? 0,
+      thumbnailHeight: json['thumbnail_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -446,10 +448,8 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult {
       "thumbnail_width": this.thumbnailWidth,
       "thumbnail_height": this.thumbnailHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -461,7 +461,8 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult {
 
 class InputInlineQueryResultGame extends InputInlineQueryResult {
   /// Represents a game
-  InputInlineQueryResultGame({this.id, this.gameShortName, this.replyMarkup});
+  InputInlineQueryResultGame(
+      {required this.id, required this.gameShortName, this.replyMarkup});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -470,14 +471,16 @@ class InputInlineQueryResultGame extends InputInlineQueryResult {
   String gameShortName;
 
   /// [replyMarkup] Message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// Parse from a json
-  InputInlineQueryResultGame.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.gameShortName = json['game_short_name'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultGame.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultGame(
+      id: json['id'] ?? "",
+      gameShortName: json['game_short_name'] ?? "",
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -487,7 +490,7 @@ class InputInlineQueryResultGame extends InputInlineQueryResult {
       "id": this.id,
       "game_short_name": this.gameShortName,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
     };
   }
 
@@ -500,15 +503,15 @@ class InputInlineQueryResultGame extends InputInlineQueryResult {
 class InputInlineQueryResultLocation extends InputInlineQueryResult {
   /// Represents a point on the map
   InputInlineQueryResultLocation(
-      {this.id,
-      this.location,
-      this.livePeriod,
-      this.title,
-      this.thumbnailUrl,
-      this.thumbnailWidth,
-      this.thumbnailHeight,
+      {required this.id,
+      required this.location,
+      required this.livePeriod,
+      required this.title,
+      required this.thumbnailUrl,
+      required this.thumbnailWidth,
+      required this.thumbnailHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -532,24 +535,26 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult {
   int thumbnailHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultLocation.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.location = Location.fromJson(json['location'] ?? <String, dynamic>{});
-    this.livePeriod = json['live_period'];
-    this.title = json['title'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.thumbnailWidth = json['thumbnail_width'];
-    this.thumbnailHeight = json['thumbnail_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultLocation.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultLocation(
+      id: json['id'] ?? "",
+      location: Location.fromJson(json['location'] ?? <String, dynamic>{}),
+      livePeriod: json['live_period'] ?? 0,
+      title: json['title'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      thumbnailWidth: json['thumbnail_width'] ?? 0,
+      thumbnailHeight: json['thumbnail_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -557,17 +562,15 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location.toJson(),
       "live_period": this.livePeriod,
       "title": this.title,
       "thumbnail_url": this.thumbnailUrl,
       "thumbnail_width": this.thumbnailWidth,
       "thumbnail_height": this.thumbnailHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -580,15 +583,15 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult {
 class InputInlineQueryResultPhoto extends InputInlineQueryResult {
   /// Represents link to a JPEG image
   InputInlineQueryResultPhoto(
-      {this.id,
-      this.title,
-      this.description,
-      this.thumbnailUrl,
-      this.photoUrl,
-      this.photoWidth,
-      this.photoHeight,
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.thumbnailUrl,
+      required this.photoUrl,
+      required this.photoWidth,
+      required this.photoHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -612,24 +615,26 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult {
   int photoHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultPhoto.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.description = json['description'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.photoUrl = json['photo_url'];
-    this.photoWidth = json['photo_width'];
-    this.photoHeight = json['photo_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultPhoto.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultPhoto(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      photoUrl: json['photo_url'] ?? "",
+      photoWidth: json['photo_width'] ?? 0,
+      photoHeight: json['photo_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -644,10 +649,8 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult {
       "photo_width": this.photoWidth,
       "photo_height": this.photoHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -660,13 +663,13 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult {
 class InputInlineQueryResultSticker extends InputInlineQueryResult {
   /// Represents a link to a WEBP or TGS sticker
   InputInlineQueryResultSticker(
-      {this.id,
-      this.thumbnailUrl,
-      this.stickerUrl,
-      this.stickerWidth,
-      this.stickerHeight,
+      {required this.id,
+      required this.thumbnailUrl,
+      required this.stickerUrl,
+      required this.stickerWidth,
+      required this.stickerHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -684,22 +687,24 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult {
   int stickerHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultSticker.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.stickerUrl = json['sticker_url'];
-    this.stickerWidth = json['sticker_width'];
-    this.stickerHeight = json['sticker_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultSticker.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultSticker(
+      id: json['id'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      stickerUrl: json['sticker_url'] ?? "",
+      stickerWidth: json['sticker_width'] ?? 0,
+      stickerHeight: json['sticker_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -712,10 +717,8 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult {
       "sticker_width": this.stickerWidth,
       "sticker_height": this.stickerHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -728,13 +731,13 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult {
 class InputInlineQueryResultVenue extends InputInlineQueryResult {
   /// Represents information about a venue
   InputInlineQueryResultVenue(
-      {this.id,
-      this.venue,
-      this.thumbnailUrl,
-      this.thumbnailWidth,
-      this.thumbnailHeight,
+      {required this.id,
+      required this.venue,
+      required this.thumbnailUrl,
+      required this.thumbnailWidth,
+      required this.thumbnailHeight,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -752,22 +755,24 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult {
   int thumbnailHeight;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultVenue.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.venue = Venue.fromJson(json['venue'] ?? <String, dynamic>{});
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.thumbnailWidth = json['thumbnail_width'];
-    this.thumbnailHeight = json['thumbnail_height'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultVenue.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultVenue(
+      id: json['id'] ?? "",
+      venue: Venue.fromJson(json['venue'] ?? <String, dynamic>{}),
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      thumbnailWidth: json['thumbnail_width'] ?? 0,
+      thumbnailHeight: json['thumbnail_height'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -775,15 +780,13 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "venue": this.venue == null ? null : this.venue.toJson(),
+      "venue": this.venue.toJson(),
       "thumbnail_url": this.thumbnailUrl,
       "thumbnail_width": this.thumbnailWidth,
       "thumbnail_height": this.thumbnailHeight,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -796,17 +799,17 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult {
 class InputInlineQueryResultVideo extends InputInlineQueryResult {
   /// Represents a link to a page containing an embedded video player or a video file
   InputInlineQueryResultVideo(
-      {this.id,
-      this.title,
-      this.description,
-      this.thumbnailUrl,
-      this.videoUrl,
-      this.mimeType,
-      this.videoWidth,
-      this.videoHeight,
-      this.videoDuration,
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.thumbnailUrl,
+      required this.videoUrl,
+      required this.mimeType,
+      required this.videoWidth,
+      required this.videoHeight,
+      required this.videoDuration,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -836,26 +839,28 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult {
   int videoDuration;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultVideo.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.description = json['description'];
-    this.thumbnailUrl = json['thumbnail_url'];
-    this.videoUrl = json['video_url'];
-    this.mimeType = json['mime_type'];
-    this.videoWidth = json['video_width'];
-    this.videoHeight = json['video_height'];
-    this.videoDuration = json['video_duration'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultVideo.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultVideo(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      thumbnailUrl: json['thumbnail_url'] ?? "",
+      videoUrl: json['video_url'] ?? "",
+      mimeType: json['mime_type'] ?? "",
+      videoWidth: json['video_width'] ?? 0,
+      videoHeight: json['video_height'] ?? 0,
+      videoDuration: json['video_duration'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -872,10 +877,8 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult {
       "video_height": this.videoHeight,
       "video_duration": this.videoDuration,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 
@@ -888,12 +891,12 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult {
 class InputInlineQueryResultVoiceNote extends InputInlineQueryResult {
   /// Represents a link to an opus-encoded audio file within an OGG container, single channel audio
   InputInlineQueryResultVoiceNote(
-      {this.id,
-      this.title,
-      this.voiceNoteUrl,
-      this.voiceNoteDuration,
+      {required this.id,
+      required this.title,
+      required this.voiceNoteUrl,
+      required this.voiceNoteDuration,
       this.replyMarkup,
-      this.inputMessageContent});
+      required this.inputMessageContent});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -908,21 +911,23 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult {
   int voiceNoteDuration;
 
   /// [replyMarkup] The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-  ReplyMarkup replyMarkup;
+  ReplyMarkup? replyMarkup;
 
   /// [inputMessageContent] The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
   InputMessageContent inputMessageContent;
 
   /// Parse from a json
-  InputInlineQueryResultVoiceNote.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.voiceNoteUrl = json['voice_note_url'];
-    this.voiceNoteDuration = json['voice_note_duration'];
-    this.replyMarkup =
-        ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{});
-    this.inputMessageContent = InputMessageContent.fromJson(
-        json['input_message_content'] ?? <String, dynamic>{});
+  factory InputInlineQueryResultVoiceNote.fromJson(Map<String, dynamic> json) {
+    return InputInlineQueryResultVoiceNote(
+      id: json['id'] ?? "",
+      title: json['title'] ?? "",
+      voiceNoteUrl: json['voice_note_url'] ?? "",
+      voiceNoteDuration: json['voice_note_duration'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -934,10 +939,8 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult {
       "voice_note_url": this.voiceNoteUrl,
       "voice_note_duration": this.voiceNoteDuration,
       "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+          this.replyMarkup == null ? null : this.replyMarkup!.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
     };
   }
 

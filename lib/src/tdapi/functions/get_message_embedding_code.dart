@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class GetMessageEmbeddingCode extends TdFunction {
   /// Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
-  GetMessageEmbeddingCode({this.chatId, this.messageId, this.forAlbum});
+  GetMessageEmbeddingCode(
+      {required this.chatId,
+      required this.messageId,
+      required this.forAlbum,
+      this.extra});
 
   /// [chatId] Identifier of the chat to which the message belongs
   int chatId;
@@ -17,7 +21,14 @@ class GetMessageEmbeddingCode extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetMessageEmbeddingCode.fromJson(Map<String, dynamic> json);
+  factory GetMessageEmbeddingCode.fromJson(Map<String, dynamic> json) {
+    return GetMessageEmbeddingCode(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      forAlbum: json['for_album'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

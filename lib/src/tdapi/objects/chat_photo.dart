@@ -3,10 +3,10 @@ part of '../tdapi.dart';
 class ChatPhoto extends TdObject {
   /// Describes a chat or user profile photo
   ChatPhoto(
-      {this.id,
-      this.addedDate,
+      {required this.id,
+      required this.addedDate,
       this.minithumbnail,
-      this.sizes,
+      required this.sizes,
       this.animation});
 
   /// [id] Unique photo identifier
@@ -16,25 +16,27 @@ class ChatPhoto extends TdObject {
   int addedDate;
 
   /// [minithumbnail] Photo minithumbnail; may be null
-  Minithumbnail minithumbnail;
+  Minithumbnail? minithumbnail;
 
   /// [sizes] Available variants of the photo in JPEG format, in different size
   List<PhotoSize> sizes;
 
   /// [animation] Animated variant of the photo in MPEG4 format; may be null
-  AnimatedChatPhoto animation;
+  AnimatedChatPhoto? animation;
 
   /// Parse from a json
-  ChatPhoto.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.addedDate = json['added_date'];
-    this.minithumbnail =
-        Minithumbnail.fromJson(json['minithumbnail'] ?? <String, dynamic>{});
-    this.sizes = List<PhotoSize>.from((json['sizes'] ?? [])
-        .map((item) => PhotoSize.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.animation =
-        AnimatedChatPhoto.fromJson(json['animation'] ?? <String, dynamic>{});
+  factory ChatPhoto.fromJson(Map<String, dynamic> json) {
+    return ChatPhoto(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      addedDate: json['added_date'] ?? 0,
+      minithumbnail:
+          Minithumbnail.fromJson(json['minithumbnail'] ?? <String, dynamic>{}),
+      sizes: List<PhotoSize>.from((json['sizes'] ?? [])
+          .map((item) => PhotoSize.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      animation:
+          AnimatedChatPhoto.fromJson(json['animation'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -44,9 +46,9 @@ class ChatPhoto extends TdObject {
       "id": this.id,
       "added_date": this.addedDate,
       "minithumbnail":
-          this.minithumbnail == null ? null : this.minithumbnail.toJson(),
+          this.minithumbnail == null ? null : this.minithumbnail!.toJson(),
       "sizes": this.sizes.map((i) => i.toJson()).toList(),
-      "animation": this.animation == null ? null : this.animation.toJson(),
+      "animation": this.animation == null ? null : this.animation!.toJson(),
     };
   }
 

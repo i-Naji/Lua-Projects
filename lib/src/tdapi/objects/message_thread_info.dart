@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class MessageThreadInfo extends TdObject {
   /// Contains information about a message thread
   MessageThreadInfo(
-      {this.chatId,
-      this.messageThreadId,
-      this.replyInfo,
-      this.messages,
-      this.draftMessage});
+      {required this.chatId,
+      required this.messageThreadId,
+      required this.replyInfo,
+      required this.messages,
+      this.draftMessage,
+      this.extra});
 
   /// [chatId] Identifier of the chat to which the message thread belongs
   int chatId;
@@ -22,23 +23,26 @@ class MessageThreadInfo extends TdObject {
   List<Message> messages;
 
   /// [draftMessage] A draft of a message in the message thread; may be null
-  DraftMessage draftMessage;
+  DraftMessage? draftMessage;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  MessageThreadInfo.fromJson(Map<String, dynamic> json) {
-    this.chatId = json['chat_id'];
-    this.messageThreadId = json['message_thread_id'];
-    this.replyInfo =
-        MessageReplyInfo.fromJson(json['reply_info'] ?? <String, dynamic>{});
-    this.messages = List<Message>.from((json['messages'] ?? [])
-        .map((item) => Message.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.draftMessage =
-        DraftMessage.fromJson(json['draft_message'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory MessageThreadInfo.fromJson(Map<String, dynamic> json) {
+    return MessageThreadInfo(
+      chatId: json['chat_id'] ?? 0,
+      messageThreadId: json['message_thread_id'] ?? 0,
+      replyInfo:
+          MessageReplyInfo.fromJson(json['reply_info'] ?? <String, dynamic>{}),
+      messages: List<Message>.from((json['messages'] ?? [])
+          .map((item) => Message.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      draftMessage:
+          DraftMessage.fromJson(json['draft_message'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -47,10 +51,10 @@ class MessageThreadInfo extends TdObject {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
       "message_thread_id": this.messageThreadId,
-      "reply_info": this.replyInfo == null ? null : this.replyInfo.toJson(),
+      "reply_info": this.replyInfo.toJson(),
       "messages": this.messages.map((i) => i.toJson()).toList(),
       "draft_message":
-          this.draftMessage == null ? null : this.draftMessage.toJson(),
+          this.draftMessage == null ? null : this.draftMessage!.toJson(),
     };
   }
 

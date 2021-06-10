@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class EditChatFilter extends TdFunction {
   /// Edits existing chat filter. Returns information about the edited chat filter
-  EditChatFilter({this.chatFilterId, this.filter});
+  EditChatFilter(
+      {required this.chatFilterId, required this.filter, this.extra});
 
   /// [chatFilterId] Chat filter identifier
   int chatFilterId;
@@ -14,14 +15,20 @@ class EditChatFilter extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  EditChatFilter.fromJson(Map<String, dynamic> json);
+  factory EditChatFilter.fromJson(Map<String, dynamic> json) {
+    return EditChatFilter(
+      chatFilterId: json['chat_filter_id'] ?? 0,
+      filter: ChatFilter.fromJson(json['filter'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "chat_filter_id": this.chatFilterId,
-      "filter": this.filter == null ? null : this.filter.toJson(),
+      "filter": this.filter.toJson(),
       "@extra": this.extra,
     };
   }

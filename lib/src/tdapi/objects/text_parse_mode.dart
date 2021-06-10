@@ -14,7 +14,7 @@ class TextParseMode extends TdObject {
       case TextParseModeHTML.CONSTRUCTOR:
         return TextParseModeHTML.fromJson(json);
       default:
-        return null;
+        return TextParseMode();
     }
   }
 
@@ -31,14 +31,16 @@ class TextParseMode extends TdObject {
 
 class TextParseModeMarkdown extends TextParseMode {
   /// The text uses Markdown-style formatting
-  TextParseModeMarkdown({this.version});
+  TextParseModeMarkdown({required this.version});
 
   /// [version] Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
   int version;
 
   /// Parse from a json
-  TextParseModeMarkdown.fromJson(Map<String, dynamic> json) {
-    this.version = json['version'];
+  factory TextParseModeMarkdown.fromJson(Map<String, dynamic> json) {
+    return TextParseModeMarkdown(
+      version: json['version'] ?? 0,
+    );
   }
 
   @override
@@ -60,7 +62,9 @@ class TextParseModeHTML extends TextParseMode {
   TextParseModeHTML();
 
   /// Parse from a json
-  TextParseModeHTML.fromJson(Map<String, dynamic> json);
+  factory TextParseModeHTML.fromJson(Map<String, dynamic> json) {
+    return TextParseModeHTML();
+  }
 
   @override
   Map<String, dynamic> toJson() {

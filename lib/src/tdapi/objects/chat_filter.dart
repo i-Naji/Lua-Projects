@@ -3,19 +3,20 @@ part of '../tdapi.dart';
 class ChatFilter extends TdObject {
   /// Represents a filter of user chats
   ChatFilter(
-      {this.title,
-      this.iconName,
-      this.pinnedChatIds,
-      this.includedChatIds,
-      this.excludedChatIds,
-      this.excludeMuted,
-      this.excludeRead,
-      this.excludeArchived,
-      this.includeContacts,
-      this.includeNonContacts,
-      this.includeBots,
-      this.includeGroups,
-      this.includeChannels});
+      {required this.title,
+      required this.iconName,
+      required this.pinnedChatIds,
+      required this.includedChatIds,
+      required this.excludedChatIds,
+      required this.excludeMuted,
+      required this.excludeRead,
+      required this.excludeArchived,
+      required this.includeContacts,
+      required this.includeNonContacts,
+      required this.includeBots,
+      required this.includeGroups,
+      required this.includeChannels,
+      this.extra});
 
   /// [title] The title of the filter; 1-12 characters without line feeds
   String title;
@@ -57,27 +58,30 @@ class ChatFilter extends TdObject {
   bool includeChannels;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  ChatFilter.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.iconName = json['icon_name'];
-    this.pinnedChatIds = List<int>.from(
-        (json['pinned_chat_ids'] ?? []).map((item) => item).toList());
-    this.includedChatIds = List<int>.from(
-        (json['included_chat_ids'] ?? []).map((item) => item).toList());
-    this.excludedChatIds = List<int>.from(
-        (json['excluded_chat_ids'] ?? []).map((item) => item).toList());
-    this.excludeMuted = json['exclude_muted'];
-    this.excludeRead = json['exclude_read'];
-    this.excludeArchived = json['exclude_archived'];
-    this.includeContacts = json['include_contacts'];
-    this.includeNonContacts = json['include_non_contacts'];
-    this.includeBots = json['include_bots'];
-    this.includeGroups = json['include_groups'];
-    this.includeChannels = json['include_channels'];
-    this.extra = json['@extra'];
+  factory ChatFilter.fromJson(Map<String, dynamic> json) {
+    return ChatFilter(
+      title: json['title'] ?? "",
+      iconName: json['icon_name'] ?? "",
+      pinnedChatIds: List<int>.from(
+          (json['pinned_chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+      includedChatIds: List<int>.from(
+          (json['included_chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+      excludedChatIds: List<int>.from(
+          (json['excluded_chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+      excludeMuted: json['exclude_muted'] ?? false,
+      excludeRead: json['exclude_read'] ?? false,
+      excludeArchived: json['exclude_archived'] ?? false,
+      includeContacts: json['include_contacts'] ?? false,
+      includeNonContacts: json['include_non_contacts'] ?? false,
+      includeBots: json['include_bots'] ?? false,
+      includeGroups: json['include_groups'] ?? false,
+      includeChannels: json['include_channels'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override

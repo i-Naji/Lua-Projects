@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class EmailAddressAuthenticationCodeInfo extends TdObject {
   /// Information about the email address authentication code that was sent
-  EmailAddressAuthenticationCodeInfo({this.emailAddressPattern, this.length});
+  EmailAddressAuthenticationCodeInfo(
+      {required this.emailAddressPattern, required this.length, this.extra});
 
   /// [emailAddressPattern] Pattern of the email address to which an authentication code was sent
   String emailAddressPattern;
@@ -11,13 +12,17 @@ class EmailAddressAuthenticationCodeInfo extends TdObject {
   int length;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  EmailAddressAuthenticationCodeInfo.fromJson(Map<String, dynamic> json) {
-    this.emailAddressPattern = json['email_address_pattern'];
-    this.length = json['length'];
-    this.extra = json['@extra'];
+  factory EmailAddressAuthenticationCodeInfo.fromJson(
+      Map<String, dynamic> json) {
+    return EmailAddressAuthenticationCodeInfo(
+      emailAddressPattern: json['email_address_pattern'] ?? "",
+      length: json['length'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override

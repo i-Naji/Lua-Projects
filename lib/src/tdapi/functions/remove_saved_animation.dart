@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class RemoveSavedAnimation extends TdFunction {
   /// Removes an animation from the list of saved animations
-  RemoveSavedAnimation({this.animation});
+  RemoveSavedAnimation({required this.animation, this.extra});
 
   /// [animation] Animation file to be removed
   InputFile animation;
@@ -11,13 +11,18 @@ class RemoveSavedAnimation extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  RemoveSavedAnimation.fromJson(Map<String, dynamic> json);
+  factory RemoveSavedAnimation.fromJson(Map<String, dynamic> json) {
+    return RemoveSavedAnimation(
+      animation: InputFile.fromJson(json['animation'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "animation": this.animation == null ? null : this.animation.toJson(),
+      "animation": this.animation.toJson(),
       "@extra": this.extra,
     };
   }

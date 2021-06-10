@@ -2,7 +2,12 @@ part of '../tdapi.dart';
 
 class Call extends TdObject {
   /// Describes a call
-  Call({this.id, this.userId, this.isOutgoing, this.isVideo, this.state});
+  Call(
+      {required this.id,
+      required this.userId,
+      required this.isOutgoing,
+      required this.isVideo,
+      required this.state});
 
   /// [id] Call identifier, not persistent
   int id;
@@ -20,12 +25,14 @@ class Call extends TdObject {
   CallState state;
 
   /// Parse from a json
-  Call.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.userId = json['user_id'];
-    this.isOutgoing = json['is_outgoing'];
-    this.isVideo = json['is_video'];
-    this.state = CallState.fromJson(json['state'] ?? <String, dynamic>{});
+  factory Call.fromJson(Map<String, dynamic> json) {
+    return Call(
+      id: json['id'] ?? 0,
+      userId: json['user_id'] ?? 0,
+      isOutgoing: json['is_outgoing'] ?? false,
+      isVideo: json['is_video'] ?? false,
+      state: CallState.fromJson(json['state'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -36,7 +43,7 @@ class Call extends TdObject {
       "user_id": this.userId,
       "is_outgoing": this.isOutgoing,
       "is_video": this.isVideo,
-      "state": this.state == null ? null : this.state.toJson(),
+      "state": this.state.toJson(),
     };
   }
 

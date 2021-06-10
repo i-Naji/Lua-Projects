@@ -3,7 +3,12 @@ part of '../tdapi.dart';
 class WebPageInstantView extends TdObject {
   /// Describes an instant view page for a web page
   WebPageInstantView(
-      {this.pageBlocks, this.viewCount, this.version, this.isRtl, this.isFull});
+      {required this.pageBlocks,
+      required this.viewCount,
+      required this.version,
+      required this.isRtl,
+      required this.isFull,
+      this.extra});
 
   /// [pageBlocks] Content of the web page
   List<PageBlock> pageBlocks;
@@ -21,18 +26,21 @@ class WebPageInstantView extends TdObject {
   bool isFull;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  WebPageInstantView.fromJson(Map<String, dynamic> json) {
-    this.pageBlocks = List<PageBlock>.from((json['page_blocks'] ?? [])
-        .map((item) => PageBlock.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.viewCount = json['view_count'];
-    this.version = json['version'];
-    this.isRtl = json['is_rtl'];
-    this.isFull = json['is_full'];
-    this.extra = json['@extra'];
+  factory WebPageInstantView.fromJson(Map<String, dynamic> json) {
+    return WebPageInstantView(
+      pageBlocks: List<PageBlock>.from((json['page_blocks'] ?? [])
+          .map((item) => PageBlock.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      viewCount: json['view_count'] ?? 0,
+      version: json['version'] ?? 0,
+      isRtl: json['is_rtl'] ?? false,
+      isFull: json['is_full'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override

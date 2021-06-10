@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class ChatPhotos extends TdObject {
   /// Contains a list of chat or user profile photos
-  ChatPhotos({this.totalCount, this.photos});
+  ChatPhotos({required this.totalCount, required this.photos, this.extra});
 
   /// [totalCount] Total number of photos
   int totalCount;
@@ -11,15 +11,18 @@ class ChatPhotos extends TdObject {
   List<ChatPhoto> photos;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  ChatPhotos.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.photos = List<ChatPhoto>.from((json['photos'] ?? [])
-        .map((item) => ChatPhoto.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory ChatPhotos.fromJson(Map<String, dynamic> json) {
+    return ChatPhotos(
+      totalCount: json['total_count'] ?? 0,
+      photos: List<ChatPhoto>.from((json['photos'] ?? [])
+          .map((item) => ChatPhoto.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

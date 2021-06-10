@@ -3,7 +3,9 @@ part of '../tdapi.dart';
 class ChatStatisticsMessageInteractionInfo extends TdObject {
   /// Contains statistics about interactions with a message
   ChatStatisticsMessageInteractionInfo(
-      {this.messageId, this.viewCount, this.forwardCount});
+      {required this.messageId,
+      required this.viewCount,
+      required this.forwardCount});
 
   /// [messageId] Message identifier
   int messageId;
@@ -15,10 +17,13 @@ class ChatStatisticsMessageInteractionInfo extends TdObject {
   int forwardCount;
 
   /// Parse from a json
-  ChatStatisticsMessageInteractionInfo.fromJson(Map<String, dynamic> json) {
-    this.messageId = json['message_id'];
-    this.viewCount = json['view_count'];
-    this.forwardCount = json['forward_count'];
+  factory ChatStatisticsMessageInteractionInfo.fromJson(
+      Map<String, dynamic> json) {
+    return ChatStatisticsMessageInteractionInfo(
+      messageId: json['message_id'] ?? 0,
+      viewCount: json['view_count'] ?? 0,
+      forwardCount: json['forward_count'] ?? 0,
+    );
   }
 
   @override

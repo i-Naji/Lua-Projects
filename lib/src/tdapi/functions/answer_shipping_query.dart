@@ -3,7 +3,10 @@ part of '../tdapi.dart';
 class AnswerShippingQuery extends TdFunction {
   /// Sets the result of a shipping query; for bots only
   AnswerShippingQuery(
-      {this.shippingQueryId, this.shippingOptions, this.errorMessage});
+      {required this.shippingQueryId,
+      required this.shippingOptions,
+      required this.errorMessage,
+      this.extra});
 
   /// [shippingQueryId] Identifier of the shipping query
   int shippingQueryId;
@@ -18,7 +21,17 @@ class AnswerShippingQuery extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AnswerShippingQuery.fromJson(Map<String, dynamic> json);
+  factory AnswerShippingQuery.fromJson(Map<String, dynamic> json) {
+    return AnswerShippingQuery(
+      shippingQueryId: int.tryParse(json['shipping_query_id'] ?? "") ?? 0,
+      shippingOptions: List<ShippingOption>.from((json['shipping_options'] ??
+              [])
+          .map((item) => ShippingOption.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      errorMessage: json['error_message'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

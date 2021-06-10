@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GetMessageLocally extends TdFunction {
   /// Returns information about a message, if it is available locally without sending network request. This is an offline request
-  GetMessageLocally({this.chatId, this.messageId});
+  GetMessageLocally(
+      {required this.chatId, required this.messageId, this.extra});
 
   /// [chatId] Identifier of the chat the message belongs to
   int chatId;
@@ -14,7 +15,13 @@ class GetMessageLocally extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetMessageLocally.fromJson(Map<String, dynamic> json);
+  factory GetMessageLocally.fromJson(Map<String, dynamic> json) {
+    return GetMessageLocally(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

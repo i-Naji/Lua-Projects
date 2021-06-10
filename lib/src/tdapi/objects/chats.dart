@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class Chats extends TdObject {
   /// Represents a list of chats
-  Chats({this.totalCount, this.chatIds});
+  Chats({required this.totalCount, required this.chatIds, this.extra});
 
   /// [totalCount] Approximate total count of chats found
   int totalCount;
@@ -11,14 +11,17 @@ class Chats extends TdObject {
   List<int> chatIds;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Chats.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.chatIds =
-        List<int>.from((json['chat_ids'] ?? []).map((item) => item).toList());
-    this.extra = json['@extra'];
+  factory Chats.fromJson(Map<String, dynamic> json) {
+    return Chats(
+      totalCount: json['total_count'] ?? 0,
+      chatIds: List<int>.from(
+          (json['chat_ids'] ?? []).map((item) => item ?? 0).toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

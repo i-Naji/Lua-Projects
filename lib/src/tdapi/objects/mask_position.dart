@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class MaskPosition extends TdObject {
   /// Position on a photo where a mask should be placed
-  MaskPosition({this.point, this.xShift, this.yShift, this.scale});
+  MaskPosition(
+      {required this.point,
+      required this.xShift,
+      required this.yShift,
+      required this.scale});
 
   /// [point] Part of the face, relative to which the mask should be placed
   MaskPoint point;
@@ -17,18 +21,20 @@ class MaskPosition extends TdObject {
   double scale;
 
   /// Parse from a json
-  MaskPosition.fromJson(Map<String, dynamic> json) {
-    this.point = MaskPoint.fromJson(json['point'] ?? <String, dynamic>{});
-    this.xShift = json['x_shift'];
-    this.yShift = json['y_shift'];
-    this.scale = json['scale'];
+  factory MaskPosition.fromJson(Map<String, dynamic> json) {
+    return MaskPosition(
+      point: MaskPoint.fromJson(json['point'] ?? <String, dynamic>{}),
+      xShift: json['x_shift'] ?? 0,
+      yShift: json['y_shift'] ?? 0,
+      scale: json['scale'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "point": this.point == null ? null : this.point.toJson(),
+      "point": this.point.toJson(),
       "x_shift": this.xShift,
       "y_shift": this.yShift,
       "scale": this.scale,

@@ -2,7 +2,10 @@ part of '../tdapi.dart';
 
 class StatisticalValue extends TdObject {
   /// A value with information about its recent changes
-  StatisticalValue({this.value, this.previousValue, this.growthRatePercentage});
+  StatisticalValue(
+      {required this.value,
+      required this.previousValue,
+      required this.growthRatePercentage});
 
   /// [value] The current value
   double value;
@@ -14,10 +17,12 @@ class StatisticalValue extends TdObject {
   double growthRatePercentage;
 
   /// Parse from a json
-  StatisticalValue.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.previousValue = json['previous_value'];
-    this.growthRatePercentage = json['growth_rate_percentage'];
+  factory StatisticalValue.fromJson(Map<String, dynamic> json) {
+    return StatisticalValue(
+      value: json['value'] ?? 0,
+      previousValue: json['previous_value'] ?? 0,
+      growthRatePercentage: json['growth_rate_percentage'] ?? 0,
+    );
   }
 
   @override

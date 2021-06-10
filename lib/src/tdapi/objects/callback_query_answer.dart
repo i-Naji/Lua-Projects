@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class CallbackQueryAnswer extends TdObject {
   /// Contains a bot's answer to a callback query
-  CallbackQueryAnswer({this.text, this.showAlert, this.url});
+  CallbackQueryAnswer(
+      {required this.text,
+      required this.showAlert,
+      required this.url,
+      this.extra});
 
   /// [text] Text of the answer
   String text;
@@ -14,14 +18,17 @@ class CallbackQueryAnswer extends TdObject {
   String url;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  CallbackQueryAnswer.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
-    this.showAlert = json['show_alert'];
-    this.url = json['url'];
-    this.extra = json['@extra'];
+  factory CallbackQueryAnswer.fromJson(Map<String, dynamic> json) {
+    return CallbackQueryAnswer(
+      text: json['text'] ?? "",
+      showAlert: json['show_alert'] ?? false,
+      url: json['url'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

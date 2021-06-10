@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class DeleteChatReplyMarkup extends TdFunction {
   /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed
-  DeleteChatReplyMarkup({this.chatId, this.messageId});
+  DeleteChatReplyMarkup(
+      {required this.chatId, required this.messageId, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -14,7 +15,13 @@ class DeleteChatReplyMarkup extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  DeleteChatReplyMarkup.fromJson(Map<String, dynamic> json);
+  factory DeleteChatReplyMarkup.fromJson(Map<String, dynamic> json) {
+    return DeleteChatReplyMarkup(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

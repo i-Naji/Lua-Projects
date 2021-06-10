@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GroupCallPayload extends TdObject {
   /// Describes a payload for interaction with tgcalls
-  GroupCallPayload({this.ufrag, this.pwd, this.fingerprints});
+  GroupCallPayload(
+      {required this.ufrag, required this.pwd, required this.fingerprints});
 
   /// [ufrag] Value of the field ufrag
   String ufrag;
@@ -14,14 +15,16 @@ class GroupCallPayload extends TdObject {
   List<GroupCallPayloadFingerprint> fingerprints;
 
   /// Parse from a json
-  GroupCallPayload.fromJson(Map<String, dynamic> json) {
-    this.ufrag = json['ufrag'];
-    this.pwd = json['pwd'];
-    this.fingerprints = List<GroupCallPayloadFingerprint>.from(
-        (json['fingerprints'] ?? [])
-            .map((item) => GroupCallPayloadFingerprint.fromJson(
-                item ?? <String, dynamic>{}))
-            .toList());
+  factory GroupCallPayload.fromJson(Map<String, dynamic> json) {
+    return GroupCallPayload(
+      ufrag: json['ufrag'] ?? "",
+      pwd: json['pwd'] ?? "",
+      fingerprints: List<GroupCallPayloadFingerprint>.from(
+          (json['fingerprints'] ?? [])
+              .map((item) => GroupCallPayloadFingerprint.fromJson(
+                  item ?? <String, dynamic>{}))
+              .toList()),
+    );
   }
 
   @override

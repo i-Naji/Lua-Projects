@@ -47,7 +47,7 @@ class PassportElement extends TdObject {
       case PassportElementEmailAddress.CONSTRUCTOR:
         return PassportElementEmailAddress.fromJson(json);
       default:
-        return null;
+        return PassportElement();
     }
   }
 
@@ -64,27 +64,29 @@ class PassportElement extends TdObject {
 
 class PassportElementPersonalDetails extends PassportElement {
   /// A Telegram Passport element containing the user's personal details
-  PassportElementPersonalDetails({this.personalDetails});
+  PassportElementPersonalDetails({required this.personalDetails, this.extra});
 
   /// [personalDetails] Personal details of the user
   PersonalDetails personalDetails;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementPersonalDetails.fromJson(Map<String, dynamic> json) {
-    this.personalDetails = PersonalDetails.fromJson(
-        json['personal_details'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementPersonalDetails.fromJson(Map<String, dynamic> json) {
+    return PassportElementPersonalDetails(
+      personalDetails: PersonalDetails.fromJson(
+          json['personal_details'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "personal_details":
-          this.personalDetails == null ? null : this.personalDetails.toJson(),
+      "personal_details": this.personalDetails.toJson(),
     };
   }
 
@@ -96,26 +98,29 @@ class PassportElementPersonalDetails extends PassportElement {
 
 class PassportElementPassport extends PassportElement {
   /// A Telegram Passport element containing the user's passport
-  PassportElementPassport({this.passport});
+  PassportElementPassport({required this.passport, this.extra});
 
   /// [passport] Passport
   IdentityDocument passport;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementPassport.fromJson(Map<String, dynamic> json) {
-    this.passport =
-        IdentityDocument.fromJson(json['passport'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementPassport.fromJson(Map<String, dynamic> json) {
+    return PassportElementPassport(
+      passport:
+          IdentityDocument.fromJson(json['passport'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "passport": this.passport == null ? null : this.passport.toJson(),
+      "passport": this.passport.toJson(),
     };
   }
 
@@ -127,27 +132,29 @@ class PassportElementPassport extends PassportElement {
 
 class PassportElementDriverLicense extends PassportElement {
   /// A Telegram Passport element containing the user's driver license
-  PassportElementDriverLicense({this.driverLicense});
+  PassportElementDriverLicense({required this.driverLicense, this.extra});
 
   /// [driverLicense] Driver license
   IdentityDocument driverLicense;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementDriverLicense.fromJson(Map<String, dynamic> json) {
-    this.driverLicense = IdentityDocument.fromJson(
-        json['driver_license'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementDriverLicense.fromJson(Map<String, dynamic> json) {
+    return PassportElementDriverLicense(
+      driverLicense: IdentityDocument.fromJson(
+          json['driver_license'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "driver_license":
-          this.driverLicense == null ? null : this.driverLicense.toJson(),
+      "driver_license": this.driverLicense.toJson(),
     };
   }
 
@@ -159,27 +166,29 @@ class PassportElementDriverLicense extends PassportElement {
 
 class PassportElementIdentityCard extends PassportElement {
   /// A Telegram Passport element containing the user's identity card
-  PassportElementIdentityCard({this.identityCard});
+  PassportElementIdentityCard({required this.identityCard, this.extra});
 
   /// [identityCard] Identity card
   IdentityDocument identityCard;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementIdentityCard.fromJson(Map<String, dynamic> json) {
-    this.identityCard =
-        IdentityDocument.fromJson(json['identity_card'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementIdentityCard.fromJson(Map<String, dynamic> json) {
+    return PassportElementIdentityCard(
+      identityCard: IdentityDocument.fromJson(
+          json['identity_card'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "identity_card":
-          this.identityCard == null ? null : this.identityCard.toJson(),
+      "identity_card": this.identityCard.toJson(),
     };
   }
 
@@ -191,27 +200,29 @@ class PassportElementIdentityCard extends PassportElement {
 
 class PassportElementInternalPassport extends PassportElement {
   /// A Telegram Passport element containing the user's internal passport
-  PassportElementInternalPassport({this.internalPassport});
+  PassportElementInternalPassport({required this.internalPassport, this.extra});
 
   /// [internalPassport] Internal passport
   IdentityDocument internalPassport;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementInternalPassport.fromJson(Map<String, dynamic> json) {
-    this.internalPassport = IdentityDocument.fromJson(
-        json['internal_passport'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementInternalPassport.fromJson(Map<String, dynamic> json) {
+    return PassportElementInternalPassport(
+      internalPassport: IdentityDocument.fromJson(
+          json['internal_passport'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "internal_passport":
-          this.internalPassport == null ? null : this.internalPassport.toJson(),
+      "internal_passport": this.internalPassport.toJson(),
     };
   }
 
@@ -223,25 +234,28 @@ class PassportElementInternalPassport extends PassportElement {
 
 class PassportElementAddress extends PassportElement {
   /// A Telegram Passport element containing the user's address
-  PassportElementAddress({this.address});
+  PassportElementAddress({required this.address, this.extra});
 
   /// [address] Address
   Address address;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementAddress.fromJson(Map<String, dynamic> json) {
-    this.address = Address.fromJson(json['address'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementAddress.fromJson(Map<String, dynamic> json) {
+    return PassportElementAddress(
+      address: Address.fromJson(json['address'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "address": this.address == null ? null : this.address.toJson(),
+      "address": this.address.toJson(),
     };
   }
 
@@ -253,27 +267,29 @@ class PassportElementAddress extends PassportElement {
 
 class PassportElementUtilityBill extends PassportElement {
   /// A Telegram Passport element containing the user's utility bill
-  PassportElementUtilityBill({this.utilityBill});
+  PassportElementUtilityBill({required this.utilityBill, this.extra});
 
   /// [utilityBill] Utility bill
   PersonalDocument utilityBill;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementUtilityBill.fromJson(Map<String, dynamic> json) {
-    this.utilityBill =
-        PersonalDocument.fromJson(json['utility_bill'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementUtilityBill.fromJson(Map<String, dynamic> json) {
+    return PassportElementUtilityBill(
+      utilityBill: PersonalDocument.fromJson(
+          json['utility_bill'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "utility_bill":
-          this.utilityBill == null ? null : this.utilityBill.toJson(),
+      "utility_bill": this.utilityBill.toJson(),
     };
   }
 
@@ -285,27 +301,29 @@ class PassportElementUtilityBill extends PassportElement {
 
 class PassportElementBankStatement extends PassportElement {
   /// A Telegram Passport element containing the user's bank statement
-  PassportElementBankStatement({this.bankStatement});
+  PassportElementBankStatement({required this.bankStatement, this.extra});
 
   /// [bankStatement] Bank statement
   PersonalDocument bankStatement;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementBankStatement.fromJson(Map<String, dynamic> json) {
-    this.bankStatement = PersonalDocument.fromJson(
-        json['bank_statement'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementBankStatement.fromJson(Map<String, dynamic> json) {
+    return PassportElementBankStatement(
+      bankStatement: PersonalDocument.fromJson(
+          json['bank_statement'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "bank_statement":
-          this.bankStatement == null ? null : this.bankStatement.toJson(),
+      "bank_statement": this.bankStatement.toJson(),
     };
   }
 
@@ -317,27 +335,29 @@ class PassportElementBankStatement extends PassportElement {
 
 class PassportElementRentalAgreement extends PassportElement {
   /// A Telegram Passport element containing the user's rental agreement
-  PassportElementRentalAgreement({this.rentalAgreement});
+  PassportElementRentalAgreement({required this.rentalAgreement, this.extra});
 
   /// [rentalAgreement] Rental agreement
   PersonalDocument rentalAgreement;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementRentalAgreement.fromJson(Map<String, dynamic> json) {
-    this.rentalAgreement = PersonalDocument.fromJson(
-        json['rental_agreement'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementRentalAgreement.fromJson(Map<String, dynamic> json) {
+    return PassportElementRentalAgreement(
+      rentalAgreement: PersonalDocument.fromJson(
+          json['rental_agreement'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "rental_agreement":
-          this.rentalAgreement == null ? null : this.rentalAgreement.toJson(),
+      "rental_agreement": this.rentalAgreement.toJson(),
     };
   }
 
@@ -349,28 +369,31 @@ class PassportElementRentalAgreement extends PassportElement {
 
 class PassportElementPassportRegistration extends PassportElement {
   /// A Telegram Passport element containing the user's passport registration pages
-  PassportElementPassportRegistration({this.passportRegistration});
+  PassportElementPassportRegistration(
+      {required this.passportRegistration, this.extra});
 
   /// [passportRegistration] Passport registration pages
   PersonalDocument passportRegistration;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementPassportRegistration.fromJson(Map<String, dynamic> json) {
-    this.passportRegistration = PersonalDocument.fromJson(
-        json['passport_registration'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementPassportRegistration.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementPassportRegistration(
+      passportRegistration: PersonalDocument.fromJson(
+          json['passport_registration'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "passport_registration": this.passportRegistration == null
-          ? null
-          : this.passportRegistration.toJson(),
+      "passport_registration": this.passportRegistration.toJson(),
     };
   }
 
@@ -382,28 +405,31 @@ class PassportElementPassportRegistration extends PassportElement {
 
 class PassportElementTemporaryRegistration extends PassportElement {
   /// A Telegram Passport element containing the user's temporary registration
-  PassportElementTemporaryRegistration({this.temporaryRegistration});
+  PassportElementTemporaryRegistration(
+      {required this.temporaryRegistration, this.extra});
 
   /// [temporaryRegistration] Temporary registration
   PersonalDocument temporaryRegistration;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementTemporaryRegistration.fromJson(Map<String, dynamic> json) {
-    this.temporaryRegistration = PersonalDocument.fromJson(
-        json['temporary_registration'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory PassportElementTemporaryRegistration.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementTemporaryRegistration(
+      temporaryRegistration: PersonalDocument.fromJson(
+          json['temporary_registration'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "temporary_registration": this.temporaryRegistration == null
-          ? null
-          : this.temporaryRegistration.toJson(),
+      "temporary_registration": this.temporaryRegistration.toJson(),
     };
   }
 
@@ -415,18 +441,21 @@ class PassportElementTemporaryRegistration extends PassportElement {
 
 class PassportElementPhoneNumber extends PassportElement {
   /// A Telegram Passport element containing the user's phone number
-  PassportElementPhoneNumber({this.phoneNumber});
+  PassportElementPhoneNumber({required this.phoneNumber, this.extra});
 
   /// [phoneNumber] Phone number
   String phoneNumber;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementPhoneNumber.fromJson(Map<String, dynamic> json) {
-    this.phoneNumber = json['phone_number'];
-    this.extra = json['@extra'];
+  factory PassportElementPhoneNumber.fromJson(Map<String, dynamic> json) {
+    return PassportElementPhoneNumber(
+      phoneNumber: json['phone_number'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -445,18 +474,21 @@ class PassportElementPhoneNumber extends PassportElement {
 
 class PassportElementEmailAddress extends PassportElement {
   /// A Telegram Passport element containing the user's email address
-  PassportElementEmailAddress({this.emailAddress});
+  PassportElementEmailAddress({required this.emailAddress, this.extra});
 
   /// [emailAddress] Email address
   String emailAddress;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementEmailAddress.fromJson(Map<String, dynamic> json) {
-    this.emailAddress = json['email_address'];
-    this.extra = json['@extra'];
+  factory PassportElementEmailAddress.fromJson(Map<String, dynamic> json) {
+    return PassportElementEmailAddress(
+      emailAddress: json['email_address'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

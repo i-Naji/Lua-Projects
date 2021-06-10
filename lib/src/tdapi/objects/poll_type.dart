@@ -14,7 +14,7 @@ class PollType extends TdObject {
       case PollTypeQuiz.CONSTRUCTOR:
         return PollTypeQuiz.fromJson(json);
       default:
-        return null;
+        return PollType();
     }
   }
 
@@ -31,14 +31,16 @@ class PollType extends TdObject {
 
 class PollTypeRegular extends PollType {
   /// A regular poll
-  PollTypeRegular({this.allowMultipleAnswers});
+  PollTypeRegular({required this.allowMultipleAnswers});
 
   /// [allowMultipleAnswers] True, if multiple answer options can be chosen simultaneously
   bool allowMultipleAnswers;
 
   /// Parse from a json
-  PollTypeRegular.fromJson(Map<String, dynamic> json) {
-    this.allowMultipleAnswers = json['allow_multiple_answers'];
+  factory PollTypeRegular.fromJson(Map<String, dynamic> json) {
+    return PollTypeRegular(
+      allowMultipleAnswers: json['allow_multiple_answers'] ?? false,
+    );
   }
 
   @override
@@ -57,7 +59,7 @@ class PollTypeRegular extends PollType {
 
 class PollTypeQuiz extends PollType {
   /// A poll in quiz mode, which has exactly one correct answer option and can be answered only once
-  PollTypeQuiz({this.correctOptionId, this.explanation});
+  PollTypeQuiz({required this.correctOptionId, required this.explanation});
 
   /// [correctOptionId] 0-based identifier of the correct answer option; -1 for a yet unanswered poll
   int correctOptionId;
@@ -66,10 +68,12 @@ class PollTypeQuiz extends PollType {
   FormattedText explanation;
 
   /// Parse from a json
-  PollTypeQuiz.fromJson(Map<String, dynamic> json) {
-    this.correctOptionId = json['correct_option_id'];
-    this.explanation =
-        FormattedText.fromJson(json['explanation'] ?? <String, dynamic>{});
+  factory PollTypeQuiz.fromJson(Map<String, dynamic> json) {
+    return PollTypeQuiz(
+      correctOptionId: json['correct_option_id'] ?? 0,
+      explanation:
+          FormattedText.fromJson(json['explanation'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -77,8 +81,7 @@ class PollTypeQuiz extends PollType {
     return {
       "@type": CONSTRUCTOR,
       "correct_option_id": this.correctOptionId,
-      "explanation":
-          this.explanation == null ? null : this.explanation.toJson(),
+      "explanation": this.explanation.toJson(),
     };
   }
 

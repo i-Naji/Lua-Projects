@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GetWebPageInstantView extends TdFunction {
   /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-  GetWebPageInstantView({this.url, this.forceFull});
+  GetWebPageInstantView(
+      {required this.url, required this.forceFull, this.extra});
 
   /// [url] The web page URL
   String url;
@@ -14,7 +15,13 @@ class GetWebPageInstantView extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetWebPageInstantView.fromJson(Map<String, dynamic> json);
+  factory GetWebPageInstantView.fromJson(Map<String, dynamic> json) {
+    return GetWebPageInstantView(
+      url: json['url'] ?? "",
+      forceFull: json['force_full'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -143,7 +143,7 @@ class MessageContent extends TdObject {
       case MessageUnsupported.CONSTRUCTOR:
         return MessageUnsupported.fromJson(json);
       default:
-        return null;
+        return MessageContent();
     }
   }
 
@@ -160,26 +160,28 @@ class MessageContent extends TdObject {
 
 class MessageText extends MessageContent {
   /// A text message
-  MessageText({this.text, this.webPage});
+  MessageText({required this.text, this.webPage});
 
   /// [text] Text of the message
   FormattedText text;
 
   /// [webPage] A preview of the web page that's mentioned in the text; may be null
-  WebPage webPage;
+  WebPage? webPage;
 
   /// Parse from a json
-  MessageText.fromJson(Map<String, dynamic> json) {
-    this.text = FormattedText.fromJson(json['text'] ?? <String, dynamic>{});
-    this.webPage = WebPage.fromJson(json['web_page'] ?? <String, dynamic>{});
+  factory MessageText.fromJson(Map<String, dynamic> json) {
+    return MessageText(
+      text: FormattedText.fromJson(json['text'] ?? <String, dynamic>{}),
+      webPage: WebPage.fromJson(json['web_page'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "text": this.text == null ? null : this.text.toJson(),
-      "web_page": this.webPage == null ? null : this.webPage.toJson(),
+      "text": this.text.toJson(),
+      "web_page": this.webPage == null ? null : this.webPage!.toJson(),
     };
   }
 
@@ -191,7 +193,8 @@ class MessageText extends MessageContent {
 
 class MessageAnimation extends MessageContent {
   /// An animation message (GIF-style).
-  MessageAnimation({this.animation, this.caption, this.isSecret});
+  MessageAnimation(
+      {required this.animation, required this.caption, required this.isSecret});
 
   /// [animation] The animation description
   Animation animation;
@@ -203,20 +206,20 @@ class MessageAnimation extends MessageContent {
   bool isSecret;
 
   /// Parse from a json
-  MessageAnimation.fromJson(Map<String, dynamic> json) {
-    this.animation =
-        Animation.fromJson(json['animation'] ?? <String, dynamic>{});
-    this.caption =
-        FormattedText.fromJson(json['caption'] ?? <String, dynamic>{});
-    this.isSecret = json['is_secret'];
+  factory MessageAnimation.fromJson(Map<String, dynamic> json) {
+    return MessageAnimation(
+      animation: Animation.fromJson(json['animation'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+      isSecret: json['is_secret'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "animation": this.animation == null ? null : this.animation.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "animation": this.animation.toJson(),
+      "caption": this.caption.toJson(),
       "is_secret": this.isSecret,
     };
   }
@@ -229,7 +232,7 @@ class MessageAnimation extends MessageContent {
 
 class MessageAudio extends MessageContent {
   /// An audio message
-  MessageAudio({this.audio, this.caption});
+  MessageAudio({required this.audio, required this.caption});
 
   /// [audio] The audio description
   Audio audio;
@@ -238,18 +241,19 @@ class MessageAudio extends MessageContent {
   FormattedText caption;
 
   /// Parse from a json
-  MessageAudio.fromJson(Map<String, dynamic> json) {
-    this.audio = Audio.fromJson(json['audio'] ?? <String, dynamic>{});
-    this.caption =
-        FormattedText.fromJson(json['caption'] ?? <String, dynamic>{});
+  factory MessageAudio.fromJson(Map<String, dynamic> json) {
+    return MessageAudio(
+      audio: Audio.fromJson(json['audio'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "audio": this.audio == null ? null : this.audio.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "audio": this.audio.toJson(),
+      "caption": this.caption.toJson(),
     };
   }
 
@@ -261,7 +265,7 @@ class MessageAudio extends MessageContent {
 
 class MessageDocument extends MessageContent {
   /// A document message (general file)
-  MessageDocument({this.document, this.caption});
+  MessageDocument({required this.document, required this.caption});
 
   /// [document] The document description
   Document document;
@@ -270,18 +274,19 @@ class MessageDocument extends MessageContent {
   FormattedText caption;
 
   /// Parse from a json
-  MessageDocument.fromJson(Map<String, dynamic> json) {
-    this.document = Document.fromJson(json['document'] ?? <String, dynamic>{});
-    this.caption =
-        FormattedText.fromJson(json['caption'] ?? <String, dynamic>{});
+  factory MessageDocument.fromJson(Map<String, dynamic> json) {
+    return MessageDocument(
+      document: Document.fromJson(json['document'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "document": this.document == null ? null : this.document.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "document": this.document.toJson(),
+      "caption": this.caption.toJson(),
     };
   }
 
@@ -293,7 +298,8 @@ class MessageDocument extends MessageContent {
 
 class MessagePhoto extends MessageContent {
   /// A photo message
-  MessagePhoto({this.photo, this.caption, this.isSecret});
+  MessagePhoto(
+      {required this.photo, required this.caption, required this.isSecret});
 
   /// [photo] The photo description
   Photo photo;
@@ -305,19 +311,20 @@ class MessagePhoto extends MessageContent {
   bool isSecret;
 
   /// Parse from a json
-  MessagePhoto.fromJson(Map<String, dynamic> json) {
-    this.photo = Photo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.caption =
-        FormattedText.fromJson(json['caption'] ?? <String, dynamic>{});
-    this.isSecret = json['is_secret'];
+  factory MessagePhoto.fromJson(Map<String, dynamic> json) {
+    return MessagePhoto(
+      photo: Photo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+      isSecret: json['is_secret'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "photo": this.photo.toJson(),
+      "caption": this.caption.toJson(),
       "is_secret": this.isSecret,
     };
   }
@@ -333,7 +340,9 @@ class MessageExpiredPhoto extends MessageContent {
   MessageExpiredPhoto();
 
   /// Parse from a json
-  MessageExpiredPhoto.fromJson(Map<String, dynamic> json);
+  factory MessageExpiredPhoto.fromJson(Map<String, dynamic> json) {
+    return MessageExpiredPhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -350,21 +359,23 @@ class MessageExpiredPhoto extends MessageContent {
 
 class MessageSticker extends MessageContent {
   /// A sticker message
-  MessageSticker({this.sticker});
+  MessageSticker({required this.sticker});
 
   /// [sticker] The sticker description
   Sticker sticker;
 
   /// Parse from a json
-  MessageSticker.fromJson(Map<String, dynamic> json) {
-    this.sticker = Sticker.fromJson(json['sticker'] ?? <String, dynamic>{});
+  factory MessageSticker.fromJson(Map<String, dynamic> json) {
+    return MessageSticker(
+      sticker: Sticker.fromJson(json['sticker'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
     };
   }
 
@@ -376,7 +387,8 @@ class MessageSticker extends MessageContent {
 
 class MessageVideo extends MessageContent {
   /// A video message
-  MessageVideo({this.video, this.caption, this.isSecret});
+  MessageVideo(
+      {required this.video, required this.caption, required this.isSecret});
 
   /// [video] The video description
   Video video;
@@ -388,19 +400,20 @@ class MessageVideo extends MessageContent {
   bool isSecret;
 
   /// Parse from a json
-  MessageVideo.fromJson(Map<String, dynamic> json) {
-    this.video = Video.fromJson(json['video'] ?? <String, dynamic>{});
-    this.caption =
-        FormattedText.fromJson(json['caption'] ?? <String, dynamic>{});
-    this.isSecret = json['is_secret'];
+  factory MessageVideo.fromJson(Map<String, dynamic> json) {
+    return MessageVideo(
+      video: Video.fromJson(json['video'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+      isSecret: json['is_secret'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "video": this.video == null ? null : this.video.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "video": this.video.toJson(),
+      "caption": this.caption.toJson(),
       "is_secret": this.isSecret,
     };
   }
@@ -416,7 +429,9 @@ class MessageExpiredVideo extends MessageContent {
   MessageExpiredVideo();
 
   /// Parse from a json
-  MessageExpiredVideo.fromJson(Map<String, dynamic> json);
+  factory MessageExpiredVideo.fromJson(Map<String, dynamic> json) {
+    return MessageExpiredVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -433,7 +448,10 @@ class MessageExpiredVideo extends MessageContent {
 
 class MessageVideoNote extends MessageContent {
   /// A video note message
-  MessageVideoNote({this.videoNote, this.isViewed, this.isSecret});
+  MessageVideoNote(
+      {required this.videoNote,
+      required this.isViewed,
+      required this.isSecret});
 
   /// [videoNote] The video note description
   VideoNote videoNote;
@@ -445,18 +463,19 @@ class MessageVideoNote extends MessageContent {
   bool isSecret;
 
   /// Parse from a json
-  MessageVideoNote.fromJson(Map<String, dynamic> json) {
-    this.videoNote =
-        VideoNote.fromJson(json['video_note'] ?? <String, dynamic>{});
-    this.isViewed = json['is_viewed'];
-    this.isSecret = json['is_secret'];
+  factory MessageVideoNote.fromJson(Map<String, dynamic> json) {
+    return MessageVideoNote(
+      videoNote: VideoNote.fromJson(json['video_note'] ?? <String, dynamic>{}),
+      isViewed: json['is_viewed'] ?? false,
+      isSecret: json['is_secret'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "video_note": this.videoNote == null ? null : this.videoNote.toJson(),
+      "video_note": this.videoNote.toJson(),
       "is_viewed": this.isViewed,
       "is_secret": this.isSecret,
     };
@@ -470,7 +489,10 @@ class MessageVideoNote extends MessageContent {
 
 class MessageVoiceNote extends MessageContent {
   /// A voice note message
-  MessageVoiceNote({this.voiceNote, this.caption, this.isListened});
+  MessageVoiceNote(
+      {required this.voiceNote,
+      required this.caption,
+      required this.isListened});
 
   /// [voiceNote] The voice note description
   VoiceNote voiceNote;
@@ -482,20 +504,20 @@ class MessageVoiceNote extends MessageContent {
   bool isListened;
 
   /// Parse from a json
-  MessageVoiceNote.fromJson(Map<String, dynamic> json) {
-    this.voiceNote =
-        VoiceNote.fromJson(json['voice_note'] ?? <String, dynamic>{});
-    this.caption =
-        FormattedText.fromJson(json['caption'] ?? <String, dynamic>{});
-    this.isListened = json['is_listened'];
+  factory MessageVoiceNote.fromJson(Map<String, dynamic> json) {
+    return MessageVoiceNote(
+      voiceNote: VoiceNote.fromJson(json['voice_note'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+      isListened: json['is_listened'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "voice_note": this.voiceNote == null ? null : this.voiceNote.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "voice_note": this.voiceNote.toJson(),
+      "caption": this.caption.toJson(),
       "is_listened": this.isListened,
     };
   }
@@ -509,11 +531,11 @@ class MessageVoiceNote extends MessageContent {
 class MessageLocation extends MessageContent {
   /// A message with a location
   MessageLocation(
-      {this.location,
-      this.livePeriod,
-      this.expiresIn,
-      this.heading,
-      this.proximityAlertRadius});
+      {required this.location,
+      required this.livePeriod,
+      required this.expiresIn,
+      required this.heading,
+      required this.proximityAlertRadius});
 
   /// [location] The location description
   Location location;
@@ -531,19 +553,21 @@ class MessageLocation extends MessageContent {
   int proximityAlertRadius;
 
   /// Parse from a json
-  MessageLocation.fromJson(Map<String, dynamic> json) {
-    this.location = Location.fromJson(json['location'] ?? <String, dynamic>{});
-    this.livePeriod = json['live_period'];
-    this.expiresIn = json['expires_in'];
-    this.heading = json['heading'];
-    this.proximityAlertRadius = json['proximity_alert_radius'];
+  factory MessageLocation.fromJson(Map<String, dynamic> json) {
+    return MessageLocation(
+      location: Location.fromJson(json['location'] ?? <String, dynamic>{}),
+      livePeriod: json['live_period'] ?? 0,
+      expiresIn: json['expires_in'] ?? 0,
+      heading: json['heading'] ?? 0,
+      proximityAlertRadius: json['proximity_alert_radius'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location.toJson(),
       "live_period": this.livePeriod,
       "expires_in": this.expiresIn,
       "heading": this.heading,
@@ -559,21 +583,23 @@ class MessageLocation extends MessageContent {
 
 class MessageVenue extends MessageContent {
   /// A message with information about a venue
-  MessageVenue({this.venue});
+  MessageVenue({required this.venue});
 
   /// [venue] The venue description
   Venue venue;
 
   /// Parse from a json
-  MessageVenue.fromJson(Map<String, dynamic> json) {
-    this.venue = Venue.fromJson(json['venue'] ?? <String, dynamic>{});
+  factory MessageVenue.fromJson(Map<String, dynamic> json) {
+    return MessageVenue(
+      venue: Venue.fromJson(json['venue'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "venue": this.venue == null ? null : this.venue.toJson(),
+      "venue": this.venue.toJson(),
     };
   }
 
@@ -585,21 +611,23 @@ class MessageVenue extends MessageContent {
 
 class MessageContact extends MessageContent {
   /// A message with a user contact
-  MessageContact({this.contact});
+  MessageContact({required this.contact});
 
   /// [contact] The contact description
   Contact contact;
 
   /// Parse from a json
-  MessageContact.fromJson(Map<String, dynamic> json) {
-    this.contact = Contact.fromJson(json['contact'] ?? <String, dynamic>{});
+  factory MessageContact.fromJson(Map<String, dynamic> json) {
+    return MessageContact(
+      contact: Contact.fromJson(json['contact'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "contact": this.contact == null ? null : this.contact.toJson(),
+      "contact": this.contact.toJson(),
     };
   }
 
@@ -614,15 +642,15 @@ class MessageDice extends MessageContent {
   MessageDice(
       {this.initialState,
       this.finalState,
-      this.emoji,
-      this.value,
-      this.successAnimationFrameNumber});
+      required this.emoji,
+      required this.value,
+      required this.successAnimationFrameNumber});
 
   /// [initialState] The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
-  DiceStickers initialState;
+  DiceStickers? initialState;
 
   /// [finalState] The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
-  DiceStickers finalState;
+  DiceStickers? finalState;
 
   /// [emoji] Emoji on which the dice throw animation is based
   String emoji;
@@ -634,14 +662,16 @@ class MessageDice extends MessageContent {
   int successAnimationFrameNumber;
 
   /// Parse from a json
-  MessageDice.fromJson(Map<String, dynamic> json) {
-    this.initialState =
-        DiceStickers.fromJson(json['initial_state'] ?? <String, dynamic>{});
-    this.finalState =
-        DiceStickers.fromJson(json['final_state'] ?? <String, dynamic>{});
-    this.emoji = json['emoji'];
-    this.value = json['value'];
-    this.successAnimationFrameNumber = json['success_animation_frame_number'];
+  factory MessageDice.fromJson(Map<String, dynamic> json) {
+    return MessageDice(
+      initialState:
+          DiceStickers.fromJson(json['initial_state'] ?? <String, dynamic>{}),
+      finalState:
+          DiceStickers.fromJson(json['final_state'] ?? <String, dynamic>{}),
+      emoji: json['emoji'] ?? "",
+      value: json['value'] ?? 0,
+      successAnimationFrameNumber: json['success_animation_frame_number'] ?? 0,
+    );
   }
 
   @override
@@ -649,8 +679,8 @@ class MessageDice extends MessageContent {
     return {
       "@type": CONSTRUCTOR,
       "initial_state":
-          this.initialState == null ? null : this.initialState.toJson(),
-      "final_state": this.finalState == null ? null : this.finalState.toJson(),
+          this.initialState == null ? null : this.initialState!.toJson(),
+      "final_state": this.finalState == null ? null : this.finalState!.toJson(),
       "emoji": this.emoji,
       "value": this.value,
       "success_animation_frame_number": this.successAnimationFrameNumber,
@@ -665,21 +695,23 @@ class MessageDice extends MessageContent {
 
 class MessageGame extends MessageContent {
   /// A message with a game
-  MessageGame({this.game});
+  MessageGame({required this.game});
 
   /// [game] The game description
   Game game;
 
   /// Parse from a json
-  MessageGame.fromJson(Map<String, dynamic> json) {
-    this.game = Game.fromJson(json['game'] ?? <String, dynamic>{});
+  factory MessageGame.fromJson(Map<String, dynamic> json) {
+    return MessageGame(
+      game: Game.fromJson(json['game'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "game": this.game == null ? null : this.game.toJson(),
+      "game": this.game.toJson(),
     };
   }
 
@@ -691,21 +723,23 @@ class MessageGame extends MessageContent {
 
 class MessagePoll extends MessageContent {
   /// A message with a poll
-  MessagePoll({this.poll});
+  MessagePoll({required this.poll});
 
   /// [poll] The poll description
   Poll poll;
 
   /// Parse from a json
-  MessagePoll.fromJson(Map<String, dynamic> json) {
-    this.poll = Poll.fromJson(json['poll'] ?? <String, dynamic>{});
+  factory MessagePoll.fromJson(Map<String, dynamic> json) {
+    return MessagePoll(
+      poll: Poll.fromJson(json['poll'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "poll": this.poll == null ? null : this.poll.toJson(),
+      "poll": this.poll.toJson(),
     };
   }
 
@@ -718,15 +752,15 @@ class MessagePoll extends MessageContent {
 class MessageInvoice extends MessageContent {
   /// A message with an invoice from a bot
   MessageInvoice(
-      {this.title,
-      this.description,
+      {required this.title,
+      required this.description,
       this.photo,
-      this.currency,
-      this.totalAmount,
-      this.startParameter,
-      this.isTest,
-      this.needShippingAddress,
-      this.receiptMessageId});
+      required this.currency,
+      required this.totalAmount,
+      required this.startParameter,
+      required this.isTest,
+      required this.needShippingAddress,
+      required this.receiptMessageId});
 
   /// [title] Product title
   String title;
@@ -735,7 +769,7 @@ class MessageInvoice extends MessageContent {
   String description;
 
   /// [photo] Product photo; may be null
-  Photo photo;
+  Photo? photo;
 
   /// [currency] Currency for the product price
   String currency;
@@ -756,16 +790,18 @@ class MessageInvoice extends MessageContent {
   int receiptMessageId;
 
   /// Parse from a json
-  MessageInvoice.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.description = json['description'];
-    this.photo = Photo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.currency = json['currency'];
-    this.totalAmount = json['total_amount'];
-    this.startParameter = json['start_parameter'];
-    this.isTest = json['is_test'];
-    this.needShippingAddress = json['need_shipping_address'];
-    this.receiptMessageId = json['receipt_message_id'];
+  factory MessageInvoice.fromJson(Map<String, dynamic> json) {
+    return MessageInvoice(
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      photo: Photo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      currency: json['currency'] ?? "",
+      totalAmount: json['total_amount'] ?? 0,
+      startParameter: json['start_parameter'] ?? "",
+      isTest: json['is_test'] ?? false,
+      needShippingAddress: json['need_shipping_address'] ?? false,
+      receiptMessageId: json['receipt_message_id'] ?? 0,
+    );
   }
 
   @override
@@ -774,7 +810,7 @@ class MessageInvoice extends MessageContent {
       "@type": CONSTRUCTOR,
       "title": this.title,
       "description": this.description,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
       "currency": this.currency,
       "total_amount": this.totalAmount,
       "start_parameter": this.startParameter,
@@ -792,7 +828,10 @@ class MessageInvoice extends MessageContent {
 
 class MessageCall extends MessageContent {
   /// A message with information about an ended call
-  MessageCall({this.isVideo, this.discardReason, this.duration});
+  MessageCall(
+      {required this.isVideo,
+      required this.discardReason,
+      required this.duration});
 
   /// [isVideo] True, if the call was a video call
   bool isVideo;
@@ -804,11 +843,13 @@ class MessageCall extends MessageContent {
   int duration;
 
   /// Parse from a json
-  MessageCall.fromJson(Map<String, dynamic> json) {
-    this.isVideo = json['is_video'];
-    this.discardReason = CallDiscardReason.fromJson(
-        json['discard_reason'] ?? <String, dynamic>{});
-    this.duration = json['duration'];
+  factory MessageCall.fromJson(Map<String, dynamic> json) {
+    return MessageCall(
+      isVideo: json['is_video'] ?? false,
+      discardReason: CallDiscardReason.fromJson(
+          json['discard_reason'] ?? <String, dynamic>{}),
+      duration: json['duration'] ?? 0,
+    );
   }
 
   @override
@@ -816,8 +857,7 @@ class MessageCall extends MessageContent {
     return {
       "@type": CONSTRUCTOR,
       "is_video": this.isVideo,
-      "discard_reason":
-          this.discardReason == null ? null : this.discardReason.toJson(),
+      "discard_reason": this.discardReason.toJson(),
       "duration": this.duration,
     };
   }
@@ -830,14 +870,16 @@ class MessageCall extends MessageContent {
 
 class MessageVoiceChatStarted extends MessageContent {
   /// A newly created voice chat
-  MessageVoiceChatStarted({this.groupCallId});
+  MessageVoiceChatStarted({required this.groupCallId});
 
   /// [groupCallId] Identifier of the voice chat. The voice chat can be received through the method getGroupCall
   int groupCallId;
 
   /// Parse from a json
-  MessageVoiceChatStarted.fromJson(Map<String, dynamic> json) {
-    this.groupCallId = json['group_call_id'];
+  factory MessageVoiceChatStarted.fromJson(Map<String, dynamic> json) {
+    return MessageVoiceChatStarted(
+      groupCallId: json['group_call_id'] ?? 0,
+    );
   }
 
   @override
@@ -856,14 +898,16 @@ class MessageVoiceChatStarted extends MessageContent {
 
 class MessageVoiceChatEnded extends MessageContent {
   /// A message with information about an ended voice chat
-  MessageVoiceChatEnded({this.duration});
+  MessageVoiceChatEnded({required this.duration});
 
   /// [duration] Call duration
   int duration;
 
   /// Parse from a json
-  MessageVoiceChatEnded.fromJson(Map<String, dynamic> json) {
-    this.duration = json['duration'];
+  factory MessageVoiceChatEnded.fromJson(Map<String, dynamic> json) {
+    return MessageVoiceChatEnded(
+      duration: json['duration'] ?? 0,
+    );
   }
 
   @override
@@ -882,7 +926,8 @@ class MessageVoiceChatEnded extends MessageContent {
 
 class MessageInviteVoiceChatParticipants extends MessageContent {
   /// A message with information about an invite to a voice chat
-  MessageInviteVoiceChatParticipants({this.groupCallId, this.userIds});
+  MessageInviteVoiceChatParticipants(
+      {required this.groupCallId, required this.userIds});
 
   /// [groupCallId] Identifier of the voice chat. The voice chat can be received through the method getGroupCall
   int groupCallId;
@@ -891,10 +936,13 @@ class MessageInviteVoiceChatParticipants extends MessageContent {
   List<int> userIds;
 
   /// Parse from a json
-  MessageInviteVoiceChatParticipants.fromJson(Map<String, dynamic> json) {
-    this.groupCallId = json['group_call_id'];
-    this.userIds =
-        List<int>.from((json['user_ids'] ?? []).map((item) => item).toList());
+  factory MessageInviteVoiceChatParticipants.fromJson(
+      Map<String, dynamic> json) {
+    return MessageInviteVoiceChatParticipants(
+      groupCallId: json['group_call_id'] ?? 0,
+      userIds: List<int>.from(
+          (json['user_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -914,7 +962,8 @@ class MessageInviteVoiceChatParticipants extends MessageContent {
 
 class MessageBasicGroupChatCreate extends MessageContent {
   /// A newly created basic group
-  MessageBasicGroupChatCreate({this.title, this.memberUserIds});
+  MessageBasicGroupChatCreate(
+      {required this.title, required this.memberUserIds});
 
   /// [title] Title of the basic group
   String title;
@@ -923,10 +972,12 @@ class MessageBasicGroupChatCreate extends MessageContent {
   List<int> memberUserIds;
 
   /// Parse from a json
-  MessageBasicGroupChatCreate.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.memberUserIds = List<int>.from(
-        (json['member_user_ids'] ?? []).map((item) => item).toList());
+  factory MessageBasicGroupChatCreate.fromJson(Map<String, dynamic> json) {
+    return MessageBasicGroupChatCreate(
+      title: json['title'] ?? "",
+      memberUserIds: List<int>.from(
+          (json['member_user_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -946,14 +997,16 @@ class MessageBasicGroupChatCreate extends MessageContent {
 
 class MessageSupergroupChatCreate extends MessageContent {
   /// A newly created supergroup or channel
-  MessageSupergroupChatCreate({this.title});
+  MessageSupergroupChatCreate({required this.title});
 
   /// [title] Title of the supergroup or channel
   String title;
 
   /// Parse from a json
-  MessageSupergroupChatCreate.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
+  factory MessageSupergroupChatCreate.fromJson(Map<String, dynamic> json) {
+    return MessageSupergroupChatCreate(
+      title: json['title'] ?? "",
+    );
   }
 
   @override
@@ -972,14 +1025,16 @@ class MessageSupergroupChatCreate extends MessageContent {
 
 class MessageChatChangeTitle extends MessageContent {
   /// An updated chat title
-  MessageChatChangeTitle({this.title});
+  MessageChatChangeTitle({required this.title});
 
   /// [title] New chat title
   String title;
 
   /// Parse from a json
-  MessageChatChangeTitle.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
+  factory MessageChatChangeTitle.fromJson(Map<String, dynamic> json) {
+    return MessageChatChangeTitle(
+      title: json['title'] ?? "",
+    );
   }
 
   @override
@@ -998,21 +1053,23 @@ class MessageChatChangeTitle extends MessageContent {
 
 class MessageChatChangePhoto extends MessageContent {
   /// An updated chat photo
-  MessageChatChangePhoto({this.photo});
+  MessageChatChangePhoto({required this.photo});
 
   /// [photo] New chat photo
   ChatPhoto photo;
 
   /// Parse from a json
-  MessageChatChangePhoto.fromJson(Map<String, dynamic> json) {
-    this.photo = ChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{});
+  factory MessageChatChangePhoto.fromJson(Map<String, dynamic> json) {
+    return MessageChatChangePhoto(
+      photo: ChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo.toJson(),
     };
   }
 
@@ -1027,7 +1084,9 @@ class MessageChatDeletePhoto extends MessageContent {
   MessageChatDeletePhoto();
 
   /// Parse from a json
-  MessageChatDeletePhoto.fromJson(Map<String, dynamic> json);
+  factory MessageChatDeletePhoto.fromJson(Map<String, dynamic> json) {
+    return MessageChatDeletePhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -1044,15 +1103,17 @@ class MessageChatDeletePhoto extends MessageContent {
 
 class MessageChatAddMembers extends MessageContent {
   /// New chat members were added
-  MessageChatAddMembers({this.memberUserIds});
+  MessageChatAddMembers({required this.memberUserIds});
 
   /// [memberUserIds] User identifiers of the new members
   List<int> memberUserIds;
 
   /// Parse from a json
-  MessageChatAddMembers.fromJson(Map<String, dynamic> json) {
-    this.memberUserIds = List<int>.from(
-        (json['member_user_ids'] ?? []).map((item) => item).toList());
+  factory MessageChatAddMembers.fromJson(Map<String, dynamic> json) {
+    return MessageChatAddMembers(
+      memberUserIds: List<int>.from(
+          (json['member_user_ids'] ?? []).map((item) => item ?? 0).toList()),
+    );
   }
 
   @override
@@ -1074,7 +1135,9 @@ class MessageChatJoinByLink extends MessageContent {
   MessageChatJoinByLink();
 
   /// Parse from a json
-  MessageChatJoinByLink.fromJson(Map<String, dynamic> json);
+  factory MessageChatJoinByLink.fromJson(Map<String, dynamic> json) {
+    return MessageChatJoinByLink();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -1091,14 +1154,16 @@ class MessageChatJoinByLink extends MessageContent {
 
 class MessageChatDeleteMember extends MessageContent {
   /// A chat member was deleted
-  MessageChatDeleteMember({this.userId});
+  MessageChatDeleteMember({required this.userId});
 
   /// [userId] User identifier of the deleted chat member
   int userId;
 
   /// Parse from a json
-  MessageChatDeleteMember.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
+  factory MessageChatDeleteMember.fromJson(Map<String, dynamic> json) {
+    return MessageChatDeleteMember(
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override
@@ -1117,14 +1182,16 @@ class MessageChatDeleteMember extends MessageContent {
 
 class MessageChatUpgradeTo extends MessageContent {
   /// A basic group was upgraded to a supergroup and was deactivated as the result
-  MessageChatUpgradeTo({this.supergroupId});
+  MessageChatUpgradeTo({required this.supergroupId});
 
   /// [supergroupId] Identifier of the supergroup to which the basic group was upgraded
   int supergroupId;
 
   /// Parse from a json
-  MessageChatUpgradeTo.fromJson(Map<String, dynamic> json) {
-    this.supergroupId = json['supergroup_id'];
+  factory MessageChatUpgradeTo.fromJson(Map<String, dynamic> json) {
+    return MessageChatUpgradeTo(
+      supergroupId: json['supergroup_id'] ?? 0,
+    );
   }
 
   @override
@@ -1143,7 +1210,7 @@ class MessageChatUpgradeTo extends MessageContent {
 
 class MessageChatUpgradeFrom extends MessageContent {
   /// A supergroup has been created from a basic group
-  MessageChatUpgradeFrom({this.title, this.basicGroupId});
+  MessageChatUpgradeFrom({required this.title, required this.basicGroupId});
 
   /// [title] Title of the newly created supergroup
   String title;
@@ -1152,9 +1219,11 @@ class MessageChatUpgradeFrom extends MessageContent {
   int basicGroupId;
 
   /// Parse from a json
-  MessageChatUpgradeFrom.fromJson(Map<String, dynamic> json) {
-    this.title = json['title'];
-    this.basicGroupId = json['basic_group_id'];
+  factory MessageChatUpgradeFrom.fromJson(Map<String, dynamic> json) {
+    return MessageChatUpgradeFrom(
+      title: json['title'] ?? "",
+      basicGroupId: json['basic_group_id'] ?? 0,
+    );
   }
 
   @override
@@ -1174,14 +1243,16 @@ class MessageChatUpgradeFrom extends MessageContent {
 
 class MessagePinMessage extends MessageContent {
   /// A message has been pinned
-  MessagePinMessage({this.messageId});
+  MessagePinMessage({required this.messageId});
 
   /// [messageId] Identifier of the pinned message, can be an identifier of a deleted message or 0
   int messageId;
 
   /// Parse from a json
-  MessagePinMessage.fromJson(Map<String, dynamic> json) {
-    this.messageId = json['message_id'];
+  factory MessagePinMessage.fromJson(Map<String, dynamic> json) {
+    return MessagePinMessage(
+      messageId: json['message_id'] ?? 0,
+    );
   }
 
   @override
@@ -1203,7 +1274,9 @@ class MessageScreenshotTaken extends MessageContent {
   MessageScreenshotTaken();
 
   /// Parse from a json
-  MessageScreenshotTaken.fromJson(Map<String, dynamic> json);
+  factory MessageScreenshotTaken.fromJson(Map<String, dynamic> json) {
+    return MessageScreenshotTaken();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -1220,14 +1293,16 @@ class MessageScreenshotTaken extends MessageContent {
 
 class MessageChatSetTtl extends MessageContent {
   /// The TTL (Time To Live) setting messages in a secret chat has been changed
-  MessageChatSetTtl({this.ttl});
+  MessageChatSetTtl({required this.ttl});
 
   /// [ttl] New TTL
   int ttl;
 
   /// Parse from a json
-  MessageChatSetTtl.fromJson(Map<String, dynamic> json) {
-    this.ttl = json['ttl'];
+  factory MessageChatSetTtl.fromJson(Map<String, dynamic> json) {
+    return MessageChatSetTtl(
+      ttl: json['ttl'] ?? 0,
+    );
   }
 
   @override
@@ -1246,14 +1321,16 @@ class MessageChatSetTtl extends MessageContent {
 
 class MessageCustomServiceAction extends MessageContent {
   /// A non-standard action has happened in the chat
-  MessageCustomServiceAction({this.text});
+  MessageCustomServiceAction({required this.text});
 
   /// [text] Message text to be shown in the chat
   String text;
 
   /// Parse from a json
-  MessageCustomServiceAction.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
+  factory MessageCustomServiceAction.fromJson(Map<String, dynamic> json) {
+    return MessageCustomServiceAction(
+      text: json['text'] ?? "",
+    );
   }
 
   @override
@@ -1272,7 +1349,8 @@ class MessageCustomServiceAction extends MessageContent {
 
 class MessageGameScore extends MessageContent {
   /// A new high score was achieved in a game
-  MessageGameScore({this.gameMessageId, this.gameId, this.score});
+  MessageGameScore(
+      {required this.gameMessageId, required this.gameId, required this.score});
 
   /// [gameMessageId] Identifier of the message with the game, can be an identifier of a deleted message
   int gameMessageId;
@@ -1284,10 +1362,12 @@ class MessageGameScore extends MessageContent {
   int score;
 
   /// Parse from a json
-  MessageGameScore.fromJson(Map<String, dynamic> json) {
-    this.gameMessageId = json['game_message_id'];
-    this.gameId = int.tryParse(json['game_id'] ?? "");
-    this.score = json['score'];
+  factory MessageGameScore.fromJson(Map<String, dynamic> json) {
+    return MessageGameScore(
+      gameMessageId: json['game_message_id'] ?? 0,
+      gameId: int.tryParse(json['game_id'] ?? "") ?? 0,
+      score: json['score'] ?? 0,
+    );
   }
 
   @override
@@ -1309,7 +1389,9 @@ class MessageGameScore extends MessageContent {
 class MessagePaymentSuccessful extends MessageContent {
   /// A payment has been completed
   MessagePaymentSuccessful(
-      {this.invoiceMessageId, this.currency, this.totalAmount});
+      {required this.invoiceMessageId,
+      required this.currency,
+      required this.totalAmount});
 
   /// [invoiceMessageId] Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
   int invoiceMessageId;
@@ -1321,10 +1403,12 @@ class MessagePaymentSuccessful extends MessageContent {
   int totalAmount;
 
   /// Parse from a json
-  MessagePaymentSuccessful.fromJson(Map<String, dynamic> json) {
-    this.invoiceMessageId = json['invoice_message_id'];
-    this.currency = json['currency'];
-    this.totalAmount = json['total_amount'];
+  factory MessagePaymentSuccessful.fromJson(Map<String, dynamic> json) {
+    return MessagePaymentSuccessful(
+      invoiceMessageId: json['invoice_message_id'] ?? 0,
+      currency: json['currency'] ?? "",
+      totalAmount: json['total_amount'] ?? 0,
+    );
   }
 
   @override
@@ -1346,14 +1430,14 @@ class MessagePaymentSuccessful extends MessageContent {
 class MessagePaymentSuccessfulBot extends MessageContent {
   /// A payment has been completed; for bots only
   MessagePaymentSuccessfulBot(
-      {this.invoiceMessageId,
-      this.currency,
-      this.totalAmount,
-      this.invoicePayload,
-      this.shippingOptionId,
+      {required this.invoiceMessageId,
+      required this.currency,
+      required this.totalAmount,
+      required this.invoicePayload,
+      required this.shippingOptionId,
       this.orderInfo,
-      this.telegramPaymentChargeId,
-      this.providerPaymentChargeId});
+      required this.telegramPaymentChargeId,
+      required this.providerPaymentChargeId});
 
   /// [invoiceMessageId] Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
   int invoiceMessageId;
@@ -1371,7 +1455,7 @@ class MessagePaymentSuccessfulBot extends MessageContent {
   String shippingOptionId;
 
   /// [orderInfo] Information about the order; may be null
-  OrderInfo orderInfo;
+  OrderInfo? orderInfo;
 
   /// [telegramPaymentChargeId] Telegram payment identifier
   String telegramPaymentChargeId;
@@ -1380,16 +1464,17 @@ class MessagePaymentSuccessfulBot extends MessageContent {
   String providerPaymentChargeId;
 
   /// Parse from a json
-  MessagePaymentSuccessfulBot.fromJson(Map<String, dynamic> json) {
-    this.invoiceMessageId = json['invoice_message_id'];
-    this.currency = json['currency'];
-    this.totalAmount = json['total_amount'];
-    this.invoicePayload = json['invoice_payload'];
-    this.shippingOptionId = json['shipping_option_id'];
-    this.orderInfo =
-        OrderInfo.fromJson(json['order_info'] ?? <String, dynamic>{});
-    this.telegramPaymentChargeId = json['telegram_payment_charge_id'];
-    this.providerPaymentChargeId = json['provider_payment_charge_id'];
+  factory MessagePaymentSuccessfulBot.fromJson(Map<String, dynamic> json) {
+    return MessagePaymentSuccessfulBot(
+      invoiceMessageId: json['invoice_message_id'] ?? 0,
+      currency: json['currency'] ?? "",
+      totalAmount: json['total_amount'] ?? 0,
+      invoicePayload: json['invoice_payload'] ?? "",
+      shippingOptionId: json['shipping_option_id'] ?? "",
+      orderInfo: OrderInfo.fromJson(json['order_info'] ?? <String, dynamic>{}),
+      telegramPaymentChargeId: json['telegram_payment_charge_id'] ?? "",
+      providerPaymentChargeId: json['provider_payment_charge_id'] ?? "",
+    );
   }
 
   @override
@@ -1401,7 +1486,7 @@ class MessagePaymentSuccessfulBot extends MessageContent {
       "total_amount": this.totalAmount,
       "invoice_payload": this.invoicePayload,
       "shipping_option_id": this.shippingOptionId,
-      "order_info": this.orderInfo == null ? null : this.orderInfo.toJson(),
+      "order_info": this.orderInfo == null ? null : this.orderInfo!.toJson(),
       "telegram_payment_charge_id": this.telegramPaymentChargeId,
       "provider_payment_charge_id": this.providerPaymentChargeId,
     };
@@ -1418,7 +1503,9 @@ class MessageContactRegistered extends MessageContent {
   MessageContactRegistered();
 
   /// Parse from a json
-  MessageContactRegistered.fromJson(Map<String, dynamic> json);
+  factory MessageContactRegistered.fromJson(Map<String, dynamic> json) {
+    return MessageContactRegistered();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -1435,14 +1522,16 @@ class MessageContactRegistered extends MessageContent {
 
 class MessageWebsiteConnected extends MessageContent {
   /// The current user has connected a website by logging in using Telegram Login Widget on it
-  MessageWebsiteConnected({this.domainName});
+  MessageWebsiteConnected({required this.domainName});
 
   /// [domainName] Domain name of the connected website
   String domainName;
 
   /// Parse from a json
-  MessageWebsiteConnected.fromJson(Map<String, dynamic> json) {
-    this.domainName = json['domain_name'];
+  factory MessageWebsiteConnected.fromJson(Map<String, dynamic> json) {
+    return MessageWebsiteConnected(
+      domainName: json['domain_name'] ?? "",
+    );
   }
 
   @override
@@ -1461,17 +1550,19 @@ class MessageWebsiteConnected extends MessageContent {
 
 class MessagePassportDataSent extends MessageContent {
   /// Telegram Passport data has been sent
-  MessagePassportDataSent({this.types});
+  MessagePassportDataSent({required this.types});
 
   /// [types] List of Telegram Passport element types sent
   List<PassportElementType> types;
 
   /// Parse from a json
-  MessagePassportDataSent.fromJson(Map<String, dynamic> json) {
-    this.types = List<PassportElementType>.from((json['types'] ?? [])
-        .map(
-            (item) => PassportElementType.fromJson(item ?? <String, dynamic>{}))
-        .toList());
+  factory MessagePassportDataSent.fromJson(Map<String, dynamic> json) {
+    return MessagePassportDataSent(
+      types: List<PassportElementType>.from((json['types'] ?? [])
+          .map((item) =>
+              PassportElementType.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+    );
   }
 
   @override
@@ -1490,7 +1581,8 @@ class MessagePassportDataSent extends MessageContent {
 
 class MessagePassportDataReceived extends MessageContent {
   /// Telegram Passport data has been received; for bots only
-  MessagePassportDataReceived({this.elements, this.credentials});
+  MessagePassportDataReceived(
+      {required this.elements, required this.credentials});
 
   /// [elements] List of received Telegram Passport elements
   List<EncryptedPassportElement> elements;
@@ -1499,13 +1591,15 @@ class MessagePassportDataReceived extends MessageContent {
   EncryptedCredentials credentials;
 
   /// Parse from a json
-  MessagePassportDataReceived.fromJson(Map<String, dynamic> json) {
-    this.elements = List<EncryptedPassportElement>.from((json['elements'] ?? [])
-        .map((item) =>
-            EncryptedPassportElement.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.credentials = EncryptedCredentials.fromJson(
-        json['credentials'] ?? <String, dynamic>{});
+  factory MessagePassportDataReceived.fromJson(Map<String, dynamic> json) {
+    return MessagePassportDataReceived(
+      elements: List<EncryptedPassportElement>.from((json['elements'] ?? [])
+          .map((item) =>
+              EncryptedPassportElement.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      credentials: EncryptedCredentials.fromJson(
+          json['credentials'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -1513,8 +1607,7 @@ class MessagePassportDataReceived extends MessageContent {
     return {
       "@type": CONSTRUCTOR,
       "elements": this.elements.map((i) => i.toJson()).toList(),
-      "credentials":
-          this.credentials == null ? null : this.credentials.toJson(),
+      "credentials": this.credentials.toJson(),
     };
   }
 
@@ -1526,7 +1619,8 @@ class MessagePassportDataReceived extends MessageContent {
 
 class MessageProximityAlertTriggered extends MessageContent {
   /// A user in the chat came within proximity alert range
-  MessageProximityAlertTriggered({this.traveler, this.watcher, this.distance});
+  MessageProximityAlertTriggered(
+      {required this.traveler, required this.watcher, required this.distance});
 
   /// [traveler] The user or chat, which triggered the proximity alert
   MessageSender traveler;
@@ -1538,20 +1632,20 @@ class MessageProximityAlertTriggered extends MessageContent {
   int distance;
 
   /// Parse from a json
-  MessageProximityAlertTriggered.fromJson(Map<String, dynamic> json) {
-    this.traveler =
-        MessageSender.fromJson(json['traveler'] ?? <String, dynamic>{});
-    this.watcher =
-        MessageSender.fromJson(json['watcher'] ?? <String, dynamic>{});
-    this.distance = json['distance'];
+  factory MessageProximityAlertTriggered.fromJson(Map<String, dynamic> json) {
+    return MessageProximityAlertTriggered(
+      traveler: MessageSender.fromJson(json['traveler'] ?? <String, dynamic>{}),
+      watcher: MessageSender.fromJson(json['watcher'] ?? <String, dynamic>{}),
+      distance: json['distance'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "traveler": this.traveler == null ? null : this.traveler.toJson(),
-      "watcher": this.watcher == null ? null : this.watcher.toJson(),
+      "traveler": this.traveler.toJson(),
+      "watcher": this.watcher.toJson(),
       "distance": this.distance,
     };
   }
@@ -1567,7 +1661,9 @@ class MessageUnsupported extends MessageContent {
   MessageUnsupported();
 
   /// Parse from a json
-  MessageUnsupported.fromJson(Map<String, dynamic> json);
+  factory MessageUnsupported.fromJson(Map<String, dynamic> json) {
+    return MessageUnsupported();
+  }
 
   @override
   Map<String, dynamic> toJson() {

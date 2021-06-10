@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class PassportElementError extends TdObject {
   /// Contains the description of an error in a Telegram Passport element
-  PassportElementError({this.type, this.message, this.source});
+  PassportElementError(
+      {required this.type, required this.message, required this.source});
 
   /// [type] Type of the Telegram Passport element which has the error
   PassportElementType type;
@@ -14,21 +15,22 @@ class PassportElementError extends TdObject {
   PassportElementErrorSource source;
 
   /// Parse from a json
-  PassportElementError.fromJson(Map<String, dynamic> json) {
-    this.type =
-        PassportElementType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.message = json['message'];
-    this.source = PassportElementErrorSource.fromJson(
-        json['source'] ?? <String, dynamic>{});
+  factory PassportElementError.fromJson(Map<String, dynamic> json) {
+    return PassportElementError(
+      type: PassportElementType.fromJson(json['type'] ?? <String, dynamic>{}),
+      message: json['message'] ?? "",
+      source: PassportElementErrorSource.fromJson(
+          json['source'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "message": this.message,
-      "source": this.source == null ? null : this.source.toJson(),
+      "source": this.source.toJson(),
     };
   }
 

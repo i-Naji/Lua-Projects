@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetSavedOrderInfo extends TdFunction {
   /// Returns saved order info, if any
-  GetSavedOrderInfo();
+  GetSavedOrderInfo({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetSavedOrderInfo.fromJson(Map<String, dynamic> json);
+  factory GetSavedOrderInfo.fromJson(Map<String, dynamic> json) {
+    return GetSavedOrderInfo(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

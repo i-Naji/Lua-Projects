@@ -3,10 +3,11 @@ part of '../tdapi.dart';
 class EditMessageMedia extends TdFunction {
   /// Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side
   EditMessageMedia(
-      {this.chatId,
-      this.messageId,
-      this.replyMarkup,
-      this.inputMessageContent});
+      {required this.chatId,
+      required this.messageId,
+      required this.replyMarkup,
+      required this.inputMessageContent,
+      this.extra});
 
   /// [chatId] The chat the message belongs to
   int chatId;
@@ -24,7 +25,17 @@ class EditMessageMedia extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  EditMessageMedia.fromJson(Map<String, dynamic> json);
+  factory EditMessageMedia.fromJson(Map<String, dynamic> json) {
+    return EditMessageMedia(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -32,11 +43,8 @@ class EditMessageMedia extends TdFunction {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
       "message_id": this.messageId,
-      "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+      "reply_markup": this.replyMarkup.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
       "@extra": this.extra,
     };
   }

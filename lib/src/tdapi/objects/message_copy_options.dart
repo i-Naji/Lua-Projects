@@ -2,7 +2,10 @@ part of '../tdapi.dart';
 
 class MessageCopyOptions extends TdObject {
   /// Options to be used when a message content is copied without a link to the original message
-  MessageCopyOptions({this.sendCopy, this.replaceCaption, this.newCaption});
+  MessageCopyOptions(
+      {required this.sendCopy,
+      required this.replaceCaption,
+      required this.newCaption});
 
   /// [sendCopy] True, if content of the message needs to be copied without a link to the original message. Always true if the message is forwarded to a secret chat
   bool sendCopy;
@@ -14,11 +17,13 @@ class MessageCopyOptions extends TdObject {
   FormattedText newCaption;
 
   /// Parse from a json
-  MessageCopyOptions.fromJson(Map<String, dynamic> json) {
-    this.sendCopy = json['send_copy'];
-    this.replaceCaption = json['replace_caption'];
-    this.newCaption =
-        FormattedText.fromJson(json['new_caption'] ?? <String, dynamic>{});
+  factory MessageCopyOptions.fromJson(Map<String, dynamic> json) {
+    return MessageCopyOptions(
+      sendCopy: json['send_copy'] ?? false,
+      replaceCaption: json['replace_caption'] ?? false,
+      newCaption:
+          FormattedText.fromJson(json['new_caption'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -27,7 +32,7 @@ class MessageCopyOptions extends TdObject {
       "@type": CONSTRUCTOR,
       "send_copy": this.sendCopy,
       "replace_caption": this.replaceCaption,
-      "new_caption": this.newCaption == null ? null : this.newCaption.toJson(),
+      "new_caption": this.newCaption.toJson(),
     };
   }
 

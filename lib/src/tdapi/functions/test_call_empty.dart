@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class TestCallEmpty extends TdFunction {
   /// Does nothing; for testing only. This is an offline method. Can be called before authorization
-  TestCallEmpty();
+  TestCallEmpty({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  TestCallEmpty.fromJson(Map<String, dynamic> json);
+  factory TestCallEmpty.fromJson(Map<String, dynamic> json) {
+    return TestCallEmpty(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

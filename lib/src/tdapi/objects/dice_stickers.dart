@@ -14,7 +14,7 @@ class DiceStickers extends TdObject {
       case DiceStickersSlotMachine.CONSTRUCTOR:
         return DiceStickersSlotMachine.fromJson(json);
       default:
-        return null;
+        return DiceStickers();
     }
   }
 
@@ -31,21 +31,23 @@ class DiceStickers extends TdObject {
 
 class DiceStickersRegular extends DiceStickers {
   /// A regular animated sticker
-  DiceStickersRegular({this.sticker});
+  DiceStickersRegular({required this.sticker});
 
   /// [sticker] The animated sticker with the dice animation
   Sticker sticker;
 
   /// Parse from a json
-  DiceStickersRegular.fromJson(Map<String, dynamic> json) {
-    this.sticker = Sticker.fromJson(json['sticker'] ?? <String, dynamic>{});
+  factory DiceStickersRegular.fromJson(Map<String, dynamic> json) {
+    return DiceStickersRegular(
+      sticker: Sticker.fromJson(json['sticker'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
     };
   }
 
@@ -58,11 +60,11 @@ class DiceStickersRegular extends DiceStickers {
 class DiceStickersSlotMachine extends DiceStickers {
   /// Animated stickers to be combined into a slot machine
   DiceStickersSlotMachine(
-      {this.background,
-      this.lever,
-      this.leftReel,
-      this.centerReel,
-      this.rightReel});
+      {required this.background,
+      required this.lever,
+      required this.leftReel,
+      required this.centerReel,
+      required this.rightReel});
 
   /// [background] The animated sticker with the slot machine background. The background animation must start playing after all reel animations finish
   Sticker background;
@@ -80,26 +82,25 @@ class DiceStickersSlotMachine extends DiceStickers {
   Sticker rightReel;
 
   /// Parse from a json
-  DiceStickersSlotMachine.fromJson(Map<String, dynamic> json) {
-    this.background =
-        Sticker.fromJson(json['background'] ?? <String, dynamic>{});
-    this.lever = Sticker.fromJson(json['lever'] ?? <String, dynamic>{});
-    this.leftReel = Sticker.fromJson(json['left_reel'] ?? <String, dynamic>{});
-    this.centerReel =
-        Sticker.fromJson(json['center_reel'] ?? <String, dynamic>{});
-    this.rightReel =
-        Sticker.fromJson(json['right_reel'] ?? <String, dynamic>{});
+  factory DiceStickersSlotMachine.fromJson(Map<String, dynamic> json) {
+    return DiceStickersSlotMachine(
+      background: Sticker.fromJson(json['background'] ?? <String, dynamic>{}),
+      lever: Sticker.fromJson(json['lever'] ?? <String, dynamic>{}),
+      leftReel: Sticker.fromJson(json['left_reel'] ?? <String, dynamic>{}),
+      centerReel: Sticker.fromJson(json['center_reel'] ?? <String, dynamic>{}),
+      rightReel: Sticker.fromJson(json['right_reel'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "background": this.background == null ? null : this.background.toJson(),
-      "lever": this.lever == null ? null : this.lever.toJson(),
-      "left_reel": this.leftReel == null ? null : this.leftReel.toJson(),
-      "center_reel": this.centerReel == null ? null : this.centerReel.toJson(),
-      "right_reel": this.rightReel == null ? null : this.rightReel.toJson(),
+      "background": this.background.toJson(),
+      "lever": this.lever.toJson(),
+      "left_reel": this.leftReel.toJson(),
+      "center_reel": this.centerReel.toJson(),
+      "right_reel": this.rightReel.toJson(),
     };
   }
 

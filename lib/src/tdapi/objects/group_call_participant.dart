@@ -3,14 +3,14 @@ part of '../tdapi.dart';
 class GroupCallParticipant extends TdObject {
   /// Represents a group call participant
   GroupCallParticipant(
-      {this.userId,
-      this.source,
-      this.isSpeaking,
-      this.canBeMuted,
-      this.canBeUnmuted,
-      this.isMuted,
-      this.canUnmuteSelf,
-      this.order});
+      {required this.userId,
+      required this.source,
+      required this.isSpeaking,
+      required this.canBeMuted,
+      required this.canBeUnmuted,
+      required this.isMuted,
+      required this.canUnmuteSelf,
+      required this.order});
 
   /// [userId] Identifier of the user
   int userId;
@@ -37,15 +37,17 @@ class GroupCallParticipant extends TdObject {
   int order;
 
   /// Parse from a json
-  GroupCallParticipant.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
-    this.source = json['source'];
-    this.isSpeaking = json['is_speaking'];
-    this.canBeMuted = json['can_be_muted'];
-    this.canBeUnmuted = json['can_be_unmuted'];
-    this.isMuted = json['is_muted'];
-    this.canUnmuteSelf = json['can_unmute_self'];
-    this.order = int.tryParse(json['order'] ?? "");
+  factory GroupCallParticipant.fromJson(Map<String, dynamic> json) {
+    return GroupCallParticipant(
+      userId: json['user_id'] ?? 0,
+      source: json['source'] ?? 0,
+      isSpeaking: json['is_speaking'] ?? false,
+      canBeMuted: json['can_be_muted'] ?? false,
+      canBeUnmuted: json['can_be_unmuted'] ?? false,
+      isMuted: json['is_muted'] ?? false,
+      canUnmuteSelf: json['can_unmute_self'] ?? false,
+      order: int.tryParse(json['order'] ?? "") ?? 0,
+    );
   }
 
   @override

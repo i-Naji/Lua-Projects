@@ -20,7 +20,7 @@ class MaskPoint extends TdObject {
       case MaskPointChin.CONSTRUCTOR:
         return MaskPointChin.fromJson(json);
       default:
-        return null;
+        return MaskPoint();
     }
   }
 
@@ -40,7 +40,9 @@ class MaskPointForehead extends MaskPoint {
   MaskPointForehead();
 
   /// Parse from a json
-  MaskPointForehead.fromJson(Map<String, dynamic> json);
+  factory MaskPointForehead.fromJson(Map<String, dynamic> json) {
+    return MaskPointForehead();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -60,7 +62,9 @@ class MaskPointEyes extends MaskPoint {
   MaskPointEyes();
 
   /// Parse from a json
-  MaskPointEyes.fromJson(Map<String, dynamic> json);
+  factory MaskPointEyes.fromJson(Map<String, dynamic> json) {
+    return MaskPointEyes();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -80,7 +84,9 @@ class MaskPointMouth extends MaskPoint {
   MaskPointMouth();
 
   /// Parse from a json
-  MaskPointMouth.fromJson(Map<String, dynamic> json);
+  factory MaskPointMouth.fromJson(Map<String, dynamic> json) {
+    return MaskPointMouth();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -100,7 +106,9 @@ class MaskPointChin extends MaskPoint {
   MaskPointChin();
 
   /// Parse from a json
-  MaskPointChin.fromJson(Map<String, dynamic> json);
+  factory MaskPointChin.fromJson(Map<String, dynamic> json) {
+    return MaskPointChin();
+  }
 
   @override
   Map<String, dynamic> toJson() {

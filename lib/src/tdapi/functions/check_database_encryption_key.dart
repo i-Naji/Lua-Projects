@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class CheckDatabaseEncryptionKey extends TdFunction {
   /// Checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey
-  CheckDatabaseEncryptionKey({this.encryptionKey});
+  CheckDatabaseEncryptionKey({required this.encryptionKey, this.extra});
 
   /// [encryptionKey] Encryption key to check or set up
   String encryptionKey;
@@ -11,7 +11,12 @@ class CheckDatabaseEncryptionKey extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CheckDatabaseEncryptionKey.fromJson(Map<String, dynamic> json);
+  factory CheckDatabaseEncryptionKey.fromJson(Map<String, dynamic> json) {
+    return CheckDatabaseEncryptionKey(
+      encryptionKey: json['encryption_key'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

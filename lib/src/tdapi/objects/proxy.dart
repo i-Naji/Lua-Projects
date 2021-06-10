@@ -3,12 +3,13 @@ part of '../tdapi.dart';
 class Proxy extends TdObject {
   /// Contains information about a proxy server
   Proxy(
-      {this.id,
-      this.server,
-      this.port,
-      this.lastUsedDate,
-      this.isEnabled,
-      this.type});
+      {required this.id,
+      required this.server,
+      required this.port,
+      required this.lastUsedDate,
+      required this.isEnabled,
+      required this.type,
+      this.extra});
 
   /// [id] Unique identifier of the proxy
   int id;
@@ -29,17 +30,20 @@ class Proxy extends TdObject {
   ProxyType type;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Proxy.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.server = json['server'];
-    this.port = json['port'];
-    this.lastUsedDate = json['last_used_date'];
-    this.isEnabled = json['is_enabled'];
-    this.type = ProxyType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory Proxy.fromJson(Map<String, dynamic> json) {
+    return Proxy(
+      id: json['id'] ?? 0,
+      server: json['server'] ?? "",
+      port: json['port'] ?? 0,
+      lastUsedDate: json['last_used_date'] ?? 0,
+      isEnabled: json['is_enabled'] ?? false,
+      type: ProxyType.fromJson(json['type'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -51,7 +55,7 @@ class Proxy extends TdObject {
       "port": this.port,
       "last_used_date": this.lastUsedDate,
       "is_enabled": this.isEnabled,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
     };
   }
 

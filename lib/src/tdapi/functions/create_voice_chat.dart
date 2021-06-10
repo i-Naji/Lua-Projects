@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class CreateVoiceChat extends TdFunction {
   /// Creates a voice chat (a group call bound to a chat). Available only for basic groups and supergroups; requires can_manage_voice_chats rights
-  CreateVoiceChat({this.chatId});
+  CreateVoiceChat({required this.chatId, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -11,7 +11,12 @@ class CreateVoiceChat extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CreateVoiceChat.fromJson(Map<String, dynamic> json);
+  factory CreateVoiceChat.fromJson(Map<String, dynamic> json) {
+    return CreateVoiceChat(
+      chatId: json['chat_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tdlib_example/utils/const.dart';
-import 'package:tdlib_example/screens/login/login.dart';
-import 'package:tdlib_example/screens/login/code_entry.dart';
+import './const.dart';
+import '../screens/login/login.dart';
+import '../screens/login/code_entry.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {

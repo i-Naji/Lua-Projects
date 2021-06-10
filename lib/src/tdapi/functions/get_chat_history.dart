@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class GetChatHistory extends TdFunction {
   /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).. For optimal performance the number of returned messages is chosen by the library. This is an offline request if only_local is true
   GetChatHistory(
-      {this.chatId,
-      this.fromMessageId,
-      this.offset,
-      this.limit,
-      this.onlyLocal});
+      {required this.chatId,
+      required this.fromMessageId,
+      required this.offset,
+      required this.limit,
+      required this.onlyLocal,
+      this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -28,7 +29,16 @@ class GetChatHistory extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetChatHistory.fromJson(Map<String, dynamic> json);
+  factory GetChatHistory.fromJson(Map<String, dynamic> json) {
+    return GetChatHistory(
+      chatId: json['chat_id'] ?? 0,
+      fromMessageId: json['from_message_id'] ?? 0,
+      offset: json['offset'] ?? 0,
+      limit: json['limit'] ?? 0,
+      onlyLocal: json['only_local'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

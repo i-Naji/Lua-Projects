@@ -3,11 +3,11 @@ part of '../tdapi.dart';
 class Contact extends TdObject {
   /// Describes a user contact
   Contact(
-      {this.phoneNumber,
-      this.firstName,
-      this.lastName,
-      this.vcard,
-      this.userId});
+      {required this.phoneNumber,
+      required this.firstName,
+      required this.lastName,
+      required this.vcard,
+      required this.userId});
 
   /// [phoneNumber] Phone number of the user
   String phoneNumber;
@@ -25,12 +25,14 @@ class Contact extends TdObject {
   int userId;
 
   /// Parse from a json
-  Contact.fromJson(Map<String, dynamic> json) {
-    this.phoneNumber = json['phone_number'];
-    this.firstName = json['first_name'];
-    this.lastName = json['last_name'];
-    this.vcard = json['vcard'];
-    this.userId = json['user_id'];
+  factory Contact.fromJson(Map<String, dynamic> json) {
+    return Contact(
+      phoneNumber: json['phone_number'] ?? "",
+      firstName: json['first_name'] ?? "",
+      lastName: json['last_name'] ?? "",
+      vcard: json['vcard'] ?? "",
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override

@@ -14,7 +14,7 @@ class VectorPathCommand extends TdObject {
       case VectorPathCommandCubicBezierCurve.CONSTRUCTOR:
         return VectorPathCommandCubicBezierCurve.fromJson(json);
       default:
-        return null;
+        return VectorPathCommand();
     }
   }
 
@@ -31,21 +31,23 @@ class VectorPathCommand extends TdObject {
 
 class VectorPathCommandLine extends VectorPathCommand {
   /// A straight line to a given point
-  VectorPathCommandLine({this.endPoint});
+  VectorPathCommandLine({required this.endPoint});
 
   /// [endPoint] The end point of the straight line
   Point endPoint;
 
   /// Parse from a json
-  VectorPathCommandLine.fromJson(Map<String, dynamic> json) {
-    this.endPoint = Point.fromJson(json['end_point'] ?? <String, dynamic>{});
+  factory VectorPathCommandLine.fromJson(Map<String, dynamic> json) {
+    return VectorPathCommandLine(
+      endPoint: Point.fromJson(json['end_point'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "end_point": this.endPoint == null ? null : this.endPoint.toJson(),
+      "end_point": this.endPoint.toJson(),
     };
   }
 
@@ -60,7 +62,10 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand {
   VectorPathCommandCubicBezierCurve();
 
   /// Parse from a json
-  VectorPathCommandCubicBezierCurve.fromJson(Map<String, dynamic> json);
+  factory VectorPathCommandCubicBezierCurve.fromJson(
+      Map<String, dynamic> json) {
+    return VectorPathCommandCubicBezierCurve();
+  }
 
   @override
   Map<String, dynamic> toJson() {

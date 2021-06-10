@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class ChatFilterInfo extends TdObject {
   /// Contains basic information about a chat filter
-  ChatFilterInfo({this.id, this.title, this.iconName});
+  ChatFilterInfo(
+      {required this.id,
+      required this.title,
+      required this.iconName,
+      this.extra});
 
   /// [id] Unique chat filter identifier
   int id;
@@ -14,14 +18,17 @@ class ChatFilterInfo extends TdObject {
   String iconName;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  ChatFilterInfo.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title'];
-    this.iconName = json['icon_name'];
-    this.extra = json['@extra'];
+  factory ChatFilterInfo.fromJson(Map<String, dynamic> json) {
+    return ChatFilterInfo(
+      id: json['id'] ?? 0,
+      title: json['title'] ?? "",
+      iconName: json['icon_name'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

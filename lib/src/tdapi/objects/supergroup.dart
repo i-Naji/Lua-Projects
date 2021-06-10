@@ -3,19 +3,20 @@ part of '../tdapi.dart';
 class Supergroup extends TdObject {
   /// Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
   Supergroup(
-      {this.id,
-      this.username,
-      this.date,
-      this.status,
-      this.memberCount,
-      this.hasLinkedChat,
-      this.hasLocation,
-      this.signMessages,
-      this.isSlowModeEnabled,
-      this.isChannel,
-      this.isVerified,
-      this.restrictionReason,
-      this.isScam});
+      {required this.id,
+      required this.username,
+      required this.date,
+      required this.status,
+      required this.memberCount,
+      required this.hasLinkedChat,
+      required this.hasLocation,
+      required this.signMessages,
+      required this.isSlowModeEnabled,
+      required this.isChannel,
+      required this.isVerified,
+      required this.restrictionReason,
+      required this.isScam,
+      this.extra});
 
   /// [id] Supergroup or channel identifier
   int id;
@@ -57,25 +58,27 @@ class Supergroup extends TdObject {
   bool isScam;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Supergroup.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.username = json['username'];
-    this.date = json['date'];
-    this.status =
-        ChatMemberStatus.fromJson(json['status'] ?? <String, dynamic>{});
-    this.memberCount = json['member_count'];
-    this.hasLinkedChat = json['has_linked_chat'];
-    this.hasLocation = json['has_location'];
-    this.signMessages = json['sign_messages'];
-    this.isSlowModeEnabled = json['is_slow_mode_enabled'];
-    this.isChannel = json['is_channel'];
-    this.isVerified = json['is_verified'];
-    this.restrictionReason = json['restriction_reason'];
-    this.isScam = json['is_scam'];
-    this.extra = json['@extra'];
+  factory Supergroup.fromJson(Map<String, dynamic> json) {
+    return Supergroup(
+      id: json['id'] ?? 0,
+      username: json['username'] ?? "",
+      date: json['date'] ?? 0,
+      status: ChatMemberStatus.fromJson(json['status'] ?? <String, dynamic>{}),
+      memberCount: json['member_count'] ?? 0,
+      hasLinkedChat: json['has_linked_chat'] ?? false,
+      hasLocation: json['has_location'] ?? false,
+      signMessages: json['sign_messages'] ?? false,
+      isSlowModeEnabled: json['is_slow_mode_enabled'] ?? false,
+      isChannel: json['is_channel'] ?? false,
+      isVerified: json['is_verified'] ?? false,
+      restrictionReason: json['restriction_reason'] ?? "",
+      isScam: json['is_scam'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -85,7 +88,7 @@ class Supergroup extends TdObject {
       "id": this.id,
       "username": this.username,
       "date": this.date,
-      "status": this.status == null ? null : this.status.toJson(),
+      "status": this.status.toJson(),
       "member_count": this.memberCount,
       "has_linked_chat": this.hasLinkedChat,
       "has_location": this.hasLocation,

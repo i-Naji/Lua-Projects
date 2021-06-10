@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class InlineQueryResults extends TdObject {
   /// Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
   InlineQueryResults(
-      {this.inlineQueryId,
-      this.nextOffset,
-      this.results,
-      this.switchPmText,
-      this.switchPmParameter});
+      {required this.inlineQueryId,
+      required this.nextOffset,
+      required this.results,
+      required this.switchPmText,
+      required this.switchPmParameter,
+      this.extra});
 
   /// [inlineQueryId] Unique identifier of the inline query
   int inlineQueryId;
@@ -25,18 +26,22 @@ class InlineQueryResults extends TdObject {
   String switchPmParameter;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  InlineQueryResults.fromJson(Map<String, dynamic> json) {
-    this.inlineQueryId = int.tryParse(json['inline_query_id'] ?? "");
-    this.nextOffset = json['next_offset'];
-    this.results = List<InlineQueryResult>.from((json['results'] ?? [])
-        .map((item) => InlineQueryResult.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.switchPmText = json['switch_pm_text'];
-    this.switchPmParameter = json['switch_pm_parameter'];
-    this.extra = json['@extra'];
+  factory InlineQueryResults.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResults(
+      inlineQueryId: int.tryParse(json['inline_query_id'] ?? "") ?? 0,
+      nextOffset: json['next_offset'] ?? "",
+      results: List<InlineQueryResult>.from((json['results'] ?? [])
+          .map(
+              (item) => InlineQueryResult.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      switchPmText: json['switch_pm_text'] ?? "",
+      switchPmParameter: json['switch_pm_parameter'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

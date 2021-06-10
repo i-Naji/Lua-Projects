@@ -26,7 +26,7 @@ class CallState extends TdObject {
       case CallStateError.CONSTRUCTOR:
         return CallStateError.fromJson(json);
       default:
-        return null;
+        return CallState();
     }
   }
 
@@ -43,7 +43,7 @@ class CallState extends TdObject {
 
 class CallStatePending extends CallState {
   /// The call is pending, waiting to be accepted by a user
-  CallStatePending({this.isCreated, this.isReceived});
+  CallStatePending({required this.isCreated, required this.isReceived});
 
   /// [isCreated] True, if the call has already been created by the server
   bool isCreated;
@@ -52,9 +52,11 @@ class CallStatePending extends CallState {
   bool isReceived;
 
   /// Parse from a json
-  CallStatePending.fromJson(Map<String, dynamic> json) {
-    this.isCreated = json['is_created'];
-    this.isReceived = json['is_received'];
+  factory CallStatePending.fromJson(Map<String, dynamic> json) {
+    return CallStatePending(
+      isCreated: json['is_created'] ?? false,
+      isReceived: json['is_received'] ?? false,
+    );
   }
 
   @override
@@ -77,7 +79,9 @@ class CallStateExchangingKeys extends CallState {
   CallStateExchangingKeys();
 
   /// Parse from a json
-  CallStateExchangingKeys.fromJson(Map<String, dynamic> json);
+  factory CallStateExchangingKeys.fromJson(Map<String, dynamic> json) {
+    return CallStateExchangingKeys();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -95,12 +99,12 @@ class CallStateExchangingKeys extends CallState {
 class CallStateReady extends CallState {
   /// The call is ready to use
   CallStateReady(
-      {this.protocol,
-      this.servers,
-      this.config,
-      this.encryptionKey,
-      this.emojis,
-      this.allowP2p});
+      {required this.protocol,
+      required this.servers,
+      required this.config,
+      required this.encryptionKey,
+      required this.emojis,
+      required this.allowP2p});
 
   /// [protocol] Call protocols supported by the peer
   CallProtocol protocol;
@@ -121,24 +125,25 @@ class CallStateReady extends CallState {
   bool allowP2p;
 
   /// Parse from a json
-  CallStateReady.fromJson(Map<String, dynamic> json) {
-    this.protocol =
-        CallProtocol.fromJson(json['protocol'] ?? <String, dynamic>{});
-    this.servers = List<CallServer>.from((json['servers'] ?? [])
-        .map((item) => CallServer.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.config = json['config'];
-    this.encryptionKey = json['encryption_key'];
-    this.emojis =
-        List<String>.from((json['emojis'] ?? []).map((item) => item).toList());
-    this.allowP2p = json['allow_p2p'];
+  factory CallStateReady.fromJson(Map<String, dynamic> json) {
+    return CallStateReady(
+      protocol: CallProtocol.fromJson(json['protocol'] ?? <String, dynamic>{}),
+      servers: List<CallServer>.from((json['servers'] ?? [])
+          .map((item) => CallServer.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      config: json['config'] ?? "",
+      encryptionKey: json['encryption_key'] ?? "",
+      emojis: List<String>.from(
+          (json['emojis'] ?? []).map((item) => item ?? "").toList()),
+      allowP2p: json['allow_p2p'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "protocol": this.protocol == null ? null : this.protocol.toJson(),
+      "protocol": this.protocol.toJson(),
       "servers": this.servers.map((i) => i.toJson()).toList(),
       "config": this.config,
       "encryption_key": this.encryptionKey,
@@ -158,7 +163,9 @@ class CallStateHangingUp extends CallState {
   CallStateHangingUp();
 
   /// Parse from a json
-  CallStateHangingUp.fromJson(Map<String, dynamic> json);
+  factory CallStateHangingUp.fromJson(Map<String, dynamic> json) {
+    return CallStateHangingUp();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -175,7 +182,10 @@ class CallStateHangingUp extends CallState {
 
 class CallStateDiscarded extends CallState {
   /// The call has ended successfully
-  CallStateDiscarded({this.reason, this.needRating, this.needDebugInformation});
+  CallStateDiscarded(
+      {required this.reason,
+      required this.needRating,
+      required this.needDebugInformation});
 
   /// [reason] The reason, why the call has ended
   CallDiscardReason reason;
@@ -187,18 +197,19 @@ class CallStateDiscarded extends CallState {
   bool needDebugInformation;
 
   /// Parse from a json
-  CallStateDiscarded.fromJson(Map<String, dynamic> json) {
-    this.reason =
-        CallDiscardReason.fromJson(json['reason'] ?? <String, dynamic>{});
-    this.needRating = json['need_rating'];
-    this.needDebugInformation = json['need_debug_information'];
+  factory CallStateDiscarded.fromJson(Map<String, dynamic> json) {
+    return CallStateDiscarded(
+      reason: CallDiscardReason.fromJson(json['reason'] ?? <String, dynamic>{}),
+      needRating: json['need_rating'] ?? false,
+      needDebugInformation: json['need_debug_information'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "reason": this.reason == null ? null : this.reason.toJson(),
+      "reason": this.reason.toJson(),
       "need_rating": this.needRating,
       "need_debug_information": this.needDebugInformation,
     };
@@ -212,21 +223,23 @@ class CallStateDiscarded extends CallState {
 
 class CallStateError extends CallState {
   /// The call has ended with an error
-  CallStateError({this.error});
+  CallStateError({required this.error});
 
   /// [error] Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
   TdError error;
 
   /// Parse from a json
-  CallStateError.fromJson(Map<String, dynamic> json) {
-    this.error = TdError.fromJson(json['error'] ?? <String, dynamic>{});
+  factory CallStateError.fromJson(Map<String, dynamic> json) {
+    return CallStateError(
+      error: TdError.fromJson(json['error'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "error": this.error == null ? null : this.error.toJson(),
+      "error": this.error.toJson(),
     };
   }
 

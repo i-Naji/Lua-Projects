@@ -3,12 +3,12 @@ part of '../tdapi.dart';
 class Game extends TdObject {
   /// Describes a game
   Game(
-      {this.id,
-      this.shortName,
-      this.title,
-      this.text,
-      this.description,
-      this.photo,
+      {required this.id,
+      required this.shortName,
+      required this.title,
+      required this.text,
+      required this.description,
+      required this.photo,
       this.animation});
 
   /// [id] Game game
@@ -30,18 +30,19 @@ class Game extends TdObject {
   Photo photo;
 
   /// [animation] Game animation; may be null
-  Animation animation;
+  Animation? animation;
 
   /// Parse from a json
-  Game.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.shortName = json['short_name'];
-    this.title = json['title'];
-    this.text = FormattedText.fromJson(json['text'] ?? <String, dynamic>{});
-    this.description = json['description'];
-    this.photo = Photo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.animation =
-        Animation.fromJson(json['animation'] ?? <String, dynamic>{});
+  factory Game.fromJson(Map<String, dynamic> json) {
+    return Game(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      shortName: json['short_name'] ?? "",
+      title: json['title'] ?? "",
+      text: FormattedText.fromJson(json['text'] ?? <String, dynamic>{}),
+      description: json['description'] ?? "",
+      photo: Photo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      animation: Animation.fromJson(json['animation'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -51,10 +52,10 @@ class Game extends TdObject {
       "id": this.id,
       "short_name": this.shortName,
       "title": this.title,
-      "text": this.text == null ? null : this.text.toJson(),
+      "text": this.text.toJson(),
       "description": this.description,
-      "photo": this.photo == null ? null : this.photo.toJson(),
-      "animation": this.animation == null ? null : this.animation.toJson(),
+      "photo": this.photo.toJson(),
+      "animation": this.animation == null ? null : this.animation!.toJson(),
     };
   }
 

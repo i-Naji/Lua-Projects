@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SetChatTitle extends TdFunction {
   /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info rights
-  SetChatTitle({this.chatId, this.title});
+  SetChatTitle({required this.chatId, required this.title, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -14,7 +14,13 @@ class SetChatTitle extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetChatTitle.fromJson(Map<String, dynamic> json);
+  factory SetChatTitle.fromJson(Map<String, dynamic> json) {
+    return SetChatTitle(
+      chatId: json['chat_id'] ?? 0,
+      title: json['title'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -3,17 +3,17 @@ part of '../tdapi.dart';
 class ChatEventLogFilters extends TdObject {
   /// Represents a set of filters used to obtain a chat event log
   ChatEventLogFilters(
-      {this.messageEdits,
-      this.messageDeletions,
-      this.messagePins,
-      this.memberJoins,
-      this.memberLeaves,
-      this.memberInvites,
-      this.memberPromotions,
-      this.memberRestrictions,
-      this.infoChanges,
-      this.settingChanges,
-      this.voiceChatChanges});
+      {required this.messageEdits,
+      required this.messageDeletions,
+      required this.messagePins,
+      required this.memberJoins,
+      required this.memberLeaves,
+      required this.memberInvites,
+      required this.memberPromotions,
+      required this.memberRestrictions,
+      required this.infoChanges,
+      required this.settingChanges,
+      required this.voiceChatChanges});
 
   /// [messageEdits] True, if message edits should be returned
   bool messageEdits;
@@ -49,18 +49,20 @@ class ChatEventLogFilters extends TdObject {
   bool voiceChatChanges;
 
   /// Parse from a json
-  ChatEventLogFilters.fromJson(Map<String, dynamic> json) {
-    this.messageEdits = json['message_edits'];
-    this.messageDeletions = json['message_deletions'];
-    this.messagePins = json['message_pins'];
-    this.memberJoins = json['member_joins'];
-    this.memberLeaves = json['member_leaves'];
-    this.memberInvites = json['member_invites'];
-    this.memberPromotions = json['member_promotions'];
-    this.memberRestrictions = json['member_restrictions'];
-    this.infoChanges = json['info_changes'];
-    this.settingChanges = json['setting_changes'];
-    this.voiceChatChanges = json['voice_chat_changes'];
+  factory ChatEventLogFilters.fromJson(Map<String, dynamic> json) {
+    return ChatEventLogFilters(
+      messageEdits: json['message_edits'] ?? false,
+      messageDeletions: json['message_deletions'] ?? false,
+      messagePins: json['message_pins'] ?? false,
+      memberJoins: json['member_joins'] ?? false,
+      memberLeaves: json['member_leaves'] ?? false,
+      memberInvites: json['member_invites'] ?? false,
+      memberPromotions: json['member_promotions'] ?? false,
+      memberRestrictions: json['member_restrictions'] ?? false,
+      infoChanges: json['info_changes'] ?? false,
+      settingChanges: json['setting_changes'] ?? false,
+      voiceChatChanges: json['voice_chat_changes'] ?? false,
+    );
   }
 
   @override

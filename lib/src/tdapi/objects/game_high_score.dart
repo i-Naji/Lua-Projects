@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GameHighScore extends TdObject {
   /// Contains one row of the game high score table
-  GameHighScore({this.position, this.userId, this.score});
+  GameHighScore(
+      {required this.position, required this.userId, required this.score});
 
   /// [position] Position in the high score table
   int position;
@@ -14,10 +15,12 @@ class GameHighScore extends TdObject {
   int score;
 
   /// Parse from a json
-  GameHighScore.fromJson(Map<String, dynamic> json) {
-    this.position = json['position'];
-    this.userId = json['user_id'];
-    this.score = json['score'];
+  factory GameHighScore.fromJson(Map<String, dynamic> json) {
+    return GameHighScore(
+      position: json['position'] ?? 0,
+      userId: json['user_id'] ?? 0,
+      score: json['score'] ?? 0,
+    );
   }
 
   @override

@@ -2,13 +2,18 @@ part of '../tdapi.dart';
 
 class ResendPhoneNumberConfirmationCode extends TdFunction {
   /// Resends phone number confirmation code
-  ResendPhoneNumberConfirmationCode();
+  ResendPhoneNumberConfirmationCode({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  ResendPhoneNumberConfirmationCode.fromJson(Map<String, dynamic> json);
+  factory ResendPhoneNumberConfirmationCode.fromJson(
+      Map<String, dynamic> json) {
+    return ResendPhoneNumberConfirmationCode(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

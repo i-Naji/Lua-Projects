@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class GetUserProfilePhotos extends TdFunction {
   /// Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already
-  GetUserProfilePhotos({this.userId, this.offset, this.limit});
+  GetUserProfilePhotos(
+      {required this.userId,
+      required this.offset,
+      required this.limit,
+      this.extra});
 
   /// [userId] User identifier
   int userId;
@@ -17,7 +21,14 @@ class GetUserProfilePhotos extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetUserProfilePhotos.fromJson(Map<String, dynamic> json);
+  factory GetUserProfilePhotos.fromJson(Map<String, dynamic> json) {
+    return GetUserProfilePhotos(
+      userId: json['user_id'] ?? 0,
+      offset: json['offset'] ?? 0,
+      limit: json['limit'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

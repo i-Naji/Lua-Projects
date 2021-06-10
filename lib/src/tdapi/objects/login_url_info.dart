@@ -14,7 +14,7 @@ class LoginUrlInfo extends TdObject {
       case LoginUrlInfoRequestConfirmation.CONSTRUCTOR:
         return LoginUrlInfoRequestConfirmation.fromJson(json);
       default:
-        return null;
+        return LoginUrlInfo();
     }
   }
 
@@ -31,7 +31,7 @@ class LoginUrlInfo extends TdObject {
 
 class LoginUrlInfoOpen extends LoginUrlInfo {
   /// An HTTP url needs to be open
-  LoginUrlInfoOpen({this.url, this.skipConfirm});
+  LoginUrlInfoOpen({required this.url, required this.skipConfirm, this.extra});
 
   /// [url] The URL to open
   String url;
@@ -40,13 +40,16 @@ class LoginUrlInfoOpen extends LoginUrlInfo {
   bool skipConfirm;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  LoginUrlInfoOpen.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
-    this.skipConfirm = json['skip_confirm'];
-    this.extra = json['@extra'];
+  factory LoginUrlInfoOpen.fromJson(Map<String, dynamic> json) {
+    return LoginUrlInfoOpen(
+      url: json['url'] ?? "",
+      skipConfirm: json['skip_confirm'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -67,7 +70,11 @@ class LoginUrlInfoOpen extends LoginUrlInfo {
 class LoginUrlInfoRequestConfirmation extends LoginUrlInfo {
   /// An authorization confirmation dialog needs to be shown to the user
   LoginUrlInfoRequestConfirmation(
-      {this.url, this.domain, this.botUserId, this.requestWriteAccess});
+      {required this.url,
+      required this.domain,
+      required this.botUserId,
+      required this.requestWriteAccess,
+      this.extra});
 
   /// [url] An HTTP URL to be opened
   String url;
@@ -82,15 +89,18 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo {
   bool requestWriteAccess;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  LoginUrlInfoRequestConfirmation.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
-    this.domain = json['domain'];
-    this.botUserId = json['bot_user_id'];
-    this.requestWriteAccess = json['request_write_access'];
-    this.extra = json['@extra'];
+  factory LoginUrlInfoRequestConfirmation.fromJson(Map<String, dynamic> json) {
+    return LoginUrlInfoRequestConfirmation(
+      url: json['url'] ?? "",
+      domain: json['domain'] ?? "",
+      botUserId: json['bot_user_id'] ?? 0,
+      requestWriteAccess: json['request_write_access'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override

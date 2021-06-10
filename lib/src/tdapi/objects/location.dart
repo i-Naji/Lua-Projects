@@ -2,7 +2,10 @@ part of '../tdapi.dart';
 
 class Location extends TdObject {
   /// Describes a location on planet Earth
-  Location({this.latitude, this.longitude, this.horizontalAccuracy});
+  Location(
+      {required this.latitude,
+      required this.longitude,
+      required this.horizontalAccuracy});
 
   /// [latitude] Latitude of the location in degrees; as defined by the sender
   double latitude;
@@ -14,10 +17,12 @@ class Location extends TdObject {
   double horizontalAccuracy;
 
   /// Parse from a json
-  Location.fromJson(Map<String, dynamic> json) {
-    this.latitude = json['latitude'];
-    this.longitude = json['longitude'];
-    this.horizontalAccuracy = json['horizontal_accuracy'];
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      latitude: json['latitude'] ?? 0,
+      longitude: json['longitude'] ?? 0,
+      horizontalAccuracy: json['horizontal_accuracy'] ?? 0,
+    );
   }
 
   @override

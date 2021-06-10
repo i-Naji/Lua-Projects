@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetAutoDownloadSettingsPresets extends TdFunction {
   /// Returns auto-download settings presets for the current user
-  GetAutoDownloadSettingsPresets();
+  GetAutoDownloadSettingsPresets({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetAutoDownloadSettingsPresets.fromJson(Map<String, dynamic> json);
+  factory GetAutoDownloadSettingsPresets.fromJson(Map<String, dynamic> json) {
+    return GetAutoDownloadSettingsPresets(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

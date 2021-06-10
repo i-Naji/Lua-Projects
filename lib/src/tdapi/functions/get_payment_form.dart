@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetPaymentForm extends TdFunction {
   /// Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
-  GetPaymentForm({this.chatId, this.messageId});
+  GetPaymentForm({required this.chatId, required this.messageId, this.extra});
 
   /// [chatId] Chat identifier of the Invoice message
   int chatId;
@@ -14,7 +14,13 @@ class GetPaymentForm extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetPaymentForm.fromJson(Map<String, dynamic> json);
+  factory GetPaymentForm.fromJson(Map<String, dynamic> json) {
+    return GetPaymentForm(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,7 +2,12 @@ part of '../tdapi.dart';
 
 class SendCallRating extends TdFunction {
   /// Sends a call rating
-  SendCallRating({this.callId, this.rating, this.comment, this.problems});
+  SendCallRating(
+      {required this.callId,
+      required this.rating,
+      required this.comment,
+      required this.problems,
+      this.extra});
 
   /// [callId] Call identifier
   int callId;
@@ -20,7 +25,17 @@ class SendCallRating extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SendCallRating.fromJson(Map<String, dynamic> json);
+  factory SendCallRating.fromJson(Map<String, dynamic> json) {
+    return SendCallRating(
+      callId: json['call_id'] ?? 0,
+      rating: json['rating'] ?? 0,
+      comment: json['comment'] ?? "",
+      problems: List<CallProblem>.from((json['problems'] ?? [])
+          .map((item) => CallProblem.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

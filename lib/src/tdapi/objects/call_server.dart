@@ -2,7 +2,12 @@ part of '../tdapi.dart';
 
 class CallServer extends TdObject {
   /// Describes a server for relaying call data
-  CallServer({this.id, this.ipAddress, this.ipv6Address, this.port, this.type});
+  CallServer(
+      {required this.id,
+      required this.ipAddress,
+      required this.ipv6Address,
+      required this.port,
+      required this.type});
 
   /// [id] Server identifier
   int id;
@@ -20,12 +25,14 @@ class CallServer extends TdObject {
   CallServerType type;
 
   /// Parse from a json
-  CallServer.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.ipAddress = json['ip_address'];
-    this.ipv6Address = json['ipv6_address'];
-    this.port = json['port'];
-    this.type = CallServerType.fromJson(json['type'] ?? <String, dynamic>{});
+  factory CallServer.fromJson(Map<String, dynamic> json) {
+    return CallServer(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      ipAddress: json['ip_address'] ?? "",
+      ipv6Address: json['ipv6_address'] ?? "",
+      port: json['port'] ?? 0,
+      type: CallServerType.fromJson(json['type'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -36,7 +43,7 @@ class CallServer extends TdObject {
       "ip_address": this.ipAddress,
       "ipv6_address": this.ipv6Address,
       "port": this.port,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
     };
   }
 

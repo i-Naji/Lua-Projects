@@ -2,7 +2,12 @@ part of '../tdapi.dart';
 
 class AddProxy extends TdFunction {
   /// Adds a proxy server for network requests. Can be called before authorization
-  AddProxy({this.server, this.port, this.enable, this.type});
+  AddProxy(
+      {required this.server,
+      required this.port,
+      required this.enable,
+      required this.type,
+      this.extra});
 
   /// [server] Proxy server IP address
   String server;
@@ -20,7 +25,15 @@ class AddProxy extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AddProxy.fromJson(Map<String, dynamic> json);
+  factory AddProxy.fromJson(Map<String, dynamic> json) {
+    return AddProxy(
+      server: json['server'] ?? "",
+      port: json['port'] ?? 0,
+      enable: json['enable'] ?? false,
+      type: ProxyType.fromJson(json['type'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -29,7 +42,7 @@ class AddProxy extends TdFunction {
       "server": this.server,
       "port": this.port,
       "enable": this.enable,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "@extra": this.extra,
     };
   }

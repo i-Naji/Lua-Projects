@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetUserFullInfo extends TdFunction {
   /// Returns full information about a user by their identifier
-  GetUserFullInfo({this.userId});
+  GetUserFullInfo({required this.userId, this.extra});
 
   /// [userId] User identifier
   int userId;
@@ -11,7 +11,12 @@ class GetUserFullInfo extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetUserFullInfo.fromJson(Map<String, dynamic> json);
+  factory GetUserFullInfo.fromJson(Map<String, dynamic> json) {
+    return GetUserFullInfo(
+      userId: json['user_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

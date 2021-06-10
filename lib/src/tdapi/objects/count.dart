@@ -2,18 +2,21 @@ part of '../tdapi.dart';
 
 class Count extends TdObject {
   /// Contains a counter
-  Count({this.count});
+  Count({required this.count, this.extra});
 
   /// [count] Count
   int count;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Count.fromJson(Map<String, dynamic> json) {
-    this.count = json['count'];
-    this.extra = json['@extra'];
+  factory Count.fromJson(Map<String, dynamic> json) {
+    return Count(
+      count: json['count'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override

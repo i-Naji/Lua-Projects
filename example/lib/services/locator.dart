@@ -1,7 +1,8 @@
-import '../utils/const.dart';
 import 'package:get_it/get_it.dart';
 
-GetIt locator = GetIt();
+import '../utils/const.dart';
+
+final GetIt locator = GetIt.instance;
 
 void setupLocator() {
   locator.registerLazySingleton(() => NavigationService());

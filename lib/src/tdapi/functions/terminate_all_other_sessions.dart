@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class TerminateAllOtherSessions extends TdFunction {
   /// Terminates all other sessions of the current user
-  TerminateAllOtherSessions();
+  TerminateAllOtherSessions({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  TerminateAllOtherSessions.fromJson(Map<String, dynamic> json);
+  factory TerminateAllOtherSessions.fromJson(Map<String, dynamic> json) {
+    return TerminateAllOtherSessions(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

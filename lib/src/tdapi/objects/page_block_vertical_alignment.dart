@@ -17,7 +17,7 @@ class PageBlockVerticalAlignment extends TdObject {
       case PageBlockVerticalAlignmentBottom.CONSTRUCTOR:
         return PageBlockVerticalAlignmentBottom.fromJson(json);
       default:
-        return null;
+        return PageBlockVerticalAlignment();
     }
   }
 
@@ -37,7 +37,9 @@ class PageBlockVerticalAlignmentTop extends PageBlockVerticalAlignment {
   PageBlockVerticalAlignmentTop();
 
   /// Parse from a json
-  PageBlockVerticalAlignmentTop.fromJson(Map<String, dynamic> json);
+  factory PageBlockVerticalAlignmentTop.fromJson(Map<String, dynamic> json) {
+    return PageBlockVerticalAlignmentTop();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -57,7 +59,9 @@ class PageBlockVerticalAlignmentMiddle extends PageBlockVerticalAlignment {
   PageBlockVerticalAlignmentMiddle();
 
   /// Parse from a json
-  PageBlockVerticalAlignmentMiddle.fromJson(Map<String, dynamic> json);
+  factory PageBlockVerticalAlignmentMiddle.fromJson(Map<String, dynamic> json) {
+    return PageBlockVerticalAlignmentMiddle();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -77,7 +81,9 @@ class PageBlockVerticalAlignmentBottom extends PageBlockVerticalAlignment {
   PageBlockVerticalAlignmentBottom();
 
   /// Parse from a json
-  PageBlockVerticalAlignmentBottom.fromJson(Map<String, dynamic> json);
+  factory PageBlockVerticalAlignmentBottom.fromJson(Map<String, dynamic> json) {
+    return PageBlockVerticalAlignmentBottom();
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class CreateSupergroupChat extends TdFunction {
   /// Returns an existing chat corresponding to a known supergroup or channel
-  CreateSupergroupChat({this.supergroupId, this.force});
+  CreateSupergroupChat(
+      {required this.supergroupId, required this.force, this.extra});
 
   /// [supergroupId] Supergroup or channel identifier
   int supergroupId;
@@ -14,7 +15,13 @@ class CreateSupergroupChat extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CreateSupergroupChat.fromJson(Map<String, dynamic> json);
+  factory CreateSupergroupChat.fromJson(Map<String, dynamic> json) {
+    return CreateSupergroupChat(
+      supergroupId: json['supergroup_id'] ?? 0,
+      force: json['force'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

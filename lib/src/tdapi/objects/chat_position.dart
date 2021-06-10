@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class ChatPosition extends TdObject {
   /// Describes a position of a chat in a chat list
-  ChatPosition({this.list, this.order, this.isPinned, this.source});
+  ChatPosition(
+      {required this.list,
+      required this.order,
+      required this.isPinned,
+      this.source});
 
   /// [list] The chat list
   ChatList list;
@@ -14,24 +18,26 @@ class ChatPosition extends TdObject {
   bool isPinned;
 
   /// [source] Source of the chat in the chat list; may be null
-  ChatSource source;
+  ChatSource? source;
 
   /// Parse from a json
-  ChatPosition.fromJson(Map<String, dynamic> json) {
-    this.list = ChatList.fromJson(json['list'] ?? <String, dynamic>{});
-    this.order = int.tryParse(json['order'] ?? "");
-    this.isPinned = json['is_pinned'];
-    this.source = ChatSource.fromJson(json['source'] ?? <String, dynamic>{});
+  factory ChatPosition.fromJson(Map<String, dynamic> json) {
+    return ChatPosition(
+      list: ChatList.fromJson(json['list'] ?? <String, dynamic>{}),
+      order: int.tryParse(json['order'] ?? "") ?? 0,
+      isPinned: json['is_pinned'] ?? false,
+      source: ChatSource.fromJson(json['source'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "list": this.list == null ? null : this.list.toJson(),
+      "list": this.list.toJson(),
       "order": this.order,
       "is_pinned": this.isPinned,
-      "source": this.source == null ? null : this.source.toJson(),
+      "source": this.source == null ? null : this.source!.toJson(),
     };
   }
 

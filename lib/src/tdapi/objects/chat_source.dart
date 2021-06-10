@@ -14,7 +14,7 @@ class ChatSource extends TdObject {
       case ChatSourcePublicServiceAnnouncement.CONSTRUCTOR:
         return ChatSourcePublicServiceAnnouncement.fromJson(json);
       default:
-        return null;
+        return ChatSource();
     }
   }
 
@@ -34,7 +34,9 @@ class ChatSourceMtprotoProxy extends ChatSource {
   ChatSourceMtprotoProxy();
 
   /// Parse from a json
-  ChatSourceMtprotoProxy.fromJson(Map<String, dynamic> json);
+  factory ChatSourceMtprotoProxy.fromJson(Map<String, dynamic> json) {
+    return ChatSourceMtprotoProxy();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -51,7 +53,7 @@ class ChatSourceMtprotoProxy extends ChatSource {
 
 class ChatSourcePublicServiceAnnouncement extends ChatSource {
   /// The chat contains a public service announcement
-  ChatSourcePublicServiceAnnouncement({this.type, this.text});
+  ChatSourcePublicServiceAnnouncement({required this.type, required this.text});
 
   /// [type] The type of the announcement
   String type;
@@ -60,9 +62,12 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource {
   String text;
 
   /// Parse from a json
-  ChatSourcePublicServiceAnnouncement.fromJson(Map<String, dynamic> json) {
-    this.type = json['type'];
-    this.text = json['text'];
+  factory ChatSourcePublicServiceAnnouncement.fromJson(
+      Map<String, dynamic> json) {
+    return ChatSourcePublicServiceAnnouncement(
+      type: json['type'] ?? "",
+      text: json['text'] ?? "",
+    );
   }
 
   @override

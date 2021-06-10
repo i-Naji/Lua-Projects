@@ -17,7 +17,7 @@ class PageBlockHorizontalAlignment extends TdObject {
       case PageBlockHorizontalAlignmentRight.CONSTRUCTOR:
         return PageBlockHorizontalAlignmentRight.fromJson(json);
       default:
-        return null;
+        return PageBlockHorizontalAlignment();
     }
   }
 
@@ -37,7 +37,9 @@ class PageBlockHorizontalAlignmentLeft extends PageBlockHorizontalAlignment {
   PageBlockHorizontalAlignmentLeft();
 
   /// Parse from a json
-  PageBlockHorizontalAlignmentLeft.fromJson(Map<String, dynamic> json);
+  factory PageBlockHorizontalAlignmentLeft.fromJson(Map<String, dynamic> json) {
+    return PageBlockHorizontalAlignmentLeft();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -57,7 +59,10 @@ class PageBlockHorizontalAlignmentCenter extends PageBlockHorizontalAlignment {
   PageBlockHorizontalAlignmentCenter();
 
   /// Parse from a json
-  PageBlockHorizontalAlignmentCenter.fromJson(Map<String, dynamic> json);
+  factory PageBlockHorizontalAlignmentCenter.fromJson(
+      Map<String, dynamic> json) {
+    return PageBlockHorizontalAlignmentCenter();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -77,7 +82,10 @@ class PageBlockHorizontalAlignmentRight extends PageBlockHorizontalAlignment {
   PageBlockHorizontalAlignmentRight();
 
   /// Parse from a json
-  PageBlockHorizontalAlignmentRight.fromJson(Map<String, dynamic> json);
+  factory PageBlockHorizontalAlignmentRight.fromJson(
+      Map<String, dynamic> json) {
+    return PageBlockHorizontalAlignmentRight();
+  }
 
   @override
   Map<String, dynamic> toJson() {

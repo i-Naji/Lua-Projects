@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class DiscardGroupCall extends TdFunction {
   /// Discards a group call. Requires can_manage_voice_chats rights in the corresponding chat
-  DiscardGroupCall({this.groupCallId});
+  DiscardGroupCall({required this.groupCallId, this.extra});
 
   /// [groupCallId] Group call identifier
   int groupCallId;
@@ -11,7 +11,12 @@ class DiscardGroupCall extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  DiscardGroupCall.fromJson(Map<String, dynamic> json);
+  factory DiscardGroupCall.fromJson(Map<String, dynamic> json) {
+    return DiscardGroupCall(
+      groupCallId: json['group_call_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

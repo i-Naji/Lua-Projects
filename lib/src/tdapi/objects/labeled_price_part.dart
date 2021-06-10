@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class LabeledPricePart extends TdObject {
   /// Portion of the price of a product (e.g., "delivery cost", "tax amount")
-  LabeledPricePart({this.label, this.amount});
+  LabeledPricePart({required this.label, required this.amount});
 
   /// [label] Label for this portion of the product price
   String label;
@@ -11,9 +11,11 @@ class LabeledPricePart extends TdObject {
   int amount;
 
   /// Parse from a json
-  LabeledPricePart.fromJson(Map<String, dynamic> json) {
-    this.label = json['label'];
-    this.amount = json['amount'];
+  factory LabeledPricePart.fromJson(Map<String, dynamic> json) {
+    return LabeledPricePart(
+      label: json['label'] ?? "",
+      amount: json['amount'] ?? 0,
+    );
   }
 
   @override

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class CheckChatUsername extends TdFunction {
   /// Checks whether a username can be set for a chat
-  CheckChatUsername({this.chatId, this.username});
+  CheckChatUsername({required this.chatId, required this.username, this.extra});
 
   /// [chatId] Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created
   int chatId;
@@ -14,7 +14,13 @@ class CheckChatUsername extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CheckChatUsername.fromJson(Map<String, dynamic> json);
+  factory CheckChatUsername.fromJson(Map<String, dynamic> json) {
+    return CheckChatUsername(
+      chatId: json['chat_id'] ?? 0,
+      username: json['username'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -20,7 +20,7 @@ class ChatType extends TdObject {
       case ChatTypeSecret.CONSTRUCTOR:
         return ChatTypeSecret.fromJson(json);
       default:
-        return null;
+        return ChatType();
     }
   }
 
@@ -37,14 +37,16 @@ class ChatType extends TdObject {
 
 class ChatTypePrivate extends ChatType {
   /// An ordinary chat with a user
-  ChatTypePrivate({this.userId});
+  ChatTypePrivate({required this.userId});
 
   /// [userId] User identifier
   int userId;
 
   /// Parse from a json
-  ChatTypePrivate.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
+  factory ChatTypePrivate.fromJson(Map<String, dynamic> json) {
+    return ChatTypePrivate(
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override
@@ -63,14 +65,16 @@ class ChatTypePrivate extends ChatType {
 
 class ChatTypeBasicGroup extends ChatType {
   /// A basic group (i.e., a chat with 0-200 other users)
-  ChatTypeBasicGroup({this.basicGroupId});
+  ChatTypeBasicGroup({required this.basicGroupId});
 
   /// [basicGroupId] Basic group identifier
   int basicGroupId;
 
   /// Parse from a json
-  ChatTypeBasicGroup.fromJson(Map<String, dynamic> json) {
-    this.basicGroupId = json['basic_group_id'];
+  factory ChatTypeBasicGroup.fromJson(Map<String, dynamic> json) {
+    return ChatTypeBasicGroup(
+      basicGroupId: json['basic_group_id'] ?? 0,
+    );
   }
 
   @override
@@ -89,7 +93,7 @@ class ChatTypeBasicGroup extends ChatType {
 
 class ChatTypeSupergroup extends ChatType {
   /// A supergroup (i.e. a chat with up to GetOption("supergroup_max_size") other users), or channel (with unlimited members)
-  ChatTypeSupergroup({this.supergroupId, this.isChannel});
+  ChatTypeSupergroup({required this.supergroupId, required this.isChannel});
 
   /// [supergroupId] Supergroup or channel identifier
   int supergroupId;
@@ -98,9 +102,11 @@ class ChatTypeSupergroup extends ChatType {
   bool isChannel;
 
   /// Parse from a json
-  ChatTypeSupergroup.fromJson(Map<String, dynamic> json) {
-    this.supergroupId = json['supergroup_id'];
-    this.isChannel = json['is_channel'];
+  factory ChatTypeSupergroup.fromJson(Map<String, dynamic> json) {
+    return ChatTypeSupergroup(
+      supergroupId: json['supergroup_id'] ?? 0,
+      isChannel: json['is_channel'] ?? false,
+    );
   }
 
   @override
@@ -120,7 +126,7 @@ class ChatTypeSupergroup extends ChatType {
 
 class ChatTypeSecret extends ChatType {
   /// A secret chat with a user
-  ChatTypeSecret({this.secretChatId, this.userId});
+  ChatTypeSecret({required this.secretChatId, required this.userId});
 
   /// [secretChatId] Secret chat identifier
   int secretChatId;
@@ -129,9 +135,11 @@ class ChatTypeSecret extends ChatType {
   int userId;
 
   /// Parse from a json
-  ChatTypeSecret.fromJson(Map<String, dynamic> json) {
-    this.secretChatId = json['secret_chat_id'];
-    this.userId = json['user_id'];
+  factory ChatTypeSecret.fromJson(Map<String, dynamic> json) {
+    return ChatTypeSecret(
+      secretChatId: json['secret_chat_id'] ?? 0,
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override

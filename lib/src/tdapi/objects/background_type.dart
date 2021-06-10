@@ -17,7 +17,7 @@ class BackgroundType extends TdObject {
       case BackgroundTypeFill.CONSTRUCTOR:
         return BackgroundTypeFill.fromJson(json);
       default:
-        return null;
+        return BackgroundType();
     }
   }
 
@@ -34,7 +34,7 @@ class BackgroundType extends TdObject {
 
 class BackgroundTypeWallpaper extends BackgroundType {
   /// A wallpaper in JPEG format
-  BackgroundTypeWallpaper({this.isBlurred, this.isMoving});
+  BackgroundTypeWallpaper({required this.isBlurred, required this.isMoving});
 
   /// [isBlurred] True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
   bool isBlurred;
@@ -43,9 +43,11 @@ class BackgroundTypeWallpaper extends BackgroundType {
   bool isMoving;
 
   /// Parse from a json
-  BackgroundTypeWallpaper.fromJson(Map<String, dynamic> json) {
-    this.isBlurred = json['is_blurred'];
-    this.isMoving = json['is_moving'];
+  factory BackgroundTypeWallpaper.fromJson(Map<String, dynamic> json) {
+    return BackgroundTypeWallpaper(
+      isBlurred: json['is_blurred'] ?? false,
+      isMoving: json['is_moving'] ?? false,
+    );
   }
 
   @override
@@ -65,7 +67,8 @@ class BackgroundTypeWallpaper extends BackgroundType {
 
 class BackgroundTypePattern extends BackgroundType {
   /// A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
-  BackgroundTypePattern({this.fill, this.intensity, this.isMoving});
+  BackgroundTypePattern(
+      {required this.fill, required this.intensity, required this.isMoving});
 
   /// [fill] Description of the background fill
   BackgroundFill fill;
@@ -77,17 +80,19 @@ class BackgroundTypePattern extends BackgroundType {
   bool isMoving;
 
   /// Parse from a json
-  BackgroundTypePattern.fromJson(Map<String, dynamic> json) {
-    this.fill = BackgroundFill.fromJson(json['fill'] ?? <String, dynamic>{});
-    this.intensity = json['intensity'];
-    this.isMoving = json['is_moving'];
+  factory BackgroundTypePattern.fromJson(Map<String, dynamic> json) {
+    return BackgroundTypePattern(
+      fill: BackgroundFill.fromJson(json['fill'] ?? <String, dynamic>{}),
+      intensity: json['intensity'] ?? 0,
+      isMoving: json['is_moving'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "fill": this.fill == null ? null : this.fill.toJson(),
+      "fill": this.fill.toJson(),
       "intensity": this.intensity,
       "is_moving": this.isMoving,
     };
@@ -101,21 +106,23 @@ class BackgroundTypePattern extends BackgroundType {
 
 class BackgroundTypeFill extends BackgroundType {
   /// A filled background
-  BackgroundTypeFill({this.fill});
+  BackgroundTypeFill({required this.fill});
 
   /// [fill] Description of the background fill
   BackgroundFill fill;
 
   /// Parse from a json
-  BackgroundTypeFill.fromJson(Map<String, dynamic> json) {
-    this.fill = BackgroundFill.fromJson(json['fill'] ?? <String, dynamic>{});
+  factory BackgroundTypeFill.fromJson(Map<String, dynamic> json) {
+    return BackgroundTypeFill(
+      fill: BackgroundFill.fromJson(json['fill'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "fill": this.fill == null ? null : this.fill.toJson(),
+      "fill": this.fill.toJson(),
     };
   }
 

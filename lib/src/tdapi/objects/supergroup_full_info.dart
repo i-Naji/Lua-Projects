@@ -4,28 +4,29 @@ class SupergroupFullInfo extends TdObject {
   /// Contains full information about a supergroup or channel
   SupergroupFullInfo(
       {this.photo,
-      this.description,
-      this.memberCount,
-      this.administratorCount,
-      this.restrictedCount,
-      this.bannedCount,
-      this.linkedChatId,
-      this.slowModeDelay,
-      this.slowModeDelayExpiresIn,
-      this.canGetMembers,
-      this.canSetUsername,
-      this.canSetStickerSet,
-      this.canSetLocation,
-      this.canGetStatistics,
-      this.isAllHistoryAvailable,
-      this.stickerSetId,
+      required this.description,
+      required this.memberCount,
+      required this.administratorCount,
+      required this.restrictedCount,
+      required this.bannedCount,
+      required this.linkedChatId,
+      required this.slowModeDelay,
+      required this.slowModeDelayExpiresIn,
+      required this.canGetMembers,
+      required this.canSetUsername,
+      required this.canSetStickerSet,
+      required this.canSetLocation,
+      required this.canGetStatistics,
+      required this.isAllHistoryAvailable,
+      required this.stickerSetId,
       this.location,
-      this.inviteLink,
-      this.upgradedFromBasicGroupId,
-      this.upgradedFromMaxMessageId});
+      required this.inviteLink,
+      required this.upgradedFromBasicGroupId,
+      required this.upgradedFromMaxMessageId,
+      this.extra});
 
   /// [photo] Chat photo; may be null
-  ChatPhoto photo;
+  ChatPhoto? photo;
 
   /// [description] Supergroup or channel description
   String description;
@@ -73,7 +74,7 @@ class SupergroupFullInfo extends TdObject {
   int stickerSetId;
 
   /// [location] Location to which the supergroup is connected; may be null
-  ChatLocation location;
+  ChatLocation? location;
 
   /// [inviteLink] Invite link for this chat
   String inviteLink;
@@ -85,39 +86,41 @@ class SupergroupFullInfo extends TdObject {
   int upgradedFromMaxMessageId;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  SupergroupFullInfo.fromJson(Map<String, dynamic> json) {
-    this.photo = ChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.description = json['description'];
-    this.memberCount = json['member_count'];
-    this.administratorCount = json['administrator_count'];
-    this.restrictedCount = json['restricted_count'];
-    this.bannedCount = json['banned_count'];
-    this.linkedChatId = json['linked_chat_id'];
-    this.slowModeDelay = json['slow_mode_delay'];
-    this.slowModeDelayExpiresIn = json['slow_mode_delay_expires_in'];
-    this.canGetMembers = json['can_get_members'];
-    this.canSetUsername = json['can_set_username'];
-    this.canSetStickerSet = json['can_set_sticker_set'];
-    this.canSetLocation = json['can_set_location'];
-    this.canGetStatistics = json['can_get_statistics'];
-    this.isAllHistoryAvailable = json['is_all_history_available'];
-    this.stickerSetId = int.tryParse(json['sticker_set_id'] ?? "");
-    this.location =
-        ChatLocation.fromJson(json['location'] ?? <String, dynamic>{});
-    this.inviteLink = json['invite_link'];
-    this.upgradedFromBasicGroupId = json['upgraded_from_basic_group_id'];
-    this.upgradedFromMaxMessageId = json['upgraded_from_max_message_id'];
-    this.extra = json['@extra'];
+  factory SupergroupFullInfo.fromJson(Map<String, dynamic> json) {
+    return SupergroupFullInfo(
+      photo: ChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{}),
+      description: json['description'] ?? "",
+      memberCount: json['member_count'] ?? 0,
+      administratorCount: json['administrator_count'] ?? 0,
+      restrictedCount: json['restricted_count'] ?? 0,
+      bannedCount: json['banned_count'] ?? 0,
+      linkedChatId: json['linked_chat_id'] ?? 0,
+      slowModeDelay: json['slow_mode_delay'] ?? 0,
+      slowModeDelayExpiresIn: json['slow_mode_delay_expires_in'] ?? 0,
+      canGetMembers: json['can_get_members'] ?? false,
+      canSetUsername: json['can_set_username'] ?? false,
+      canSetStickerSet: json['can_set_sticker_set'] ?? false,
+      canSetLocation: json['can_set_location'] ?? false,
+      canGetStatistics: json['can_get_statistics'] ?? false,
+      isAllHistoryAvailable: json['is_all_history_available'] ?? false,
+      stickerSetId: int.tryParse(json['sticker_set_id'] ?? "") ?? 0,
+      location: ChatLocation.fromJson(json['location'] ?? <String, dynamic>{}),
+      inviteLink: json['invite_link'] ?? "",
+      upgradedFromBasicGroupId: json['upgraded_from_basic_group_id'] ?? 0,
+      upgradedFromMaxMessageId: json['upgraded_from_max_message_id'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo == null ? null : this.photo!.toJson(),
       "description": this.description,
       "member_count": this.memberCount,
       "administrator_count": this.administratorCount,
@@ -133,7 +136,7 @@ class SupergroupFullInfo extends TdObject {
       "can_get_statistics": this.canGetStatistics,
       "is_all_history_available": this.isAllHistoryAvailable,
       "sticker_set_id": this.stickerSetId,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location == null ? null : this.location!.toJson(),
       "invite_link": this.inviteLink,
       "upgraded_from_basic_group_id": this.upgradedFromBasicGroupId,
       "upgraded_from_max_message_id": this.upgradedFromMaxMessageId,

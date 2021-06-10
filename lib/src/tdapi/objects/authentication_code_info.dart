@@ -3,7 +3,11 @@ part of '../tdapi.dart';
 class AuthenticationCodeInfo extends TdObject {
   /// Information about the authentication code that was sent
   AuthenticationCodeInfo(
-      {this.phoneNumber, this.type, this.nextType, this.timeout});
+      {required this.phoneNumber,
+      required this.type,
+      this.nextType,
+      required this.timeout,
+      this.extra});
 
   /// [phoneNumber] A phone number that is being authenticated
   String phoneNumber;
@@ -12,23 +16,26 @@ class AuthenticationCodeInfo extends TdObject {
   AuthenticationCodeType type;
 
   /// [nextType] Describes the way the next code will be sent to the user; may be null
-  AuthenticationCodeType nextType;
+  AuthenticationCodeType? nextType;
 
   /// [timeout] Timeout before the code should be re-sent, in seconds
   int timeout;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AuthenticationCodeInfo.fromJson(Map<String, dynamic> json) {
-    this.phoneNumber = json['phone_number'];
-    this.type =
-        AuthenticationCodeType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.nextType = AuthenticationCodeType.fromJson(
-        json['next_type'] ?? <String, dynamic>{});
-    this.timeout = json['timeout'];
-    this.extra = json['@extra'];
+  factory AuthenticationCodeInfo.fromJson(Map<String, dynamic> json) {
+    return AuthenticationCodeInfo(
+      phoneNumber: json['phone_number'] ?? "",
+      type:
+          AuthenticationCodeType.fromJson(json['type'] ?? <String, dynamic>{}),
+      nextType: AuthenticationCodeType.fromJson(
+          json['next_type'] ?? <String, dynamic>{}),
+      timeout: json['timeout'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -36,8 +43,8 @@ class AuthenticationCodeInfo extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "phone_number": this.phoneNumber,
-      "type": this.type == null ? null : this.type.toJson(),
-      "next_type": this.nextType == null ? null : this.nextType.toJson(),
+      "type": this.type.toJson(),
+      "next_type": this.nextType == null ? null : this.nextType!.toJson(),
       "timeout": this.timeout,
     };
   }

@@ -3,10 +3,10 @@ part of '../tdapi.dart';
 class PassportSuitableElement extends TdObject {
   /// Contains information about a Telegram Passport element that was requested by a service
   PassportSuitableElement(
-      {this.type,
-      this.isSelfieRequired,
-      this.isTranslationRequired,
-      this.isNativeNameRequired});
+      {required this.type,
+      required this.isSelfieRequired,
+      required this.isTranslationRequired,
+      required this.isNativeNameRequired});
 
   /// [type] Type of the element
   PassportElementType type;
@@ -21,19 +21,20 @@ class PassportSuitableElement extends TdObject {
   bool isNativeNameRequired;
 
   /// Parse from a json
-  PassportSuitableElement.fromJson(Map<String, dynamic> json) {
-    this.type =
-        PassportElementType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.isSelfieRequired = json['is_selfie_required'];
-    this.isTranslationRequired = json['is_translation_required'];
-    this.isNativeNameRequired = json['is_native_name_required'];
+  factory PassportSuitableElement.fromJson(Map<String, dynamic> json) {
+    return PassportSuitableElement(
+      type: PassportElementType.fromJson(json['type'] ?? <String, dynamic>{}),
+      isSelfieRequired: json['is_selfie_required'] ?? false,
+      isTranslationRequired: json['is_translation_required'] ?? false,
+      isNativeNameRequired: json['is_native_name_required'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "is_selfie_required": this.isSelfieRequired,
       "is_translation_required": this.isTranslationRequired,
       "is_native_name_required": this.isNativeNameRequired,

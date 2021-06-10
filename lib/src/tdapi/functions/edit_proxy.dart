@@ -2,7 +2,13 @@ part of '../tdapi.dart';
 
 class EditProxy extends TdFunction {
   /// Edits an existing proxy server for network requests. Can be called before authorization
-  EditProxy({this.proxyId, this.server, this.port, this.enable, this.type});
+  EditProxy(
+      {required this.proxyId,
+      required this.server,
+      required this.port,
+      required this.enable,
+      required this.type,
+      this.extra});
 
   /// [proxyId] Proxy identifier
   int proxyId;
@@ -23,7 +29,16 @@ class EditProxy extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  EditProxy.fromJson(Map<String, dynamic> json);
+  factory EditProxy.fromJson(Map<String, dynamic> json) {
+    return EditProxy(
+      proxyId: json['proxy_id'] ?? 0,
+      server: json['server'] ?? "",
+      port: json['port'] ?? 0,
+      enable: json['enable'] ?? false,
+      type: ProxyType.fromJson(json['type'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -33,7 +48,7 @@ class EditProxy extends TdFunction {
       "server": this.server,
       "port": this.port,
       "enable": this.enable,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "@extra": this.extra,
     };
   }

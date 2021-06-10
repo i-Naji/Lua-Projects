@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class ChatEvent extends TdObject {
   /// Represents a chat event
-  ChatEvent({this.id, this.date, this.userId, this.action});
+  ChatEvent(
+      {required this.id,
+      required this.date,
+      required this.userId,
+      required this.action});
 
   /// [id] Chat event identifier
   int id;
@@ -17,12 +21,13 @@ class ChatEvent extends TdObject {
   ChatEventAction action;
 
   /// Parse from a json
-  ChatEvent.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.date = json['date'];
-    this.userId = json['user_id'];
-    this.action =
-        ChatEventAction.fromJson(json['action'] ?? <String, dynamic>{});
+  factory ChatEvent.fromJson(Map<String, dynamic> json) {
+    return ChatEvent(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      date: json['date'] ?? 0,
+      userId: json['user_id'] ?? 0,
+      action: ChatEventAction.fromJson(json['action'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -32,7 +37,7 @@ class ChatEvent extends TdObject {
       "id": this.id,
       "date": this.date,
       "user_id": this.userId,
-      "action": this.action == null ? null : this.action.toJson(),
+      "action": this.action.toJson(),
     };
   }
 

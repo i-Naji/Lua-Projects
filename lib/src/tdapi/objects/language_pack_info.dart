@@ -3,19 +3,20 @@ part of '../tdapi.dart';
 class LanguagePackInfo extends TdObject {
   /// Contains information about a language pack
   LanguagePackInfo(
-      {this.id,
-      this.baseLanguagePackId,
-      this.name,
-      this.nativeName,
-      this.pluralCode,
-      this.isOfficial,
-      this.isRtl,
-      this.isBeta,
-      this.isInstalled,
-      this.totalStringCount,
-      this.translatedStringCount,
-      this.localStringCount,
-      this.translationUrl});
+      {required this.id,
+      required this.baseLanguagePackId,
+      required this.name,
+      required this.nativeName,
+      required this.pluralCode,
+      required this.isOfficial,
+      required this.isRtl,
+      required this.isBeta,
+      required this.isInstalled,
+      required this.totalStringCount,
+      required this.translatedStringCount,
+      required this.localStringCount,
+      required this.translationUrl,
+      this.extra});
 
   /// [id] Unique language pack identifier
   String id;
@@ -57,24 +58,27 @@ class LanguagePackInfo extends TdObject {
   String translationUrl;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  LanguagePackInfo.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.baseLanguagePackId = json['base_language_pack_id'];
-    this.name = json['name'];
-    this.nativeName = json['native_name'];
-    this.pluralCode = json['plural_code'];
-    this.isOfficial = json['is_official'];
-    this.isRtl = json['is_rtl'];
-    this.isBeta = json['is_beta'];
-    this.isInstalled = json['is_installed'];
-    this.totalStringCount = json['total_string_count'];
-    this.translatedStringCount = json['translated_string_count'];
-    this.localStringCount = json['local_string_count'];
-    this.translationUrl = json['translation_url'];
-    this.extra = json['@extra'];
+  factory LanguagePackInfo.fromJson(Map<String, dynamic> json) {
+    return LanguagePackInfo(
+      id: json['id'] ?? "",
+      baseLanguagePackId: json['base_language_pack_id'] ?? "",
+      name: json['name'] ?? "",
+      nativeName: json['native_name'] ?? "",
+      pluralCode: json['plural_code'] ?? "",
+      isOfficial: json['is_official'] ?? false,
+      isRtl: json['is_rtl'] ?? false,
+      isBeta: json['is_beta'] ?? false,
+      isInstalled: json['is_installed'] ?? false,
+      totalStringCount: json['total_string_count'] ?? 0,
+      translatedStringCount: json['translated_string_count'] ?? 0,
+      localStringCount: json['local_string_count'] ?? 0,
+      translationUrl: json['translation_url'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

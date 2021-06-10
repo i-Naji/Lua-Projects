@@ -2,18 +2,21 @@ part of '../tdapi.dart';
 
 class DatabaseStatistics extends TdObject {
   /// Contains database statistics
-  DatabaseStatistics({this.statistics});
+  DatabaseStatistics({required this.statistics, this.extra});
 
   /// [statistics] Database statistics in an unspecified human-readable format
   String statistics;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  DatabaseStatistics.fromJson(Map<String, dynamic> json) {
-    this.statistics = json['statistics'];
-    this.extra = json['@extra'];
+  factory DatabaseStatistics.fromJson(Map<String, dynamic> json) {
+    return DatabaseStatistics(
+      statistics: json['statistics'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

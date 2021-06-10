@@ -23,7 +23,7 @@ class ChatActionBar extends TdObject {
       case ChatActionBarSharePhoneNumber.CONSTRUCTOR:
         return ChatActionBarSharePhoneNumber.fromJson(json);
       default:
-        return null;
+        return ChatActionBar();
     }
   }
 
@@ -40,14 +40,16 @@ class ChatActionBar extends TdObject {
 
 class ChatActionBarReportSpam extends ChatActionBar {
   /// The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam
-  ChatActionBarReportSpam({this.canUnarchive});
+  ChatActionBarReportSpam({required this.canUnarchive});
 
   /// [canUnarchive] If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
   bool canUnarchive;
 
   /// Parse from a json
-  ChatActionBarReportSpam.fromJson(Map<String, dynamic> json) {
-    this.canUnarchive = json['can_unarchive'];
+  factory ChatActionBarReportSpam.fromJson(Map<String, dynamic> json) {
+    return ChatActionBarReportSpam(
+      canUnarchive: json['can_unarchive'] ?? false,
+    );
   }
 
   @override
@@ -69,7 +71,10 @@ class ChatActionBarReportUnrelatedLocation extends ChatActionBar {
   ChatActionBarReportUnrelatedLocation();
 
   /// Parse from a json
-  ChatActionBarReportUnrelatedLocation.fromJson(Map<String, dynamic> json);
+  factory ChatActionBarReportUnrelatedLocation.fromJson(
+      Map<String, dynamic> json) {
+    return ChatActionBarReportUnrelatedLocation();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -86,7 +91,8 @@ class ChatActionBarReportUnrelatedLocation extends ChatActionBar {
 
 class ChatActionBarReportAddBlock extends ChatActionBar {
   /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method blockUser, or the other user can be added to the contact list using the method addContact
-  ChatActionBarReportAddBlock({this.canUnarchive, this.distance});
+  ChatActionBarReportAddBlock(
+      {required this.canUnarchive, required this.distance});
 
   /// [canUnarchive] If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
   bool canUnarchive;
@@ -95,9 +101,11 @@ class ChatActionBarReportAddBlock extends ChatActionBar {
   int distance;
 
   /// Parse from a json
-  ChatActionBarReportAddBlock.fromJson(Map<String, dynamic> json) {
-    this.canUnarchive = json['can_unarchive'];
-    this.distance = json['distance'];
+  factory ChatActionBarReportAddBlock.fromJson(Map<String, dynamic> json) {
+    return ChatActionBarReportAddBlock(
+      canUnarchive: json['can_unarchive'] ?? false,
+      distance: json['distance'] ?? 0,
+    );
   }
 
   @override
@@ -120,7 +128,9 @@ class ChatActionBarAddContact extends ChatActionBar {
   ChatActionBarAddContact();
 
   /// Parse from a json
-  ChatActionBarAddContact.fromJson(Map<String, dynamic> json);
+  factory ChatActionBarAddContact.fromJson(Map<String, dynamic> json) {
+    return ChatActionBarAddContact();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -140,7 +150,9 @@ class ChatActionBarSharePhoneNumber extends ChatActionBar {
   ChatActionBarSharePhoneNumber();
 
   /// Parse from a json
-  ChatActionBarSharePhoneNumber.fromJson(Map<String, dynamic> json);
+  factory ChatActionBarSharePhoneNumber.fromJson(Map<String, dynamic> json) {
+    return ChatActionBarSharePhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {

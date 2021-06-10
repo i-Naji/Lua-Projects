@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class ConfirmQrCodeAuthentication extends TdFunction {
   /// Confirms QR code authentication on another device. Returns created session on success
-  ConfirmQrCodeAuthentication({this.link});
+  ConfirmQrCodeAuthentication({required this.link, this.extra});
 
   /// [link] A link from a QR code. The link must be scanned by the in-app camera
   String link;
@@ -11,7 +11,12 @@ class ConfirmQrCodeAuthentication extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  ConfirmQrCodeAuthentication.fromJson(Map<String, dynamic> json);
+  factory ConfirmQrCodeAuthentication.fromJson(Map<String, dynamic> json) {
+    return ConfirmQrCodeAuthentication(
+      link: json['link'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -17,7 +17,7 @@ class LanguagePackStringValue extends TdObject {
       case LanguagePackStringValueDeleted.CONSTRUCTOR:
         return LanguagePackStringValueDeleted.fromJson(json);
       default:
-        return null;
+        return LanguagePackStringValue();
     }
   }
 
@@ -34,18 +34,21 @@ class LanguagePackStringValue extends TdObject {
 
 class LanguagePackStringValueOrdinary extends LanguagePackStringValue {
   /// An ordinary language pack string
-  LanguagePackStringValueOrdinary({this.value});
+  LanguagePackStringValueOrdinary({required this.value, this.extra});
 
   /// [value] String value
   String value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  LanguagePackStringValueOrdinary.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory LanguagePackStringValueOrdinary.fromJson(Map<String, dynamic> json) {
+    return LanguagePackStringValueOrdinary(
+      value: json['value'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -65,12 +68,13 @@ class LanguagePackStringValueOrdinary extends LanguagePackStringValue {
 class LanguagePackStringValuePluralized extends LanguagePackStringValue {
   /// A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
   LanguagePackStringValuePluralized(
-      {this.zeroValue,
-      this.oneValue,
-      this.twoValue,
-      this.fewValue,
-      this.manyValue,
-      this.otherValue});
+      {required this.zeroValue,
+      required this.oneValue,
+      required this.twoValue,
+      required this.fewValue,
+      required this.manyValue,
+      required this.otherValue,
+      this.extra});
 
   /// [zeroValue] Value for zero objects
   String zeroValue;
@@ -91,17 +95,21 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue {
   String otherValue;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  LanguagePackStringValuePluralized.fromJson(Map<String, dynamic> json) {
-    this.zeroValue = json['zero_value'];
-    this.oneValue = json['one_value'];
-    this.twoValue = json['two_value'];
-    this.fewValue = json['few_value'];
-    this.manyValue = json['many_value'];
-    this.otherValue = json['other_value'];
-    this.extra = json['@extra'];
+  factory LanguagePackStringValuePluralized.fromJson(
+      Map<String, dynamic> json) {
+    return LanguagePackStringValuePluralized(
+      zeroValue: json['zero_value'] ?? "",
+      oneValue: json['one_value'] ?? "",
+      twoValue: json['two_value'] ?? "",
+      fewValue: json['few_value'] ?? "",
+      manyValue: json['many_value'] ?? "",
+      otherValue: json['other_value'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -125,14 +133,17 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue {
 
 class LanguagePackStringValueDeleted extends LanguagePackStringValue {
   /// A deleted language pack string, the value should be taken from the built-in english language pack
-  LanguagePackStringValueDeleted();
+  LanguagePackStringValueDeleted({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  LanguagePackStringValueDeleted.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory LanguagePackStringValueDeleted.fromJson(Map<String, dynamic> json) {
+    return LanguagePackStringValueDeleted(
+      extra: json['@extra'],
+    );
   }
 
   @override

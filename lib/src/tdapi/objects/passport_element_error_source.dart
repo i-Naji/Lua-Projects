@@ -35,7 +35,7 @@ class PassportElementErrorSource extends TdObject {
       case PassportElementErrorSourceFiles.CONSTRUCTOR:
         return PassportElementErrorSourceFiles.fromJson(json);
       default:
-        return null;
+        return PassportElementErrorSource();
     }
   }
 
@@ -55,7 +55,10 @@ class PassportElementErrorSourceUnspecified extends PassportElementErrorSource {
   PassportElementErrorSourceUnspecified();
 
   /// Parse from a json
-  PassportElementErrorSourceUnspecified.fromJson(Map<String, dynamic> json);
+  factory PassportElementErrorSourceUnspecified.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementErrorSourceUnspecified();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -72,14 +75,17 @@ class PassportElementErrorSourceUnspecified extends PassportElementErrorSource {
 
 class PassportElementErrorSourceDataField extends PassportElementErrorSource {
   /// One of the data fields contains an error. The error will be considered resolved when the value of the field changes
-  PassportElementErrorSourceDataField({this.fieldName});
+  PassportElementErrorSourceDataField({required this.fieldName});
 
   /// [fieldName] Field name
   String fieldName;
 
   /// Parse from a json
-  PassportElementErrorSourceDataField.fromJson(Map<String, dynamic> json) {
-    this.fieldName = json['field_name'];
+  factory PassportElementErrorSourceDataField.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementErrorSourceDataField(
+      fieldName: json['field_name'] ?? "",
+    );
   }
 
   @override
@@ -101,7 +107,10 @@ class PassportElementErrorSourceFrontSide extends PassportElementErrorSource {
   PassportElementErrorSourceFrontSide();
 
   /// Parse from a json
-  PassportElementErrorSourceFrontSide.fromJson(Map<String, dynamic> json);
+  factory PassportElementErrorSourceFrontSide.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementErrorSourceFrontSide();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -121,7 +130,10 @@ class PassportElementErrorSourceReverseSide extends PassportElementErrorSource {
   PassportElementErrorSourceReverseSide();
 
   /// Parse from a json
-  PassportElementErrorSourceReverseSide.fromJson(Map<String, dynamic> json);
+  factory PassportElementErrorSourceReverseSide.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementErrorSourceReverseSide();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -141,7 +153,9 @@ class PassportElementErrorSourceSelfie extends PassportElementErrorSource {
   PassportElementErrorSourceSelfie();
 
   /// Parse from a json
-  PassportElementErrorSourceSelfie.fromJson(Map<String, dynamic> json);
+  factory PassportElementErrorSourceSelfie.fromJson(Map<String, dynamic> json) {
+    return PassportElementErrorSourceSelfie();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -159,15 +173,17 @@ class PassportElementErrorSourceSelfie extends PassportElementErrorSource {
 class PassportElementErrorSourceTranslationFile
     extends PassportElementErrorSource {
   /// One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
-  PassportElementErrorSourceTranslationFile({this.fileIndex});
+  PassportElementErrorSourceTranslationFile({required this.fileIndex});
 
   /// [fileIndex] Index of a file with the error
   int fileIndex;
 
   /// Parse from a json
-  PassportElementErrorSourceTranslationFile.fromJson(
+  factory PassportElementErrorSourceTranslationFile.fromJson(
       Map<String, dynamic> json) {
-    this.fileIndex = json['file_index'];
+    return PassportElementErrorSourceTranslationFile(
+      fileIndex: json['file_index'] ?? 0,
+    );
   }
 
   @override
@@ -190,8 +206,10 @@ class PassportElementErrorSourceTranslationFiles
   PassportElementErrorSourceTranslationFiles();
 
   /// Parse from a json
-  PassportElementErrorSourceTranslationFiles.fromJson(
-      Map<String, dynamic> json);
+  factory PassportElementErrorSourceTranslationFiles.fromJson(
+      Map<String, dynamic> json) {
+    return PassportElementErrorSourceTranslationFiles();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -208,14 +226,16 @@ class PassportElementErrorSourceTranslationFiles
 
 class PassportElementErrorSourceFile extends PassportElementErrorSource {
   /// The file contains an error. The error will be considered resolved when the file changes
-  PassportElementErrorSourceFile({this.fileIndex});
+  PassportElementErrorSourceFile({required this.fileIndex});
 
   /// [fileIndex] Index of a file with the error
   int fileIndex;
 
   /// Parse from a json
-  PassportElementErrorSourceFile.fromJson(Map<String, dynamic> json) {
-    this.fileIndex = json['file_index'];
+  factory PassportElementErrorSourceFile.fromJson(Map<String, dynamic> json) {
+    return PassportElementErrorSourceFile(
+      fileIndex: json['file_index'] ?? 0,
+    );
   }
 
   @override
@@ -237,7 +257,9 @@ class PassportElementErrorSourceFiles extends PassportElementErrorSource {
   PassportElementErrorSourceFiles();
 
   /// Parse from a json
-  PassportElementErrorSourceFiles.fromJson(Map<String, dynamic> json);
+  factory PassportElementErrorSourceFiles.fromJson(Map<String, dynamic> json) {
+    return PassportElementErrorSourceFiles();
+  }
 
   @override
   Map<String, dynamic> toJson() {

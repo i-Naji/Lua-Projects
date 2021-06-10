@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class AutoDownloadSettingsPresets extends TdObject {
   /// Contains auto-download settings presets for the user
-  AutoDownloadSettingsPresets({this.low, this.medium, this.high});
+  AutoDownloadSettingsPresets(
+      {required this.low,
+      required this.medium,
+      required this.high,
+      this.extra});
 
   /// [low] Preset with lowest settings; supposed to be used by default when roaming
   AutoDownloadSettings low;
@@ -14,26 +18,27 @@ class AutoDownloadSettingsPresets extends TdObject {
   AutoDownloadSettings high;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  AutoDownloadSettingsPresets.fromJson(Map<String, dynamic> json) {
-    this.low =
-        AutoDownloadSettings.fromJson(json['low'] ?? <String, dynamic>{});
-    this.medium =
-        AutoDownloadSettings.fromJson(json['medium'] ?? <String, dynamic>{});
-    this.high =
-        AutoDownloadSettings.fromJson(json['high'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory AutoDownloadSettingsPresets.fromJson(Map<String, dynamic> json) {
+    return AutoDownloadSettingsPresets(
+      low: AutoDownloadSettings.fromJson(json['low'] ?? <String, dynamic>{}),
+      medium:
+          AutoDownloadSettings.fromJson(json['medium'] ?? <String, dynamic>{}),
+      high: AutoDownloadSettings.fromJson(json['high'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "low": this.low == null ? null : this.low.toJson(),
-      "medium": this.medium == null ? null : this.medium.toJson(),
-      "high": this.high == null ? null : this.high.toJson(),
+      "low": this.low.toJson(),
+      "medium": this.medium.toJson(),
+      "high": this.high.toJson(),
     };
   }
 

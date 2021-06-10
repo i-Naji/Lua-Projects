@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class PersonalDocument extends TdObject {
   /// A personal document, containing some information about a user
-  PersonalDocument({this.files, this.translation});
+  PersonalDocument({required this.files, required this.translation});
 
   /// [files] List of files containing the pages of the document
   List<DatedFile> files;
@@ -11,13 +11,15 @@ class PersonalDocument extends TdObject {
   List<DatedFile> translation;
 
   /// Parse from a json
-  PersonalDocument.fromJson(Map<String, dynamic> json) {
-    this.files = List<DatedFile>.from((json['files'] ?? [])
-        .map((item) => DatedFile.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.translation = List<DatedFile>.from((json['translation'] ?? [])
-        .map((item) => DatedFile.fromJson(item ?? <String, dynamic>{}))
-        .toList());
+  factory PersonalDocument.fromJson(Map<String, dynamic> json) {
+    return PersonalDocument(
+      files: List<DatedFile>.from((json['files'] ?? [])
+          .map((item) => DatedFile.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      translation: List<DatedFile>.from((json['translation'] ?? [])
+          .map((item) => DatedFile.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+    );
   }
 
   @override

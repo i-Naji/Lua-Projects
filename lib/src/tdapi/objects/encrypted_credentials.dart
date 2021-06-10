@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class EncryptedCredentials extends TdObject {
   /// Contains encrypted Telegram Passport data credentials
-  EncryptedCredentials({this.data, this.hash, this.secret});
+  EncryptedCredentials(
+      {required this.data, required this.hash, required this.secret});
 
   /// [data] The encrypted credentials
   String data;
@@ -14,10 +15,12 @@ class EncryptedCredentials extends TdObject {
   String secret;
 
   /// Parse from a json
-  EncryptedCredentials.fromJson(Map<String, dynamic> json) {
-    this.data = json['data'];
-    this.hash = json['hash'];
-    this.secret = json['secret'];
+  factory EncryptedCredentials.fromJson(Map<String, dynamic> json) {
+    return EncryptedCredentials(
+      data: json['data'] ?? "",
+      hash: json['hash'] ?? "",
+      secret: json['secret'] ?? "",
+    );
   }
 
   @override

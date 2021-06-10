@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetSavedAnimations extends TdFunction {
   /// Returns saved animations
-  GetSavedAnimations();
+  GetSavedAnimations({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetSavedAnimations.fromJson(Map<String, dynamic> json);
+  factory GetSavedAnimations.fromJson(Map<String, dynamic> json) {
+    return GetSavedAnimations(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

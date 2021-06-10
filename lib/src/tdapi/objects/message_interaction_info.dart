@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class MessageInteractionInfo extends TdObject {
   /// Contains information about interactions with a message
-  MessageInteractionInfo({this.viewCount, this.forwardCount, this.replyInfo});
+  MessageInteractionInfo(
+      {required this.viewCount, required this.forwardCount, this.replyInfo});
 
   /// [viewCount] Number of times the message was viewed
   int viewCount;
@@ -11,14 +12,16 @@ class MessageInteractionInfo extends TdObject {
   int forwardCount;
 
   /// [replyInfo] Contains information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
-  MessageReplyInfo replyInfo;
+  MessageReplyInfo? replyInfo;
 
   /// Parse from a json
-  MessageInteractionInfo.fromJson(Map<String, dynamic> json) {
-    this.viewCount = json['view_count'];
-    this.forwardCount = json['forward_count'];
-    this.replyInfo =
-        MessageReplyInfo.fromJson(json['reply_info'] ?? <String, dynamic>{});
+  factory MessageInteractionInfo.fromJson(Map<String, dynamic> json) {
+    return MessageInteractionInfo(
+      viewCount: json['view_count'] ?? 0,
+      forwardCount: json['forward_count'] ?? 0,
+      replyInfo:
+          MessageReplyInfo.fromJson(json['reply_info'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -27,7 +30,7 @@ class MessageInteractionInfo extends TdObject {
       "@type": CONSTRUCTOR,
       "view_count": this.viewCount,
       "forward_count": this.forwardCount,
-      "reply_info": this.replyInfo == null ? null : this.replyInfo.toJson(),
+      "reply_info": this.replyInfo == null ? null : this.replyInfo!.toJson(),
     };
   }
 

@@ -14,7 +14,7 @@ class MessageSender extends TdObject {
       case MessageSenderChat.CONSTRUCTOR:
         return MessageSenderChat.fromJson(json);
       default:
-        return null;
+        return MessageSender();
     }
   }
 
@@ -31,14 +31,16 @@ class MessageSender extends TdObject {
 
 class MessageSenderUser extends MessageSender {
   /// The message was sent by a known user
-  MessageSenderUser({this.userId});
+  MessageSenderUser({required this.userId});
 
   /// [userId] Identifier of the user that sent the message
   int userId;
 
   /// Parse from a json
-  MessageSenderUser.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
+  factory MessageSenderUser.fromJson(Map<String, dynamic> json) {
+    return MessageSenderUser(
+      userId: json['user_id'] ?? 0,
+    );
   }
 
   @override
@@ -57,14 +59,16 @@ class MessageSenderUser extends MessageSender {
 
 class MessageSenderChat extends MessageSender {
   /// The message was sent on behalf of a chat
-  MessageSenderChat({this.chatId});
+  MessageSenderChat({required this.chatId});
 
   /// [chatId] Identifier of the chat that sent the message
   int chatId;
 
   /// Parse from a json
-  MessageSenderChat.fromJson(Map<String, dynamic> json) {
-    this.chatId = json['chat_id'];
+  factory MessageSenderChat.fromJson(Map<String, dynamic> json) {
+    return MessageSenderChat(
+      chatId: json['chat_id'] ?? 0,
+    );
   }
 
   @override

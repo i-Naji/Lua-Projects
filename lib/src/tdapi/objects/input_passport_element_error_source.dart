@@ -35,7 +35,7 @@ class InputPassportElementErrorSource extends TdObject {
       case InputPassportElementErrorSourceFiles.CONSTRUCTOR:
         return InputPassportElementErrorSourceFiles.fromJson(json);
       default:
-        return null;
+        return InputPassportElementErrorSource();
     }
   }
 
@@ -53,15 +53,17 @@ class InputPassportElementErrorSource extends TdObject {
 class InputPassportElementErrorSourceUnspecified
     extends InputPassportElementErrorSource {
   /// The element contains an error in an unspecified place. The error will be considered resolved when new data is added
-  InputPassportElementErrorSourceUnspecified({this.elementHash});
+  InputPassportElementErrorSourceUnspecified({required this.elementHash});
 
   /// [elementHash] Current hash of the entire element
   String elementHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceUnspecified.fromJson(
+  factory InputPassportElementErrorSourceUnspecified.fromJson(
       Map<String, dynamic> json) {
-    this.elementHash = json['element_hash'];
+    return InputPassportElementErrorSourceUnspecified(
+      elementHash: json['element_hash'] ?? "",
+    );
   }
 
   @override
@@ -81,7 +83,8 @@ class InputPassportElementErrorSourceUnspecified
 class InputPassportElementErrorSourceDataField
     extends InputPassportElementErrorSource {
   /// A data field contains an error. The error is considered resolved when the field's value changes
-  InputPassportElementErrorSourceDataField({this.fieldName, this.dataHash});
+  InputPassportElementErrorSourceDataField(
+      {required this.fieldName, required this.dataHash});
 
   /// [fieldName] Field name
   String fieldName;
@@ -90,9 +93,12 @@ class InputPassportElementErrorSourceDataField
   String dataHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceDataField.fromJson(Map<String, dynamic> json) {
-    this.fieldName = json['field_name'];
-    this.dataHash = json['data_hash'];
+  factory InputPassportElementErrorSourceDataField.fromJson(
+      Map<String, dynamic> json) {
+    return InputPassportElementErrorSourceDataField(
+      fieldName: json['field_name'] ?? "",
+      dataHash: json['data_hash'] ?? "",
+    );
   }
 
   @override
@@ -113,14 +119,17 @@ class InputPassportElementErrorSourceDataField
 class InputPassportElementErrorSourceFrontSide
     extends InputPassportElementErrorSource {
   /// The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes
-  InputPassportElementErrorSourceFrontSide({this.fileHash});
+  InputPassportElementErrorSourceFrontSide({required this.fileHash});
 
   /// [fileHash] Current hash of the file containing the front side
   String fileHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceFrontSide.fromJson(Map<String, dynamic> json) {
-    this.fileHash = json['file_hash'];
+  factory InputPassportElementErrorSourceFrontSide.fromJson(
+      Map<String, dynamic> json) {
+    return InputPassportElementErrorSourceFrontSide(
+      fileHash: json['file_hash'] ?? "",
+    );
   }
 
   @override
@@ -140,15 +149,17 @@ class InputPassportElementErrorSourceFrontSide
 class InputPassportElementErrorSourceReverseSide
     extends InputPassportElementErrorSource {
   /// The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes
-  InputPassportElementErrorSourceReverseSide({this.fileHash});
+  InputPassportElementErrorSourceReverseSide({required this.fileHash});
 
   /// [fileHash] Current hash of the file containing the reverse side
   String fileHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceReverseSide.fromJson(
+  factory InputPassportElementErrorSourceReverseSide.fromJson(
       Map<String, dynamic> json) {
-    this.fileHash = json['file_hash'];
+    return InputPassportElementErrorSourceReverseSide(
+      fileHash: json['file_hash'] ?? "",
+    );
   }
 
   @override
@@ -168,14 +179,17 @@ class InputPassportElementErrorSourceReverseSide
 class InputPassportElementErrorSourceSelfie
     extends InputPassportElementErrorSource {
   /// The selfie contains an error. The error is considered resolved when the file with the selfie changes
-  InputPassportElementErrorSourceSelfie({this.fileHash});
+  InputPassportElementErrorSourceSelfie({required this.fileHash});
 
   /// [fileHash] Current hash of the file containing the selfie
   String fileHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceSelfie.fromJson(Map<String, dynamic> json) {
-    this.fileHash = json['file_hash'];
+  factory InputPassportElementErrorSourceSelfie.fromJson(
+      Map<String, dynamic> json) {
+    return InputPassportElementErrorSourceSelfie(
+      fileHash: json['file_hash'] ?? "",
+    );
   }
 
   @override
@@ -195,15 +209,17 @@ class InputPassportElementErrorSourceSelfie
 class InputPassportElementErrorSourceTranslationFile
     extends InputPassportElementErrorSource {
   /// One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes
-  InputPassportElementErrorSourceTranslationFile({this.fileHash});
+  InputPassportElementErrorSourceTranslationFile({required this.fileHash});
 
   /// [fileHash] Current hash of the file containing the translation
   String fileHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceTranslationFile.fromJson(
+  factory InputPassportElementErrorSourceTranslationFile.fromJson(
       Map<String, dynamic> json) {
-    this.fileHash = json['file_hash'];
+    return InputPassportElementErrorSourceTranslationFile(
+      fileHash: json['file_hash'] ?? "",
+    );
   }
 
   @override
@@ -223,16 +239,18 @@ class InputPassportElementErrorSourceTranslationFile
 class InputPassportElementErrorSourceTranslationFiles
     extends InputPassportElementErrorSource {
   /// The translation of the document contains an error. The error is considered resolved when the list of files changes
-  InputPassportElementErrorSourceTranslationFiles({this.fileHashes});
+  InputPassportElementErrorSourceTranslationFiles({required this.fileHashes});
 
   /// [fileHashes] Current hashes of all files with the translation
   List<String> fileHashes;
 
   /// Parse from a json
-  InputPassportElementErrorSourceTranslationFiles.fromJson(
+  factory InputPassportElementErrorSourceTranslationFiles.fromJson(
       Map<String, dynamic> json) {
-    this.fileHashes = List<String>.from(
-        (json['file_hashes'] ?? []).map((item) => item).toList());
+    return InputPassportElementErrorSourceTranslationFiles(
+      fileHashes: List<String>.from(
+          (json['file_hashes'] ?? []).map((item) => item ?? "").toList()),
+    );
   }
 
   @override
@@ -252,14 +270,17 @@ class InputPassportElementErrorSourceTranslationFiles
 class InputPassportElementErrorSourceFile
     extends InputPassportElementErrorSource {
   /// The file contains an error. The error is considered resolved when the file changes
-  InputPassportElementErrorSourceFile({this.fileHash});
+  InputPassportElementErrorSourceFile({required this.fileHash});
 
   /// [fileHash] Current hash of the file which has the error
   String fileHash;
 
   /// Parse from a json
-  InputPassportElementErrorSourceFile.fromJson(Map<String, dynamic> json) {
-    this.fileHash = json['file_hash'];
+  factory InputPassportElementErrorSourceFile.fromJson(
+      Map<String, dynamic> json) {
+    return InputPassportElementErrorSourceFile(
+      fileHash: json['file_hash'] ?? "",
+    );
   }
 
   @override
@@ -279,15 +300,18 @@ class InputPassportElementErrorSourceFile
 class InputPassportElementErrorSourceFiles
     extends InputPassportElementErrorSource {
   /// The list of attached files contains an error. The error is considered resolved when the file list changes
-  InputPassportElementErrorSourceFiles({this.fileHashes});
+  InputPassportElementErrorSourceFiles({required this.fileHashes});
 
   /// [fileHashes] Current hashes of all attached files
   List<String> fileHashes;
 
   /// Parse from a json
-  InputPassportElementErrorSourceFiles.fromJson(Map<String, dynamic> json) {
-    this.fileHashes = List<String>.from(
-        (json['file_hashes'] ?? []).map((item) => item).toList());
+  factory InputPassportElementErrorSourceFiles.fromJson(
+      Map<String, dynamic> json) {
+    return InputPassportElementErrorSourceFiles(
+      fileHashes: List<String>.from(
+          (json['file_hashes'] ?? []).map((item) => item ?? "").toList()),
+    );
   }
 
   @override

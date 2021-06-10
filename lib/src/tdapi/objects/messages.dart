@@ -2,24 +2,27 @@ part of '../tdapi.dart';
 
 class Messages extends TdObject {
   /// Contains a list of messages
-  Messages({this.totalCount, this.messages});
+  Messages({required this.totalCount, this.messages, this.extra});
 
   /// [totalCount] Approximate total count of messages found
   int totalCount;
 
   /// [messages] List of messages; messages may be null
-  List<Message> messages;
+  List<Message>? messages;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Messages.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.messages = List<Message>.from((json['messages'] ?? [])
-        .map((item) => Message.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory Messages.fromJson(Map<String, dynamic> json) {
+    return Messages(
+      totalCount: json['total_count'] ?? 0,
+      messages: List<Message>.from((json['messages'] ?? [])
+          .map((item) => Message.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -27,7 +30,9 @@ class Messages extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "total_count": this.totalCount,
-      "messages": this.messages.map((i) => i.toJson()).toList(),
+      "messages": this.messages == null
+          ? null
+          : this.messages!.map((i) => i.toJson()).toList(),
     };
   }
 

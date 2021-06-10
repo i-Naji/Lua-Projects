@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SetName extends TdFunction {
   /// Changes the first and last name of the current user
-  SetName({this.firstName, this.lastName});
+  SetName({required this.firstName, required this.lastName, this.extra});
 
   /// [firstName] The new value of the first name for the user; 1-64 characters
   String firstName;
@@ -14,7 +14,13 @@ class SetName extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetName.fromJson(Map<String, dynamic> json);
+  factory SetName.fromJson(Map<String, dynamic> json) {
+    return SetName(
+      firstName: json['first_name'] ?? "",
+      lastName: json['last_name'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

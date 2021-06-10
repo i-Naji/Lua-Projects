@@ -20,7 +20,7 @@ class NotificationType extends TdObject {
       case NotificationTypeNewPushMessage.CONSTRUCTOR:
         return NotificationTypeNewPushMessage.fromJson(json);
       default:
-        return null;
+        return NotificationType();
     }
   }
 
@@ -37,21 +37,23 @@ class NotificationType extends TdObject {
 
 class NotificationTypeNewMessage extends NotificationType {
   /// New message was received
-  NotificationTypeNewMessage({this.message});
+  NotificationTypeNewMessage({required this.message});
 
   /// [message] The message
   Message message;
 
   /// Parse from a json
-  NotificationTypeNewMessage.fromJson(Map<String, dynamic> json) {
-    this.message = Message.fromJson(json['message'] ?? <String, dynamic>{});
+  factory NotificationTypeNewMessage.fromJson(Map<String, dynamic> json) {
+    return NotificationTypeNewMessage(
+      message: Message.fromJson(json['message'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "message": this.message == null ? null : this.message.toJson(),
+      "message": this.message.toJson(),
     };
   }
 
@@ -66,7 +68,9 @@ class NotificationTypeNewSecretChat extends NotificationType {
   NotificationTypeNewSecretChat();
 
   /// Parse from a json
-  NotificationTypeNewSecretChat.fromJson(Map<String, dynamic> json);
+  factory NotificationTypeNewSecretChat.fromJson(Map<String, dynamic> json) {
+    return NotificationTypeNewSecretChat();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -83,14 +87,16 @@ class NotificationTypeNewSecretChat extends NotificationType {
 
 class NotificationTypeNewCall extends NotificationType {
   /// New call was received
-  NotificationTypeNewCall({this.callId});
+  NotificationTypeNewCall({required this.callId});
 
   /// [callId] Call identifier
   int callId;
 
   /// Parse from a json
-  NotificationTypeNewCall.fromJson(Map<String, dynamic> json) {
-    this.callId = json['call_id'];
+  factory NotificationTypeNewCall.fromJson(Map<String, dynamic> json) {
+    return NotificationTypeNewCall(
+      callId: json['call_id'] ?? 0,
+    );
   }
 
   @override
@@ -110,11 +116,11 @@ class NotificationTypeNewCall extends NotificationType {
 class NotificationTypeNewPushMessage extends NotificationType {
   /// New message was received through a push notification
   NotificationTypeNewPushMessage(
-      {this.messageId,
-      this.sender,
-      this.senderName,
-      this.isOutgoing,
-      this.content});
+      {required this.messageId,
+      required this.sender,
+      required this.senderName,
+      required this.isOutgoing,
+      required this.content});
 
   /// [messageId] The message identifier. The message will not be available in the chat history, but the notificationTypeNewPushMessage can be used in viewMessages, or as reply_to_message_id
   int messageId;
@@ -132,13 +138,15 @@ class NotificationTypeNewPushMessage extends NotificationType {
   PushMessageContent content;
 
   /// Parse from a json
-  NotificationTypeNewPushMessage.fromJson(Map<String, dynamic> json) {
-    this.messageId = json['message_id'];
-    this.sender = MessageSender.fromJson(json['sender'] ?? <String, dynamic>{});
-    this.senderName = json['sender_name'];
-    this.isOutgoing = json['is_outgoing'];
-    this.content =
-        PushMessageContent.fromJson(json['content'] ?? <String, dynamic>{});
+  factory NotificationTypeNewPushMessage.fromJson(Map<String, dynamic> json) {
+    return NotificationTypeNewPushMessage(
+      messageId: json['message_id'] ?? 0,
+      sender: MessageSender.fromJson(json['sender'] ?? <String, dynamic>{}),
+      senderName: json['sender_name'] ?? "",
+      isOutgoing: json['is_outgoing'] ?? false,
+      content:
+          PushMessageContent.fromJson(json['content'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -146,10 +154,10 @@ class NotificationTypeNewPushMessage extends NotificationType {
     return {
       "@type": CONSTRUCTOR,
       "message_id": this.messageId,
-      "sender": this.sender == null ? null : this.sender.toJson(),
+      "sender": this.sender.toJson(),
       "sender_name": this.senderName,
       "is_outgoing": this.isOutgoing,
-      "content": this.content == null ? null : this.content.toJson(),
+      "content": this.content.toJson(),
     };
   }
 

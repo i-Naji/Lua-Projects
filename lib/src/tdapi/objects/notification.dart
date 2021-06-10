@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class Notification extends TdObject {
   /// Contains information about a notification
-  Notification({this.id, this.date, this.isSilent, this.type});
+  Notification(
+      {required this.id,
+      required this.date,
+      required this.isSilent,
+      required this.type});
 
   /// [id] Unique persistent identifier of this notification
   int id;
@@ -17,11 +21,13 @@ class Notification extends TdObject {
   NotificationType type;
 
   /// Parse from a json
-  Notification.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.date = json['date'];
-    this.isSilent = json['is_silent'];
-    this.type = NotificationType.fromJson(json['type'] ?? <String, dynamic>{});
+  factory Notification.fromJson(Map<String, dynamic> json) {
+    return Notification(
+      id: json['id'] ?? 0,
+      date: json['date'] ?? 0,
+      isSilent: json['is_silent'] ?? false,
+      type: NotificationType.fromJson(json['type'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -31,7 +37,7 @@ class Notification extends TdObject {
       "id": this.id,
       "date": this.date,
       "is_silent": this.isSilent,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
     };
   }
 

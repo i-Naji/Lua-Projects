@@ -3,14 +3,14 @@ part of '../tdapi.dart';
 class ChatPermissions extends TdObject {
   /// Describes actions that a user is allowed to take in a chat
   ChatPermissions(
-      {this.canSendMessages,
-      this.canSendMediaMessages,
-      this.canSendPolls,
-      this.canSendOtherMessages,
-      this.canAddWebPagePreviews,
-      this.canChangeInfo,
-      this.canInviteUsers,
-      this.canPinMessages});
+      {required this.canSendMessages,
+      required this.canSendMediaMessages,
+      required this.canSendPolls,
+      required this.canSendOtherMessages,
+      required this.canAddWebPagePreviews,
+      required this.canChangeInfo,
+      required this.canInviteUsers,
+      required this.canPinMessages});
 
   /// [canSendMessages] True, if the user can send text messages, contacts, locations, and venues
   bool canSendMessages;
@@ -37,15 +37,17 @@ class ChatPermissions extends TdObject {
   bool canPinMessages;
 
   /// Parse from a json
-  ChatPermissions.fromJson(Map<String, dynamic> json) {
-    this.canSendMessages = json['can_send_messages'];
-    this.canSendMediaMessages = json['can_send_media_messages'];
-    this.canSendPolls = json['can_send_polls'];
-    this.canSendOtherMessages = json['can_send_other_messages'];
-    this.canAddWebPagePreviews = json['can_add_web_page_previews'];
-    this.canChangeInfo = json['can_change_info'];
-    this.canInviteUsers = json['can_invite_users'];
-    this.canPinMessages = json['can_pin_messages'];
+  factory ChatPermissions.fromJson(Map<String, dynamic> json) {
+    return ChatPermissions(
+      canSendMessages: json['can_send_messages'] ?? false,
+      canSendMediaMessages: json['can_send_media_messages'] ?? false,
+      canSendPolls: json['can_send_polls'] ?? false,
+      canSendOtherMessages: json['can_send_other_messages'] ?? false,
+      canAddWebPagePreviews: json['can_add_web_page_previews'] ?? false,
+      canChangeInfo: json['can_change_info'] ?? false,
+      canInviteUsers: json['can_invite_users'] ?? false,
+      canPinMessages: json['can_pin_messages'] ?? false,
+    );
   }
 
   @override

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class ReorderChatFilters extends TdFunction {
   /// Changes the order of chat filters
-  ReorderChatFilters({this.chatFilterIds});
+  ReorderChatFilters({required this.chatFilterIds, this.extra});
 
   /// [chatFilterIds] Identifiers of chat filters in the new correct order
   List<int> chatFilterIds;
@@ -11,7 +11,13 @@ class ReorderChatFilters extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  ReorderChatFilters.fromJson(Map<String, dynamic> json);
+  factory ReorderChatFilters.fromJson(Map<String, dynamic> json) {
+    return ReorderChatFilters(
+      chatFilterIds: List<int>.from(
+          (json['chat_filter_ids'] ?? []).map((item) => item ?? 0).toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class DeleteSavedCredentials extends TdFunction {
   /// Deletes saved credentials for all payment provider bots
-  DeleteSavedCredentials();
+  DeleteSavedCredentials({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  DeleteSavedCredentials.fromJson(Map<String, dynamic> json);
+  factory DeleteSavedCredentials.fromJson(Map<String, dynamic> json) {
+    return DeleteSavedCredentials(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

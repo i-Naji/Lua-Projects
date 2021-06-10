@@ -3,16 +3,16 @@ part of '../tdapi.dart';
 class ChatNotificationSettings extends TdObject {
   /// Contains information about notification settings for a chat
   ChatNotificationSettings(
-      {this.useDefaultMuteFor,
-      this.muteFor,
-      this.useDefaultSound,
-      this.sound,
-      this.useDefaultShowPreview,
-      this.showPreview,
-      this.useDefaultDisablePinnedMessageNotifications,
-      this.disablePinnedMessageNotifications,
-      this.useDefaultDisableMentionNotifications,
-      this.disableMentionNotifications});
+      {required this.useDefaultMuteFor,
+      required this.muteFor,
+      required this.useDefaultSound,
+      required this.sound,
+      required this.useDefaultShowPreview,
+      required this.showPreview,
+      required this.useDefaultDisablePinnedMessageNotifications,
+      required this.disablePinnedMessageNotifications,
+      required this.useDefaultDisableMentionNotifications,
+      required this.disableMentionNotifications});
 
   /// [useDefaultMuteFor] If true, mute_for is ignored and the value for the relevant type of chat is used instead
   bool useDefaultMuteFor;
@@ -45,20 +45,23 @@ class ChatNotificationSettings extends TdObject {
   bool disableMentionNotifications;
 
   /// Parse from a json
-  ChatNotificationSettings.fromJson(Map<String, dynamic> json) {
-    this.useDefaultMuteFor = json['use_default_mute_for'];
-    this.muteFor = json['mute_for'];
-    this.useDefaultSound = json['use_default_sound'];
-    this.sound = json['sound'];
-    this.useDefaultShowPreview = json['use_default_show_preview'];
-    this.showPreview = json['show_preview'];
-    this.useDefaultDisablePinnedMessageNotifications =
-        json['use_default_disable_pinned_message_notifications'];
-    this.disablePinnedMessageNotifications =
-        json['disable_pinned_message_notifications'];
-    this.useDefaultDisableMentionNotifications =
-        json['use_default_disable_mention_notifications'];
-    this.disableMentionNotifications = json['disable_mention_notifications'];
+  factory ChatNotificationSettings.fromJson(Map<String, dynamic> json) {
+    return ChatNotificationSettings(
+      useDefaultMuteFor: json['use_default_mute_for'] ?? false,
+      muteFor: json['mute_for'] ?? 0,
+      useDefaultSound: json['use_default_sound'] ?? false,
+      sound: json['sound'] ?? "",
+      useDefaultShowPreview: json['use_default_show_preview'] ?? false,
+      showPreview: json['show_preview'] ?? false,
+      useDefaultDisablePinnedMessageNotifications:
+          json['use_default_disable_pinned_message_notifications'] ?? false,
+      disablePinnedMessageNotifications:
+          json['disable_pinned_message_notifications'] ?? false,
+      useDefaultDisableMentionNotifications:
+          json['use_default_disable_mention_notifications'] ?? false,
+      disableMentionNotifications:
+          json['disable_mention_notifications'] ?? false,
+    );
   }
 
   @override

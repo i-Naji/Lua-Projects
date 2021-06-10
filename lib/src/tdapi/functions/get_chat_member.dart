@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetChatMember extends TdFunction {
   /// Returns information about a single member of a chat
-  GetChatMember({this.chatId, this.userId});
+  GetChatMember({required this.chatId, required this.userId, this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -14,7 +14,13 @@ class GetChatMember extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetChatMember.fromJson(Map<String, dynamic> json);
+  factory GetChatMember.fromJson(Map<String, dynamic> json) {
+    return GetChatMember(
+      chatId: json['chat_id'] ?? 0,
+      userId: json['user_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class Point extends TdObject {
   /// A point on a Cartesian plane
-  Point({this.x, this.y});
+  Point({required this.x, required this.y});
 
   /// [x] The point's first coordinate
   double x;
@@ -11,9 +11,11 @@ class Point extends TdObject {
   double y;
 
   /// Parse from a json
-  Point.fromJson(Map<String, dynamic> json) {
-    this.x = json['x'];
-    this.y = json['y'];
+  factory Point.fromJson(Map<String, dynamic> json) {
+    return Point(
+      x: json['x'] ?? 0,
+      y: json['y'] ?? 0,
+    );
   }
 
   @override

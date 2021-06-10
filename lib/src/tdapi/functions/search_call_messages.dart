@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class SearchCallMessages extends TdFunction {
   /// Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
-  SearchCallMessages({this.fromMessageId, this.limit, this.onlyMissed});
+  SearchCallMessages(
+      {required this.fromMessageId,
+      required this.limit,
+      required this.onlyMissed,
+      this.extra});
 
   /// [fromMessageId] Identifier of the message from which to search; use 0 to get results from the last message
   int fromMessageId;
@@ -17,7 +21,14 @@ class SearchCallMessages extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SearchCallMessages.fromJson(Map<String, dynamic> json);
+  factory SearchCallMessages.fromJson(Map<String, dynamic> json) {
+    return SearchCallMessages(
+      fromMessageId: json['from_message_id'] ?? 0,
+      limit: json['limit'] ?? 0,
+      onlyMissed: json['only_missed'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

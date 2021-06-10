@@ -1,29 +1,30 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math' show Random;
+
 import 'package:flutter/material.dart' show ChangeNotifier;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:tdlib/td_client.dart';
 import 'package:tdlib/td_api.dart';
-import 'package:tdlib_example/services/locator.dart';
-import 'dart:math' show Random;
 
-import 'package:tdlib_example/utils/const.dart';
+import './locator.dart';
+import '../utils/const.dart';
 
 int _random() => Random().nextInt(10000000);
 
 class TelegramService extends ChangeNotifier {
-  int _client;
-  StreamController<TdObject> _eventController;
-  StreamSubscription<TdObject> _eventReceiver;
+  late int _client;
+  late StreamController<TdObject> _eventController;
+  late StreamSubscription<TdObject> _eventReceiver;
   Map results = <int, Completer>{};
   Map callbackResults = <int, Future<void>>{};
-  Directory appDocDir;
-  Directory appExtDir;
+  late Directory appDocDir;
+  late Directory appExtDir;
   String lastRouteName;
 
-  TelegramService({this.lastRouteName}) {
+  TelegramService({this.lastRouteName = initRoute}) {
     _eventController = StreamController();
     _eventController.stream.listen(_onEvent);
     initClient();
@@ -34,10 +35,6 @@ class TelegramService extends ChangeNotifier {
   /// Pointer 0 mean No client instance.
 
   void initClient() async {
-    if (_client != null) {
-      return;
-    }
-
     _client = await TdClient.createClient();
     // ignore: unused_local_variable
     PermissionStatus storagePermission =
@@ -59,17 +56,18 @@ class TelegramService extends ChangeNotifier {
   }
 
   void _receiver(TdObject newEvent) async {
-    if (newEvent != null) {
-      if (newEvent is Updates) {
-        newEvent.updates.forEach((Update event) => _eventController.add(event));
-      } else {
-        _eventController.add(newEvent);
-      }
-      await _resolveEvent(newEvent);
+    if (newEvent is Updates) {
+      newEvent.updates.forEach((Update event) => _eventController.add(event));
+    } else {
+      _eventController.add(newEvent);
     }
+    await _resolveEvent(newEvent);
   }
 
   Future _resolveEvent(event) async {
+    if (event.extra == null) {
+      return;
+    }
     final int extraId = event.extra;
     if (results.containsKey(extraId)) {
       results.remove(extraId).complete(event);
@@ -175,7 +173,7 @@ class TelegramService extends ChangeNotifier {
   }
 
   /// Sends request to the TDLib client. May be called from any thread.
-  Future<TdObject> send(event, {Future<void> callback}) async {
+  Future<TdObject?> send(event, {Future<void>? callback}) async {
     // ignore: missing_return
     final rndId = _random();
     event.extra = rndId;
@@ -202,7 +200,7 @@ class TelegramService extends ChangeNotifier {
 
   Future setAuthenticationPhoneNumber(
     String phoneNumber, {
-    void Function(TdError) onError,
+    void Function(TdError)? onError,
   }) async {
     final result = await send(
       SetAuthenticationPhoneNumber(
@@ -214,21 +212,21 @@ class TelegramService extends ChangeNotifier {
         ),
       ),
     );
-    if (result is TdError && onError != null) {
+    if (result != null && result is TdError && onError != null) {
       onError(result);
     }
   }
 
   Future checkAuthenticationCode(
     String code, {
-    void Function(TdError) onError,
+    void Function(TdError)? onError,
   }) async {
     final result = await send(
       CheckAuthenticationCode(
         code: code,
       ),
     );
-    if (result is TdError && onError != null) {
+    if (result != null && result is TdError && onError != null) {
       onError(result);
     }
   }

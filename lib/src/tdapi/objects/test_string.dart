@@ -2,18 +2,21 @@ part of '../tdapi.dart';
 
 class TestString extends TdObject {
   /// A simple object containing a string; for testing only
-  TestString({this.value});
+  TestString({required this.value, this.extra});
 
   /// [value] String
   String value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  TestString.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory TestString.fromJson(Map<String, dynamic> json) {
+    return TestString(
+      value: json['value'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

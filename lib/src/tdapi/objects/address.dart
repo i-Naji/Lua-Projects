@@ -3,12 +3,12 @@ part of '../tdapi.dart';
 class Address extends TdObject {
   /// Describes an address
   Address(
-      {this.countryCode,
-      this.state,
-      this.city,
-      this.streetLine1,
-      this.streetLine2,
-      this.postalCode});
+      {required this.countryCode,
+      required this.state,
+      required this.city,
+      required this.streetLine1,
+      required this.streetLine2,
+      required this.postalCode});
 
   /// [countryCode] A two-letter ISO 3166-1 alpha-2 country code
   String countryCode;
@@ -29,13 +29,15 @@ class Address extends TdObject {
   String postalCode;
 
   /// Parse from a json
-  Address.fromJson(Map<String, dynamic> json) {
-    this.countryCode = json['country_code'];
-    this.state = json['state'];
-    this.city = json['city'];
-    this.streetLine1 = json['street_line1'];
-    this.streetLine2 = json['street_line2'];
-    this.postalCode = json['postal_code'];
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      countryCode: json['country_code'] ?? "",
+      state: json['state'] ?? "",
+      city: json['city'] ?? "",
+      streetLine1: json['street_line1'] ?? "",
+      streetLine2: json['street_line2'] ?? "",
+      postalCode: json['postal_code'] ?? "",
+    );
   }
 
   @override

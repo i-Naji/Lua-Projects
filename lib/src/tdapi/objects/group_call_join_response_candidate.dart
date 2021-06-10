@@ -3,19 +3,19 @@ part of '../tdapi.dart';
 class GroupCallJoinResponseCandidate extends TdObject {
   /// Describes a join response candidate for interaction with tgcalls
   GroupCallJoinResponseCandidate(
-      {this.port,
-      this.protocol,
-      this.network,
-      this.generation,
-      this.id,
-      this.component,
-      this.foundation,
-      this.priority,
-      this.ip,
-      this.type,
-      this.tcpType,
-      this.relAddr,
-      this.relPort});
+      {required this.port,
+      required this.protocol,
+      required this.network,
+      required this.generation,
+      required this.id,
+      required this.component,
+      required this.foundation,
+      required this.priority,
+      required this.ip,
+      required this.type,
+      required this.tcpType,
+      required this.relAddr,
+      required this.relPort});
 
   /// [port] Value of the field port
   String port;
@@ -57,20 +57,22 @@ class GroupCallJoinResponseCandidate extends TdObject {
   String relPort;
 
   /// Parse from a json
-  GroupCallJoinResponseCandidate.fromJson(Map<String, dynamic> json) {
-    this.port = json['port'];
-    this.protocol = json['protocol'];
-    this.network = json['network'];
-    this.generation = json['generation'];
-    this.id = json['id'];
-    this.component = json['component'];
-    this.foundation = json['foundation'];
-    this.priority = json['priority'];
-    this.ip = json['ip'];
-    this.type = json['type'];
-    this.tcpType = json['tcp_type'];
-    this.relAddr = json['rel_addr'];
-    this.relPort = json['rel_port'];
+  factory GroupCallJoinResponseCandidate.fromJson(Map<String, dynamic> json) {
+    return GroupCallJoinResponseCandidate(
+      port: json['port'] ?? "",
+      protocol: json['protocol'] ?? "",
+      network: json['network'] ?? "",
+      generation: json['generation'] ?? "",
+      id: json['id'] ?? "",
+      component: json['component'] ?? "",
+      foundation: json['foundation'] ?? "",
+      priority: json['priority'] ?? "",
+      ip: json['ip'] ?? "",
+      type: json['type'] ?? "",
+      tcpType: json['tcp_type'] ?? "",
+      relAddr: json['rel_addr'] ?? "",
+      relPort: json['rel_port'] ?? "",
+    );
   }
 
   @override

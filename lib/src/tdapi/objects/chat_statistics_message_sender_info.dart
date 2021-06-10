@@ -3,7 +3,9 @@ part of '../tdapi.dart';
 class ChatStatisticsMessageSenderInfo extends TdObject {
   /// Contains statistics about messages sent by a user
   ChatStatisticsMessageSenderInfo(
-      {this.userId, this.sentMessageCount, this.averageCharacterCount});
+      {required this.userId,
+      required this.sentMessageCount,
+      required this.averageCharacterCount});
 
   /// [userId] User identifier
   int userId;
@@ -15,10 +17,12 @@ class ChatStatisticsMessageSenderInfo extends TdObject {
   int averageCharacterCount;
 
   /// Parse from a json
-  ChatStatisticsMessageSenderInfo.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
-    this.sentMessageCount = json['sent_message_count'];
-    this.averageCharacterCount = json['average_character_count'];
+  factory ChatStatisticsMessageSenderInfo.fromJson(Map<String, dynamic> json) {
+    return ChatStatisticsMessageSenderInfo(
+      userId: json['user_id'] ?? 0,
+      sentMessageCount: json['sent_message_count'] ?? 0,
+      averageCharacterCount: json['average_character_count'] ?? 0,
+    );
   }
 
   @override

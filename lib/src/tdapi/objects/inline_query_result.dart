@@ -44,7 +44,7 @@ class InlineQueryResult extends TdObject {
       case InlineQueryResultVoiceNote.CONSTRUCTOR:
         return InlineQueryResultVoiceNote.fromJson(json);
       default:
-        return null;
+        return InlineQueryResult();
     }
   }
 
@@ -62,11 +62,11 @@ class InlineQueryResult extends TdObject {
 class InlineQueryResultArticle extends InlineQueryResult {
   /// Represents a link to an article or web page
   InlineQueryResultArticle(
-      {this.id,
-      this.url,
-      this.hideUrl,
-      this.title,
-      this.description,
+      {required this.id,
+      required this.url,
+      required this.hideUrl,
+      required this.title,
+      required this.description,
       this.thumbnail});
 
   /// [id] Unique identifier of the query result
@@ -85,17 +85,18 @@ class InlineQueryResultArticle extends InlineQueryResult {
   String description;
 
   /// [thumbnail] Result thumbnail in JPEG format; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// Parse from a json
-  InlineQueryResultArticle.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.url = json['url'];
-    this.hideUrl = json['hide_url'];
-    this.title = json['title'];
-    this.description = json['description'];
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
+  factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultArticle(
+      id: json['id'] ?? "",
+      url: json['url'] ?? "",
+      hideUrl: json['hide_url'] ?? false,
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -107,7 +108,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
       "hide_url": this.hideUrl,
       "title": this.title,
       "description": this.description,
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
     };
   }
 
@@ -119,7 +120,8 @@ class InlineQueryResultArticle extends InlineQueryResult {
 
 class InlineQueryResultContact extends InlineQueryResult {
   /// Represents a user contact
-  InlineQueryResultContact({this.id, this.contact, this.thumbnail});
+  InlineQueryResultContact(
+      {required this.id, required this.contact, this.thumbnail});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -128,14 +130,15 @@ class InlineQueryResultContact extends InlineQueryResult {
   Contact contact;
 
   /// [thumbnail] Result thumbnail in JPEG format; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// Parse from a json
-  InlineQueryResultContact.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.contact = Contact.fromJson(json['contact'] ?? <String, dynamic>{});
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
+  factory InlineQueryResultContact.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultContact(
+      id: json['id'] ?? "",
+      contact: Contact.fromJson(json['contact'] ?? <String, dynamic>{}),
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -143,8 +146,8 @@ class InlineQueryResultContact extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "contact": this.contact == null ? null : this.contact.toJson(),
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
+      "contact": this.contact.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
     };
   }
 
@@ -157,7 +160,10 @@ class InlineQueryResultContact extends InlineQueryResult {
 class InlineQueryResultLocation extends InlineQueryResult {
   /// Represents a point on the map
   InlineQueryResultLocation(
-      {this.id, this.location, this.title, this.thumbnail});
+      {required this.id,
+      required this.location,
+      required this.title,
+      this.thumbnail});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -169,15 +175,16 @@ class InlineQueryResultLocation extends InlineQueryResult {
   String title;
 
   /// [thumbnail] Result thumbnail in JPEG format; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// Parse from a json
-  InlineQueryResultLocation.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.location = Location.fromJson(json['location'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
+  factory InlineQueryResultLocation.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultLocation(
+      id: json['id'] ?? "",
+      location: Location.fromJson(json['location'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -185,9 +192,9 @@ class InlineQueryResultLocation extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location.toJson(),
       "title": this.title,
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
     };
   }
 
@@ -199,7 +206,8 @@ class InlineQueryResultLocation extends InlineQueryResult {
 
 class InlineQueryResultVenue extends InlineQueryResult {
   /// Represents information about a venue
-  InlineQueryResultVenue({this.id, this.venue, this.thumbnail});
+  InlineQueryResultVenue(
+      {required this.id, required this.venue, this.thumbnail});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -208,14 +216,15 @@ class InlineQueryResultVenue extends InlineQueryResult {
   Venue venue;
 
   /// [thumbnail] Result thumbnail in JPEG format; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// Parse from a json
-  InlineQueryResultVenue.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.venue = Venue.fromJson(json['venue'] ?? <String, dynamic>{});
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
+  factory InlineQueryResultVenue.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultVenue(
+      id: json['id'] ?? "",
+      venue: Venue.fromJson(json['venue'] ?? <String, dynamic>{}),
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -223,8 +232,8 @@ class InlineQueryResultVenue extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "venue": this.venue == null ? null : this.venue.toJson(),
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
+      "venue": this.venue.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
     };
   }
 
@@ -236,7 +245,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
 
 class InlineQueryResultGame extends InlineQueryResult {
   /// Represents information about a game
-  InlineQueryResultGame({this.id, this.game});
+  InlineQueryResultGame({required this.id, required this.game});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -245,9 +254,11 @@ class InlineQueryResultGame extends InlineQueryResult {
   Game game;
 
   /// Parse from a json
-  InlineQueryResultGame.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.game = Game.fromJson(json['game'] ?? <String, dynamic>{});
+  factory InlineQueryResultGame.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultGame(
+      id: json['id'] ?? "",
+      game: Game.fromJson(json['game'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -255,7 +266,7 @@ class InlineQueryResultGame extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "game": this.game == null ? null : this.game.toJson(),
+      "game": this.game.toJson(),
     };
   }
 
@@ -267,7 +278,8 @@ class InlineQueryResultGame extends InlineQueryResult {
 
 class InlineQueryResultAnimation extends InlineQueryResult {
   /// Represents an animation file
-  InlineQueryResultAnimation({this.id, this.animation, this.title});
+  InlineQueryResultAnimation(
+      {required this.id, required this.animation, required this.title});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -279,11 +291,12 @@ class InlineQueryResultAnimation extends InlineQueryResult {
   String title;
 
   /// Parse from a json
-  InlineQueryResultAnimation.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.animation =
-        Animation.fromJson(json['animation'] ?? <String, dynamic>{});
-    this.title = json['title'];
+  factory InlineQueryResultAnimation.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultAnimation(
+      id: json['id'] ?? "",
+      animation: Animation.fromJson(json['animation'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+    );
   }
 
   @override
@@ -291,7 +304,7 @@ class InlineQueryResultAnimation extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "animation": this.animation == null ? null : this.animation.toJson(),
+      "animation": this.animation.toJson(),
       "title": this.title,
     };
   }
@@ -304,7 +317,7 @@ class InlineQueryResultAnimation extends InlineQueryResult {
 
 class InlineQueryResultAudio extends InlineQueryResult {
   /// Represents an audio file
-  InlineQueryResultAudio({this.id, this.audio});
+  InlineQueryResultAudio({required this.id, required this.audio});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -313,9 +326,11 @@ class InlineQueryResultAudio extends InlineQueryResult {
   Audio audio;
 
   /// Parse from a json
-  InlineQueryResultAudio.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.audio = Audio.fromJson(json['audio'] ?? <String, dynamic>{});
+  factory InlineQueryResultAudio.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultAudio(
+      id: json['id'] ?? "",
+      audio: Audio.fromJson(json['audio'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -323,7 +338,7 @@ class InlineQueryResultAudio extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "audio": this.audio == null ? null : this.audio.toJson(),
+      "audio": this.audio.toJson(),
     };
   }
 
@@ -336,7 +351,10 @@ class InlineQueryResultAudio extends InlineQueryResult {
 class InlineQueryResultDocument extends InlineQueryResult {
   /// Represents a document
   InlineQueryResultDocument(
-      {this.id, this.document, this.title, this.description});
+      {required this.id,
+      required this.document,
+      required this.title,
+      required this.description});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -351,11 +369,13 @@ class InlineQueryResultDocument extends InlineQueryResult {
   String description;
 
   /// Parse from a json
-  InlineQueryResultDocument.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.document = Document.fromJson(json['document'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.description = json['description'];
+  factory InlineQueryResultDocument.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultDocument(
+      id: json['id'] ?? "",
+      document: Document.fromJson(json['document'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+    );
   }
 
   @override
@@ -363,7 +383,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "document": this.document == null ? null : this.document.toJson(),
+      "document": this.document.toJson(),
       "title": this.title,
       "description": this.description,
     };
@@ -377,7 +397,11 @@ class InlineQueryResultDocument extends InlineQueryResult {
 
 class InlineQueryResultPhoto extends InlineQueryResult {
   /// Represents a photo
-  InlineQueryResultPhoto({this.id, this.photo, this.title, this.description});
+  InlineQueryResultPhoto(
+      {required this.id,
+      required this.photo,
+      required this.title,
+      required this.description});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -392,11 +416,13 @@ class InlineQueryResultPhoto extends InlineQueryResult {
   String description;
 
   /// Parse from a json
-  InlineQueryResultPhoto.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.photo = Photo.fromJson(json['photo'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.description = json['description'];
+  factory InlineQueryResultPhoto.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultPhoto(
+      id: json['id'] ?? "",
+      photo: Photo.fromJson(json['photo'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+    );
   }
 
   @override
@@ -404,7 +430,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo.toJson(),
       "title": this.title,
       "description": this.description,
     };
@@ -418,7 +444,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
 
 class InlineQueryResultSticker extends InlineQueryResult {
   /// Represents a sticker
-  InlineQueryResultSticker({this.id, this.sticker});
+  InlineQueryResultSticker({required this.id, required this.sticker});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -427,9 +453,11 @@ class InlineQueryResultSticker extends InlineQueryResult {
   Sticker sticker;
 
   /// Parse from a json
-  InlineQueryResultSticker.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.sticker = Sticker.fromJson(json['sticker'] ?? <String, dynamic>{});
+  factory InlineQueryResultSticker.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultSticker(
+      id: json['id'] ?? "",
+      sticker: Sticker.fromJson(json['sticker'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -437,7 +465,7 @@ class InlineQueryResultSticker extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
     };
   }
 
@@ -449,7 +477,11 @@ class InlineQueryResultSticker extends InlineQueryResult {
 
 class InlineQueryResultVideo extends InlineQueryResult {
   /// Represents a video
-  InlineQueryResultVideo({this.id, this.video, this.title, this.description});
+  InlineQueryResultVideo(
+      {required this.id,
+      required this.video,
+      required this.title,
+      required this.description});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -464,11 +496,13 @@ class InlineQueryResultVideo extends InlineQueryResult {
   String description;
 
   /// Parse from a json
-  InlineQueryResultVideo.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.video = Video.fromJson(json['video'] ?? <String, dynamic>{});
-    this.title = json['title'];
-    this.description = json['description'];
+  factory InlineQueryResultVideo.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultVideo(
+      id: json['id'] ?? "",
+      video: Video.fromJson(json['video'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+    );
   }
 
   @override
@@ -476,7 +510,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "video": this.video == null ? null : this.video.toJson(),
+      "video": this.video.toJson(),
       "title": this.title,
       "description": this.description,
     };
@@ -490,7 +524,8 @@ class InlineQueryResultVideo extends InlineQueryResult {
 
 class InlineQueryResultVoiceNote extends InlineQueryResult {
   /// Represents a voice note
-  InlineQueryResultVoiceNote({this.id, this.voiceNote, this.title});
+  InlineQueryResultVoiceNote(
+      {required this.id, required this.voiceNote, required this.title});
 
   /// [id] Unique identifier of the query result
   String id;
@@ -502,11 +537,12 @@ class InlineQueryResultVoiceNote extends InlineQueryResult {
   String title;
 
   /// Parse from a json
-  InlineQueryResultVoiceNote.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.voiceNote =
-        VoiceNote.fromJson(json['voice_note'] ?? <String, dynamic>{});
-    this.title = json['title'];
+  factory InlineQueryResultVoiceNote.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultVoiceNote(
+      id: json['id'] ?? "",
+      voiceNote: VoiceNote.fromJson(json['voice_note'] ?? <String, dynamic>{}),
+      title: json['title'] ?? "",
+    );
   }
 
   @override
@@ -514,7 +550,7 @@ class InlineQueryResultVoiceNote extends InlineQueryResult {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "voice_note": this.voiceNote == null ? null : this.voiceNote.toJson(),
+      "voice_note": this.voiceNote.toJson(),
       "title": this.title,
     };
   }

@@ -14,7 +14,7 @@ class SuggestedAction extends TdObject {
       case SuggestedActionCheckPhoneNumber.CONSTRUCTOR:
         return SuggestedActionCheckPhoneNumber.fromJson(json);
       default:
-        return null;
+        return SuggestedAction();
     }
   }
 
@@ -34,8 +34,10 @@ class SuggestedActionEnableArchiveAndMuteNewChats extends SuggestedAction {
   SuggestedActionEnableArchiveAndMuteNewChats();
 
   /// Parse from a json
-  SuggestedActionEnableArchiveAndMuteNewChats.fromJson(
-      Map<String, dynamic> json);
+  factory SuggestedActionEnableArchiveAndMuteNewChats.fromJson(
+      Map<String, dynamic> json) {
+    return SuggestedActionEnableArchiveAndMuteNewChats();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -55,7 +57,9 @@ class SuggestedActionCheckPhoneNumber extends SuggestedAction {
   SuggestedActionCheckPhoneNumber();
 
   /// Parse from a json
-  SuggestedActionCheckPhoneNumber.fromJson(Map<String, dynamic> json);
+  factory SuggestedActionCheckPhoneNumber.fromJson(Map<String, dynamic> json) {
+    return SuggestedActionCheckPhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {

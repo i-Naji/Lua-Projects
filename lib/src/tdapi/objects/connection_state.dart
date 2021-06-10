@@ -23,7 +23,7 @@ class ConnectionState extends TdObject {
       case ConnectionStateReady.CONSTRUCTOR:
         return ConnectionStateReady.fromJson(json);
       default:
-        return null;
+        return ConnectionState();
     }
   }
 
@@ -43,7 +43,9 @@ class ConnectionStateWaitingForNetwork extends ConnectionState {
   ConnectionStateWaitingForNetwork();
 
   /// Parse from a json
-  ConnectionStateWaitingForNetwork.fromJson(Map<String, dynamic> json);
+  factory ConnectionStateWaitingForNetwork.fromJson(Map<String, dynamic> json) {
+    return ConnectionStateWaitingForNetwork();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -63,7 +65,9 @@ class ConnectionStateConnectingToProxy extends ConnectionState {
   ConnectionStateConnectingToProxy();
 
   /// Parse from a json
-  ConnectionStateConnectingToProxy.fromJson(Map<String, dynamic> json);
+  factory ConnectionStateConnectingToProxy.fromJson(Map<String, dynamic> json) {
+    return ConnectionStateConnectingToProxy();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -83,7 +87,9 @@ class ConnectionStateConnecting extends ConnectionState {
   ConnectionStateConnecting();
 
   /// Parse from a json
-  ConnectionStateConnecting.fromJson(Map<String, dynamic> json);
+  factory ConnectionStateConnecting.fromJson(Map<String, dynamic> json) {
+    return ConnectionStateConnecting();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -103,7 +109,9 @@ class ConnectionStateUpdating extends ConnectionState {
   ConnectionStateUpdating();
 
   /// Parse from a json
-  ConnectionStateUpdating.fromJson(Map<String, dynamic> json);
+  factory ConnectionStateUpdating.fromJson(Map<String, dynamic> json) {
+    return ConnectionStateUpdating();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -123,7 +131,9 @@ class ConnectionStateReady extends ConnectionState {
   ConnectionStateReady();
 
   /// Parse from a json
-  ConnectionStateReady.fromJson(Map<String, dynamic> json);
+  factory ConnectionStateReady.fromJson(Map<String, dynamic> json) {
+    return ConnectionStateReady();
+  }
 
   @override
   Map<String, dynamic> toJson() {

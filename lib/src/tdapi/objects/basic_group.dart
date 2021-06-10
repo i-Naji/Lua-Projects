@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class BasicGroup extends TdObject {
   /// Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)
   BasicGroup(
-      {this.id,
-      this.memberCount,
-      this.status,
-      this.isActive,
-      this.upgradedToSupergroupId});
+      {required this.id,
+      required this.memberCount,
+      required this.status,
+      required this.isActive,
+      required this.upgradedToSupergroupId,
+      this.extra});
 
   /// [id] Group identifier
   int id;
@@ -25,17 +26,19 @@ class BasicGroup extends TdObject {
   int upgradedToSupergroupId;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  BasicGroup.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.memberCount = json['member_count'];
-    this.status =
-        ChatMemberStatus.fromJson(json['status'] ?? <String, dynamic>{});
-    this.isActive = json['is_active'];
-    this.upgradedToSupergroupId = json['upgraded_to_supergroup_id'];
-    this.extra = json['@extra'];
+  factory BasicGroup.fromJson(Map<String, dynamic> json) {
+    return BasicGroup(
+      id: json['id'] ?? 0,
+      memberCount: json['member_count'] ?? 0,
+      status: ChatMemberStatus.fromJson(json['status'] ?? <String, dynamic>{}),
+      isActive: json['is_active'] ?? false,
+      upgradedToSupergroupId: json['upgraded_to_supergroup_id'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -44,7 +47,7 @@ class BasicGroup extends TdObject {
       "@type": CONSTRUCTOR,
       "id": this.id,
       "member_count": this.memberCount,
-      "status": this.status == null ? null : this.status.toJson(),
+      "status": this.status.toJson(),
       "is_active": this.isActive,
       "upgraded_to_supergroup_id": this.upgradedToSupergroupId,
     };

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class LanguagePackString extends TdObject {
   /// Represents one language pack string
-  LanguagePackString({this.key, this.value});
+  LanguagePackString({required this.key, required this.value});
 
   /// [key] String key
   String key;
@@ -11,10 +11,12 @@ class LanguagePackString extends TdObject {
   LanguagePackStringValue value;
 
   /// Parse from a json
-  LanguagePackString.fromJson(Map<String, dynamic> json) {
-    this.key = json['key'];
-    this.value =
-        LanguagePackStringValue.fromJson(json['value'] ?? <String, dynamic>{});
+  factory LanguagePackString.fromJson(Map<String, dynamic> json) {
+    return LanguagePackString(
+      key: json['key'] ?? "",
+      value: LanguagePackStringValue.fromJson(
+          json['value'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -22,7 +24,7 @@ class LanguagePackString extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "key": this.key,
-      "value": this.value == null ? null : this.value.toJson(),
+      "value": this.value.toJson(),
     };
   }
 

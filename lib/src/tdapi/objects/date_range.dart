@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class DateRange extends TdObject {
   /// Represents a date range
-  DateRange({this.startDate, this.endDate});
+  DateRange({required this.startDate, required this.endDate});
 
   /// [startDate] Point in time (Unix timestamp) at which the date range begins
   int startDate;
@@ -11,9 +11,11 @@ class DateRange extends TdObject {
   int endDate;
 
   /// Parse from a json
-  DateRange.fromJson(Map<String, dynamic> json) {
-    this.startDate = json['start_date'];
-    this.endDate = json['end_date'];
+  factory DateRange.fromJson(Map<String, dynamic> json) {
+    return DateRange(
+      startDate: json['start_date'] ?? 0,
+      endDate: json['end_date'] ?? 0,
+    );
   }
 
   @override

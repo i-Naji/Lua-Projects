@@ -3,18 +3,19 @@ part of '../tdapi.dart';
 class GroupCall extends TdObject {
   /// Describes a group call
   GroupCall(
-      {this.id,
-      this.isActive,
-      this.isJoined,
-      this.needRejoin,
-      this.canUnmuteSelf,
-      this.canBeManaged,
-      this.participantCount,
-      this.loadedAllParticipants,
-      this.recentSpeakers,
-      this.muteNewParticipants,
-      this.allowedChangeMuteNewParticipants,
-      this.duration});
+      {required this.id,
+      required this.isActive,
+      required this.isJoined,
+      required this.needRejoin,
+      required this.canUnmuteSelf,
+      required this.canBeManaged,
+      required this.participantCount,
+      required this.loadedAllParticipants,
+      required this.recentSpeakers,
+      required this.muteNewParticipants,
+      required this.allowedChangeMuteNewParticipants,
+      required this.duration,
+      this.extra});
 
   /// [id] Group call identifier
   int id;
@@ -53,28 +54,31 @@ class GroupCall extends TdObject {
   int duration;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  GroupCall.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.isActive = json['is_active'];
-    this.isJoined = json['is_joined'];
-    this.needRejoin = json['need_rejoin'];
-    this.canUnmuteSelf = json['can_unmute_self'];
-    this.canBeManaged = json['can_be_managed'];
-    this.participantCount = json['participant_count'];
-    this.loadedAllParticipants = json['loaded_all_participants'];
-    this.recentSpeakers = List<GroupCallRecentSpeaker>.from(
-        (json['recent_speakers'] ?? [])
-            .map((item) =>
-                GroupCallRecentSpeaker.fromJson(item ?? <String, dynamic>{}))
-            .toList());
-    this.muteNewParticipants = json['mute_new_participants'];
-    this.allowedChangeMuteNewParticipants =
-        json['allowed_change_mute_new_participants'];
-    this.duration = json['duration'];
-    this.extra = json['@extra'];
+  factory GroupCall.fromJson(Map<String, dynamic> json) {
+    return GroupCall(
+      id: json['id'] ?? 0,
+      isActive: json['is_active'] ?? false,
+      isJoined: json['is_joined'] ?? false,
+      needRejoin: json['need_rejoin'] ?? false,
+      canUnmuteSelf: json['can_unmute_self'] ?? false,
+      canBeManaged: json['can_be_managed'] ?? false,
+      participantCount: json['participant_count'] ?? 0,
+      loadedAllParticipants: json['loaded_all_participants'] ?? false,
+      recentSpeakers: List<GroupCallRecentSpeaker>.from(
+          (json['recent_speakers'] ?? [])
+              .map((item) =>
+                  GroupCallRecentSpeaker.fromJson(item ?? <String, dynamic>{}))
+              .toList()),
+      muteNewParticipants: json['mute_new_participants'] ?? false,
+      allowedChangeMuteNewParticipants:
+          json['allowed_change_mute_new_participants'] ?? false,
+      duration: json['duration'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override

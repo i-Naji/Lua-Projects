@@ -35,7 +35,7 @@ class CallProblem extends TdObject {
       case CallProblemPixelatedVideo.CONSTRUCTOR:
         return CallProblemPixelatedVideo.fromJson(json);
       default:
-        return null;
+        return CallProblem();
     }
   }
 
@@ -55,7 +55,9 @@ class CallProblemEcho extends CallProblem {
   CallProblemEcho();
 
   /// Parse from a json
-  CallProblemEcho.fromJson(Map<String, dynamic> json);
+  factory CallProblemEcho.fromJson(Map<String, dynamic> json) {
+    return CallProblemEcho();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -75,7 +77,9 @@ class CallProblemNoise extends CallProblem {
   CallProblemNoise();
 
   /// Parse from a json
-  CallProblemNoise.fromJson(Map<String, dynamic> json);
+  factory CallProblemNoise.fromJson(Map<String, dynamic> json) {
+    return CallProblemNoise();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -95,7 +99,9 @@ class CallProblemInterruptions extends CallProblem {
   CallProblemInterruptions();
 
   /// Parse from a json
-  CallProblemInterruptions.fromJson(Map<String, dynamic> json);
+  factory CallProblemInterruptions.fromJson(Map<String, dynamic> json) {
+    return CallProblemInterruptions();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -115,7 +121,9 @@ class CallProblemDistortedSpeech extends CallProblem {
   CallProblemDistortedSpeech();
 
   /// Parse from a json
-  CallProblemDistortedSpeech.fromJson(Map<String, dynamic> json);
+  factory CallProblemDistortedSpeech.fromJson(Map<String, dynamic> json) {
+    return CallProblemDistortedSpeech();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -135,7 +143,9 @@ class CallProblemSilentLocal extends CallProblem {
   CallProblemSilentLocal();
 
   /// Parse from a json
-  CallProblemSilentLocal.fromJson(Map<String, dynamic> json);
+  factory CallProblemSilentLocal.fromJson(Map<String, dynamic> json) {
+    return CallProblemSilentLocal();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -155,7 +165,9 @@ class CallProblemSilentRemote extends CallProblem {
   CallProblemSilentRemote();
 
   /// Parse from a json
-  CallProblemSilentRemote.fromJson(Map<String, dynamic> json);
+  factory CallProblemSilentRemote.fromJson(Map<String, dynamic> json) {
+    return CallProblemSilentRemote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -175,7 +187,9 @@ class CallProblemDropped extends CallProblem {
   CallProblemDropped();
 
   /// Parse from a json
-  CallProblemDropped.fromJson(Map<String, dynamic> json);
+  factory CallProblemDropped.fromJson(Map<String, dynamic> json) {
+    return CallProblemDropped();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -195,7 +209,9 @@ class CallProblemDistortedVideo extends CallProblem {
   CallProblemDistortedVideo();
 
   /// Parse from a json
-  CallProblemDistortedVideo.fromJson(Map<String, dynamic> json);
+  factory CallProblemDistortedVideo.fromJson(Map<String, dynamic> json) {
+    return CallProblemDistortedVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -215,7 +231,9 @@ class CallProblemPixelatedVideo extends CallProblem {
   CallProblemPixelatedVideo();
 
   /// Parse from a json
-  CallProblemPixelatedVideo.fromJson(Map<String, dynamic> json);
+  factory CallProblemPixelatedVideo.fromJson(Map<String, dynamic> json) {
+    return CallProblemPixelatedVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {

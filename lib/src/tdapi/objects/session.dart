@@ -3,21 +3,22 @@ part of '../tdapi.dart';
 class Session extends TdObject {
   /// Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order
   Session(
-      {this.id,
-      this.isCurrent,
-      this.isPasswordPending,
-      this.apiId,
-      this.applicationName,
-      this.applicationVersion,
-      this.isOfficialApplication,
-      this.deviceModel,
-      this.platform,
-      this.systemVersion,
-      this.logInDate,
-      this.lastActiveDate,
-      this.ip,
-      this.country,
-      this.region});
+      {required this.id,
+      required this.isCurrent,
+      required this.isPasswordPending,
+      required this.apiId,
+      required this.applicationName,
+      required this.applicationVersion,
+      required this.isOfficialApplication,
+      required this.deviceModel,
+      required this.platform,
+      required this.systemVersion,
+      required this.logInDate,
+      required this.lastActiveDate,
+      required this.ip,
+      required this.country,
+      required this.region,
+      this.extra});
 
   /// [id] Session identifier
   int id;
@@ -65,26 +66,29 @@ class Session extends TdObject {
   String region;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Session.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.isCurrent = json['is_current'];
-    this.isPasswordPending = json['is_password_pending'];
-    this.apiId = json['api_id'];
-    this.applicationName = json['application_name'];
-    this.applicationVersion = json['application_version'];
-    this.isOfficialApplication = json['is_official_application'];
-    this.deviceModel = json['device_model'];
-    this.platform = json['platform'];
-    this.systemVersion = json['system_version'];
-    this.logInDate = json['log_in_date'];
-    this.lastActiveDate = json['last_active_date'];
-    this.ip = json['ip'];
-    this.country = json['country'];
-    this.region = json['region'];
-    this.extra = json['@extra'];
+  factory Session.fromJson(Map<String, dynamic> json) {
+    return Session(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      isCurrent: json['is_current'] ?? false,
+      isPasswordPending: json['is_password_pending'] ?? false,
+      apiId: json['api_id'] ?? 0,
+      applicationName: json['application_name'] ?? "",
+      applicationVersion: json['application_version'] ?? "",
+      isOfficialApplication: json['is_official_application'] ?? false,
+      deviceModel: json['device_model'] ?? "",
+      platform: json['platform'] ?? "",
+      systemVersion: json['system_version'] ?? "",
+      logInDate: json['log_in_date'] ?? 0,
+      lastActiveDate: json['last_active_date'] ?? 0,
+      ip: json['ip'] ?? "",
+      country: json['country'] ?? "",
+      region: json['region'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

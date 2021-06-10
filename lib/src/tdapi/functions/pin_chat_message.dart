@@ -3,10 +3,11 @@ part of '../tdapi.dart';
 class PinChatMessage extends TdFunction {
   /// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
   PinChatMessage(
-      {this.chatId,
-      this.messageId,
-      this.disableNotification,
-      this.onlyForSelf});
+      {required this.chatId,
+      required this.messageId,
+      required this.disableNotification,
+      required this.onlyForSelf,
+      this.extra});
 
   /// [chatId] Identifier of the chat
   int chatId;
@@ -24,7 +25,15 @@ class PinChatMessage extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  PinChatMessage.fromJson(Map<String, dynamic> json);
+  factory PinChatMessage.fromJson(Map<String, dynamic> json) {
+    return PinChatMessage(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      disableNotification: json['disable_notification'] ?? false,
+      onlyForSelf: json['only_for_self'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -26,7 +26,7 @@ class JsonValue extends TdObject {
       case JsonValueObject.CONSTRUCTOR:
         return JsonValueObject.fromJson(json);
       default:
-        return null;
+        return JsonValue();
     }
   }
 
@@ -43,14 +43,17 @@ class JsonValue extends TdObject {
 
 class JsonValueNull extends JsonValue {
   /// Represents a null JSON value
-  JsonValueNull();
+  JsonValueNull({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  JsonValueNull.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory JsonValueNull.fromJson(Map<String, dynamic> json) {
+    return JsonValueNull(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -68,18 +71,21 @@ class JsonValueNull extends JsonValue {
 
 class JsonValueBoolean extends JsonValue {
   /// Represents a boolean JSON value
-  JsonValueBoolean({this.value});
+  JsonValueBoolean({required this.value, this.extra});
 
   /// [value] The value
   bool value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  JsonValueBoolean.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory JsonValueBoolean.fromJson(Map<String, dynamic> json) {
+    return JsonValueBoolean(
+      value: json['value'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -98,18 +104,21 @@ class JsonValueBoolean extends JsonValue {
 
 class JsonValueNumber extends JsonValue {
   /// Represents a numeric JSON value
-  JsonValueNumber({this.value});
+  JsonValueNumber({required this.value, this.extra});
 
   /// [value] The value
   double value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  JsonValueNumber.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory JsonValueNumber.fromJson(Map<String, dynamic> json) {
+    return JsonValueNumber(
+      value: json['value'] ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -128,18 +137,21 @@ class JsonValueNumber extends JsonValue {
 
 class JsonValueString extends JsonValue {
   /// Represents a string JSON value
-  JsonValueString({this.value});
+  JsonValueString({required this.value, this.extra});
 
   /// [value] The value
   String value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  JsonValueString.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory JsonValueString.fromJson(Map<String, dynamic> json) {
+    return JsonValueString(
+      value: json['value'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -158,20 +170,23 @@ class JsonValueString extends JsonValue {
 
 class JsonValueArray extends JsonValue {
   /// Represents a JSON array
-  JsonValueArray({this.values});
+  JsonValueArray({required this.values, this.extra});
 
   /// [values] The list of array elements
   List<JsonValue> values;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  JsonValueArray.fromJson(Map<String, dynamic> json) {
-    this.values = List<JsonValue>.from((json['values'] ?? [])
-        .map((item) => JsonValue.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory JsonValueArray.fromJson(Map<String, dynamic> json) {
+    return JsonValueArray(
+      values: List<JsonValue>.from((json['values'] ?? [])
+          .map((item) => JsonValue.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -190,20 +205,23 @@ class JsonValueArray extends JsonValue {
 
 class JsonValueObject extends JsonValue {
   /// Represents a JSON object
-  JsonValueObject({this.members});
+  JsonValueObject({required this.members, this.extra});
 
   /// [members] The list of object members
   List<JsonObjectMember> members;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  JsonValueObject.fromJson(Map<String, dynamic> json) {
-    this.members = List<JsonObjectMember>.from((json['members'] ?? [])
-        .map((item) => JsonObjectMember.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory JsonValueObject.fromJson(Map<String, dynamic> json) {
+    return JsonValueObject(
+      members: List<JsonObjectMember>.from((json['members'] ?? [])
+          .map((item) => JsonObjectMember.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

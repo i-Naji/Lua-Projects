@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class TextEntity extends TdObject {
   /// Represents a part of the text that needs to be formatted in some unusual way
-  TextEntity({this.offset, this.length, this.type});
+  TextEntity({required this.offset, required this.length, required this.type});
 
   /// [offset] Offset of the entity, in UTF-16 code units
   int offset;
@@ -14,10 +14,12 @@ class TextEntity extends TdObject {
   TextEntityType type;
 
   /// Parse from a json
-  TextEntity.fromJson(Map<String, dynamic> json) {
-    this.offset = json['offset'];
-    this.length = json['length'];
-    this.type = TextEntityType.fromJson(json['type'] ?? <String, dynamic>{});
+  factory TextEntity.fromJson(Map<String, dynamic> json) {
+    return TextEntity(
+      offset: json['offset'] ?? 0,
+      length: json['length'] ?? 0,
+      type: TextEntityType.fromJson(json['type'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -26,7 +28,7 @@ class TextEntity extends TdObject {
       "@type": CONSTRUCTOR,
       "offset": this.offset,
       "length": this.length,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
     };
   }
 

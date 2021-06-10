@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class ChatLocation extends TdObject {
   /// Represents a location to which a chat is connected
-  ChatLocation({this.location, this.address});
+  ChatLocation({required this.location, required this.address});
 
   /// [location] The location
   Location location;
@@ -11,16 +11,18 @@ class ChatLocation extends TdObject {
   String address;
 
   /// Parse from a json
-  ChatLocation.fromJson(Map<String, dynamic> json) {
-    this.location = Location.fromJson(json['location'] ?? <String, dynamic>{});
-    this.address = json['address'];
+  factory ChatLocation.fromJson(Map<String, dynamic> json) {
+    return ChatLocation(
+      location: Location.fromJson(json['location'] ?? <String, dynamic>{}),
+      address: json['address'] ?? "",
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "location": this.location == null ? null : this.location.toJson(),
+      "location": this.location.toJson(),
       "address": this.address,
     };
   }

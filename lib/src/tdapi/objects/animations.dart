@@ -2,20 +2,23 @@ part of '../tdapi.dart';
 
 class Animations extends TdObject {
   /// Represents a list of animations
-  Animations({this.animations});
+  Animations({required this.animations, this.extra});
 
   /// [animations] List of animations
   List<Animation> animations;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Animations.fromJson(Map<String, dynamic> json) {
-    this.animations = List<Animation>.from((json['animations'] ?? [])
-        .map((item) => Animation.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory Animations.fromJson(Map<String, dynamic> json) {
+    return Animations(
+      animations: List<Animation>.from((json['animations'] ?? [])
+          .map((item) => Animation.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

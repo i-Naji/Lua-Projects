@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class ChatStatisticsInviterInfo extends TdObject {
   /// Contains statistics about number of new members invited by a user
-  ChatStatisticsInviterInfo({this.userId, this.addedMemberCount});
+  ChatStatisticsInviterInfo(
+      {required this.userId, required this.addedMemberCount});
 
   /// [userId] User identifier
   int userId;
@@ -11,9 +12,11 @@ class ChatStatisticsInviterInfo extends TdObject {
   int addedMemberCount;
 
   /// Parse from a json
-  ChatStatisticsInviterInfo.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
-    this.addedMemberCount = json['added_member_count'];
+  factory ChatStatisticsInviterInfo.fromJson(Map<String, dynamic> json) {
+    return ChatStatisticsInviterInfo(
+      userId: json['user_id'] ?? 0,
+      addedMemberCount: json['added_member_count'] ?? 0,
+    );
   }
 
   @override

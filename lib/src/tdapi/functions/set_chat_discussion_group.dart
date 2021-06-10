@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class SetChatDiscussionGroup extends TdFunction {
   /// Changes the discussion group of a channel chat; requires can_change_info rights in the channel if it is specified
-  SetChatDiscussionGroup({this.chatId, this.discussionChatId});
+  SetChatDiscussionGroup(
+      {required this.chatId, required this.discussionChatId, this.extra});
 
   /// [chatId] Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
   int chatId;
@@ -14,7 +15,13 @@ class SetChatDiscussionGroup extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetChatDiscussionGroup.fromJson(Map<String, dynamic> json);
+  factory SetChatDiscussionGroup.fromJson(Map<String, dynamic> json) {
+    return SetChatDiscussionGroup(
+      chatId: json['chat_id'] ?? 0,
+      discussionChatId: json['discussion_chat_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

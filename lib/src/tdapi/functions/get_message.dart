@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetMessage extends TdFunction {
   /// Returns information about a message
-  GetMessage({this.chatId, this.messageId});
+  GetMessage({required this.chatId, required this.messageId, this.extra});
 
   /// [chatId] Identifier of the chat the message belongs to
   int chatId;
@@ -14,7 +14,13 @@ class GetMessage extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetMessage.fromJson(Map<String, dynamic> json);
+  factory GetMessage.fromJson(Map<String, dynamic> json) {
+    return GetMessage(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

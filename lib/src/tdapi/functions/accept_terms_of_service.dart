@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class AcceptTermsOfService extends TdFunction {
   /// Accepts Telegram terms of services
-  AcceptTermsOfService({this.termsOfServiceId});
+  AcceptTermsOfService({required this.termsOfServiceId, this.extra});
 
   /// [termsOfServiceId] Terms of service identifier
   String termsOfServiceId;
@@ -11,7 +11,12 @@ class AcceptTermsOfService extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AcceptTermsOfService.fromJson(Map<String, dynamic> json);
+  factory AcceptTermsOfService.fromJson(Map<String, dynamic> json) {
+    return AcceptTermsOfService(
+      termsOfServiceId: json['terms_of_service_id'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

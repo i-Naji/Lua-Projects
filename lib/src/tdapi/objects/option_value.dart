@@ -20,7 +20,7 @@ class OptionValue extends TdObject {
       case OptionValueString.CONSTRUCTOR:
         return OptionValueString.fromJson(json);
       default:
-        return null;
+        return OptionValue();
     }
   }
 
@@ -37,18 +37,21 @@ class OptionValue extends TdObject {
 
 class OptionValueBoolean extends OptionValue {
   /// Represents a boolean option
-  OptionValueBoolean({this.value});
+  OptionValueBoolean({required this.value, this.extra});
 
   /// [value] The value of the option
   bool value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  OptionValueBoolean.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory OptionValueBoolean.fromJson(Map<String, dynamic> json) {
+    return OptionValueBoolean(
+      value: json['value'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -67,14 +70,17 @@ class OptionValueBoolean extends OptionValue {
 
 class OptionValueEmpty extends OptionValue {
   /// Represents an unknown option or an option which has a default value
-  OptionValueEmpty();
+  OptionValueEmpty({this.extra});
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  OptionValueEmpty.fromJson(Map<String, dynamic> json) {
-    this.extra = json['@extra'];
+  factory OptionValueEmpty.fromJson(Map<String, dynamic> json) {
+    return OptionValueEmpty(
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -92,18 +98,21 @@ class OptionValueEmpty extends OptionValue {
 
 class OptionValueInteger extends OptionValue {
   /// Represents an integer option
-  OptionValueInteger({this.value});
+  OptionValueInteger({required this.value, this.extra});
 
   /// [value] The value of the option
   int value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  OptionValueInteger.fromJson(Map<String, dynamic> json) {
-    this.value = int.tryParse(json['value'] ?? "");
-    this.extra = json['@extra'];
+  factory OptionValueInteger.fromJson(Map<String, dynamic> json) {
+    return OptionValueInteger(
+      value: int.tryParse(json['value'] ?? "") ?? 0,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -122,18 +131,21 @@ class OptionValueInteger extends OptionValue {
 
 class OptionValueString extends OptionValue {
   /// Represents a string option
-  OptionValueString({this.value});
+  OptionValueString({required this.value, this.extra});
 
   /// [value] The value of the option
   String value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  OptionValueString.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory OptionValueString.fromJson(Map<String, dynamic> json) {
+    return OptionValueString(
+      value: json['value'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

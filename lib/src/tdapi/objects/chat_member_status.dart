@@ -26,7 +26,7 @@ class ChatMemberStatus extends TdObject {
       case ChatMemberStatusBanned.CONSTRUCTOR:
         return ChatMemberStatusBanned.fromJson(json);
       default:
-        return null;
+        return ChatMemberStatus();
     }
   }
 
@@ -43,7 +43,10 @@ class ChatMemberStatus extends TdObject {
 
 class ChatMemberStatusCreator extends ChatMemberStatus {
   /// The user is the owner of a chat and has all the administrator privileges
-  ChatMemberStatusCreator({this.customTitle, this.isAnonymous, this.isMember});
+  ChatMemberStatusCreator(
+      {required this.customTitle,
+      required this.isAnonymous,
+      required this.isMember});
 
   /// [customTitle] A custom title of the owner; 0-16 characters without emojis; applicable to supergroups only
   String customTitle;
@@ -55,10 +58,12 @@ class ChatMemberStatusCreator extends ChatMemberStatus {
   bool isMember;
 
   /// Parse from a json
-  ChatMemberStatusCreator.fromJson(Map<String, dynamic> json) {
-    this.customTitle = json['custom_title'];
-    this.isAnonymous = json['is_anonymous'];
-    this.isMember = json['is_member'];
+  factory ChatMemberStatusCreator.fromJson(Map<String, dynamic> json) {
+    return ChatMemberStatusCreator(
+      customTitle: json['custom_title'] ?? "",
+      isAnonymous: json['is_anonymous'] ?? false,
+      isMember: json['is_member'] ?? false,
+    );
   }
 
   @override
@@ -80,18 +85,18 @@ class ChatMemberStatusCreator extends ChatMemberStatus {
 class ChatMemberStatusAdministrator extends ChatMemberStatus {
   /// The user is a member of a chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage voice chats. In supergroups and channels, there are more detailed options for administrator privileges
   ChatMemberStatusAdministrator(
-      {this.customTitle,
-      this.canBeEdited,
-      this.canChangeInfo,
-      this.canPostMessages,
-      this.canEditMessages,
-      this.canDeleteMessages,
-      this.canInviteUsers,
-      this.canRestrictMembers,
-      this.canPinMessages,
-      this.canPromoteMembers,
-      this.canManageVoiceChats,
-      this.isAnonymous});
+      {required this.customTitle,
+      required this.canBeEdited,
+      required this.canChangeInfo,
+      required this.canPostMessages,
+      required this.canEditMessages,
+      required this.canDeleteMessages,
+      required this.canInviteUsers,
+      required this.canRestrictMembers,
+      required this.canPinMessages,
+      required this.canPromoteMembers,
+      required this.canManageVoiceChats,
+      required this.isAnonymous});
 
   /// [customTitle] A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only
   String customTitle;
@@ -130,19 +135,21 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus {
   bool isAnonymous;
 
   /// Parse from a json
-  ChatMemberStatusAdministrator.fromJson(Map<String, dynamic> json) {
-    this.customTitle = json['custom_title'];
-    this.canBeEdited = json['can_be_edited'];
-    this.canChangeInfo = json['can_change_info'];
-    this.canPostMessages = json['can_post_messages'];
-    this.canEditMessages = json['can_edit_messages'];
-    this.canDeleteMessages = json['can_delete_messages'];
-    this.canInviteUsers = json['can_invite_users'];
-    this.canRestrictMembers = json['can_restrict_members'];
-    this.canPinMessages = json['can_pin_messages'];
-    this.canPromoteMembers = json['can_promote_members'];
-    this.canManageVoiceChats = json['can_manage_voice_chats'];
-    this.isAnonymous = json['is_anonymous'];
+  factory ChatMemberStatusAdministrator.fromJson(Map<String, dynamic> json) {
+    return ChatMemberStatusAdministrator(
+      customTitle: json['custom_title'] ?? "",
+      canBeEdited: json['can_be_edited'] ?? false,
+      canChangeInfo: json['can_change_info'] ?? false,
+      canPostMessages: json['can_post_messages'] ?? false,
+      canEditMessages: json['can_edit_messages'] ?? false,
+      canDeleteMessages: json['can_delete_messages'] ?? false,
+      canInviteUsers: json['can_invite_users'] ?? false,
+      canRestrictMembers: json['can_restrict_members'] ?? false,
+      canPinMessages: json['can_pin_messages'] ?? false,
+      canPromoteMembers: json['can_promote_members'] ?? false,
+      canManageVoiceChats: json['can_manage_voice_chats'] ?? false,
+      isAnonymous: json['is_anonymous'] ?? false,
+    );
   }
 
   @override
@@ -175,7 +182,9 @@ class ChatMemberStatusMember extends ChatMemberStatus {
   ChatMemberStatusMember();
 
   /// Parse from a json
-  ChatMemberStatusMember.fromJson(Map<String, dynamic> json);
+  factory ChatMemberStatusMember.fromJson(Map<String, dynamic> json) {
+    return ChatMemberStatusMember();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -193,7 +202,9 @@ class ChatMemberStatusMember extends ChatMemberStatus {
 class ChatMemberStatusRestricted extends ChatMemberStatus {
   /// The user is under certain restrictions in the chat. Not supported in basic groups and channels
   ChatMemberStatusRestricted(
-      {this.isMember, this.restrictedUntilDate, this.permissions});
+      {required this.isMember,
+      required this.restrictedUntilDate,
+      required this.permissions});
 
   /// [isMember] True, if the user is a member of the chat
   bool isMember;
@@ -205,11 +216,13 @@ class ChatMemberStatusRestricted extends ChatMemberStatus {
   ChatPermissions permissions;
 
   /// Parse from a json
-  ChatMemberStatusRestricted.fromJson(Map<String, dynamic> json) {
-    this.isMember = json['is_member'];
-    this.restrictedUntilDate = json['restricted_until_date'];
-    this.permissions =
-        ChatPermissions.fromJson(json['permissions'] ?? <String, dynamic>{});
+  factory ChatMemberStatusRestricted.fromJson(Map<String, dynamic> json) {
+    return ChatMemberStatusRestricted(
+      isMember: json['is_member'] ?? false,
+      restrictedUntilDate: json['restricted_until_date'] ?? 0,
+      permissions:
+          ChatPermissions.fromJson(json['permissions'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -218,8 +231,7 @@ class ChatMemberStatusRestricted extends ChatMemberStatus {
       "@type": CONSTRUCTOR,
       "is_member": this.isMember,
       "restricted_until_date": this.restrictedUntilDate,
-      "permissions":
-          this.permissions == null ? null : this.permissions.toJson(),
+      "permissions": this.permissions.toJson(),
     };
   }
 
@@ -234,7 +246,9 @@ class ChatMemberStatusLeft extends ChatMemberStatus {
   ChatMemberStatusLeft();
 
   /// Parse from a json
-  ChatMemberStatusLeft.fromJson(Map<String, dynamic> json);
+  factory ChatMemberStatusLeft.fromJson(Map<String, dynamic> json) {
+    return ChatMemberStatusLeft();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -251,14 +265,16 @@ class ChatMemberStatusLeft extends ChatMemberStatus {
 
 class ChatMemberStatusBanned extends ChatMemberStatus {
   /// The user was banned (and hence is not a member of the chat). Implies the user can't return to the chat or view messages
-  ChatMemberStatusBanned({this.bannedUntilDate});
+  ChatMemberStatusBanned({required this.bannedUntilDate});
 
   /// [bannedUntilDate] Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever
   int bannedUntilDate;
 
   /// Parse from a json
-  ChatMemberStatusBanned.fromJson(Map<String, dynamic> json) {
-    this.bannedUntilDate = json['banned_until_date'];
+  factory ChatMemberStatusBanned.fromJson(Map<String, dynamic> json) {
+    return ChatMemberStatusBanned(
+      bannedUntilDate: json['banned_until_date'] ?? 0,
+    );
   }
 
   @override

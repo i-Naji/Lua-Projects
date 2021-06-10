@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class SetChatDraftMessage extends TdFunction {
   /// Changes the draft message in a chat
-  SetChatDraftMessage({this.chatId, this.messageThreadId, this.draftMessage});
+  SetChatDraftMessage(
+      {required this.chatId,
+      required this.messageThreadId,
+      this.draftMessage,
+      this.extra});
 
   /// [chatId] Chat identifier
   int chatId;
@@ -11,13 +15,21 @@ class SetChatDraftMessage extends TdFunction {
   int messageThreadId;
 
   /// [draftMessage] New draft message; may be null
-  DraftMessage draftMessage;
+  DraftMessage? draftMessage;
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  SetChatDraftMessage.fromJson(Map<String, dynamic> json);
+  factory SetChatDraftMessage.fromJson(Map<String, dynamic> json) {
+    return SetChatDraftMessage(
+      chatId: json['chat_id'] ?? 0,
+      messageThreadId: json['message_thread_id'] ?? 0,
+      draftMessage:
+          DraftMessage.fromJson(json['draft_message'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -26,7 +38,7 @@ class SetChatDraftMessage extends TdFunction {
       "chat_id": this.chatId,
       "message_thread_id": this.messageThreadId,
       "draft_message":
-          this.draftMessage == null ? null : this.draftMessage.toJson(),
+          this.draftMessage == null ? null : this.draftMessage!.toJson(),
       "@extra": this.extra,
     };
   }

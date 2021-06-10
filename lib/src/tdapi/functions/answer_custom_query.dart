@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class AnswerCustomQuery extends TdFunction {
   /// Answers a custom query; for bots only
-  AnswerCustomQuery({this.customQueryId, this.data});
+  AnswerCustomQuery(
+      {required this.customQueryId, required this.data, this.extra});
 
   /// [customQueryId] Identifier of a custom query
   int customQueryId;
@@ -14,7 +15,13 @@ class AnswerCustomQuery extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AnswerCustomQuery.fromJson(Map<String, dynamic> json);
+  factory AnswerCustomQuery.fromJson(Map<String, dynamic> json) {
+    return AnswerCustomQuery(
+      customQueryId: int.tryParse(json['custom_query_id'] ?? "") ?? 0,
+      data: json['data'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

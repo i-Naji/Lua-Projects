@@ -14,7 +14,7 @@ class BackgroundFill extends TdObject {
       case BackgroundFillGradient.CONSTRUCTOR:
         return BackgroundFillGradient.fromJson(json);
       default:
-        return null;
+        return BackgroundFill();
     }
   }
 
@@ -31,14 +31,16 @@ class BackgroundFill extends TdObject {
 
 class BackgroundFillSolid extends BackgroundFill {
   /// Describes a solid fill of a background
-  BackgroundFillSolid({this.color});
+  BackgroundFillSolid({required this.color});
 
   /// [color] A color of the background in the RGB24 format
   int color;
 
   /// Parse from a json
-  BackgroundFillSolid.fromJson(Map<String, dynamic> json) {
-    this.color = json['color'];
+  factory BackgroundFillSolid.fromJson(Map<String, dynamic> json) {
+    return BackgroundFillSolid(
+      color: json['color'] ?? 0,
+    );
   }
 
   @override
@@ -57,7 +59,10 @@ class BackgroundFillSolid extends BackgroundFill {
 
 class BackgroundFillGradient extends BackgroundFill {
   /// Describes a gradient fill of a background
-  BackgroundFillGradient({this.topColor, this.bottomColor, this.rotationAngle});
+  BackgroundFillGradient(
+      {required this.topColor,
+      required this.bottomColor,
+      required this.rotationAngle});
 
   /// [topColor] A top color of the background in the RGB24 format
   int topColor;
@@ -69,10 +74,12 @@ class BackgroundFillGradient extends BackgroundFill {
   int rotationAngle;
 
   /// Parse from a json
-  BackgroundFillGradient.fromJson(Map<String, dynamic> json) {
-    this.topColor = json['top_color'];
-    this.bottomColor = json['bottom_color'];
-    this.rotationAngle = json['rotation_angle'];
+  factory BackgroundFillGradient.fromJson(Map<String, dynamic> json) {
+    return BackgroundFillGradient(
+      topColor: json['top_color'] ?? 0,
+      bottomColor: json['bottom_color'] ?? 0,
+      rotationAngle: json['rotation_angle'] ?? 0,
+    );
   }
 
   @override

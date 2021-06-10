@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class SendPaymentForm extends TdFunction {
   /// Sends a filled-out payment form to the bot for final verification
   SendPaymentForm(
-      {this.chatId,
-      this.messageId,
-      this.orderInfoId,
-      this.shippingOptionId,
-      this.credentials});
+      {required this.chatId,
+      required this.messageId,
+      required this.orderInfoId,
+      required this.shippingOptionId,
+      required this.credentials,
+      this.extra});
 
   /// [chatId] Chat identifier of the Invoice message
   int chatId;
@@ -28,7 +29,17 @@ class SendPaymentForm extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SendPaymentForm.fromJson(Map<String, dynamic> json);
+  factory SendPaymentForm.fromJson(Map<String, dynamic> json) {
+    return SendPaymentForm(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      orderInfoId: json['order_info_id'] ?? "",
+      shippingOptionId: json['shipping_option_id'] ?? "",
+      credentials:
+          InputCredentials.fromJson(json['credentials'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -38,8 +49,7 @@ class SendPaymentForm extends TdFunction {
       "message_id": this.messageId,
       "order_info_id": this.orderInfoId,
       "shipping_option_id": this.shippingOptionId,
-      "credentials":
-          this.credentials == null ? null : this.credentials.toJson(),
+      "credentials": this.credentials.toJson(),
       "@extra": this.extra,
     };
   }

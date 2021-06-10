@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GetInlineGameHighScores extends TdFunction {
   /// Returns game high scores and some part of the high score table in the range of the specified user; for bots only
-  GetInlineGameHighScores({this.inlineMessageId, this.userId});
+  GetInlineGameHighScores(
+      {required this.inlineMessageId, required this.userId, this.extra});
 
   /// [inlineMessageId] Inline message identifier
   String inlineMessageId;
@@ -14,7 +15,13 @@ class GetInlineGameHighScores extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetInlineGameHighScores.fromJson(Map<String, dynamic> json);
+  factory GetInlineGameHighScores.fromJson(Map<String, dynamic> json) {
+    return GetInlineGameHighScores(
+      inlineMessageId: json['inline_message_id'] ?? "",
+      userId: json['user_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

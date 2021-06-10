@@ -2,20 +2,23 @@ part of '../tdapi.dart';
 
 class Countries extends TdObject {
   /// Contains information about countries
-  Countries({this.countries});
+  Countries({required this.countries, this.extra});
 
   /// [countries] The list of countries
   List<CountryInfo> countries;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Countries.fromJson(Map<String, dynamic> json) {
-    this.countries = List<CountryInfo>.from((json['countries'] ?? [])
-        .map((item) => CountryInfo.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory Countries.fromJson(Map<String, dynamic> json) {
+    return Countries(
+      countries: List<CountryInfo>.from((json['countries'] ?? [])
+          .map((item) => CountryInfo.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

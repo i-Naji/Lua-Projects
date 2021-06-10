@@ -17,7 +17,7 @@ class CallbackQueryPayload extends TdObject {
       case CallbackQueryPayloadGame.CONSTRUCTOR:
         return CallbackQueryPayloadGame.fromJson(json);
       default:
-        return null;
+        return CallbackQueryPayload();
     }
   }
 
@@ -34,14 +34,16 @@ class CallbackQueryPayload extends TdObject {
 
 class CallbackQueryPayloadData extends CallbackQueryPayload {
   /// The payload for a general callback button
-  CallbackQueryPayloadData({this.data});
+  CallbackQueryPayloadData({required this.data});
 
   /// [data] Data that was attached to the callback button
   String data;
 
   /// Parse from a json
-  CallbackQueryPayloadData.fromJson(Map<String, dynamic> json) {
-    this.data = json['data'];
+  factory CallbackQueryPayloadData.fromJson(Map<String, dynamic> json) {
+    return CallbackQueryPayloadData(
+      data: json['data'] ?? "",
+    );
   }
 
   @override
@@ -60,7 +62,8 @@ class CallbackQueryPayloadData extends CallbackQueryPayload {
 
 class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload {
   /// The payload for a callback button requiring password
-  CallbackQueryPayloadDataWithPassword({this.password, this.data});
+  CallbackQueryPayloadDataWithPassword(
+      {required this.password, required this.data});
 
   /// [password] The password for the current user
   String password;
@@ -69,9 +72,12 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload {
   String data;
 
   /// Parse from a json
-  CallbackQueryPayloadDataWithPassword.fromJson(Map<String, dynamic> json) {
-    this.password = json['password'];
-    this.data = json['data'];
+  factory CallbackQueryPayloadDataWithPassword.fromJson(
+      Map<String, dynamic> json) {
+    return CallbackQueryPayloadDataWithPassword(
+      password: json['password'] ?? "",
+      data: json['data'] ?? "",
+    );
   }
 
   @override
@@ -91,14 +97,16 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload {
 
 class CallbackQueryPayloadGame extends CallbackQueryPayload {
   /// The payload for a game callback button
-  CallbackQueryPayloadGame({this.gameShortName});
+  CallbackQueryPayloadGame({required this.gameShortName});
 
   /// [gameShortName] A short name of the game that was attached to the callback button
   String gameShortName;
 
   /// Parse from a json
-  CallbackQueryPayloadGame.fromJson(Map<String, dynamic> json) {
-    this.gameShortName = json['game_short_name'];
+  factory CallbackQueryPayloadGame.fromJson(Map<String, dynamic> json) {
+    return CallbackQueryPayloadGame(
+      gameShortName: json['game_short_name'] ?? "",
+    );
   }
 
   @override

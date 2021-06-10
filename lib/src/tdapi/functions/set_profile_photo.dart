@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SetProfilePhoto extends TdFunction {
   /// Changes a profile photo for the current user
-  SetProfilePhoto({this.photo});
+  SetProfilePhoto({required this.photo, this.extra});
 
   /// [photo] Profile photo to set
   InputChatPhoto photo;
@@ -11,13 +11,18 @@ class SetProfilePhoto extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SetProfilePhoto.fromJson(Map<String, dynamic> json);
+  factory SetProfilePhoto.fromJson(Map<String, dynamic> json) {
+    return SetProfilePhoto(
+      photo: InputChatPhoto.fromJson(json['photo'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "photo": this.photo == null ? null : this.photo.toJson(),
+      "photo": this.photo.toJson(),
       "@extra": this.extra,
     };
   }

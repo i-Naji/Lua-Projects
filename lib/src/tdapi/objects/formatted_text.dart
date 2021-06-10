@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class FormattedText extends TdObject {
   /// A text with some entities
-  FormattedText({this.text, this.entities});
+  FormattedText({required this.text, required this.entities, this.extra});
 
   /// [text] The text
   String text;
@@ -11,15 +11,18 @@ class FormattedText extends TdObject {
   List<TextEntity> entities;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  FormattedText.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
-    this.entities = List<TextEntity>.from((json['entities'] ?? [])
-        .map((item) => TextEntity.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory FormattedText.fromJson(Map<String, dynamic> json) {
+    return FormattedText(
+      text: json['text'] ?? "",
+      entities: List<TextEntity>.from((json['entities'] ?? [])
+          .map((item) => TextEntity.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

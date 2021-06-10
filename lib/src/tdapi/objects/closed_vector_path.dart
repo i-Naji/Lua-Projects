@@ -2,16 +2,19 @@ part of '../tdapi.dart';
 
 class ClosedVectorPath extends TdObject {
   /// Represents a closed vector path. The path begins at the end point of the last command
-  ClosedVectorPath({this.commands});
+  ClosedVectorPath({required this.commands});
 
   /// [commands] List of vector path commands
   List<VectorPathCommand> commands;
 
   /// Parse from a json
-  ClosedVectorPath.fromJson(Map<String, dynamic> json) {
-    this.commands = List<VectorPathCommand>.from((json['commands'] ?? [])
-        .map((item) => VectorPathCommand.fromJson(item ?? <String, dynamic>{}))
-        .toList());
+  factory ClosedVectorPath.fromJson(Map<String, dynamic> json) {
+    return ClosedVectorPath(
+      commands: List<VectorPathCommand>.from((json['commands'] ?? [])
+          .map(
+              (item) => VectorPathCommand.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+    );
   }
 
   @override

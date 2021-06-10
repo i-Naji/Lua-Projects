@@ -26,7 +26,7 @@ class UserStatus extends TdObject {
       case UserStatusLastMonth.CONSTRUCTOR:
         return UserStatusLastMonth.fromJson(json);
       default:
-        return null;
+        return UserStatus();
     }
   }
 
@@ -46,7 +46,9 @@ class UserStatusEmpty extends UserStatus {
   UserStatusEmpty();
 
   /// Parse from a json
-  UserStatusEmpty.fromJson(Map<String, dynamic> json);
+  factory UserStatusEmpty.fromJson(Map<String, dynamic> json) {
+    return UserStatusEmpty();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -63,14 +65,16 @@ class UserStatusEmpty extends UserStatus {
 
 class UserStatusOnline extends UserStatus {
   /// The user is online
-  UserStatusOnline({this.expires});
+  UserStatusOnline({required this.expires});
 
   /// [expires] Point in time (Unix timestamp) when the user's online status will expire
   int expires;
 
   /// Parse from a json
-  UserStatusOnline.fromJson(Map<String, dynamic> json) {
-    this.expires = json['expires'];
+  factory UserStatusOnline.fromJson(Map<String, dynamic> json) {
+    return UserStatusOnline(
+      expires: json['expires'] ?? 0,
+    );
   }
 
   @override
@@ -89,14 +93,16 @@ class UserStatusOnline extends UserStatus {
 
 class UserStatusOffline extends UserStatus {
   /// The user is offline
-  UserStatusOffline({this.wasOnline});
+  UserStatusOffline({required this.wasOnline});
 
   /// [wasOnline] Point in time (Unix timestamp) when the user was last online
   int wasOnline;
 
   /// Parse from a json
-  UserStatusOffline.fromJson(Map<String, dynamic> json) {
-    this.wasOnline = json['was_online'];
+  factory UserStatusOffline.fromJson(Map<String, dynamic> json) {
+    return UserStatusOffline(
+      wasOnline: json['was_online'] ?? 0,
+    );
   }
 
   @override
@@ -118,7 +124,9 @@ class UserStatusRecently extends UserStatus {
   UserStatusRecently();
 
   /// Parse from a json
-  UserStatusRecently.fromJson(Map<String, dynamic> json);
+  factory UserStatusRecently.fromJson(Map<String, dynamic> json) {
+    return UserStatusRecently();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -138,7 +146,9 @@ class UserStatusLastWeek extends UserStatus {
   UserStatusLastWeek();
 
   /// Parse from a json
-  UserStatusLastWeek.fromJson(Map<String, dynamic> json);
+  factory UserStatusLastWeek.fromJson(Map<String, dynamic> json) {
+    return UserStatusLastWeek();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -158,7 +168,9 @@ class UserStatusLastMonth extends UserStatus {
   UserStatusLastMonth();
 
   /// Parse from a json
-  UserStatusLastMonth.fromJson(Map<String, dynamic> json);
+  factory UserStatusLastMonth.fromJson(Map<String, dynamic> json) {
+    return UserStatusLastMonth();
+  }
 
   @override
   Map<String, dynamic> toJson() {

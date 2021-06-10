@@ -20,7 +20,7 @@ class AuthenticationCodeType extends TdObject {
       case AuthenticationCodeTypeFlashCall.CONSTRUCTOR:
         return AuthenticationCodeTypeFlashCall.fromJson(json);
       default:
-        return null;
+        return AuthenticationCodeType();
     }
   }
 
@@ -37,14 +37,17 @@ class AuthenticationCodeType extends TdObject {
 
 class AuthenticationCodeTypeTelegramMessage extends AuthenticationCodeType {
   /// An authentication code is delivered via a private Telegram message, which can be viewed from another active session
-  AuthenticationCodeTypeTelegramMessage({this.length});
+  AuthenticationCodeTypeTelegramMessage({required this.length});
 
   /// [length] Length of the code
   int length;
 
   /// Parse from a json
-  AuthenticationCodeTypeTelegramMessage.fromJson(Map<String, dynamic> json) {
-    this.length = json['length'];
+  factory AuthenticationCodeTypeTelegramMessage.fromJson(
+      Map<String, dynamic> json) {
+    return AuthenticationCodeTypeTelegramMessage(
+      length: json['length'] ?? 0,
+    );
   }
 
   @override
@@ -63,14 +66,16 @@ class AuthenticationCodeTypeTelegramMessage extends AuthenticationCodeType {
 
 class AuthenticationCodeTypeSms extends AuthenticationCodeType {
   /// An authentication code is delivered via an SMS message to the specified phone number
-  AuthenticationCodeTypeSms({this.length});
+  AuthenticationCodeTypeSms({required this.length});
 
   /// [length] Length of the code
   int length;
 
   /// Parse from a json
-  AuthenticationCodeTypeSms.fromJson(Map<String, dynamic> json) {
-    this.length = json['length'];
+  factory AuthenticationCodeTypeSms.fromJson(Map<String, dynamic> json) {
+    return AuthenticationCodeTypeSms(
+      length: json['length'] ?? 0,
+    );
   }
 
   @override
@@ -89,14 +94,16 @@ class AuthenticationCodeTypeSms extends AuthenticationCodeType {
 
 class AuthenticationCodeTypeCall extends AuthenticationCodeType {
   /// An authentication code is delivered via a phone call to the specified phone number
-  AuthenticationCodeTypeCall({this.length});
+  AuthenticationCodeTypeCall({required this.length});
 
   /// [length] Length of the code
   int length;
 
   /// Parse from a json
-  AuthenticationCodeTypeCall.fromJson(Map<String, dynamic> json) {
-    this.length = json['length'];
+  factory AuthenticationCodeTypeCall.fromJson(Map<String, dynamic> json) {
+    return AuthenticationCodeTypeCall(
+      length: json['length'] ?? 0,
+    );
   }
 
   @override
@@ -115,14 +122,16 @@ class AuthenticationCodeTypeCall extends AuthenticationCodeType {
 
 class AuthenticationCodeTypeFlashCall extends AuthenticationCodeType {
   /// An authentication code is delivered by an immediately cancelled call to the specified phone number. The number from which the call was made is the code
-  AuthenticationCodeTypeFlashCall({this.pattern});
+  AuthenticationCodeTypeFlashCall({required this.pattern});
 
   /// [pattern] Pattern of the phone number from which the call will be made
   String pattern;
 
   /// Parse from a json
-  AuthenticationCodeTypeFlashCall.fromJson(Map<String, dynamic> json) {
-    this.pattern = json['pattern'];
+  factory AuthenticationCodeTypeFlashCall.fromJson(Map<String, dynamic> json) {
+    return AuthenticationCodeTypeFlashCall(
+      pattern: json['pattern'] ?? "",
+    );
   }
 
   @override

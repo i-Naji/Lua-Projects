@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class TermsOfService extends TdObject {
   /// Contains Telegram terms of service
-  TermsOfService({this.text, this.minUserAge, this.showPopup});
+  TermsOfService(
+      {required this.text, required this.minUserAge, required this.showPopup});
 
   /// [text] Text of the terms of service
   FormattedText text;
@@ -14,17 +15,19 @@ class TermsOfService extends TdObject {
   bool showPopup;
 
   /// Parse from a json
-  TermsOfService.fromJson(Map<String, dynamic> json) {
-    this.text = FormattedText.fromJson(json['text'] ?? <String, dynamic>{});
-    this.minUserAge = json['min_user_age'];
-    this.showPopup = json['show_popup'];
+  factory TermsOfService.fromJson(Map<String, dynamic> json) {
+    return TermsOfService(
+      text: FormattedText.fromJson(json['text'] ?? <String, dynamic>{}),
+      minUserAge: json['min_user_age'] ?? 0,
+      showPopup: json['show_popup'] ?? false,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "text": this.text == null ? null : this.text.toJson(),
+      "text": this.text.toJson(),
       "min_user_age": this.minUserAge,
       "show_popup": this.showPopup,
     };

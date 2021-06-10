@@ -3,15 +3,15 @@ part of '../tdapi.dart';
 class ConnectedWebsite extends TdObject {
   /// Contains information about one website the current user is logged in with Telegram
   ConnectedWebsite(
-      {this.id,
-      this.domainName,
-      this.botUserId,
-      this.browser,
-      this.platform,
-      this.logInDate,
-      this.lastActiveDate,
-      this.ip,
-      this.location});
+      {required this.id,
+      required this.domainName,
+      required this.botUserId,
+      required this.browser,
+      required this.platform,
+      required this.logInDate,
+      required this.lastActiveDate,
+      required this.ip,
+      required this.location});
 
   /// [id] Website identifier
   int id;
@@ -41,16 +41,18 @@ class ConnectedWebsite extends TdObject {
   String location;
 
   /// Parse from a json
-  ConnectedWebsite.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.domainName = json['domain_name'];
-    this.botUserId = json['bot_user_id'];
-    this.browser = json['browser'];
-    this.platform = json['platform'];
-    this.logInDate = json['log_in_date'];
-    this.lastActiveDate = json['last_active_date'];
-    this.ip = json['ip'];
-    this.location = json['location'];
+  factory ConnectedWebsite.fromJson(Map<String, dynamic> json) {
+    return ConnectedWebsite(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      domainName: json['domain_name'] ?? "",
+      botUserId: json['bot_user_id'] ?? 0,
+      browser: json['browser'] ?? "",
+      platform: json['platform'] ?? "",
+      logInDate: json['log_in_date'] ?? 0,
+      lastActiveDate: json['last_active_date'] ?? 0,
+      ip: json['ip'] ?? "",
+      location: json['location'] ?? "",
+    );
   }
 
   @override

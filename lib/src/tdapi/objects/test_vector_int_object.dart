@@ -2,20 +2,23 @@ part of '../tdapi.dart';
 
 class TestVectorIntObject extends TdObject {
   /// A simple object containing a vector of objects that hold a number; for testing only
-  TestVectorIntObject({this.value});
+  TestVectorIntObject({required this.value, this.extra});
 
   /// [value] Vector of objects
   List<TestInt> value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  TestVectorIntObject.fromJson(Map<String, dynamic> json) {
-    this.value = List<TestInt>.from((json['value'] ?? [])
-        .map((item) => TestInt.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory TestVectorIntObject.fromJson(Map<String, dynamic> json) {
+    return TestVectorIntObject(
+      value: List<TestInt>.from((json['value'] ?? [])
+          .map((item) => TestInt.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class RemoveFavoriteSticker extends TdFunction {
   /// Removes a sticker from the list of favorite stickers
-  RemoveFavoriteSticker({this.sticker});
+  RemoveFavoriteSticker({required this.sticker, this.extra});
 
   /// [sticker] Sticker file to delete from the list
   InputFile sticker;
@@ -11,13 +11,18 @@ class RemoveFavoriteSticker extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  RemoveFavoriteSticker.fromJson(Map<String, dynamic> json);
+  factory RemoveFavoriteSticker.fromJson(Map<String, dynamic> json) {
+    return RemoveFavoriteSticker(
+      sticker: InputFile.fromJson(json['sticker'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "sticker": this.sticker == null ? null : this.sticker.toJson(),
+      "sticker": this.sticker.toJson(),
       "@extra": this.extra,
     };
   }

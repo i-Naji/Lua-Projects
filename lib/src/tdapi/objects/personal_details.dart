@@ -3,16 +3,16 @@ part of '../tdapi.dart';
 class PersonalDetails extends TdObject {
   /// Contains the user's personal details
   PersonalDetails(
-      {this.firstName,
-      this.middleName,
-      this.lastName,
-      this.nativeFirstName,
-      this.nativeMiddleName,
-      this.nativeLastName,
-      this.birthdate,
-      this.gender,
-      this.countryCode,
-      this.residenceCountryCode});
+      {required this.firstName,
+      required this.middleName,
+      required this.lastName,
+      required this.nativeFirstName,
+      required this.nativeMiddleName,
+      required this.nativeLastName,
+      required this.birthdate,
+      required this.gender,
+      required this.countryCode,
+      required this.residenceCountryCode});
 
   /// [firstName] First name of the user written in English; 1-255 characters
   String firstName;
@@ -45,17 +45,19 @@ class PersonalDetails extends TdObject {
   String residenceCountryCode;
 
   /// Parse from a json
-  PersonalDetails.fromJson(Map<String, dynamic> json) {
-    this.firstName = json['first_name'];
-    this.middleName = json['middle_name'];
-    this.lastName = json['last_name'];
-    this.nativeFirstName = json['native_first_name'];
-    this.nativeMiddleName = json['native_middle_name'];
-    this.nativeLastName = json['native_last_name'];
-    this.birthdate = Date.fromJson(json['birthdate'] ?? <String, dynamic>{});
-    this.gender = json['gender'];
-    this.countryCode = json['country_code'];
-    this.residenceCountryCode = json['residence_country_code'];
+  factory PersonalDetails.fromJson(Map<String, dynamic> json) {
+    return PersonalDetails(
+      firstName: json['first_name'] ?? "",
+      middleName: json['middle_name'] ?? "",
+      lastName: json['last_name'] ?? "",
+      nativeFirstName: json['native_first_name'] ?? "",
+      nativeMiddleName: json['native_middle_name'] ?? "",
+      nativeLastName: json['native_last_name'] ?? "",
+      birthdate: Date.fromJson(json['birthdate'] ?? <String, dynamic>{}),
+      gender: json['gender'] ?? "",
+      countryCode: json['country_code'] ?? "",
+      residenceCountryCode: json['residence_country_code'] ?? "",
+    );
   }
 
   @override
@@ -68,7 +70,7 @@ class PersonalDetails extends TdObject {
       "native_first_name": this.nativeFirstName,
       "native_middle_name": this.nativeMiddleName,
       "native_last_name": this.nativeLastName,
-      "birthdate": this.birthdate == null ? null : this.birthdate.toJson(),
+      "birthdate": this.birthdate.toJson(),
       "gender": this.gender,
       "country_code": this.countryCode,
       "residence_country_code": this.residenceCountryCode,

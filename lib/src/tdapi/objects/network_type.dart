@@ -23,7 +23,7 @@ class NetworkType extends TdObject {
       case NetworkTypeOther.CONSTRUCTOR:
         return NetworkTypeOther.fromJson(json);
       default:
-        return null;
+        return NetworkType();
     }
   }
 
@@ -43,7 +43,9 @@ class NetworkTypeNone extends NetworkType {
   NetworkTypeNone();
 
   /// Parse from a json
-  NetworkTypeNone.fromJson(Map<String, dynamic> json);
+  factory NetworkTypeNone.fromJson(Map<String, dynamic> json) {
+    return NetworkTypeNone();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -63,7 +65,9 @@ class NetworkTypeMobile extends NetworkType {
   NetworkTypeMobile();
 
   /// Parse from a json
-  NetworkTypeMobile.fromJson(Map<String, dynamic> json);
+  factory NetworkTypeMobile.fromJson(Map<String, dynamic> json) {
+    return NetworkTypeMobile();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -83,7 +87,9 @@ class NetworkTypeMobileRoaming extends NetworkType {
   NetworkTypeMobileRoaming();
 
   /// Parse from a json
-  NetworkTypeMobileRoaming.fromJson(Map<String, dynamic> json);
+  factory NetworkTypeMobileRoaming.fromJson(Map<String, dynamic> json) {
+    return NetworkTypeMobileRoaming();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -103,7 +109,9 @@ class NetworkTypeWiFi extends NetworkType {
   NetworkTypeWiFi();
 
   /// Parse from a json
-  NetworkTypeWiFi.fromJson(Map<String, dynamic> json);
+  factory NetworkTypeWiFi.fromJson(Map<String, dynamic> json) {
+    return NetworkTypeWiFi();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -123,7 +131,9 @@ class NetworkTypeOther extends NetworkType {
   NetworkTypeOther();
 
   /// Parse from a json
-  NetworkTypeOther.fromJson(Map<String, dynamic> json);
+  factory NetworkTypeOther.fromJson(Map<String, dynamic> json) {
+    return NetworkTypeOther();
+  }
 
   @override
   Map<String, dynamic> toJson() {

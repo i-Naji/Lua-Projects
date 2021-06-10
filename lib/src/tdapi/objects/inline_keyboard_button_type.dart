@@ -29,7 +29,7 @@ class InlineKeyboardButtonType extends TdObject {
       case InlineKeyboardButtonTypeBuy.CONSTRUCTOR:
         return InlineKeyboardButtonTypeBuy.fromJson(json);
       default:
-        return null;
+        return InlineKeyboardButtonType();
     }
   }
 
@@ -46,14 +46,16 @@ class InlineKeyboardButtonType extends TdObject {
 
 class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType {
   /// A button that opens a specified URL
-  InlineKeyboardButtonTypeUrl({this.url});
+  InlineKeyboardButtonTypeUrl({required this.url});
 
   /// [url] HTTP or tg:// URL to open
   String url;
 
   /// Parse from a json
-  InlineKeyboardButtonTypeUrl.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
+  factory InlineKeyboardButtonTypeUrl.fromJson(Map<String, dynamic> json) {
+    return InlineKeyboardButtonTypeUrl(
+      url: json['url'] ?? "",
+    );
   }
 
   @override
@@ -72,7 +74,8 @@ class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType {
 
 class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType {
   /// A button that opens a specified URL and automatically authorize the current user if allowed to do so
-  InlineKeyboardButtonTypeLoginUrl({this.url, this.id, this.forwardText});
+  InlineKeyboardButtonTypeLoginUrl(
+      {required this.url, required this.id, required this.forwardText});
 
   /// [url] An HTTP URL to open
   String url;
@@ -84,10 +87,12 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType {
   String forwardText;
 
   /// Parse from a json
-  InlineKeyboardButtonTypeLoginUrl.fromJson(Map<String, dynamic> json) {
-    this.url = json['url'];
-    this.id = json['id'];
-    this.forwardText = json['forward_text'];
+  factory InlineKeyboardButtonTypeLoginUrl.fromJson(Map<String, dynamic> json) {
+    return InlineKeyboardButtonTypeLoginUrl(
+      url: json['url'] ?? "",
+      id: json['id'] ?? 0,
+      forwardText: json['forward_text'] ?? "",
+    );
   }
 
   @override
@@ -108,14 +113,16 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType {
 
 class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType {
   /// A button that sends a callback query to a bot
-  InlineKeyboardButtonTypeCallback({this.data});
+  InlineKeyboardButtonTypeCallback({required this.data});
 
   /// [data] Data to be sent to the bot via a callback query
   String data;
 
   /// Parse from a json
-  InlineKeyboardButtonTypeCallback.fromJson(Map<String, dynamic> json) {
-    this.data = json['data'];
+  factory InlineKeyboardButtonTypeCallback.fromJson(Map<String, dynamic> json) {
+    return InlineKeyboardButtonTypeCallback(
+      data: json['data'] ?? "",
+    );
   }
 
   @override
@@ -135,15 +142,17 @@ class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType {
 class InlineKeyboardButtonTypeCallbackWithPassword
     extends InlineKeyboardButtonType {
   /// A button that asks for password of the current user and then sends a callback query to a bot
-  InlineKeyboardButtonTypeCallbackWithPassword({this.data});
+  InlineKeyboardButtonTypeCallbackWithPassword({required this.data});
 
   /// [data] Data to be sent to the bot via a callback query
   String data;
 
   /// Parse from a json
-  InlineKeyboardButtonTypeCallbackWithPassword.fromJson(
+  factory InlineKeyboardButtonTypeCallbackWithPassword.fromJson(
       Map<String, dynamic> json) {
-    this.data = json['data'];
+    return InlineKeyboardButtonTypeCallbackWithPassword(
+      data: json['data'] ?? "",
+    );
   }
 
   @override
@@ -165,7 +174,10 @@ class InlineKeyboardButtonTypeCallbackGame extends InlineKeyboardButtonType {
   InlineKeyboardButtonTypeCallbackGame();
 
   /// Parse from a json
-  InlineKeyboardButtonTypeCallbackGame.fromJson(Map<String, dynamic> json);
+  factory InlineKeyboardButtonTypeCallbackGame.fromJson(
+      Map<String, dynamic> json) {
+    return InlineKeyboardButtonTypeCallbackGame();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -182,7 +194,8 @@ class InlineKeyboardButtonTypeCallbackGame extends InlineKeyboardButtonType {
 
 class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType {
   /// A button that forces an inline query to the bot to be inserted in the input field
-  InlineKeyboardButtonTypeSwitchInline({this.query, this.inCurrentChat});
+  InlineKeyboardButtonTypeSwitchInline(
+      {required this.query, required this.inCurrentChat});
 
   /// [query] Inline query to be sent to the bot
   String query;
@@ -191,9 +204,12 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType {
   bool inCurrentChat;
 
   /// Parse from a json
-  InlineKeyboardButtonTypeSwitchInline.fromJson(Map<String, dynamic> json) {
-    this.query = json['query'];
-    this.inCurrentChat = json['in_current_chat'];
+  factory InlineKeyboardButtonTypeSwitchInline.fromJson(
+      Map<String, dynamic> json) {
+    return InlineKeyboardButtonTypeSwitchInline(
+      query: json['query'] ?? "",
+      inCurrentChat: json['in_current_chat'] ?? false,
+    );
   }
 
   @override
@@ -216,7 +232,9 @@ class InlineKeyboardButtonTypeBuy extends InlineKeyboardButtonType {
   InlineKeyboardButtonTypeBuy();
 
   /// Parse from a json
-  InlineKeyboardButtonTypeBuy.fromJson(Map<String, dynamic> json);
+  factory InlineKeyboardButtonTypeBuy.fromJson(Map<String, dynamic> json) {
+    return InlineKeyboardButtonTypeBuy();
+  }
 
   @override
   Map<String, dynamic> toJson() {

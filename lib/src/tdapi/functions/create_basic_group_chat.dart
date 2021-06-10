@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class CreateBasicGroupChat extends TdFunction {
   /// Returns an existing chat corresponding to a known basic group
-  CreateBasicGroupChat({this.basicGroupId, this.force});
+  CreateBasicGroupChat(
+      {required this.basicGroupId, required this.force, this.extra});
 
   /// [basicGroupId] Basic group identifier
   int basicGroupId;
@@ -14,7 +15,13 @@ class CreateBasicGroupChat extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  CreateBasicGroupChat.fromJson(Map<String, dynamic> json);
+  factory CreateBasicGroupChat.fromJson(Map<String, dynamic> json) {
+    return CreateBasicGroupChat(
+      basicGroupId: json['basic_group_id'] ?? 0,
+      force: json['force'] ?? false,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

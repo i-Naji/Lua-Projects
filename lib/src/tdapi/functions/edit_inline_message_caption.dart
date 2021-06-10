@@ -3,7 +3,10 @@ part of '../tdapi.dart';
 class EditInlineMessageCaption extends TdFunction {
   /// Edits the caption of an inline message sent via a bot; for bots only
   EditInlineMessageCaption(
-      {this.inlineMessageId, this.replyMarkup, this.caption});
+      {required this.inlineMessageId,
+      required this.replyMarkup,
+      required this.caption,
+      this.extra});
 
   /// [inlineMessageId] Inline message identifier
   String inlineMessageId;
@@ -18,16 +21,23 @@ class EditInlineMessageCaption extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  EditInlineMessageCaption.fromJson(Map<String, dynamic> json);
+  factory EditInlineMessageCaption.fromJson(Map<String, dynamic> json) {
+    return EditInlineMessageCaption(
+      inlineMessageId: json['inline_message_id'] ?? "",
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      caption: FormattedText.fromJson(json['caption'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "inline_message_id": this.inlineMessageId,
-      "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "caption": this.caption == null ? null : this.caption.toJson(),
+      "reply_markup": this.replyMarkup.toJson(),
+      "caption": this.caption.toJson(),
       "@extra": this.extra,
     };
   }

@@ -26,7 +26,7 @@ class ThumbnailFormat extends TdObject {
       case ThumbnailFormatMpeg4.CONSTRUCTOR:
         return ThumbnailFormatMpeg4.fromJson(json);
       default:
-        return null;
+        return ThumbnailFormat();
     }
   }
 
@@ -46,7 +46,9 @@ class ThumbnailFormatJpeg extends ThumbnailFormat {
   ThumbnailFormatJpeg();
 
   /// Parse from a json
-  ThumbnailFormatJpeg.fromJson(Map<String, dynamic> json);
+  factory ThumbnailFormatJpeg.fromJson(Map<String, dynamic> json) {
+    return ThumbnailFormatJpeg();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -66,7 +68,9 @@ class ThumbnailFormatPng extends ThumbnailFormat {
   ThumbnailFormatPng();
 
   /// Parse from a json
-  ThumbnailFormatPng.fromJson(Map<String, dynamic> json);
+  factory ThumbnailFormatPng.fromJson(Map<String, dynamic> json) {
+    return ThumbnailFormatPng();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -86,7 +90,9 @@ class ThumbnailFormatWebp extends ThumbnailFormat {
   ThumbnailFormatWebp();
 
   /// Parse from a json
-  ThumbnailFormatWebp.fromJson(Map<String, dynamic> json);
+  factory ThumbnailFormatWebp.fromJson(Map<String, dynamic> json) {
+    return ThumbnailFormatWebp();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -106,7 +112,9 @@ class ThumbnailFormatGif extends ThumbnailFormat {
   ThumbnailFormatGif();
 
   /// Parse from a json
-  ThumbnailFormatGif.fromJson(Map<String, dynamic> json);
+  factory ThumbnailFormatGif.fromJson(Map<String, dynamic> json) {
+    return ThumbnailFormatGif();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -126,7 +134,9 @@ class ThumbnailFormatTgs extends ThumbnailFormat {
   ThumbnailFormatTgs();
 
   /// Parse from a json
-  ThumbnailFormatTgs.fromJson(Map<String, dynamic> json);
+  factory ThumbnailFormatTgs.fromJson(Map<String, dynamic> json) {
+    return ThumbnailFormatTgs();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -146,7 +156,9 @@ class ThumbnailFormatMpeg4 extends ThumbnailFormat {
   ThumbnailFormatMpeg4();
 
   /// Parse from a json
-  ThumbnailFormatMpeg4.fromJson(Map<String, dynamic> json);
+  factory ThumbnailFormatMpeg4.fromJson(Map<String, dynamic> json) {
+    return ThumbnailFormatMpeg4();
+  }
 
   @override
   Map<String, dynamic> toJson() {

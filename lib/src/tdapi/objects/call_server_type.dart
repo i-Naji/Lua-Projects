@@ -14,7 +14,7 @@ class CallServerType extends TdObject {
       case CallServerTypeWebrtc.CONSTRUCTOR:
         return CallServerTypeWebrtc.fromJson(json);
       default:
-        return null;
+        return CallServerType();
     }
   }
 
@@ -31,14 +31,16 @@ class CallServerType extends TdObject {
 
 class CallServerTypeTelegramReflector extends CallServerType {
   /// A Telegram call reflector
-  CallServerTypeTelegramReflector({this.peerTag});
+  CallServerTypeTelegramReflector({required this.peerTag});
 
   /// [peerTag] A peer tag to be used with the reflector
   String peerTag;
 
   /// Parse from a json
-  CallServerTypeTelegramReflector.fromJson(Map<String, dynamic> json) {
-    this.peerTag = json['peer_tag'];
+  factory CallServerTypeTelegramReflector.fromJson(Map<String, dynamic> json) {
+    return CallServerTypeTelegramReflector(
+      peerTag: json['peer_tag'] ?? "",
+    );
   }
 
   @override
@@ -58,7 +60,10 @@ class CallServerTypeTelegramReflector extends CallServerType {
 class CallServerTypeWebrtc extends CallServerType {
   /// A WebRTC server
   CallServerTypeWebrtc(
-      {this.username, this.password, this.supportsTurn, this.supportsStun});
+      {required this.username,
+      required this.password,
+      required this.supportsTurn,
+      required this.supportsStun});
 
   /// [username] Username to be used for authentication
   String username;
@@ -73,11 +78,13 @@ class CallServerTypeWebrtc extends CallServerType {
   bool supportsStun;
 
   /// Parse from a json
-  CallServerTypeWebrtc.fromJson(Map<String, dynamic> json) {
-    this.username = json['username'];
-    this.password = json['password'];
-    this.supportsTurn = json['supports_turn'];
-    this.supportsStun = json['supports_stun'];
+  factory CallServerTypeWebrtc.fromJson(Map<String, dynamic> json) {
+    return CallServerTypeWebrtc(
+      username: json['username'] ?? "",
+      password: json['password'] ?? "",
+      supportsTurn: json['supports_turn'] ?? false,
+      supportsStun: json['supports_stun'] ?? false,
+    );
   }
 
   @override

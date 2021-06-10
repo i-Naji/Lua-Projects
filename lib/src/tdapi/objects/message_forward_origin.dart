@@ -20,7 +20,7 @@ class MessageForwardOrigin extends TdObject {
       case MessageForwardOriginChannel.CONSTRUCTOR:
         return MessageForwardOriginChannel.fromJson(json);
       default:
-        return null;
+        return MessageForwardOrigin();
     }
   }
 
@@ -37,14 +37,16 @@ class MessageForwardOrigin extends TdObject {
 
 class MessageForwardOriginUser extends MessageForwardOrigin {
   /// The message was originally sent by a known user
-  MessageForwardOriginUser({this.senderUserId});
+  MessageForwardOriginUser({required this.senderUserId});
 
   /// [senderUserId] Identifier of the user that originally sent the message
   int senderUserId;
 
   /// Parse from a json
-  MessageForwardOriginUser.fromJson(Map<String, dynamic> json) {
-    this.senderUserId = json['sender_user_id'];
+  factory MessageForwardOriginUser.fromJson(Map<String, dynamic> json) {
+    return MessageForwardOriginUser(
+      senderUserId: json['sender_user_id'] ?? 0,
+    );
   }
 
   @override
@@ -63,7 +65,8 @@ class MessageForwardOriginUser extends MessageForwardOrigin {
 
 class MessageForwardOriginChat extends MessageForwardOrigin {
   /// The message was originally sent by an anonymous chat administrator on behalf of the chat
-  MessageForwardOriginChat({this.senderChatId, this.authorSignature});
+  MessageForwardOriginChat(
+      {required this.senderChatId, required this.authorSignature});
 
   /// [senderChatId] Identifier of the chat that originally sent the message
   int senderChatId;
@@ -72,9 +75,11 @@ class MessageForwardOriginChat extends MessageForwardOrigin {
   String authorSignature;
 
   /// Parse from a json
-  MessageForwardOriginChat.fromJson(Map<String, dynamic> json) {
-    this.senderChatId = json['sender_chat_id'];
-    this.authorSignature = json['author_signature'];
+  factory MessageForwardOriginChat.fromJson(Map<String, dynamic> json) {
+    return MessageForwardOriginChat(
+      senderChatId: json['sender_chat_id'] ?? 0,
+      authorSignature: json['author_signature'] ?? "",
+    );
   }
 
   @override
@@ -94,14 +99,16 @@ class MessageForwardOriginChat extends MessageForwardOrigin {
 
 class MessageForwardOriginHiddenUser extends MessageForwardOrigin {
   /// The message was originally sent by a user, which is hidden by their privacy settings
-  MessageForwardOriginHiddenUser({this.senderName});
+  MessageForwardOriginHiddenUser({required this.senderName});
 
   /// [senderName] Name of the sender
   String senderName;
 
   /// Parse from a json
-  MessageForwardOriginHiddenUser.fromJson(Map<String, dynamic> json) {
-    this.senderName = json['sender_name'];
+  factory MessageForwardOriginHiddenUser.fromJson(Map<String, dynamic> json) {
+    return MessageForwardOriginHiddenUser(
+      senderName: json['sender_name'] ?? "",
+    );
   }
 
   @override
@@ -121,7 +128,9 @@ class MessageForwardOriginHiddenUser extends MessageForwardOrigin {
 class MessageForwardOriginChannel extends MessageForwardOrigin {
   /// The message was originally a post in a channel
   MessageForwardOriginChannel(
-      {this.chatId, this.messageId, this.authorSignature});
+      {required this.chatId,
+      required this.messageId,
+      required this.authorSignature});
 
   /// [chatId] Identifier of the chat from which the message was originally forwarded
   int chatId;
@@ -133,10 +142,12 @@ class MessageForwardOriginChannel extends MessageForwardOrigin {
   String authorSignature;
 
   /// Parse from a json
-  MessageForwardOriginChannel.fromJson(Map<String, dynamic> json) {
-    this.chatId = json['chat_id'];
-    this.messageId = json['message_id'];
-    this.authorSignature = json['author_signature'];
+  factory MessageForwardOriginChannel.fromJson(Map<String, dynamic> json) {
+    return MessageForwardOriginChannel(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      authorSignature: json['author_signature'] ?? "",
+    );
   }
 
   @override

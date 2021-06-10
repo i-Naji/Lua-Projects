@@ -2,18 +2,21 @@ part of '../tdapi.dart';
 
 class TestBytes extends TdObject {
   /// A simple object containing a sequence of bytes; for testing only
-  TestBytes({this.value});
+  TestBytes({required this.value, this.extra});
 
   /// [value] Bytes
   String value;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  TestBytes.fromJson(Map<String, dynamic> json) {
-    this.value = json['value'];
-    this.extra = json['@extra'];
+  factory TestBytes.fromJson(Map<String, dynamic> json) {
+    return TestBytes(
+      value: json['value'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

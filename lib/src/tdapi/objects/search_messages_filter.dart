@@ -62,7 +62,7 @@ class SearchMessagesFilter extends TdObject {
       case SearchMessagesFilterPinned.CONSTRUCTOR:
         return SearchMessagesFilterPinned.fromJson(json);
       default:
-        return null;
+        return SearchMessagesFilter();
     }
   }
 
@@ -82,7 +82,9 @@ class SearchMessagesFilterEmpty extends SearchMessagesFilter {
   SearchMessagesFilterEmpty();
 
   /// Parse from a json
-  SearchMessagesFilterEmpty.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterEmpty.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterEmpty();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -102,7 +104,9 @@ class SearchMessagesFilterAnimation extends SearchMessagesFilter {
   SearchMessagesFilterAnimation();
 
   /// Parse from a json
-  SearchMessagesFilterAnimation.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterAnimation.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterAnimation();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -122,7 +126,9 @@ class SearchMessagesFilterAudio extends SearchMessagesFilter {
   SearchMessagesFilterAudio();
 
   /// Parse from a json
-  SearchMessagesFilterAudio.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterAudio.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterAudio();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -142,7 +148,9 @@ class SearchMessagesFilterDocument extends SearchMessagesFilter {
   SearchMessagesFilterDocument();
 
   /// Parse from a json
-  SearchMessagesFilterDocument.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterDocument.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterDocument();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -162,7 +170,9 @@ class SearchMessagesFilterPhoto extends SearchMessagesFilter {
   SearchMessagesFilterPhoto();
 
   /// Parse from a json
-  SearchMessagesFilterPhoto.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterPhoto.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterPhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -182,7 +192,9 @@ class SearchMessagesFilterVideo extends SearchMessagesFilter {
   SearchMessagesFilterVideo();
 
   /// Parse from a json
-  SearchMessagesFilterVideo.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterVideo.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -202,7 +214,9 @@ class SearchMessagesFilterVoiceNote extends SearchMessagesFilter {
   SearchMessagesFilterVoiceNote();
 
   /// Parse from a json
-  SearchMessagesFilterVoiceNote.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterVoiceNote.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterVoiceNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -222,7 +236,10 @@ class SearchMessagesFilterPhotoAndVideo extends SearchMessagesFilter {
   SearchMessagesFilterPhotoAndVideo();
 
   /// Parse from a json
-  SearchMessagesFilterPhotoAndVideo.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterPhotoAndVideo.fromJson(
+      Map<String, dynamic> json) {
+    return SearchMessagesFilterPhotoAndVideo();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -242,7 +259,9 @@ class SearchMessagesFilterUrl extends SearchMessagesFilter {
   SearchMessagesFilterUrl();
 
   /// Parse from a json
-  SearchMessagesFilterUrl.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterUrl.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterUrl();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -262,7 +281,9 @@ class SearchMessagesFilterChatPhoto extends SearchMessagesFilter {
   SearchMessagesFilterChatPhoto();
 
   /// Parse from a json
-  SearchMessagesFilterChatPhoto.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterChatPhoto.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterChatPhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -282,7 +303,9 @@ class SearchMessagesFilterCall extends SearchMessagesFilter {
   SearchMessagesFilterCall();
 
   /// Parse from a json
-  SearchMessagesFilterCall.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterCall.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterCall();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -302,7 +325,9 @@ class SearchMessagesFilterMissedCall extends SearchMessagesFilter {
   SearchMessagesFilterMissedCall();
 
   /// Parse from a json
-  SearchMessagesFilterMissedCall.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterMissedCall.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterMissedCall();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -322,7 +347,9 @@ class SearchMessagesFilterVideoNote extends SearchMessagesFilter {
   SearchMessagesFilterVideoNote();
 
   /// Parse from a json
-  SearchMessagesFilterVideoNote.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterVideoNote.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterVideoNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -342,7 +369,10 @@ class SearchMessagesFilterVoiceAndVideoNote extends SearchMessagesFilter {
   SearchMessagesFilterVoiceAndVideoNote();
 
   /// Parse from a json
-  SearchMessagesFilterVoiceAndVideoNote.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterVoiceAndVideoNote.fromJson(
+      Map<String, dynamic> json) {
+    return SearchMessagesFilterVoiceAndVideoNote();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -362,7 +392,9 @@ class SearchMessagesFilterMention extends SearchMessagesFilter {
   SearchMessagesFilterMention();
 
   /// Parse from a json
-  SearchMessagesFilterMention.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterMention.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterMention();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -382,7 +414,10 @@ class SearchMessagesFilterUnreadMention extends SearchMessagesFilter {
   SearchMessagesFilterUnreadMention();
 
   /// Parse from a json
-  SearchMessagesFilterUnreadMention.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterUnreadMention.fromJson(
+      Map<String, dynamic> json) {
+    return SearchMessagesFilterUnreadMention();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -402,7 +437,9 @@ class SearchMessagesFilterFailedToSend extends SearchMessagesFilter {
   SearchMessagesFilterFailedToSend();
 
   /// Parse from a json
-  SearchMessagesFilterFailedToSend.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterFailedToSend.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterFailedToSend();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -422,7 +459,9 @@ class SearchMessagesFilterPinned extends SearchMessagesFilter {
   SearchMessagesFilterPinned();
 
   /// Parse from a json
-  SearchMessagesFilterPinned.fromJson(Map<String, dynamic> json);
+  factory SearchMessagesFilterPinned.fromJson(Map<String, dynamic> json) {
+    return SearchMessagesFilterPinned();
+  }
 
   @override
   Map<String, dynamic> toJson() {

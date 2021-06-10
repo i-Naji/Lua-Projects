@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class GetLanguagePackStrings extends TdFunction {
   /// Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
-  GetLanguagePackStrings({this.languagePackId, this.keys});
+  GetLanguagePackStrings(
+      {required this.languagePackId, required this.keys, this.extra});
 
   /// [languagePackId] Language pack identifier of the strings to be returned
   String languagePackId;
@@ -14,7 +15,14 @@ class GetLanguagePackStrings extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetLanguagePackStrings.fromJson(Map<String, dynamic> json);
+  factory GetLanguagePackStrings.fromJson(Map<String, dynamic> json) {
+    return GetLanguagePackStrings(
+      languagePackId: json['language_pack_id'] ?? "",
+      keys: List<String>.from(
+          (json['keys'] ?? []).map((item) => item ?? "").toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

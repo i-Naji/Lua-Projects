@@ -14,7 +14,7 @@ class PublicChatType extends TdObject {
       case PublicChatTypeIsLocationBased.CONSTRUCTOR:
         return PublicChatTypeIsLocationBased.fromJson(json);
       default:
-        return null;
+        return PublicChatType();
     }
   }
 
@@ -34,7 +34,9 @@ class PublicChatTypeHasUsername extends PublicChatType {
   PublicChatTypeHasUsername();
 
   /// Parse from a json
-  PublicChatTypeHasUsername.fromJson(Map<String, dynamic> json);
+  factory PublicChatTypeHasUsername.fromJson(Map<String, dynamic> json) {
+    return PublicChatTypeHasUsername();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -54,7 +56,9 @@ class PublicChatTypeIsLocationBased extends PublicChatType {
   PublicChatTypeIsLocationBased();
 
   /// Parse from a json
-  PublicChatTypeIsLocationBased.fromJson(Map<String, dynamic> json);
+  factory PublicChatTypeIsLocationBased.fromJson(Map<String, dynamic> json) {
+    return PublicChatTypeIsLocationBased();
+  }
 
   @override
   Map<String, dynamic> toJson() {

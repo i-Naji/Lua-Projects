@@ -3,21 +3,21 @@ part of '../tdapi.dart';
 class TdlibParameters extends TdObject {
   /// Contains parameters for TDLib initialization
   TdlibParameters(
-      {this.useTestDc,
-      this.databaseDirectory,
-      this.filesDirectory,
-      this.useFileDatabase,
-      this.useChatInfoDatabase,
-      this.useMessageDatabase,
-      this.useSecretChats,
-      this.apiId,
-      this.apiHash,
-      this.systemLanguageCode,
-      this.deviceModel,
-      this.systemVersion,
-      this.applicationVersion,
-      this.enableStorageOptimizer,
-      this.ignoreFileNames});
+      {required this.useTestDc,
+      required this.databaseDirectory,
+      required this.filesDirectory,
+      required this.useFileDatabase,
+      required this.useChatInfoDatabase,
+      required this.useMessageDatabase,
+      required this.useSecretChats,
+      required this.apiId,
+      required this.apiHash,
+      required this.systemLanguageCode,
+      required this.deviceModel,
+      required this.systemVersion,
+      required this.applicationVersion,
+      required this.enableStorageOptimizer,
+      required this.ignoreFileNames});
 
   /// [useTestDc] If set to true, the Telegram test environment will be used instead of the production environment
   bool useTestDc;
@@ -65,22 +65,24 @@ class TdlibParameters extends TdObject {
   bool ignoreFileNames;
 
   /// Parse from a json
-  TdlibParameters.fromJson(Map<String, dynamic> json) {
-    this.useTestDc = json['use_test_dc'];
-    this.databaseDirectory = json['database_directory'];
-    this.filesDirectory = json['files_directory'];
-    this.useFileDatabase = json['use_file_database'];
-    this.useChatInfoDatabase = json['use_chat_info_database'];
-    this.useMessageDatabase = json['use_message_database'];
-    this.useSecretChats = json['use_secret_chats'];
-    this.apiId = json['api_id'];
-    this.apiHash = json['api_hash'];
-    this.systemLanguageCode = json['system_language_code'];
-    this.deviceModel = json['device_model'];
-    this.systemVersion = json['system_version'];
-    this.applicationVersion = json['application_version'];
-    this.enableStorageOptimizer = json['enable_storage_optimizer'];
-    this.ignoreFileNames = json['ignore_file_names'];
+  factory TdlibParameters.fromJson(Map<String, dynamic> json) {
+    return TdlibParameters(
+      useTestDc: json['use_test_dc'] ?? false,
+      databaseDirectory: json['database_directory'] ?? "",
+      filesDirectory: json['files_directory'] ?? "",
+      useFileDatabase: json['use_file_database'] ?? false,
+      useChatInfoDatabase: json['use_chat_info_database'] ?? false,
+      useMessageDatabase: json['use_message_database'] ?? false,
+      useSecretChats: json['use_secret_chats'] ?? false,
+      apiId: json['api_id'] ?? 0,
+      apiHash: json['api_hash'] ?? "",
+      systemLanguageCode: json['system_language_code'] ?? "",
+      deviceModel: json['device_model'] ?? "",
+      systemVersion: json['system_version'] ?? "",
+      applicationVersion: json['application_version'] ?? "",
+      enableStorageOptimizer: json['enable_storage_optimizer'] ?? false,
+      ignoreFileNames: json['ignore_file_names'] ?? false,
+    );
   }
 
   @override

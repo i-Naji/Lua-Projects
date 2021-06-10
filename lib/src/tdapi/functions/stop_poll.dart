@@ -2,7 +2,11 @@ part of '../tdapi.dart';
 
 class StopPoll extends TdFunction {
   /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
-  StopPoll({this.chatId, this.messageId, this.replyMarkup});
+  StopPoll(
+      {required this.chatId,
+      required this.messageId,
+      required this.replyMarkup,
+      this.extra});
 
   /// [chatId] Identifier of the chat to which the poll belongs
   int chatId;
@@ -17,7 +21,15 @@ class StopPoll extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  StopPoll.fromJson(Map<String, dynamic> json);
+  factory StopPoll.fromJson(Map<String, dynamic> json) {
+    return StopPoll(
+      chatId: json['chat_id'] ?? 0,
+      messageId: json['message_id'] ?? 0,
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -25,8 +37,7 @@ class StopPoll extends TdFunction {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
       "message_id": this.messageId,
-      "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
+      "reply_markup": this.replyMarkup.toJson(),
       "@extra": this.extra,
     };
   }

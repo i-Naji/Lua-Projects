@@ -14,7 +14,7 @@ class MessageSchedulingState extends TdObject {
       case MessageSchedulingStateSendWhenOnline.CONSTRUCTOR:
         return MessageSchedulingStateSendWhenOnline.fromJson(json);
       default:
-        return null;
+        return MessageSchedulingState();
     }
   }
 
@@ -31,14 +31,16 @@ class MessageSchedulingState extends TdObject {
 
 class MessageSchedulingStateSendAtDate extends MessageSchedulingState {
   /// The message will be sent at the specified date
-  MessageSchedulingStateSendAtDate({this.sendDate});
+  MessageSchedulingStateSendAtDate({required this.sendDate});
 
   /// [sendDate] Date the message will be sent. The date must be within 367 days in the future
   int sendDate;
 
   /// Parse from a json
-  MessageSchedulingStateSendAtDate.fromJson(Map<String, dynamic> json) {
-    this.sendDate = json['send_date'];
+  factory MessageSchedulingStateSendAtDate.fromJson(Map<String, dynamic> json) {
+    return MessageSchedulingStateSendAtDate(
+      sendDate: json['send_date'] ?? 0,
+    );
   }
 
   @override
@@ -60,7 +62,10 @@ class MessageSchedulingStateSendWhenOnline extends MessageSchedulingState {
   MessageSchedulingStateSendWhenOnline();
 
   /// Parse from a json
-  MessageSchedulingStateSendWhenOnline.fromJson(Map<String, dynamic> json);
+  factory MessageSchedulingStateSendWhenOnline.fromJson(
+      Map<String, dynamic> json) {
+    return MessageSchedulingStateSendWhenOnline();
+  }
 
   @override
   Map<String, dynamic> toJson() {

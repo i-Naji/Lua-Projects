@@ -29,7 +29,7 @@ class ChatReportReason extends TdObject {
       case ChatReportReasonCustom.CONSTRUCTOR:
         return ChatReportReasonCustom.fromJson(json);
       default:
-        return null;
+        return ChatReportReason();
     }
   }
 
@@ -49,7 +49,9 @@ class ChatReportReasonSpam extends ChatReportReason {
   ChatReportReasonSpam();
 
   /// Parse from a json
-  ChatReportReasonSpam.fromJson(Map<String, dynamic> json);
+  factory ChatReportReasonSpam.fromJson(Map<String, dynamic> json) {
+    return ChatReportReasonSpam();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -69,7 +71,9 @@ class ChatReportReasonViolence extends ChatReportReason {
   ChatReportReasonViolence();
 
   /// Parse from a json
-  ChatReportReasonViolence.fromJson(Map<String, dynamic> json);
+  factory ChatReportReasonViolence.fromJson(Map<String, dynamic> json) {
+    return ChatReportReasonViolence();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -89,7 +93,9 @@ class ChatReportReasonPornography extends ChatReportReason {
   ChatReportReasonPornography();
 
   /// Parse from a json
-  ChatReportReasonPornography.fromJson(Map<String, dynamic> json);
+  factory ChatReportReasonPornography.fromJson(Map<String, dynamic> json) {
+    return ChatReportReasonPornography();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -109,7 +115,9 @@ class ChatReportReasonChildAbuse extends ChatReportReason {
   ChatReportReasonChildAbuse();
 
   /// Parse from a json
-  ChatReportReasonChildAbuse.fromJson(Map<String, dynamic> json);
+  factory ChatReportReasonChildAbuse.fromJson(Map<String, dynamic> json) {
+    return ChatReportReasonChildAbuse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -129,7 +137,9 @@ class ChatReportReasonCopyright extends ChatReportReason {
   ChatReportReasonCopyright();
 
   /// Parse from a json
-  ChatReportReasonCopyright.fromJson(Map<String, dynamic> json);
+  factory ChatReportReasonCopyright.fromJson(Map<String, dynamic> json) {
+    return ChatReportReasonCopyright();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -149,7 +159,10 @@ class ChatReportReasonUnrelatedLocation extends ChatReportReason {
   ChatReportReasonUnrelatedLocation();
 
   /// Parse from a json
-  ChatReportReasonUnrelatedLocation.fromJson(Map<String, dynamic> json);
+  factory ChatReportReasonUnrelatedLocation.fromJson(
+      Map<String, dynamic> json) {
+    return ChatReportReasonUnrelatedLocation();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -166,14 +179,16 @@ class ChatReportReasonUnrelatedLocation extends ChatReportReason {
 
 class ChatReportReasonCustom extends ChatReportReason {
   /// A custom reason provided by the user
-  ChatReportReasonCustom({this.text});
+  ChatReportReasonCustom({required this.text});
 
   /// [text] Report text
   String text;
 
   /// Parse from a json
-  ChatReportReasonCustom.fromJson(Map<String, dynamic> json) {
-    this.text = json['text'];
+  factory ChatReportReasonCustom.fromJson(Map<String, dynamic> json) {
+    return ChatReportReasonCustom(
+      text: json['text'] ?? "",
+    );
   }
 
   @override

@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetActiveSessions extends TdFunction {
   /// Returns all active sessions of the current user
-  GetActiveSessions();
+  GetActiveSessions({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetActiveSessions.fromJson(Map<String, dynamic> json);
+  factory GetActiveSessions.fromJson(Map<String, dynamic> json) {
+    return GetActiveSessions(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class AddLocalMessage extends TdFunction {
   /// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
   AddLocalMessage(
-      {this.chatId,
-      this.sender,
-      this.replyToMessageId,
-      this.disableNotification,
-      this.inputMessageContent});
+      {required this.chatId,
+      required this.sender,
+      required this.replyToMessageId,
+      required this.disableNotification,
+      required this.inputMessageContent,
+      this.extra});
 
   /// [chatId] Target chat
   int chatId;
@@ -28,19 +29,27 @@ class AddLocalMessage extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AddLocalMessage.fromJson(Map<String, dynamic> json);
+  factory AddLocalMessage.fromJson(Map<String, dynamic> json) {
+    return AddLocalMessage(
+      chatId: json['chat_id'] ?? 0,
+      sender: MessageSender.fromJson(json['sender'] ?? <String, dynamic>{}),
+      replyToMessageId: json['reply_to_message_id'] ?? 0,
+      disableNotification: json['disable_notification'] ?? false,
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "chat_id": this.chatId,
-      "sender": this.sender == null ? null : this.sender.toJson(),
+      "sender": this.sender.toJson(),
       "reply_to_message_id": this.replyToMessageId,
       "disable_notification": this.disableNotification,
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
       "@extra": this.extra,
     };
   }

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class Users extends TdObject {
   /// Represents a list of users
-  Users({this.totalCount, this.userIds});
+  Users({required this.totalCount, required this.userIds, this.extra});
 
   /// [totalCount] Approximate total count of users found
   int totalCount;
@@ -11,14 +11,17 @@ class Users extends TdObject {
   List<int> userIds;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Users.fromJson(Map<String, dynamic> json) {
-    this.totalCount = json['total_count'];
-    this.userIds =
-        List<int>.from((json['user_ids'] ?? []).map((item) => item).toList());
-    this.extra = json['@extra'];
+  factory Users.fromJson(Map<String, dynamic> json) {
+    return Users(
+      totalCount: json['total_count'] ?? 0,
+      userIds: List<int>.from(
+          (json['user_ids'] ?? []).map((item) => item ?? 0).toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

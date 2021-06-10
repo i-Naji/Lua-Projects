@@ -2,7 +2,8 @@ part of '../tdapi.dart';
 
 class PassportElementsWithErrors extends TdObject {
   /// Contains information about a Telegram Passport elements and corresponding errors
-  PassportElementsWithErrors({this.elements, this.errors});
+  PassportElementsWithErrors(
+      {required this.elements, required this.errors, this.extra});
 
   /// [elements] Telegram Passport elements
   List<PassportElement> elements;
@@ -11,18 +12,21 @@ class PassportElementsWithErrors extends TdObject {
   List<PassportElementError> errors;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  PassportElementsWithErrors.fromJson(Map<String, dynamic> json) {
-    this.elements = List<PassportElement>.from((json['elements'] ?? [])
-        .map((item) => PassportElement.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.errors = List<PassportElementError>.from((json['errors'] ?? [])
-        .map((item) =>
-            PassportElementError.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.extra = json['@extra'];
+  factory PassportElementsWithErrors.fromJson(Map<String, dynamic> json) {
+    return PassportElementsWithErrors(
+      elements: List<PassportElement>.from((json['elements'] ?? [])
+          .map((item) => PassportElement.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      errors: List<PassportElementError>.from((json['errors'] ?? [])
+          .map((item) =>
+              PassportElementError.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

@@ -17,7 +17,7 @@ class NotificationSettingsScope extends TdObject {
       case NotificationSettingsScopeChannelChats.CONSTRUCTOR:
         return NotificationSettingsScopeChannelChats.fromJson(json);
       default:
-        return null;
+        return NotificationSettingsScope();
     }
   }
 
@@ -37,7 +37,10 @@ class NotificationSettingsScopePrivateChats extends NotificationSettingsScope {
   NotificationSettingsScopePrivateChats();
 
   /// Parse from a json
-  NotificationSettingsScopePrivateChats.fromJson(Map<String, dynamic> json);
+  factory NotificationSettingsScopePrivateChats.fromJson(
+      Map<String, dynamic> json) {
+    return NotificationSettingsScopePrivateChats();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -57,7 +60,10 @@ class NotificationSettingsScopeGroupChats extends NotificationSettingsScope {
   NotificationSettingsScopeGroupChats();
 
   /// Parse from a json
-  NotificationSettingsScopeGroupChats.fromJson(Map<String, dynamic> json);
+  factory NotificationSettingsScopeGroupChats.fromJson(
+      Map<String, dynamic> json) {
+    return NotificationSettingsScopeGroupChats();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -77,7 +83,10 @@ class NotificationSettingsScopeChannelChats extends NotificationSettingsScope {
   NotificationSettingsScopeChannelChats();
 
   /// Parse from a json
-  NotificationSettingsScopeChannelChats.fromJson(Map<String, dynamic> json);
+  factory NotificationSettingsScopeChannelChats.fromJson(
+      Map<String, dynamic> json) {
+    return NotificationSettingsScopeChannelChats();
+  }
 
   @override
   Map<String, dynamic> toJson() {

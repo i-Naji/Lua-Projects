@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class MessageLinkInfo extends TdObject {
   /// Contains information about a link to a message in a chat
   MessageLinkInfo(
-      {this.isPublic,
-      this.chatId,
+      {required this.isPublic,
+      required this.chatId,
       this.message,
-      this.forAlbum,
-      this.forComment});
+      required this.forAlbum,
+      required this.forComment,
+      this.extra});
 
   /// [isPublic] True, if the link is a public link for a message in a chat
   bool isPublic;
@@ -16,7 +17,7 @@ class MessageLinkInfo extends TdObject {
   int chatId;
 
   /// [message] If found, the linked message; may be null
-  Message message;
+  Message? message;
 
   /// [forAlbum] True, if the whole media album to which the message belongs is linked
   bool forAlbum;
@@ -25,16 +26,19 @@ class MessageLinkInfo extends TdObject {
   bool forComment;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  MessageLinkInfo.fromJson(Map<String, dynamic> json) {
-    this.isPublic = json['is_public'];
-    this.chatId = json['chat_id'];
-    this.message = Message.fromJson(json['message'] ?? <String, dynamic>{});
-    this.forAlbum = json['for_album'];
-    this.forComment = json['for_comment'];
-    this.extra = json['@extra'];
+  factory MessageLinkInfo.fromJson(Map<String, dynamic> json) {
+    return MessageLinkInfo(
+      isPublic: json['is_public'] ?? false,
+      chatId: json['chat_id'] ?? 0,
+      message: Message.fromJson(json['message'] ?? <String, dynamic>{}),
+      forAlbum: json['for_album'] ?? false,
+      forComment: json['for_comment'] ?? false,
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -43,7 +47,7 @@ class MessageLinkInfo extends TdObject {
       "@type": CONSTRUCTOR,
       "is_public": this.isPublic,
       "chat_id": this.chatId,
-      "message": this.message == null ? null : this.message.toJson(),
+      "message": this.message == null ? null : this.message!.toJson(),
       "for_album": this.forAlbum,
       "for_comment": this.forComment,
     };

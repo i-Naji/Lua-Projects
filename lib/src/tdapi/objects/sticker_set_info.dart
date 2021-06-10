@@ -3,19 +3,19 @@ part of '../tdapi.dart';
 class StickerSetInfo extends TdObject {
   /// Represents short information about a sticker set
   StickerSetInfo(
-      {this.id,
-      this.title,
-      this.name,
+      {required this.id,
+      required this.title,
+      required this.name,
       this.thumbnail,
-      this.thumbnailOutline,
-      this.isInstalled,
-      this.isArchived,
-      this.isOfficial,
-      this.isAnimated,
-      this.isMasks,
-      this.isViewed,
-      this.size,
-      this.covers});
+      required this.thumbnailOutline,
+      required this.isInstalled,
+      required this.isArchived,
+      required this.isOfficial,
+      required this.isAnimated,
+      required this.isMasks,
+      required this.isViewed,
+      required this.size,
+      required this.covers});
 
   /// [id] Identifier of the sticker set
   int id;
@@ -27,7 +27,7 @@ class StickerSetInfo extends TdObject {
   String name;
 
   /// [thumbnail] Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// [thumbnailOutline] Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
   List<ClosedVectorPath> thumbnailOutline;
@@ -57,27 +57,28 @@ class StickerSetInfo extends TdObject {
   List<Sticker> covers;
 
   /// Parse from a json
-  StickerSetInfo.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.title = json['title'];
-    this.name = json['name'];
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
-    this.thumbnailOutline = List<ClosedVectorPath>.from(
-        (json['thumbnail_outline'] ?? [])
-            .map((item) =>
-                ClosedVectorPath.fromJson(item ?? <String, dynamic>{}))
-            .toList());
-    this.isInstalled = json['is_installed'];
-    this.isArchived = json['is_archived'];
-    this.isOfficial = json['is_official'];
-    this.isAnimated = json['is_animated'];
-    this.isMasks = json['is_masks'];
-    this.isViewed = json['is_viewed'];
-    this.size = json['size'];
-    this.covers = List<Sticker>.from((json['covers'] ?? [])
-        .map((item) => Sticker.fromJson(item ?? <String, dynamic>{}))
-        .toList());
+  factory StickerSetInfo.fromJson(Map<String, dynamic> json) {
+    return StickerSetInfo(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      title: json['title'] ?? "",
+      name: json['name'] ?? "",
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+      thumbnailOutline: List<ClosedVectorPath>.from(
+          (json['thumbnail_outline'] ?? [])
+              .map((item) =>
+                  ClosedVectorPath.fromJson(item ?? <String, dynamic>{}))
+              .toList()),
+      isInstalled: json['is_installed'] ?? false,
+      isArchived: json['is_archived'] ?? false,
+      isOfficial: json['is_official'] ?? false,
+      isAnimated: json['is_animated'] ?? false,
+      isMasks: json['is_masks'] ?? false,
+      isViewed: json['is_viewed'] ?? false,
+      size: json['size'] ?? 0,
+      covers: List<Sticker>.from((json['covers'] ?? [])
+          .map((item) => Sticker.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+    );
   }
 
   @override
@@ -87,7 +88,7 @@ class StickerSetInfo extends TdObject {
       "id": this.id,
       "title": this.title,
       "name": this.name,
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
       "thumbnail_outline":
           this.thumbnailOutline.map((i) => i.toJson()).toList(),
       "is_installed": this.isInstalled,

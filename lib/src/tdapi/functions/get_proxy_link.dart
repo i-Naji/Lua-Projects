@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetProxyLink extends TdFunction {
   /// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
-  GetProxyLink({this.proxyId});
+  GetProxyLink({required this.proxyId, this.extra});
 
   /// [proxyId] Proxy identifier
   int proxyId;
@@ -11,7 +11,12 @@ class GetProxyLink extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetProxyLink.fromJson(Map<String, dynamic> json);
+  factory GetProxyLink.fromJson(Map<String, dynamic> json) {
+    return GetProxyLink(
+      proxyId: json['proxy_id'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

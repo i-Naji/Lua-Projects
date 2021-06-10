@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetMessages extends TdFunction {
   /// Returns information about messages. If a message is not found, returns null on the corresponding position of the result
-  GetMessages({this.chatId, this.messageIds});
+  GetMessages({required this.chatId, required this.messageIds, this.extra});
 
   /// [chatId] Identifier of the chat the messages belong to
   int chatId;
@@ -14,7 +14,14 @@ class GetMessages extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetMessages.fromJson(Map<String, dynamic> json);
+  factory GetMessages.fromJson(Map<String, dynamic> json) {
+    return GetMessages(
+      chatId: json['chat_id'] ?? 0,
+      messageIds: List<int>.from(
+          (json['message_ids'] ?? []).map((item) => item ?? 0).toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

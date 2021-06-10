@@ -3,7 +3,10 @@ part of '../tdapi.dart';
 class EditInlineMessageText extends TdFunction {
   /// Edits the text of an inline text or game message sent via a bot; for bots only
   EditInlineMessageText(
-      {this.inlineMessageId, this.replyMarkup, this.inputMessageContent});
+      {required this.inlineMessageId,
+      required this.replyMarkup,
+      required this.inputMessageContent,
+      this.extra});
 
   /// [inlineMessageId] Inline message identifier
   String inlineMessageId;
@@ -18,18 +21,24 @@ class EditInlineMessageText extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  EditInlineMessageText.fromJson(Map<String, dynamic> json);
+  factory EditInlineMessageText.fromJson(Map<String, dynamic> json) {
+    return EditInlineMessageText(
+      inlineMessageId: json['inline_message_id'] ?? "",
+      replyMarkup:
+          ReplyMarkup.fromJson(json['reply_markup'] ?? <String, dynamic>{}),
+      inputMessageContent: InputMessageContent.fromJson(
+          json['input_message_content'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "inline_message_id": this.inlineMessageId,
-      "reply_markup":
-          this.replyMarkup == null ? null : this.replyMarkup.toJson(),
-      "input_message_content": this.inputMessageContent == null
-          ? null
-          : this.inputMessageContent.toJson(),
+      "reply_markup": this.replyMarkup.toJson(),
+      "input_message_content": this.inputMessageContent.toJson(),
       "@extra": this.extra,
     };
   }

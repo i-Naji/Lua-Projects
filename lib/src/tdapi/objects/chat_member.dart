@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class ChatMember extends TdObject {
   /// A user with information about joining/leaving a chat
   ChatMember(
-      {this.userId,
-      this.inviterUserId,
-      this.joinedChatDate,
-      this.status,
-      this.botInfo});
+      {required this.userId,
+      required this.inviterUserId,
+      required this.joinedChatDate,
+      required this.status,
+      this.botInfo,
+      this.extra});
 
   /// [userId] User identifier of the chat member
   int userId;
@@ -22,20 +23,22 @@ class ChatMember extends TdObject {
   ChatMemberStatus status;
 
   /// [botInfo] If the user is a bot, information about the bot; may be null. Can be null even for a bot if the bot is not the chat member
-  BotInfo botInfo;
+  BotInfo? botInfo;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  ChatMember.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
-    this.inviterUserId = json['inviter_user_id'];
-    this.joinedChatDate = json['joined_chat_date'];
-    this.status =
-        ChatMemberStatus.fromJson(json['status'] ?? <String, dynamic>{});
-    this.botInfo = BotInfo.fromJson(json['bot_info'] ?? <String, dynamic>{});
-    this.extra = json['@extra'];
+  factory ChatMember.fromJson(Map<String, dynamic> json) {
+    return ChatMember(
+      userId: json['user_id'] ?? 0,
+      inviterUserId: json['inviter_user_id'] ?? 0,
+      joinedChatDate: json['joined_chat_date'] ?? 0,
+      status: ChatMemberStatus.fromJson(json['status'] ?? <String, dynamic>{}),
+      botInfo: BotInfo.fromJson(json['bot_info'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
   }
 
   @override
@@ -45,8 +48,8 @@ class ChatMember extends TdObject {
       "user_id": this.userId,
       "inviter_user_id": this.inviterUserId,
       "joined_chat_date": this.joinedChatDate,
-      "status": this.status == null ? null : this.status.toJson(),
-      "bot_info": this.botInfo == null ? null : this.botInfo.toJson(),
+      "status": this.status.toJson(),
+      "bot_info": this.botInfo == null ? null : this.botInfo!.toJson(),
     };
   }
 

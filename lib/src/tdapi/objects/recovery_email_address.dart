@@ -2,18 +2,21 @@ part of '../tdapi.dart';
 
 class RecoveryEmailAddress extends TdObject {
   /// Contains information about the current recovery email address
-  RecoveryEmailAddress({this.recoveryEmailAddress});
+  RecoveryEmailAddress({required this.recoveryEmailAddress, this.extra});
 
   /// [recoveryEmailAddress] Recovery email address
   String recoveryEmailAddress;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  RecoveryEmailAddress.fromJson(Map<String, dynamic> json) {
-    this.recoveryEmailAddress = json['recovery_email_address'];
-    this.extra = json['@extra'];
+  factory RecoveryEmailAddress.fromJson(Map<String, dynamic> json) {
+    return RecoveryEmailAddress(
+      recoveryEmailAddress: json['recovery_email_address'] ?? "",
+      extra: json['@extra'],
+    );
   }
 
   @override

@@ -3,7 +3,11 @@ part of '../tdapi.dart';
 class NotificationGroup extends TdObject {
   /// Describes a group of notifications
   NotificationGroup(
-      {this.id, this.type, this.chatId, this.totalCount, this.notifications});
+      {required this.id,
+      required this.type,
+      required this.chatId,
+      required this.totalCount,
+      required this.notifications});
 
   /// [id] Unique persistent auto-incremented from 1 identifier of the notification group
   int id;
@@ -21,15 +25,16 @@ class NotificationGroup extends TdObject {
   List<Notification> notifications;
 
   /// Parse from a json
-  NotificationGroup.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.type =
-        NotificationGroupType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.chatId = json['chat_id'];
-    this.totalCount = json['total_count'];
-    this.notifications = List<Notification>.from((json['notifications'] ?? [])
-        .map((item) => Notification.fromJson(item ?? <String, dynamic>{}))
-        .toList());
+  factory NotificationGroup.fromJson(Map<String, dynamic> json) {
+    return NotificationGroup(
+      id: json['id'] ?? 0,
+      type: NotificationGroupType.fromJson(json['type'] ?? <String, dynamic>{}),
+      chatId: json['chat_id'] ?? 0,
+      totalCount: json['total_count'] ?? 0,
+      notifications: List<Notification>.from((json['notifications'] ?? [])
+          .map((item) => Notification.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+    );
   }
 
   @override
@@ -37,7 +42,7 @@ class NotificationGroup extends TdObject {
     return {
       "@type": CONSTRUCTOR,
       "id": this.id,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "chat_id": this.chatId,
       "total_count": this.totalCount,
       "notifications": this.notifications.map((i) => i.toJson()).toList(),

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetStickers extends TdFunction {
   /// Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned
-  GetStickers({this.emoji, this.limit});
+  GetStickers({required this.emoji, required this.limit, this.extra});
 
   /// [emoji] String representation of emoji. If empty, returns all known installed stickers
   String emoji;
@@ -14,7 +14,13 @@ class GetStickers extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetStickers.fromJson(Map<String, dynamic> json);
+  factory GetStickers.fromJson(Map<String, dynamic> json) {
+    return GetStickers(
+      emoji: json['emoji'] ?? "",
+      limit: json['limit'] ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -32,7 +32,7 @@ class UserPrivacySetting extends TdObject {
       case UserPrivacySettingAllowFindingByPhoneNumber.CONSTRUCTOR:
         return UserPrivacySettingAllowFindingByPhoneNumber.fromJson(json);
       default:
-        return null;
+        return UserPrivacySetting();
     }
   }
 
@@ -52,7 +52,9 @@ class UserPrivacySettingShowStatus extends UserPrivacySetting {
   UserPrivacySettingShowStatus();
 
   /// Parse from a json
-  UserPrivacySettingShowStatus.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingShowStatus.fromJson(Map<String, dynamic> json) {
+    return UserPrivacySettingShowStatus();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -72,7 +74,10 @@ class UserPrivacySettingShowProfilePhoto extends UserPrivacySetting {
   UserPrivacySettingShowProfilePhoto();
 
   /// Parse from a json
-  UserPrivacySettingShowProfilePhoto.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingShowProfilePhoto.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingShowProfilePhoto();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -92,8 +97,10 @@ class UserPrivacySettingShowLinkInForwardedMessages extends UserPrivacySetting {
   UserPrivacySettingShowLinkInForwardedMessages();
 
   /// Parse from a json
-  UserPrivacySettingShowLinkInForwardedMessages.fromJson(
-      Map<String, dynamic> json);
+  factory UserPrivacySettingShowLinkInForwardedMessages.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingShowLinkInForwardedMessages();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -113,7 +120,10 @@ class UserPrivacySettingShowPhoneNumber extends UserPrivacySetting {
   UserPrivacySettingShowPhoneNumber();
 
   /// Parse from a json
-  UserPrivacySettingShowPhoneNumber.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingShowPhoneNumber.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingShowPhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -133,7 +143,10 @@ class UserPrivacySettingAllowChatInvites extends UserPrivacySetting {
   UserPrivacySettingAllowChatInvites();
 
   /// Parse from a json
-  UserPrivacySettingAllowChatInvites.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingAllowChatInvites.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingAllowChatInvites();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -153,7 +166,9 @@ class UserPrivacySettingAllowCalls extends UserPrivacySetting {
   UserPrivacySettingAllowCalls();
 
   /// Parse from a json
-  UserPrivacySettingAllowCalls.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingAllowCalls.fromJson(Map<String, dynamic> json) {
+    return UserPrivacySettingAllowCalls();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -173,7 +188,10 @@ class UserPrivacySettingAllowPeerToPeerCalls extends UserPrivacySetting {
   UserPrivacySettingAllowPeerToPeerCalls();
 
   /// Parse from a json
-  UserPrivacySettingAllowPeerToPeerCalls.fromJson(Map<String, dynamic> json);
+  factory UserPrivacySettingAllowPeerToPeerCalls.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingAllowPeerToPeerCalls();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -193,8 +211,10 @@ class UserPrivacySettingAllowFindingByPhoneNumber extends UserPrivacySetting {
   UserPrivacySettingAllowFindingByPhoneNumber();
 
   /// Parse from a json
-  UserPrivacySettingAllowFindingByPhoneNumber.fromJson(
-      Map<String, dynamic> json);
+  factory UserPrivacySettingAllowFindingByPhoneNumber.fromJson(
+      Map<String, dynamic> json) {
+    return UserPrivacySettingAllowFindingByPhoneNumber();
+  }
 
   @override
   Map<String, dynamic> toJson() {

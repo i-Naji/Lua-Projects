@@ -3,16 +3,16 @@ part of '../tdapi.dart';
 class Poll extends TdObject {
   /// Describes a poll
   Poll(
-      {this.id,
-      this.question,
-      this.options,
-      this.totalVoterCount,
-      this.recentVoterUserIds,
-      this.isAnonymous,
-      this.type,
-      this.openPeriod,
-      this.closeDate,
-      this.isClosed});
+      {required this.id,
+      required this.question,
+      required this.options,
+      required this.totalVoterCount,
+      required this.recentVoterUserIds,
+      required this.isAnonymous,
+      required this.type,
+      required this.openPeriod,
+      required this.closeDate,
+      required this.isClosed});
 
   /// [id] Unique poll identifier
   int id;
@@ -45,20 +45,23 @@ class Poll extends TdObject {
   bool isClosed;
 
   /// Parse from a json
-  Poll.fromJson(Map<String, dynamic> json) {
-    this.id = int.tryParse(json['id'] ?? "");
-    this.question = json['question'];
-    this.options = List<PollOption>.from((json['options'] ?? [])
-        .map((item) => PollOption.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.totalVoterCount = json['total_voter_count'];
-    this.recentVoterUserIds = List<int>.from(
-        (json['recent_voter_user_ids'] ?? []).map((item) => item).toList());
-    this.isAnonymous = json['is_anonymous'];
-    this.type = PollType.fromJson(json['type'] ?? <String, dynamic>{});
-    this.openPeriod = json['open_period'];
-    this.closeDate = json['close_date'];
-    this.isClosed = json['is_closed'];
+  factory Poll.fromJson(Map<String, dynamic> json) {
+    return Poll(
+      id: int.tryParse(json['id'] ?? "") ?? 0,
+      question: json['question'] ?? "",
+      options: List<PollOption>.from((json['options'] ?? [])
+          .map((item) => PollOption.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      totalVoterCount: json['total_voter_count'] ?? 0,
+      recentVoterUserIds: List<int>.from((json['recent_voter_user_ids'] ?? [])
+          .map((item) => item ?? 0)
+          .toList()),
+      isAnonymous: json['is_anonymous'] ?? false,
+      type: PollType.fromJson(json['type'] ?? <String, dynamic>{}),
+      openPeriod: json['open_period'] ?? 0,
+      closeDate: json['close_date'] ?? 0,
+      isClosed: json['is_closed'] ?? false,
+    );
   }
 
   @override
@@ -71,7 +74,7 @@ class Poll extends TdObject {
       "total_voter_count": this.totalVoterCount,
       "recent_voter_user_ids": this.recentVoterUserIds.map((i) => i).toList(),
       "is_anonymous": this.isAnonymous,
-      "type": this.type == null ? null : this.type.toJson(),
+      "type": this.type.toJson(),
       "open_period": this.openPeriod,
       "close_date": this.closeDate,
       "is_closed": this.isClosed,

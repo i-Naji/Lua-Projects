@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetConnectedWebsites extends TdFunction {
   /// Returns all website where the current user used Telegram to log in
-  GetConnectedWebsites();
+  GetConnectedWebsites({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetConnectedWebsites.fromJson(Map<String, dynamic> json);
+  factory GetConnectedWebsites.fromJson(Map<String, dynamic> json) {
+    return GetConnectedWebsites(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

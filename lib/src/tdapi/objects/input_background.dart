@@ -14,7 +14,7 @@ class InputBackground extends TdObject {
       case InputBackgroundRemote.CONSTRUCTOR:
         return InputBackgroundRemote.fromJson(json);
       default:
-        return null;
+        return InputBackground();
     }
   }
 
@@ -31,22 +31,23 @@ class InputBackground extends TdObject {
 
 class InputBackgroundLocal extends InputBackground {
   /// A background from a local file
-  InputBackgroundLocal({this.background});
+  InputBackgroundLocal({required this.background});
 
   /// [background] Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
   InputFile background;
 
   /// Parse from a json
-  InputBackgroundLocal.fromJson(Map<String, dynamic> json) {
-    this.background =
-        InputFile.fromJson(json['background'] ?? <String, dynamic>{});
+  factory InputBackgroundLocal.fromJson(Map<String, dynamic> json) {
+    return InputBackgroundLocal(
+      background: InputFile.fromJson(json['background'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "background": this.background == null ? null : this.background.toJson(),
+      "background": this.background.toJson(),
     };
   }
 
@@ -58,14 +59,16 @@ class InputBackgroundLocal extends InputBackground {
 
 class InputBackgroundRemote extends InputBackground {
   /// A background from the server
-  InputBackgroundRemote({this.backgroundId});
+  InputBackgroundRemote({required this.backgroundId});
 
   /// [backgroundId] The background identifier
   int backgroundId;
 
   /// Parse from a json
-  InputBackgroundRemote.fromJson(Map<String, dynamic> json) {
-    this.backgroundId = int.tryParse(json['background_id'] ?? "");
+  factory InputBackgroundRemote.fromJson(Map<String, dynamic> json) {
+    return InputBackgroundRemote(
+      backgroundId: int.tryParse(json['background_id'] ?? "") ?? 0,
+    );
   }
 
   @override

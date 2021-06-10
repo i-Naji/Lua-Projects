@@ -3,16 +3,16 @@ part of '../tdapi.dart';
 class Invoice extends TdObject {
   /// Product invoice
   Invoice(
-      {this.currency,
-      this.priceParts,
-      this.isTest,
-      this.needName,
-      this.needPhoneNumber,
-      this.needEmailAddress,
-      this.needShippingAddress,
-      this.sendPhoneNumberToProvider,
-      this.sendEmailAddressToProvider,
-      this.isFlexible});
+      {required this.currency,
+      required this.priceParts,
+      required this.isTest,
+      required this.needName,
+      required this.needPhoneNumber,
+      required this.needEmailAddress,
+      required this.needShippingAddress,
+      required this.sendPhoneNumberToProvider,
+      required this.sendEmailAddressToProvider,
+      required this.isFlexible});
 
   /// [currency] ISO 4217 currency code
   String currency;
@@ -45,19 +45,22 @@ class Invoice extends TdObject {
   bool isFlexible;
 
   /// Parse from a json
-  Invoice.fromJson(Map<String, dynamic> json) {
-    this.currency = json['currency'];
-    this.priceParts = List<LabeledPricePart>.from((json['price_parts'] ?? [])
-        .map((item) => LabeledPricePart.fromJson(item ?? <String, dynamic>{}))
-        .toList());
-    this.isTest = json['is_test'];
-    this.needName = json['need_name'];
-    this.needPhoneNumber = json['need_phone_number'];
-    this.needEmailAddress = json['need_email_address'];
-    this.needShippingAddress = json['need_shipping_address'];
-    this.sendPhoneNumberToProvider = json['send_phone_number_to_provider'];
-    this.sendEmailAddressToProvider = json['send_email_address_to_provider'];
-    this.isFlexible = json['is_flexible'];
+  factory Invoice.fromJson(Map<String, dynamic> json) {
+    return Invoice(
+      currency: json['currency'] ?? "",
+      priceParts: List<LabeledPricePart>.from((json['price_parts'] ?? [])
+          .map((item) => LabeledPricePart.fromJson(item ?? <String, dynamic>{}))
+          .toList()),
+      isTest: json['is_test'] ?? false,
+      needName: json['need_name'] ?? false,
+      needPhoneNumber: json['need_phone_number'] ?? false,
+      needEmailAddress: json['need_email_address'] ?? false,
+      needShippingAddress: json['need_shipping_address'] ?? false,
+      sendPhoneNumberToProvider: json['send_phone_number_to_provider'] ?? false,
+      sendEmailAddressToProvider:
+          json['send_email_address_to_provider'] ?? false,
+      isFlexible: json['is_flexible'] ?? false,
+    );
   }
 
   @override

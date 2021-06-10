@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GetPushReceiverId extends TdFunction {
   /// Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
-  GetPushReceiverId({this.payload});
+  GetPushReceiverId({required this.payload, this.extra});
 
   /// [payload] JSON-encoded push notification payload
   String payload;
@@ -11,7 +11,12 @@ class GetPushReceiverId extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  GetPushReceiverId.fromJson(Map<String, dynamic> json);
+  factory GetPushReceiverId.fromJson(Map<String, dynamic> json) {
+    return GetPushReceiverId(
+      payload: json['payload'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class AcceptCall extends TdFunction {
   /// Accepts an incoming call
-  AcceptCall({this.callId, this.protocol});
+  AcceptCall({required this.callId, required this.protocol, this.extra});
 
   /// [callId] Call identifier
   int callId;
@@ -14,14 +14,20 @@ class AcceptCall extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  AcceptCall.fromJson(Map<String, dynamic> json);
+  factory AcceptCall.fromJson(Map<String, dynamic> json) {
+    return AcceptCall(
+      callId: json['call_id'] ?? 0,
+      protocol: CallProtocol.fromJson(json['protocol'] ?? <String, dynamic>{}),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
       "call_id": this.callId,
-      "protocol": this.protocol == null ? null : this.protocol.toJson(),
+      "protocol": this.protocol.toJson(),
       "@extra": this.extra,
     };
   }

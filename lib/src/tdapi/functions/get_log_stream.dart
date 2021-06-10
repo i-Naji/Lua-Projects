@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetLogStream extends TdFunction {
   /// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
-  GetLogStream();
+  GetLogStream({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetLogStream.fromJson(Map<String, dynamic> json);
+  factory GetLogStream.fromJson(Map<String, dynamic> json) {
+    return GetLogStream(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

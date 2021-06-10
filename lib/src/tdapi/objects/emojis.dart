@@ -2,19 +2,22 @@ part of '../tdapi.dart';
 
 class Emojis extends TdObject {
   /// Represents a list of emoji
-  Emojis({this.emojis});
+  Emojis({required this.emojis, this.extra});
 
   /// [emojis] List of emojis
   List<String> emojis;
 
   /// callback sign
+  @override
   dynamic extra;
 
   /// Parse from a json
-  Emojis.fromJson(Map<String, dynamic> json) {
-    this.emojis =
-        List<String>.from((json['emojis'] ?? []).map((item) => item).toList());
-    this.extra = json['@extra'];
+  factory Emojis.fromJson(Map<String, dynamic> json) {
+    return Emojis(
+      emojis: List<String>.from(
+          (json['emojis'] ?? []).map((item) => item ?? "").toList()),
+      extra: json['@extra'],
+    );
   }
 
   @override

@@ -3,11 +3,11 @@ part of '../tdapi.dart';
 class MessageForwardInfo extends TdObject {
   /// Contains information about a forwarded message
   MessageForwardInfo(
-      {this.origin,
-      this.date,
-      this.publicServiceAnnouncementType,
-      this.fromChatId,
-      this.fromMessageId});
+      {required this.origin,
+      required this.date,
+      required this.publicServiceAnnouncementType,
+      required this.fromChatId,
+      required this.fromMessageId});
 
   /// [origin] Origin of a forwarded message
   MessageForwardOrigin origin;
@@ -25,21 +25,23 @@ class MessageForwardInfo extends TdObject {
   int fromMessageId;
 
   /// Parse from a json
-  MessageForwardInfo.fromJson(Map<String, dynamic> json) {
-    this.origin =
-        MessageForwardOrigin.fromJson(json['origin'] ?? <String, dynamic>{});
-    this.date = json['date'];
-    this.publicServiceAnnouncementType =
-        json['public_service_announcement_type'];
-    this.fromChatId = json['from_chat_id'];
-    this.fromMessageId = json['from_message_id'];
+  factory MessageForwardInfo.fromJson(Map<String, dynamic> json) {
+    return MessageForwardInfo(
+      origin:
+          MessageForwardOrigin.fromJson(json['origin'] ?? <String, dynamic>{}),
+      date: json['date'] ?? 0,
+      publicServiceAnnouncementType:
+          json['public_service_announcement_type'] ?? "",
+      fromChatId: json['from_chat_id'] ?? 0,
+      fromMessageId: json['from_message_id'] ?? 0,
+    );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
       "@type": CONSTRUCTOR,
-      "origin": this.origin == null ? null : this.origin.toJson(),
+      "origin": this.origin.toJson(),
       "date": this.date,
       "public_service_announcement_type": this.publicServiceAnnouncementType,
       "from_chat_id": this.fromChatId,

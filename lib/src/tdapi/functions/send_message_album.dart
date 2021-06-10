@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class SendMessageAlbum extends TdFunction {
   /// Sends 2-10 messages grouped together into an album. Currently only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
   SendMessageAlbum(
-      {this.chatId,
-      this.messageThreadId,
-      this.replyToMessageId,
-      this.options,
-      this.inputMessageContents});
+      {required this.chatId,
+      required this.messageThreadId,
+      required this.replyToMessageId,
+      required this.options,
+      required this.inputMessageContents,
+      this.extra});
 
   /// [chatId] Target chat
   int chatId;
@@ -28,7 +29,21 @@ class SendMessageAlbum extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SendMessageAlbum.fromJson(Map<String, dynamic> json);
+  factory SendMessageAlbum.fromJson(Map<String, dynamic> json) {
+    return SendMessageAlbum(
+      chatId: json['chat_id'] ?? 0,
+      messageThreadId: json['message_thread_id'] ?? 0,
+      replyToMessageId: json['reply_to_message_id'] ?? 0,
+      options:
+          MessageSendOptions.fromJson(json['options'] ?? <String, dynamic>{}),
+      inputMessageContents: List<InputMessageContent>.from(
+          (json['input_message_contents'] ?? [])
+              .map((item) =>
+                  InputMessageContent.fromJson(item ?? <String, dynamic>{}))
+              .toList()),
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -37,7 +52,7 @@ class SendMessageAlbum extends TdFunction {
       "chat_id": this.chatId,
       "message_thread_id": this.messageThreadId,
       "reply_to_message_id": this.replyToMessageId,
-      "options": this.options == null ? null : this.options.toJson(),
+      "options": this.options.toJson(),
       "input_message_contents":
           this.inputMessageContents.map((i) => i.toJson()).toList(),
       "@extra": this.extra,

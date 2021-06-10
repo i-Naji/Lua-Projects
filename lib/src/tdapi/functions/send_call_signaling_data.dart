@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class SendCallSignalingData extends TdFunction {
   /// Sends call signaling data
-  SendCallSignalingData({this.callId, this.data});
+  SendCallSignalingData({required this.callId, required this.data, this.extra});
 
   /// [callId] Call identifier
   int callId;
@@ -14,7 +14,13 @@ class SendCallSignalingData extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  SendCallSignalingData.fromJson(Map<String, dynamic> json);
+  factory SendCallSignalingData.fromJson(Map<String, dynamic> json) {
+    return SendCallSignalingData(
+      callId: json['call_id'] ?? 0,
+      data: json['data'] ?? "",
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

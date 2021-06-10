@@ -3,11 +3,12 @@ part of '../tdapi.dart';
 class DiscardCall extends TdFunction {
   /// Discards a call
   DiscardCall(
-      {this.callId,
-      this.isDisconnected,
-      this.duration,
-      this.isVideo,
-      this.connectionId});
+      {required this.callId,
+      required this.isDisconnected,
+      required this.duration,
+      required this.isVideo,
+      required this.connectionId,
+      this.extra});
 
   /// [callId] Call identifier
   int callId;
@@ -28,7 +29,16 @@ class DiscardCall extends TdFunction {
   dynamic extra;
 
   /// Parse from a json
-  DiscardCall.fromJson(Map<String, dynamic> json);
+  factory DiscardCall.fromJson(Map<String, dynamic> json) {
+    return DiscardCall(
+      callId: json['call_id'] ?? 0,
+      isDisconnected: json['is_disconnected'] ?? false,
+      duration: json['duration'] ?? 0,
+      isVideo: json['is_video'] ?? false,
+      connectionId: int.tryParse(json['connection_id'] ?? "") ?? 0,
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

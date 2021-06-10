@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class GetRecommendedChatFilters extends TdFunction {
   /// Returns recommended chat filters for the current user
-  GetRecommendedChatFilters();
+  GetRecommendedChatFilters({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  GetRecommendedChatFilters.fromJson(Map<String, dynamic> json);
+  factory GetRecommendedChatFilters.fromJson(Map<String, dynamic> json) {
+    return GetRecommendedChatFilters(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -2,13 +2,17 @@ part of '../tdapi.dart';
 
 class ResendRecoveryEmailAddressCode extends TdFunction {
   /// Resends the 2-step verification recovery email address verification code
-  ResendRecoveryEmailAddressCode();
+  ResendRecoveryEmailAddressCode({this.extra});
 
   /// callback sign
   dynamic extra;
 
   /// Parse from a json
-  ResendRecoveryEmailAddressCode.fromJson(Map<String, dynamic> json);
+  factory ResendRecoveryEmailAddressCode.fromJson(Map<String, dynamic> json) {
+    return ResendRecoveryEmailAddressCode(
+      extra: json['@extra'],
+    );
+  }
 
   @override
   Map<String, dynamic> toJson() {

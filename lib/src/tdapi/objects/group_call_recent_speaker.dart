@@ -2,7 +2,7 @@ part of '../tdapi.dart';
 
 class GroupCallRecentSpeaker extends TdObject {
   /// Describes a recently speaking user in a group call
-  GroupCallRecentSpeaker({this.userId, this.isSpeaking});
+  GroupCallRecentSpeaker({required this.userId, required this.isSpeaking});
 
   /// [userId] User identifier
   int userId;
@@ -11,9 +11,11 @@ class GroupCallRecentSpeaker extends TdObject {
   bool isSpeaking;
 
   /// Parse from a json
-  GroupCallRecentSpeaker.fromJson(Map<String, dynamic> json) {
-    this.userId = json['user_id'];
-    this.isSpeaking = json['is_speaking'];
+  factory GroupCallRecentSpeaker.fromJson(Map<String, dynamic> json) {
+    return GroupCallRecentSpeaker(
+      userId: json['user_id'] ?? 0,
+      isSpeaking: json['is_speaking'] ?? false,
+    );
   }
 
   @override

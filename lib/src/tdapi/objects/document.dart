@@ -3,11 +3,11 @@ part of '../tdapi.dart';
 class Document extends TdObject {
   /// Describes a document of any type
   Document(
-      {this.fileName,
-      this.mimeType,
+      {required this.fileName,
+      required this.mimeType,
       this.minithumbnail,
       this.thumbnail,
-      this.document});
+      required this.document});
 
   /// [fileName] Original name of the file; as defined by the sender
   String fileName;
@@ -16,23 +16,24 @@ class Document extends TdObject {
   String mimeType;
 
   /// [minithumbnail] Document minithumbnail; may be null
-  Minithumbnail minithumbnail;
+  Minithumbnail? minithumbnail;
 
   /// [thumbnail] Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
-  Thumbnail thumbnail;
+  Thumbnail? thumbnail;
 
   /// [document] File containing the document
   File document;
 
   /// Parse from a json
-  Document.fromJson(Map<String, dynamic> json) {
-    this.fileName = json['file_name'];
-    this.mimeType = json['mime_type'];
-    this.minithumbnail =
-        Minithumbnail.fromJson(json['minithumbnail'] ?? <String, dynamic>{});
-    this.thumbnail =
-        Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{});
-    this.document = File.fromJson(json['document'] ?? <String, dynamic>{});
+  factory Document.fromJson(Map<String, dynamic> json) {
+    return Document(
+      fileName: json['file_name'] ?? "",
+      mimeType: json['mime_type'] ?? "",
+      minithumbnail:
+          Minithumbnail.fromJson(json['minithumbnail'] ?? <String, dynamic>{}),
+      thumbnail: Thumbnail.fromJson(json['thumbnail'] ?? <String, dynamic>{}),
+      document: File.fromJson(json['document'] ?? <String, dynamic>{}),
+    );
   }
 
   @override
@@ -42,9 +43,9 @@ class Document extends TdObject {
       "file_name": this.fileName,
       "mime_type": this.mimeType,
       "minithumbnail":
-          this.minithumbnail == null ? null : this.minithumbnail.toJson(),
-      "thumbnail": this.thumbnail == null ? null : this.thumbnail.toJson(),
-      "document": this.document == null ? null : this.document.toJson(),
+          this.minithumbnail == null ? null : this.minithumbnail!.toJson(),
+      "thumbnail": this.thumbnail == null ? null : this.thumbnail!.toJson(),
+      "document": this.document.toJson(),
     };
   }
 

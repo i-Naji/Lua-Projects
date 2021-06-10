@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:tdlib/td_api.dart' show TdError;
-import 'package:tdlib_example/services/telegram_service.dart';
-
 import 'package:provider/provider.dart';
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
+
+import 'package:tdlib/td_api.dart' show TdError;
+
+import '../../services/telegram_service.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen();
@@ -18,9 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final String title = 'Your Phone';
   final _phoneNumberController = TextEditingController();
   final _countryNameController = TextEditingController();
-  Country _selectedCountry;
+  Country? _selectedCountry;
   bool _canShowButton = false;
-  String _phoneNumberError;
+  String? _phoneNumberError;
   bool _loadingStep = false;
 
   void phoneNumberListener() {
@@ -84,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         prefixText: (_selectedCountry != null)
-                            ? '+${_selectedCountry.phoneCode}  '
+                            ? '+${_selectedCountry!.phoneCode}  '
                             : ' +  ',
                         alignLabelWithHint: true,
                         labelText: "Phone",
@@ -135,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     context.read<TelegramService>().setAuthenticationPhoneNumber(
           (_selectedCountry != null)
-              ? '+${_selectedCountry.phoneCode}$value'
+              ? '+${_selectedCountry!.phoneCode}$value'
               : value,
           onError: _handelError,
         );
@@ -171,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  Widget _buildDialogItem(Country country, {dialog= true}) =>
+  Widget _buildDialogItem(Country country, {dialog = true}) =>
       Row(children: <Widget>[
         CountryPickerUtils.getDefaultFlagImage(country),
         SizedBox(width: 8.0),
