@@ -5,7 +5,7 @@ class TerminateAllOtherSessions extends TdFunction {
   TerminateAllOtherSessions({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TerminateAllOtherSessions.fromJson(Map<String, dynamic> json) {

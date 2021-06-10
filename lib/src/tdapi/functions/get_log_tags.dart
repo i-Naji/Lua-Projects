@@ -5,7 +5,7 @@ class GetLogTags extends TdFunction {
   GetLogTags({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetLogTags.fromJson(Map<String, dynamic> json) {

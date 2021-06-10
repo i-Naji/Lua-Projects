@@ -8,7 +8,7 @@ class SetCommands extends TdFunction {
   List<BotCommand> commands;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetCommands.fromJson(Map<String, dynamic> json) {

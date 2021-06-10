@@ -11,7 +11,7 @@ class UnpinChatMessage extends TdFunction {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory UnpinChatMessage.fromJson(Map<String, dynamic> json) {

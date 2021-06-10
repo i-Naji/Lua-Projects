@@ -14,7 +14,7 @@ class SetBotUpdatesStatus extends TdFunction {
   String errorMessage;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetBotUpdatesStatus.fromJson(Map<String, dynamic> json) {

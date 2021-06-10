@@ -12,7 +12,7 @@ class FinishFileGeneration extends TdFunction {
   TdError error;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory FinishFileGeneration.fromJson(Map<String, dynamic> json) {

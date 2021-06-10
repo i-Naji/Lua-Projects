@@ -8,7 +8,8 @@ class ChatEvents extends TdObject {
   List<ChatEvent> events;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatEvents.fromJson(Map<String, dynamic> json) {

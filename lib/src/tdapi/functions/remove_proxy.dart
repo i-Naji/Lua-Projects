@@ -8,7 +8,7 @@ class RemoveProxy extends TdFunction {
   int proxyId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveProxy.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class TestCallString extends TdFunction {
   String x;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestCallString.fromJson(Map<String, dynamic> json) {

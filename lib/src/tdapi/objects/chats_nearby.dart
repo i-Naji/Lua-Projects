@@ -12,7 +12,8 @@ class ChatsNearby extends TdObject {
   List<ChatNearby> supergroupsNearby;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatsNearby.fromJson(Map<String, dynamic> json) {

@@ -11,7 +11,8 @@ class ChatPhotos extends TdObject {
   List<ChatPhoto> photos;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatPhotos.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class TestUseUpdate extends TdFunction {
   TestUseUpdate({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestUseUpdate.fromJson(Map<String, dynamic> json) {

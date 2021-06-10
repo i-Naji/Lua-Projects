@@ -8,7 +8,7 @@ class DisconnectWebsite extends TdFunction {
   int websiteId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DisconnectWebsite.fromJson(Map<String, dynamic> json) {

@@ -11,7 +11,8 @@ class Users extends TdObject {
   List<int> userIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Users.fromJson(Map<String, dynamic> json) {

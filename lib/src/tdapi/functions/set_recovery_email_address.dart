@@ -14,7 +14,7 @@ class SetRecoveryEmailAddress extends TdFunction {
   String newRecoveryEmailAddress;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetRecoveryEmailAddress.fromJson(Map<String, dynamic> json) {

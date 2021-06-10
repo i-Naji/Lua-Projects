@@ -8,7 +8,8 @@ class CallId extends TdObject {
   int id;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CallId.fromJson(Map<String, dynamic> json) {

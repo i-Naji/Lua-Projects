@@ -11,7 +11,8 @@ class TdError extends TdObject {
   String message;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory TdError.fromJson(Map<String, dynamic> json) {

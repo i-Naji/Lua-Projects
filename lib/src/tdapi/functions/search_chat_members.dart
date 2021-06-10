@@ -22,7 +22,7 @@ class SearchChatMembers extends TdFunction {
   ChatMembersFilter filter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchChatMembers.fromJson(Map<String, dynamic> json) {

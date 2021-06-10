@@ -26,7 +26,7 @@ class SendMessageAlbum extends TdFunction {
   List<InputMessageContent> inputMessageContents;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendMessageAlbum.fromJson(Map<String, dynamic> json) {

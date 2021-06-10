@@ -12,7 +12,7 @@ class ToggleChatIsMarkedAsUnread extends TdFunction {
   bool isMarkedAsUnread;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleChatIsMarkedAsUnread.fromJson(Map<String, dynamic> json) {

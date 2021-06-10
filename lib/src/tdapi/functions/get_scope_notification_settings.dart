@@ -8,7 +8,7 @@ class GetScopeNotificationSettings extends TdFunction {
   NotificationSettingsScope scope;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetScopeNotificationSettings.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class DeleteLanguagePack extends TdFunction {
   String languagePackId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteLanguagePack.fromJson(Map<String, dynamic> json) {

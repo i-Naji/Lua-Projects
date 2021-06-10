@@ -8,7 +8,7 @@ class EditCustomLanguagePackInfo extends TdFunction {
   LanguagePackInfo info;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditCustomLanguagePackInfo.fromJson(Map<String, dynamic> json) {

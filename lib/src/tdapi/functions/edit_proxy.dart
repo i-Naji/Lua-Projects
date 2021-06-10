@@ -26,7 +26,7 @@ class EditProxy extends TdFunction {
   ProxyType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditProxy.fromJson(Map<String, dynamic> json) {

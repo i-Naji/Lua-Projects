@@ -8,7 +8,7 @@ class LeaveChat extends TdFunction {
   int chatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory LeaveChat.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class SearchBackground extends TdFunction {
   String name;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchBackground.fromJson(Map<String, dynamic> json) {

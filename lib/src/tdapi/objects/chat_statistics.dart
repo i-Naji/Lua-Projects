@@ -99,7 +99,8 @@ class ChatStatisticsSupergroup extends ChatStatistics {
   List<ChatStatisticsInviterInfo> topInviters;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatStatisticsSupergroup.fromJson(Map<String, dynamic> json) {
@@ -244,7 +245,8 @@ class ChatStatisticsChannel extends ChatStatistics {
   List<ChatStatisticsMessageInteractionInfo> recentMessageInteractions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatStatisticsChannel.fromJson(Map<String, dynamic> json) {

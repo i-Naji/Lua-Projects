@@ -11,7 +11,7 @@ class GetPassportElement extends TdFunction {
   String password;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetPassportElement.fromJson(Map<String, dynamic> json) {

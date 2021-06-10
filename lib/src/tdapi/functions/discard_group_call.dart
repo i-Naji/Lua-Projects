@@ -8,7 +8,7 @@ class DiscardGroupCall extends TdFunction {
   int groupCallId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DiscardGroupCall.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class ResendRecoveryEmailAddressCode extends TdFunction {
   ResendRecoveryEmailAddressCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendRecoveryEmailAddressCode.fromJson(Map<String, dynamic> json) {

@@ -12,7 +12,7 @@ class DeleteChatMessagesFromUser extends TdFunction {
   int userId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteChatMessagesFromUser.fromJson(Map<String, dynamic> json) {

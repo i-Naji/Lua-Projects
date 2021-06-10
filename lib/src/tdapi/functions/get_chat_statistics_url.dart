@@ -18,7 +18,7 @@ class GetChatStatisticsUrl extends TdFunction {
   bool isDark;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatStatisticsUrl.fromJson(Map<String, dynamic> json) {

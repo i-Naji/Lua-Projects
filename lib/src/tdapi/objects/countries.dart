@@ -8,7 +8,8 @@ class Countries extends TdObject {
   List<CountryInfo> countries;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Countries.fromJson(Map<String, dynamic> json) {

@@ -18,7 +18,7 @@ class SearchInstalledStickerSets extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchInstalledStickerSets.fromJson(Map<String, dynamic> json) {

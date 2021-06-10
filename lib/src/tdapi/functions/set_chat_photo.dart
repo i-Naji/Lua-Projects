@@ -11,7 +11,7 @@ class SetChatPhoto extends TdFunction {
   InputChatPhoto? photo;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatPhoto.fromJson(Map<String, dynamic> json) {

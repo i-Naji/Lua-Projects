@@ -8,7 +8,7 @@ class RequestQrCodeAuthentication extends TdFunction {
   List<int> otherUserIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RequestQrCodeAuthentication.fromJson(Map<String, dynamic> json) {

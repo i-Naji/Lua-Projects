@@ -18,7 +18,7 @@ class SearchCallMessages extends TdFunction {
   bool onlyMissed;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchCallMessages.fromJson(Map<String, dynamic> json) {

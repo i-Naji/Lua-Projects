@@ -8,7 +8,8 @@ class TestVectorIntObject extends TdObject {
   List<TestInt> value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory TestVectorIntObject.fromJson(Map<String, dynamic> json) {

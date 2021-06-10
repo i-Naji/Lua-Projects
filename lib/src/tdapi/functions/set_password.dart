@@ -26,7 +26,7 @@ class SetPassword extends TdFunction {
   String newRecoveryEmailAddress;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetPassword.fromJson(Map<String, dynamic> json) {

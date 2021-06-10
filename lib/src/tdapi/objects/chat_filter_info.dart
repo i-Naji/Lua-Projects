@@ -18,7 +18,8 @@ class ChatFilterInfo extends TdObject {
   String iconName;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatFilterInfo.fromJson(Map<String, dynamic> json) {

@@ -18,7 +18,7 @@ class GetLoginUrlInfo extends TdFunction {
   int buttonId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetLoginUrlInfo.fromJson(Map<String, dynamic> json) {

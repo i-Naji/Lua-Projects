@@ -5,7 +5,7 @@ class RequestPasswordRecovery extends TdFunction {
   RequestPasswordRecovery({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RequestPasswordRecovery.fromJson(Map<String, dynamic> json) {

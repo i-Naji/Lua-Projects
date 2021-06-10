@@ -8,7 +8,7 @@ class ClearRecentStickers extends TdFunction {
   bool isAttached;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ClearRecentStickers.fromJson(Map<String, dynamic> json) {

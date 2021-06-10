@@ -8,7 +8,8 @@ class HttpUrl extends TdObject {
   String url;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory HttpUrl.fromJson(Map<String, dynamic> json) {

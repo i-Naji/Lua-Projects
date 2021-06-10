@@ -5,7 +5,7 @@ class TestNetwork extends TdFunction {
   TestNetwork({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestNetwork.fromJson(Map<String, dynamic> json) {

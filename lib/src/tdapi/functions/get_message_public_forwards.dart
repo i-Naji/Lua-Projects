@@ -22,7 +22,7 @@ class GetMessagePublicForwards extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMessagePublicForwards.fromJson(Map<String, dynamic> json) {

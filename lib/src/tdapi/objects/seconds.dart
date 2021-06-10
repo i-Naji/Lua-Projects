@@ -8,7 +8,8 @@ class Seconds extends TdObject {
   double seconds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Seconds.fromJson(Map<String, dynamic> json) {

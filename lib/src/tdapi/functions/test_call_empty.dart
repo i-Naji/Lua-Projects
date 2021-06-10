@@ -5,7 +5,7 @@ class TestCallEmpty extends TdFunction {
   TestCallEmpty({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestCallEmpty.fromJson(Map<String, dynamic> json) {

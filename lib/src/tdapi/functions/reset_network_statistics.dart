@@ -5,7 +5,7 @@ class ResetNetworkStatistics extends TdFunction {
   ResetNetworkStatistics({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResetNetworkStatistics.fromJson(Map<String, dynamic> json) {

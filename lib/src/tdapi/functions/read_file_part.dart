@@ -18,7 +18,7 @@ class ReadFilePart extends TdFunction {
   int count;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ReadFilePart.fromJson(Map<String, dynamic> json) {

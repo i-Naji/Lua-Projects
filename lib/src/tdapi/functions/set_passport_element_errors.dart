@@ -12,7 +12,7 @@ class SetPassportElementErrors extends TdFunction {
   List<InputPassportElementError> errors;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetPassportElementErrors.fromJson(Map<String, dynamic> json) {

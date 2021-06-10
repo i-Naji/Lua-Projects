@@ -8,7 +8,7 @@ class DeleteProfilePhoto extends TdFunction {
   int profilePhotoId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteProfilePhoto.fromJson(Map<String, dynamic> json) {

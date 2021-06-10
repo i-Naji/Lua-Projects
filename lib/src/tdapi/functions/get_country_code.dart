@@ -5,7 +5,7 @@ class GetCountryCode extends TdFunction {
   GetCountryCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetCountryCode.fromJson(Map<String, dynamic> json) {

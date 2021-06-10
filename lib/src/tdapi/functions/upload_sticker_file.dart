@@ -12,7 +12,7 @@ class UploadStickerFile extends TdFunction {
   InputFile pngSticker;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory UploadStickerFile.fromJson(Map<String, dynamic> json) {

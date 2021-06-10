@@ -11,7 +11,7 @@ class SetPinnedChats extends TdFunction {
   List<int> chatIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetPinnedChats.fromJson(Map<String, dynamic> json) {

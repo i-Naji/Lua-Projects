@@ -90,7 +90,8 @@ class WebPage extends TdObject {
   int instantViewVersion;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory WebPage.fromJson(Map<String, dynamic> json) {

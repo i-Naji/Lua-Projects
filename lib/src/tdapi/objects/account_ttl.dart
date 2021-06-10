@@ -8,7 +8,8 @@ class AccountTtl extends TdObject {
   int days;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AccountTtl.fromJson(Map<String, dynamic> json) {

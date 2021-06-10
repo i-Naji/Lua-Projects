@@ -26,7 +26,7 @@ class CreateNewStickerSet extends TdFunction {
   List<InputSticker> stickers;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateNewStickerSet.fromJson(Map<String, dynamic> json) {

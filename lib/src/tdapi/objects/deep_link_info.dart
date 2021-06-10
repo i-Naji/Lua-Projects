@@ -12,7 +12,8 @@ class DeepLinkInfo extends TdObject {
   bool needUpdateApplication;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory DeepLinkInfo.fromJson(Map<String, dynamic> json) {

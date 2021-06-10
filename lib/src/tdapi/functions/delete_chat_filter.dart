@@ -8,7 +8,7 @@ class DeleteChatFilter extends TdFunction {
   int chatFilterId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteChatFilter.fromJson(Map<String, dynamic> json) {

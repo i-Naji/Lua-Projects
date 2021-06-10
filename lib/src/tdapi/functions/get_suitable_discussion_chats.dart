@@ -5,7 +5,7 @@ class GetSuitableDiscussionChats extends TdFunction {
   GetSuitableDiscussionChats({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetSuitableDiscussionChats.fromJson(Map<String, dynamic> json) {

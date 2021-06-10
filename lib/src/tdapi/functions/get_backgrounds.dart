@@ -8,7 +8,7 @@ class GetBackgrounds extends TdFunction {
   bool forDarkTheme;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetBackgrounds.fromJson(Map<String, dynamic> json) {

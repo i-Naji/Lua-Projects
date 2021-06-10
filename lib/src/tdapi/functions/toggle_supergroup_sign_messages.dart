@@ -12,7 +12,7 @@ class ToggleSupergroupSignMessages extends TdFunction {
   bool signMessages;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleSupergroupSignMessages.fromJson(Map<String, dynamic> json) {

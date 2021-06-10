@@ -11,7 +11,8 @@ class BankCardInfo extends TdObject {
   List<BankCardActionOpenUrl> actions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory BankCardInfo.fromJson(Map<String, dynamic> json) {

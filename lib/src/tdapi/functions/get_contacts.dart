@@ -5,7 +5,7 @@ class GetContacts extends TdFunction {
   GetContacts({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetContacts.fromJson(Map<String, dynamic> json) {

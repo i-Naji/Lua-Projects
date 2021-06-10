@@ -18,7 +18,7 @@ class SetFileGenerationProgress extends TdFunction {
   int localPrefixSize;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetFileGenerationProgress.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class TestReturnError extends TdFunction {
   TdError error;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestReturnError.fromJson(Map<String, dynamic> json) {

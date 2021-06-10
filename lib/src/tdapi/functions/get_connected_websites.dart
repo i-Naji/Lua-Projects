@@ -5,7 +5,7 @@ class GetConnectedWebsites extends TdFunction {
   GetConnectedWebsites({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetConnectedWebsites.fromJson(Map<String, dynamic> json) {

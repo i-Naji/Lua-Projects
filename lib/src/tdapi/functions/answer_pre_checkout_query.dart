@@ -14,7 +14,7 @@ class AnswerPreCheckoutQuery extends TdFunction {
   String errorMessage;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AnswerPreCheckoutQuery.fromJson(Map<String, dynamic> json) {

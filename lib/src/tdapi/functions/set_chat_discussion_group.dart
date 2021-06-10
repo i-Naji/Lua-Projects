@@ -12,7 +12,7 @@ class SetChatDiscussionGroup extends TdFunction {
   int discussionChatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatDiscussionGroup.fromJson(Map<String, dynamic> json) {

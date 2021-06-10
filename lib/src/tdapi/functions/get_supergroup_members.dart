@@ -22,7 +22,7 @@ class GetSupergroupMembers extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetSupergroupMembers.fromJson(Map<String, dynamic> json) {

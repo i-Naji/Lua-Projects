@@ -8,7 +8,8 @@ class MessageStatistics extends TdObject {
   StatisticalGraph messageInteractionGraph;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory MessageStatistics.fromJson(Map<String, dynamic> json) {

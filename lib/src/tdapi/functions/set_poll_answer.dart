@@ -18,7 +18,7 @@ class SetPollAnswer extends TdFunction {
   List<int> optionIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetPollAnswer.fromJson(Map<String, dynamic> json) {

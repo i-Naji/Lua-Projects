@@ -12,7 +12,7 @@ class SetChatDescription extends TdFunction {
   String description;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatDescription.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class GetProxies extends TdFunction {
   GetProxies({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetProxies.fromJson(Map<String, dynamic> json) {

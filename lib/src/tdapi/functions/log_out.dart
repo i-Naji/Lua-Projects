@@ -5,7 +5,7 @@ class LogOut extends TdFunction {
   LogOut({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory LogOut.fromJson(Map<String, dynamic> json) {

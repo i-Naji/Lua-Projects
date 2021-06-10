@@ -8,7 +8,7 @@ class DeleteSupergroup extends TdFunction {
   int supergroupId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteSupergroup.fromJson(Map<String, dynamic> json) {

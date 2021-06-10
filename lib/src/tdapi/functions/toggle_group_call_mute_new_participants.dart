@@ -14,7 +14,7 @@ class ToggleGroupCallMuteNewParticipants extends TdFunction {
   bool muteNewParticipants;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleGroupCallMuteNewParticipants.fromJson(

@@ -18,7 +18,7 @@ class GetArchivedStickerSets extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetArchivedStickerSets.fromJson(Map<String, dynamic> json) {

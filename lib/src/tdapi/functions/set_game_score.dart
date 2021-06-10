@@ -30,7 +30,7 @@ class SetGameScore extends TdFunction {
   bool force;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetGameScore.fromJson(Map<String, dynamic> json) {

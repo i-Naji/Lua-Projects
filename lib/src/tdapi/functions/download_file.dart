@@ -26,7 +26,7 @@ class DownloadFile extends TdFunction {
   bool synchronous;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DownloadFile.fromJson(Map<String, dynamic> json) {

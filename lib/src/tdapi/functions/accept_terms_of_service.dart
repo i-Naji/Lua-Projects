@@ -8,7 +8,7 @@ class AcceptTermsOfService extends TdFunction {
   String termsOfServiceId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AcceptTermsOfService.fromJson(Map<String, dynamic> json) {

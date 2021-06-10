@@ -12,7 +12,8 @@ class EmailAddressAuthenticationCodeInfo extends TdObject {
   int length;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory EmailAddressAuthenticationCodeInfo.fromJson(

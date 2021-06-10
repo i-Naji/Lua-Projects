@@ -44,7 +44,8 @@ class StatisticalGraphData extends StatisticalGraph {
   String zoomToken;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StatisticalGraphData.fromJson(Map<String, dynamic> json) {
@@ -78,7 +79,8 @@ class StatisticalGraphAsync extends StatisticalGraph {
   String token;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StatisticalGraphAsync.fromJson(Map<String, dynamic> json) {
@@ -110,7 +112,8 @@ class StatisticalGraphError extends StatisticalGraph {
   String errorMessage;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StatisticalGraphError.fromJson(Map<String, dynamic> json) {

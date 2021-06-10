@@ -12,7 +12,7 @@ class GetFileDownloadedPrefixSize extends TdFunction {
   int offset;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetFileDownloadedPrefixSize.fromJson(Map<String, dynamic> json) {

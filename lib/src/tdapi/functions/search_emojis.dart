@@ -18,7 +18,7 @@ class SearchEmojis extends TdFunction {
   List<String> inputLanguageCodes;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchEmojis.fromJson(Map<String, dynamic> json) {

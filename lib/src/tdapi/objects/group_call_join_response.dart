@@ -12,7 +12,8 @@ class GroupCallJoinResponse extends TdObject {
   List<GroupCallJoinResponseCandidate> candidates;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory GroupCallJoinResponse.fromJson(Map<String, dynamic> json) {

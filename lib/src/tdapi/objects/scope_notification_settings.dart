@@ -26,7 +26,8 @@ class ScopeNotificationSettings extends TdObject {
   bool disableMentionNotifications;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ScopeNotificationSettings.fromJson(Map<String, dynamic> json) {

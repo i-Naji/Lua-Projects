@@ -8,7 +8,8 @@ class Count extends TdObject {
   int count;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Count.fromJson(Map<String, dynamic> json) {

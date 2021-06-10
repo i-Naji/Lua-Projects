@@ -18,7 +18,7 @@ class DeleteChatHistory extends TdFunction {
   bool revoke;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteChatHistory.fromJson(Map<String, dynamic> json) {

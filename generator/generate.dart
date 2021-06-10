@@ -121,7 +121,7 @@ class DartTdDocumentationGenerator {
         final className = classData.group(1)!;
         final classArgs = classData.group(2);
         final classReturnType = classData.group(3);
-        final Map<String, String> args = {};
+        Map<String, String> args = {}; // ignore: omit_local_variable_types
         if (classArgs != null) {
           // ignore: prefer_for_elements_to_map_fromIterable
           for (final arg in classArgs.trim().split(' ')) {
@@ -190,7 +190,7 @@ class DartTdDocumentationGenerator {
       final folderName = sectionFolder(obj.type);
       var finalDir = '$tdApiDir/$folderName/$snakeName.dart';
 
-      String parent = 'TdObject';
+      var parent = 'TdObject';
       final variables = <String>[];
       final arguments = <String>[];
       var hasFactory = true;
@@ -225,14 +225,14 @@ class DartTdDocumentationGenerator {
         });
         if (obj.isFunction) {
           parent = 'TdFunction';
-          variables.add('/// callback sign\n  dynamic? extra;');
+          variables.add('/// callback sign\n  dynamic extra;');
           arguments.add('this.extra');
           fromJsonFields.add('  extra: json[\'@extra\'],');
           toJsonFields.add('\n      "@extra": this.extra,');
         } else {
           if (_objects.any((func) =>
               func.isFunction && func.relevantObjects.contains(obj.name))) {
-            variables.add('/// callback sign\n  dynamic? extra;');
+            variables.add('/// callback sign\n  @override\n  dynamic extra;');
             arguments.add('this.extra');
             fromJsonFields.add('  extra: json[\'@extra\'],');
           }
@@ -459,7 +459,7 @@ class TlObjectArg {
           readFromJson = pattern;
         } else {
           // readFromJson = '${pattern}!';
-          readFromJson = '${pattern} ?? ${getDefaultJsonValue(dartType)}';
+          readFromJson = '$pattern ?? ${getDefaultJsonValue(dartType)}';
         }
       }
     } else if (type.startsWith('List')) {
@@ -468,9 +468,9 @@ class TlObjectArg {
       final str =
           getRead(name, subDartType, pattern: itemName, itemName: 'innerItem');
       readFromJson =
-          '${dartType}.from(($pattern ?? []).map(($itemName) => ${str}).toList())';
+          '$dartType.from(($pattern ?? []).map(($itemName) => $str).toList())';
     } else {
-      readFromJson = '${type}.fromJson($pattern ?? <String, dynamic>{})';
+      readFromJson = '$type.fromJson($pattern ?? <String, dynamic>{})';
     }
     return readFromJson.replaceAll('PLACE', 'json[\'$name\']');
   }
@@ -484,20 +484,20 @@ class TlObjectArg {
       final subDartType = dartType.substring(5, dartType.length - 1);
       final stmt = getWrite(itemName, subDartType,
           itemName: '${itemName}i', isList: true);
-      writeToJson = '.map(($itemName) => ${stmt}).toList()';
+      writeToJson = '.map(($itemName) => $stmt).toList()';
     } else {
       writeToJson = '.toJson()';
     }
     String name;
     if (itemName.length == 1) {
-      name = 'this.${argName}';
+      name = 'this.$argName';
     } else {
       name = itemName.substring(0, itemName.length - 1);
     }
     if (isNullable) {
-      name = '${name} == null ? null : ${name}!';
+      name = '$name == null ? null : $name!';
     }
-    return '${name}$writeToJson';
+    return '$name$writeToJson';
   }
 
   static String getBuiltInDartType(String tdType) {

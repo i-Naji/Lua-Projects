@@ -8,7 +8,8 @@ class Sessions extends TdObject {
   List<Session> sessions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Sessions.fromJson(Map<String, dynamic> json) {

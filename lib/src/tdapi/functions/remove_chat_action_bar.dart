@@ -8,7 +8,7 @@ class RemoveChatActionBar extends TdFunction {
   int chatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveChatActionBar.fromJson(Map<String, dynamic> json) {

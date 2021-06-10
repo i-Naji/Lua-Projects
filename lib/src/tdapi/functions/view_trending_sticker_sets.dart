@@ -8,7 +8,7 @@ class ViewTrendingStickerSets extends TdFunction {
   List<int> stickerSetIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ViewTrendingStickerSets.fromJson(Map<String, dynamic> json) {

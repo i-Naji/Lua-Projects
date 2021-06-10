@@ -8,7 +8,7 @@ class TerminateSession extends TdFunction {
   int sessionId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TerminateSession.fromJson(Map<String, dynamic> json) {

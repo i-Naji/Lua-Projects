@@ -200,7 +200,7 @@ class TelegramService extends ChangeNotifier {
 
   Future setAuthenticationPhoneNumber(
     String phoneNumber, {
-    required void Function(TdError) onError,
+    void Function(TdError)? onError,
   }) async {
     final result = await send(
       SetAuthenticationPhoneNumber(
@@ -219,7 +219,7 @@ class TelegramService extends ChangeNotifier {
 
   Future checkAuthenticationCode(
     String code, {
-    required void Function(TdError) onError,
+    void Function(TdError)? onError,
   }) async {
     final result = await send(
       CheckAuthenticationCode(

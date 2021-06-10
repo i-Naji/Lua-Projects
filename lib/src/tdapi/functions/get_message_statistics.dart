@@ -18,7 +18,7 @@ class GetMessageStatistics extends TdFunction {
   bool isDark;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMessageStatistics.fromJson(Map<String, dynamic> json) {

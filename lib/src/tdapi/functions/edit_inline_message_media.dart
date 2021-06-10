@@ -18,7 +18,7 @@ class EditInlineMessageMedia extends TdFunction {
   InputMessageContent inputMessageContent;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditInlineMessageMedia.fromJson(Map<String, dynamic> json) {

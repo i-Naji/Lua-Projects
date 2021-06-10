@@ -8,7 +8,7 @@ class CreateChatFilter extends TdFunction {
   ChatFilter filter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateChatFilter.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class GetUser extends TdFunction {
   int userId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetUser.fromJson(Map<String, dynamic> json) {

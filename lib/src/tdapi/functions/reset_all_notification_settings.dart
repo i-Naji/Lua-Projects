@@ -5,7 +5,7 @@ class ResetAllNotificationSettings extends TdFunction {
   ResetAllNotificationSettings({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResetAllNotificationSettings.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class SendEmailAddressVerificationCode extends TdFunction {
   String emailAddress;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendEmailAddressVerificationCode.fromJson(Map<String, dynamic> json) {

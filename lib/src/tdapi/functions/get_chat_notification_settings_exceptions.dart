@@ -12,7 +12,7 @@ class GetChatNotificationSettingsExceptions extends TdFunction {
   bool compareSound;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatNotificationSettingsExceptions.fromJson(

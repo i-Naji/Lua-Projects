@@ -12,7 +12,7 @@ class SendCallDebugInformation extends TdFunction {
   String debugInformation;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendCallDebugInformation.fromJson(Map<String, dynamic> json) {

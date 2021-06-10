@@ -30,7 +30,8 @@ class Background extends TdObject {
   BackgroundType type;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Background.fromJson(Map<String, dynamic> json) {

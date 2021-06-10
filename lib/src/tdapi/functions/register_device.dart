@@ -12,7 +12,7 @@ class RegisterDevice extends TdFunction {
   List<int> otherUserIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RegisterDevice.fromJson(Map<String, dynamic> json) {

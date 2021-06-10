@@ -18,7 +18,8 @@ class FoundMessages extends TdObject {
   String nextOffset;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory FoundMessages.fromJson(Map<String, dynamic> json) {

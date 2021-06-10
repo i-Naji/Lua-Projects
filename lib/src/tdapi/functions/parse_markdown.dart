@@ -8,7 +8,7 @@ class ParseMarkdown extends TdFunction {
   FormattedText text;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ParseMarkdown.fromJson(Map<String, dynamic> json) {

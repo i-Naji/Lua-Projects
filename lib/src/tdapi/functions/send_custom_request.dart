@@ -12,7 +12,7 @@ class SendCustomRequest extends TdFunction {
   String parameters;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendCustomRequest.fromJson(Map<String, dynamic> json) {

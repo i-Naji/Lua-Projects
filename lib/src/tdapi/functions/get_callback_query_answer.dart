@@ -18,7 +18,7 @@ class GetCallbackQueryAnswer extends TdFunction {
   CallbackQueryPayload payload;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetCallbackQueryAnswer.fromJson(Map<String, dynamic> json) {

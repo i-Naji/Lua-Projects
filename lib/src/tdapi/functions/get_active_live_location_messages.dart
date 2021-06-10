@@ -5,7 +5,7 @@ class GetActiveLiveLocationMessages extends TdFunction {
   GetActiveLiveLocationMessages({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetActiveLiveLocationMessages.fromJson(Map<String, dynamic> json) {

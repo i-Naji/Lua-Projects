@@ -8,7 +8,8 @@ class PushReceiverId extends TdObject {
   int id;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PushReceiverId.fromJson(Map<String, dynamic> json) {

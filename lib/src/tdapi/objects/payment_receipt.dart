@@ -30,7 +30,8 @@ class PaymentReceipt extends TdObject {
   String credentialsTitle;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PaymentReceipt.fromJson(Map<String, dynamic> json) {

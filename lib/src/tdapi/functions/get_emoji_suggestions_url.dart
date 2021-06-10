@@ -8,7 +8,7 @@ class GetEmojiSuggestionsUrl extends TdFunction {
   String languageCode;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetEmojiSuggestionsUrl.fromJson(Map<String, dynamic> json) {

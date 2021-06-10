@@ -8,7 +8,7 @@ class GetFile extends TdFunction {
   int fileId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetFile.fromJson(Map<String, dynamic> json) {

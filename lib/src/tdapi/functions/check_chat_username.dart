@@ -11,7 +11,7 @@ class CheckChatUsername extends TdFunction {
   String username;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatUsername.fromJson(Map<String, dynamic> json) {

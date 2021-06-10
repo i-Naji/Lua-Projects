@@ -8,7 +8,8 @@ class GameHighScores extends TdObject {
   List<GameHighScore> scores;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory GameHighScores.fromJson(Map<String, dynamic> json) {

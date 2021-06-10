@@ -8,7 +8,7 @@ class CheckCreatedPublicChatsLimit extends TdFunction {
   PublicChatType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CheckCreatedPublicChatsLimit.fromJson(Map<String, dynamic> json) {

@@ -12,7 +12,7 @@ class SetChatClientData extends TdFunction {
   String clientData;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatClientData.fromJson(Map<String, dynamic> json) {

@@ -12,7 +12,7 @@ class SetChatPermissions extends TdFunction {
   ChatPermissions permissions;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatPermissions.fromJson(Map<String, dynamic> json) {

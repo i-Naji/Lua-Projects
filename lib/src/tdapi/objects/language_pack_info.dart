@@ -58,7 +58,8 @@ class LanguagePackInfo extends TdObject {
   String translationUrl;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LanguagePackInfo.fromJson(Map<String, dynamic> json) {

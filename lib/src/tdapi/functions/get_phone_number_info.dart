@@ -8,7 +8,7 @@ class GetPhoneNumberInfo extends TdFunction {
   String phoneNumberPrefix;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetPhoneNumberInfo.fromJson(Map<String, dynamic> json) {

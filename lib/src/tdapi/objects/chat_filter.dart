@@ -58,7 +58,8 @@ class ChatFilter extends TdObject {
   bool includeChannels;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatFilter.fromJson(Map<String, dynamic> json) {

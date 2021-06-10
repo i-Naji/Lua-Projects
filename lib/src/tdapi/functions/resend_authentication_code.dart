@@ -5,7 +5,7 @@ class ResendAuthenticationCode extends TdFunction {
   ResendAuthenticationCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendAuthenticationCode.fromJson(Map<String, dynamic> json) {

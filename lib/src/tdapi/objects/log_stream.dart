@@ -37,7 +37,8 @@ class LogStreamDefault extends LogStream {
   LogStreamDefault({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LogStreamDefault.fromJson(Map<String, dynamic> json) {
@@ -77,7 +78,8 @@ class LogStreamFile extends LogStream {
   bool redirectStderr;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LogStreamFile.fromJson(Map<String, dynamic> json) {
@@ -110,7 +112,8 @@ class LogStreamEmpty extends LogStream {
   LogStreamEmpty({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LogStreamEmpty.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class GetInactiveSupergroupChats extends TdFunction {
   GetInactiveSupergroupChats({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetInactiveSupergroupChats.fromJson(Map<String, dynamic> json) {

@@ -22,7 +22,7 @@ class GetChats extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChats.fromJson(Map<String, dynamic> json) {

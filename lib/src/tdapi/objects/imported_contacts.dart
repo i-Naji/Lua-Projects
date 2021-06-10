@@ -12,7 +12,8 @@ class ImportedContacts extends TdObject {
   List<int> importerCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ImportedContacts.fromJson(Map<String, dynamic> json) {

@@ -26,7 +26,7 @@ class GetChatHistory extends TdFunction {
   bool onlyLocal;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatHistory.fromJson(Map<String, dynamic> json) {

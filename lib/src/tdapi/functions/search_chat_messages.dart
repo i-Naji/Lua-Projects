@@ -38,7 +38,7 @@ class SearchChatMessages extends TdFunction {
   int messageThreadId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchChatMessages.fromJson(Map<String, dynamic> json) {

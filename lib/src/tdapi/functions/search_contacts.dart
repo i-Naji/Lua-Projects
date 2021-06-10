@@ -11,7 +11,7 @@ class SearchContacts extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchContacts.fromJson(Map<String, dynamic> json) {

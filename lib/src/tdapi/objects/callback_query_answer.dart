@@ -18,7 +18,8 @@ class CallbackQueryAnswer extends TdObject {
   String url;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CallbackQueryAnswer.fromJson(Map<String, dynamic> json) {

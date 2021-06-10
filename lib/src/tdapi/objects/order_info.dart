@@ -22,7 +22,8 @@ class OrderInfo extends TdObject {
   Address? shippingAddress;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory OrderInfo.fromJson(Map<String, dynamic> json) {

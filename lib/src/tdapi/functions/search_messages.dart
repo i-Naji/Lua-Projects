@@ -42,7 +42,7 @@ class SearchMessages extends TdFunction {
   int maxDate;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchMessages.fromJson(Map<String, dynamic> json) {

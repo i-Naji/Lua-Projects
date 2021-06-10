@@ -8,7 +8,8 @@ class LocalizationTargetInfo extends TdObject {
   List<LanguagePackInfo> languagePacks;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LocalizationTargetInfo.fromJson(Map<String, dynamic> json) {

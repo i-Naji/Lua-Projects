@@ -5,7 +5,7 @@ class GetLogStream extends TdFunction {
   GetLogStream({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetLogStream.fromJson(Map<String, dynamic> json) {

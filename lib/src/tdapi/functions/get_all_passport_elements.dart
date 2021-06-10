@@ -8,7 +8,7 @@ class GetAllPassportElements extends TdFunction {
   String password;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetAllPassportElements.fromJson(Map<String, dynamic> json) {

@@ -18,7 +18,7 @@ class GetGameHighScores extends TdFunction {
   int userId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetGameHighScores.fromJson(Map<String, dynamic> json) {

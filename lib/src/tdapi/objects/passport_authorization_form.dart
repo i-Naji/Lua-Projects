@@ -18,7 +18,8 @@ class PassportAuthorizationForm extends TdObject {
   String privacyPolicyUrl;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportAuthorizationForm.fromJson(Map<String, dynamic> json) {

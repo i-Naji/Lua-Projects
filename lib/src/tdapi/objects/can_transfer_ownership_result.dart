@@ -40,7 +40,8 @@ class CanTransferOwnershipResultOk extends CanTransferOwnershipResult {
   CanTransferOwnershipResultOk({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CanTransferOwnershipResultOk.fromJson(Map<String, dynamic> json) {
@@ -68,7 +69,8 @@ class CanTransferOwnershipResultPasswordNeeded
   CanTransferOwnershipResultPasswordNeeded({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CanTransferOwnershipResultPasswordNeeded.fromJson(
@@ -101,7 +103,8 @@ class CanTransferOwnershipResultPasswordTooFresh
   int retryAfter;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CanTransferOwnershipResultPasswordTooFresh.fromJson(
@@ -136,7 +139,8 @@ class CanTransferOwnershipResultSessionTooFresh
   int retryAfter;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CanTransferOwnershipResultSessionTooFresh.fromJson(

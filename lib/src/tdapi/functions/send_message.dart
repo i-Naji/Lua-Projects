@@ -30,7 +30,7 @@ class SendMessage extends TdFunction {
   InputMessageContent inputMessageContent;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendMessage.fromJson(Map<String, dynamic> json) {

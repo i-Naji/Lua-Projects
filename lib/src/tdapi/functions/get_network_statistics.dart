@@ -8,7 +8,7 @@ class GetNetworkStatistics extends TdFunction {
   bool onlyCurrent;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetNetworkStatistics.fromJson(Map<String, dynamic> json) {

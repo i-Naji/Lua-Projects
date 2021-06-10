@@ -8,7 +8,7 @@ class ReorderChatFilters extends TdFunction {
   List<int> chatFilterIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ReorderChatFilters.fromJson(Map<String, dynamic> json) {

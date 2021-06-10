@@ -12,7 +12,7 @@ class CreateTemporaryPassword extends TdFunction {
   int validFor;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateTemporaryPassword.fromJson(Map<String, dynamic> json) {

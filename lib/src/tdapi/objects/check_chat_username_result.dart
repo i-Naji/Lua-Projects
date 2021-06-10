@@ -43,7 +43,8 @@ class CheckChatUsernameResultOk extends CheckChatUsernameResult {
   CheckChatUsernameResultOk({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatUsernameResultOk.fromJson(Map<String, dynamic> json) {
@@ -70,7 +71,8 @@ class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult {
   CheckChatUsernameResultUsernameInvalid({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatUsernameResultUsernameInvalid.fromJson(
@@ -98,7 +100,8 @@ class CheckChatUsernameResultUsernameOccupied extends CheckChatUsernameResult {
   CheckChatUsernameResultUsernameOccupied({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatUsernameResultUsernameOccupied.fromJson(
@@ -127,7 +130,8 @@ class CheckChatUsernameResultPublicChatsTooMuch
   CheckChatUsernameResultPublicChatsTooMuch({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatUsernameResultPublicChatsTooMuch.fromJson(
@@ -156,7 +160,8 @@ class CheckChatUsernameResultPublicGroupsUnavailable
   CheckChatUsernameResultPublicGroupsUnavailable({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatUsernameResultPublicGroupsUnavailable.fromJson(

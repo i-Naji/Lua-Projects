@@ -5,7 +5,7 @@ class GetSupportUser extends TdFunction {
   GetSupportUser({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetSupportUser.fromJson(Map<String, dynamic> json) {

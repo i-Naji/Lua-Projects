@@ -26,7 +26,8 @@ class ChatMember extends TdObject {
   BotInfo? botInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatMember.fromJson(Map<String, dynamic> json) {

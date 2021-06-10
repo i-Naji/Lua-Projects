@@ -5,7 +5,7 @@ class GetStorageStatisticsFast extends TdFunction {
   GetStorageStatisticsFast({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetStorageStatisticsFast.fromJson(Map<String, dynamic> json) {

@@ -58,7 +58,8 @@ class Supergroup extends TdObject {
   bool isScam;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Supergroup.fromJson(Map<String, dynamic> json) {

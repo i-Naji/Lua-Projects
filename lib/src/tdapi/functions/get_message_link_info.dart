@@ -8,7 +8,7 @@ class GetMessageLinkInfo extends TdFunction {
   String url;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMessageLinkInfo.fromJson(Map<String, dynamic> json) {

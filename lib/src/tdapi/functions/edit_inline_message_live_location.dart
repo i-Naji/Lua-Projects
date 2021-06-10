@@ -26,7 +26,7 @@ class EditInlineMessageLiveLocation extends TdFunction {
   int proximityAlertRadius;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditInlineMessageLiveLocation.fromJson(Map<String, dynamic> json) {

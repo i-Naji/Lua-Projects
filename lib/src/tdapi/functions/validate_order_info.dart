@@ -22,7 +22,7 @@ class ValidateOrderInfo extends TdFunction {
   bool allowSave;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ValidateOrderInfo.fromJson(Map<String, dynamic> json) {

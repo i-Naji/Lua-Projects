@@ -11,7 +11,7 @@ class SetName extends TdFunction {
   String lastName;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetName.fromJson(Map<String, dynamic> json) {

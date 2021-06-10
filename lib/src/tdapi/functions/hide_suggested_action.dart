@@ -8,7 +8,7 @@ class HideSuggestedAction extends TdFunction {
   SuggestedAction action;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory HideSuggestedAction.fromJson(Map<String, dynamic> json) {

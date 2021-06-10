@@ -8,7 +8,8 @@ class TestInt extends TdObject {
   int value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory TestInt.fromJson(Map<String, dynamic> json) {

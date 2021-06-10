@@ -12,7 +12,8 @@ class PassportElementsWithErrors extends TdObject {
   List<PassportElementError> errors;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementsWithErrors.fromJson(Map<String, dynamic> json) {

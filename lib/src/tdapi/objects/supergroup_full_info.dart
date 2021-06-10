@@ -86,7 +86,8 @@ class SupergroupFullInfo extends TdObject {
   int upgradedFromMaxMessageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory SupergroupFullInfo.fromJson(Map<String, dynamic> json) {

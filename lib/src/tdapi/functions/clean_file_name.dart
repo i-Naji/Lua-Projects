@@ -8,7 +8,7 @@ class CleanFileName extends TdFunction {
   String fileName;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CleanFileName.fromJson(Map<String, dynamic> json) {

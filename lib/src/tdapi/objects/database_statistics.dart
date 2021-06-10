@@ -8,7 +8,8 @@ class DatabaseStatistics extends TdObject {
   String statistics;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory DatabaseStatistics.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class GetAuthorizationState extends TdFunction {
   GetAuthorizationState({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetAuthorizationState.fromJson(Map<String, dynamic> json) {

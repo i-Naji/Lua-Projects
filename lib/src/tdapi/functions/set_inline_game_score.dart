@@ -26,7 +26,7 @@ class SetInlineGameScore extends TdFunction {
   bool force;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetInlineGameScore.fromJson(Map<String, dynamic> json) {

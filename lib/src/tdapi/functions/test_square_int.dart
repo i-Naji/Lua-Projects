@@ -8,7 +8,7 @@ class TestSquareInt extends TdFunction {
   int x;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestSquareInt.fromJson(Map<String, dynamic> json) {

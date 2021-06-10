@@ -11,7 +11,7 @@ class SendChatSetTtlMessage extends TdFunction {
   int ttl;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendChatSetTtlMessage.fromJson(Map<String, dynamic> json) {

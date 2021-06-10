@@ -8,7 +8,7 @@ class ImportContacts extends TdFunction {
   List<Contact> contacts;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ImportContacts.fromJson(Map<String, dynamic> json) {

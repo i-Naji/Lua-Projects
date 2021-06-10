@@ -18,7 +18,7 @@ class ReportSupergroupSpam extends TdFunction {
   List<int> messageIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ReportSupergroupSpam.fromJson(Map<String, dynamic> json) {

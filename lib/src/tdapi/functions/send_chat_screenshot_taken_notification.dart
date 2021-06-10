@@ -8,7 +8,7 @@ class SendChatScreenshotTakenNotification extends TdFunction {
   int chatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendChatScreenshotTakenNotification.fromJson(

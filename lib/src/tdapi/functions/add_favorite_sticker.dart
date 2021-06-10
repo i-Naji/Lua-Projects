@@ -8,7 +8,7 @@ class AddFavoriteSticker extends TdFunction {
   InputFile sticker;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddFavoriteSticker.fromJson(Map<String, dynamic> json) {

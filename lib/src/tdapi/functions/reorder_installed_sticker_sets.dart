@@ -12,7 +12,7 @@ class ReorderInstalledStickerSets extends TdFunction {
   List<int> stickerSetIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ReorderInstalledStickerSets.fromJson(Map<String, dynamic> json) {

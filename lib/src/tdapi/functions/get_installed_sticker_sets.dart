@@ -8,7 +8,7 @@ class GetInstalledStickerSets extends TdFunction {
   bool isMasks;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetInstalledStickerSets.fromJson(Map<String, dynamic> json) {

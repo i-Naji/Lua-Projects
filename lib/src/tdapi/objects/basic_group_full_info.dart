@@ -26,7 +26,8 @@ class BasicGroupFullInfo extends TdObject {
   String inviteLink;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory BasicGroupFullInfo.fromJson(Map<String, dynamic> json) {

@@ -18,7 +18,7 @@ class ToggleChatIsPinned extends TdFunction {
   bool isPinned;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleChatIsPinned.fromJson(Map<String, dynamic> json) {

@@ -11,7 +11,7 @@ class SetChatTitle extends TdFunction {
   String title;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatTitle.fromJson(Map<String, dynamic> json) {

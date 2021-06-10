@@ -5,7 +5,7 @@ class GetAutoDownloadSettingsPresets extends TdFunction {
   GetAutoDownloadSettingsPresets({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetAutoDownloadSettingsPresets.fromJson(Map<String, dynamic> json) {

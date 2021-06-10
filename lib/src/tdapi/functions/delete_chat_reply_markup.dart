@@ -12,7 +12,7 @@ class DeleteChatReplyMarkup extends TdFunction {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteChatReplyMarkup.fromJson(Map<String, dynamic> json) {

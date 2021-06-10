@@ -11,7 +11,7 @@ class GetChatMember extends TdFunction {
   int userId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatMember.fromJson(Map<String, dynamic> json) {

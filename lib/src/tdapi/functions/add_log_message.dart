@@ -11,7 +11,7 @@ class AddLogMessage extends TdFunction {
   String text;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddLogMessage.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class TestGetDifference extends TdFunction {
   TestGetDifference({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestGetDifference.fromJson(Map<String, dynamic> json) {

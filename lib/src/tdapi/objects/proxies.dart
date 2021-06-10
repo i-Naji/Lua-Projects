@@ -8,7 +8,8 @@ class Proxies extends TdObject {
   List<Proxy> proxies;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Proxies.fromJson(Map<String, dynamic> json) {

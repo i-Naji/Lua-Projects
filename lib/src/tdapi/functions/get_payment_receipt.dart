@@ -12,7 +12,7 @@ class GetPaymentReceipt extends TdFunction {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetPaymentReceipt.fromJson(Map<String, dynamic> json) {

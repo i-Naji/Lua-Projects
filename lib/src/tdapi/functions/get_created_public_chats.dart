@@ -8,7 +8,7 @@ class GetCreatedPublicChats extends TdFunction {
   PublicChatType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetCreatedPublicChats.fromJson(Map<String, dynamic> json) {

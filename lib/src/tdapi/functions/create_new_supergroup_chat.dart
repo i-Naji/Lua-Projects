@@ -22,7 +22,7 @@ class CreateNewSupergroupChat extends TdFunction {
   ChatLocation location;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateNewSupergroupChat.fromJson(Map<String, dynamic> json) {

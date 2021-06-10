@@ -58,7 +58,8 @@ class StickerSet extends TdObject {
   List<Emojis> emojis;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StickerSet.fromJson(Map<String, dynamic> json) {

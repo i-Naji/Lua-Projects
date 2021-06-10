@@ -12,7 +12,7 @@ class GetBlockedMessageSenders extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetBlockedMessageSenders.fromJson(Map<String, dynamic> json) {

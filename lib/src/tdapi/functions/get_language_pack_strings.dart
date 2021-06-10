@@ -12,7 +12,7 @@ class GetLanguagePackStrings extends TdFunction {
   List<String> keys;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetLanguagePackStrings.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class ClearAllDraftMessages extends TdFunction {
   bool excludeSecretChats;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ClearAllDraftMessages.fromJson(Map<String, dynamic> json) {

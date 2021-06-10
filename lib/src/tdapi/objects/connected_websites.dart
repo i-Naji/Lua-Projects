@@ -8,7 +8,8 @@ class ConnectedWebsites extends TdObject {
   List<ConnectedWebsite> websites;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ConnectedWebsites.fromJson(Map<String, dynamic> json) {

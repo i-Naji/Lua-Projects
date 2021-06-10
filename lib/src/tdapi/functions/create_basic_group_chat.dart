@@ -12,7 +12,7 @@ class CreateBasicGroupChat extends TdFunction {
   bool force;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateBasicGroupChat.fromJson(Map<String, dynamic> json) {

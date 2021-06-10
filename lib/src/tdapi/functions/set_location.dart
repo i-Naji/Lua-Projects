@@ -8,7 +8,7 @@ class SetLocation extends TdFunction {
   Location location;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetLocation.fromJson(Map<String, dynamic> json) {

@@ -22,7 +22,7 @@ class PinChatMessage extends TdFunction {
   bool onlyForSelf;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory PinChatMessage.fromJson(Map<String, dynamic> json) {

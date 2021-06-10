@@ -12,7 +12,7 @@ class SetSupergroupStickerSet extends TdFunction {
   int stickerSetId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetSupergroupStickerSet.fromJson(Map<String, dynamic> json) {

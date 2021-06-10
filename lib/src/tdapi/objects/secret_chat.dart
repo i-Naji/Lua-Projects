@@ -34,7 +34,8 @@ class SecretChat extends TdObject {
   int layer;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory SecretChat.fromJson(Map<String, dynamic> json) {

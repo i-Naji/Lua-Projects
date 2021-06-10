@@ -26,7 +26,8 @@ class StorageStatisticsFast extends TdObject {
   int logSize;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StorageStatisticsFast.fromJson(Map<String, dynamic> json) {

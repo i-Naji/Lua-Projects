@@ -18,7 +18,7 @@ class GetMessageEmbeddingCode extends TdFunction {
   bool forAlbum;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMessageEmbeddingCode.fromJson(Map<String, dynamic> json) {

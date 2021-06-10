@@ -5,7 +5,7 @@ class ResendPhoneNumberConfirmationCode extends TdFunction {
   ResendPhoneNumberConfirmationCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendPhoneNumberConfirmationCode.fromJson(

@@ -8,7 +8,7 @@ class SetTdlibParameters extends TdFunction {
   TdlibParameters parameters;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetTdlibParameters.fromJson(Map<String, dynamic> json) {

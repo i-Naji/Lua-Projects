@@ -12,7 +12,7 @@ class InviteGroupCallParticipants extends TdFunction {
   List<int> userIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory InviteGroupCallParticipants.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class GetBankCardInfo extends TdFunction {
   String bankCardNumber;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetBankCardInfo.fromJson(Map<String, dynamic> json) {

@@ -34,7 +34,7 @@ class SendInlineQueryResultMessage extends TdFunction {
   bool hideViaBot;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendInlineQueryResultMessage.fromJson(Map<String, dynamic> json) {

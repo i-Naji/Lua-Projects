@@ -38,7 +38,8 @@ class ChatInviteLinkInfo extends TdObject {
   bool isPublic;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatInviteLinkInfo.fromJson(Map<String, dynamic> json) {

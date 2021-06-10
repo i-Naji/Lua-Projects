@@ -30,7 +30,7 @@ class ForwardMessages extends TdFunction {
   bool removeCaption;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ForwardMessages.fromJson(Map<String, dynamic> json) {

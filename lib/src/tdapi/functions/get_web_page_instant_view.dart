@@ -12,7 +12,7 @@ class GetWebPageInstantView extends TdFunction {
   bool forceFull;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetWebPageInstantView.fromJson(Map<String, dynamic> json) {

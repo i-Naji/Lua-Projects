@@ -12,7 +12,7 @@ class CreateSupergroupChat extends TdFunction {
   bool force;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateSupergroupChat.fromJson(Map<String, dynamic> json) {

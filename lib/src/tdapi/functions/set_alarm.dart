@@ -8,7 +8,7 @@ class SetAlarm extends TdFunction {
   double seconds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetAlarm.fromJson(Map<String, dynamic> json) {

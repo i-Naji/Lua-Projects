@@ -11,7 +11,7 @@ class GetMessage extends TdFunction {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMessage.fromJson(Map<String, dynamic> json) {

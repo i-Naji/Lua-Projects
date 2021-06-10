@@ -18,7 +18,7 @@ class SendPhoneNumberConfirmationCode extends TdFunction {
   PhoneNumberAuthenticationSettings settings;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendPhoneNumberConfirmationCode.fromJson(Map<String, dynamic> json) {

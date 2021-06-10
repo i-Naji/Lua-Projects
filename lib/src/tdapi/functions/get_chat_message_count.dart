@@ -18,7 +18,7 @@ class GetChatMessageCount extends TdFunction {
   bool returnLocal;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatMessageCount.fromJson(Map<String, dynamic> json) {

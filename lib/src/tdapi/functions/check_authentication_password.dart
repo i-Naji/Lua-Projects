@@ -8,7 +8,7 @@ class CheckAuthenticationPassword extends TdFunction {
   String password;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CheckAuthenticationPassword.fromJson(Map<String, dynamic> json) {

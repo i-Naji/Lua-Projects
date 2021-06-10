@@ -8,7 +8,7 @@ class SynchronizeLanguagePack extends TdFunction {
   String languagePackId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SynchronizeLanguagePack.fromJson(Map<String, dynamic> json) {

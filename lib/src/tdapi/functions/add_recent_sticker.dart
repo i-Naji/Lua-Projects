@@ -12,7 +12,7 @@ class AddRecentSticker extends TdFunction {
   InputFile sticker;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddRecentSticker.fromJson(Map<String, dynamic> json) {

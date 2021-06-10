@@ -8,7 +8,7 @@ class GetBasicGroup extends TdFunction {
   int basicGroupId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetBasicGroup.fromJson(Map<String, dynamic> json) {

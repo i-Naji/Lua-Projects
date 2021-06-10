@@ -18,7 +18,7 @@ class EditMessageSchedulingState extends TdFunction {
   MessageSchedulingState? schedulingState;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditMessageSchedulingState.fromJson(Map<String, dynamic> json) {

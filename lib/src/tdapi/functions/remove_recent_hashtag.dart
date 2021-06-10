@@ -8,7 +8,7 @@ class RemoveRecentHashtag extends TdFunction {
   String hashtag;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveRecentHashtag.fromJson(Map<String, dynamic> json) {

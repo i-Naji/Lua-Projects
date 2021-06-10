@@ -5,7 +5,7 @@ class ResendChangePhoneNumberCode extends TdFunction {
   ResendChangePhoneNumberCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendChangePhoneNumberCode.fromJson(Map<String, dynamic> json) {

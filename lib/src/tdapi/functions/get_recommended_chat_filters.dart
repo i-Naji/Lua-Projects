@@ -5,7 +5,7 @@ class GetRecommendedChatFilters extends TdFunction {
   GetRecommendedChatFilters({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetRecommendedChatFilters.fromJson(Map<String, dynamic> json) {

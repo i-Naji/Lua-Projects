@@ -8,7 +8,7 @@ class CreateVoiceChat extends TdFunction {
   int chatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateVoiceChat.fromJson(Map<String, dynamic> json) {

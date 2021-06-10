@@ -26,7 +26,8 @@ class File extends TdObject {
   RemoteFile remote;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory File.fromJson(Map<String, dynamic> json) {

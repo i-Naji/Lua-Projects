@@ -46,7 +46,8 @@ class JsonValueNull extends JsonValue {
   JsonValueNull({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory JsonValueNull.fromJson(Map<String, dynamic> json) {
@@ -76,7 +77,8 @@ class JsonValueBoolean extends JsonValue {
   bool value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory JsonValueBoolean.fromJson(Map<String, dynamic> json) {
@@ -108,7 +110,8 @@ class JsonValueNumber extends JsonValue {
   double value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory JsonValueNumber.fromJson(Map<String, dynamic> json) {
@@ -140,7 +143,8 @@ class JsonValueString extends JsonValue {
   String value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory JsonValueString.fromJson(Map<String, dynamic> json) {
@@ -172,7 +176,8 @@ class JsonValueArray extends JsonValue {
   List<JsonValue> values;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory JsonValueArray.fromJson(Map<String, dynamic> json) {
@@ -206,7 +211,8 @@ class JsonValueObject extends JsonValue {
   List<JsonObjectMember> members;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory JsonValueObject.fromJson(Map<String, dynamic> json) {

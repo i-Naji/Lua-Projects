@@ -8,7 +8,8 @@ class TMeUrls extends TdObject {
   List<TMeUrl> urls;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory TMeUrls.fromJson(Map<String, dynamic> json) {

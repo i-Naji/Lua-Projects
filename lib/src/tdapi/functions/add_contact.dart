@@ -12,7 +12,7 @@ class AddContact extends TdFunction {
   bool sharePhoneNumber;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddContact.fromJson(Map<String, dynamic> json) {

@@ -12,7 +12,7 @@ class CancelDownloadFile extends TdFunction {
   bool onlyIfPending;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CancelDownloadFile.fromJson(Map<String, dynamic> json) {

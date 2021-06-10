@@ -22,7 +22,7 @@ class ViewMessages extends TdFunction {
   bool forceRead;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ViewMessages.fromJson(Map<String, dynamic> json) {

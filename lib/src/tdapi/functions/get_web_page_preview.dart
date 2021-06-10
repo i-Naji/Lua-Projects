@@ -8,7 +8,7 @@ class GetWebPagePreview extends TdFunction {
   FormattedText text;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetWebPagePreview.fromJson(Map<String, dynamic> json) {

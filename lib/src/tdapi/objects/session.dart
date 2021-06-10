@@ -66,7 +66,8 @@ class Session extends TdObject {
   String region;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Session.fromJson(Map<String, dynamic> json) {

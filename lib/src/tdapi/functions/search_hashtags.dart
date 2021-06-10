@@ -11,7 +11,7 @@ class SearchHashtags extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchHashtags.fromJson(Map<String, dynamic> json) {

@@ -22,7 +22,7 @@ class BlockMessageSenderFromReplies extends TdFunction {
   bool reportSpam;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory BlockMessageSenderFromReplies.fromJson(Map<String, dynamic> json) {

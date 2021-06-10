@@ -46,7 +46,8 @@ class UserFullInfo extends TdObject {
   BotInfo? botInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UserFullInfo.fromJson(Map<String, dynamic> json) {

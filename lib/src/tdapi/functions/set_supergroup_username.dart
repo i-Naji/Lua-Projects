@@ -12,7 +12,7 @@ class SetSupergroupUsername extends TdFunction {
   String username;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetSupergroupUsername.fromJson(Map<String, dynamic> json) {

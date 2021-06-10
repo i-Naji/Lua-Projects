@@ -5,7 +5,7 @@ class ClearImportedContacts extends TdFunction {
   ClearImportedContacts({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ClearImportedContacts.fromJson(Map<String, dynamic> json) {

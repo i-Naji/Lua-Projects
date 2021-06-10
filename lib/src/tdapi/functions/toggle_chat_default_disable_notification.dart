@@ -14,7 +14,7 @@ class ToggleChatDefaultDisableNotification extends TdFunction {
   bool defaultDisableNotification;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleChatDefaultDisableNotification.fromJson(

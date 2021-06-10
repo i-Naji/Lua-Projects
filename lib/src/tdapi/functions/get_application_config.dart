@@ -5,7 +5,7 @@ class GetApplicationConfig extends TdFunction {
   GetApplicationConfig({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetApplicationConfig.fromJson(Map<String, dynamic> json) {

@@ -26,7 +26,8 @@ class MessageThreadInfo extends TdObject {
   DraftMessage? draftMessage;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory MessageThreadInfo.fromJson(Map<String, dynamic> json) {

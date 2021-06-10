@@ -18,7 +18,8 @@ class StorageStatistics extends TdObject {
   List<StorageStatisticsByChat> byChat;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StorageStatistics.fromJson(Map<String, dynamic> json) {

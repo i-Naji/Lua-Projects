@@ -8,7 +8,7 @@ class DeleteFile extends TdFunction {
   int fileId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteFile.fromJson(Map<String, dynamic> json) {

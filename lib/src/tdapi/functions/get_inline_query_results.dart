@@ -26,7 +26,7 @@ class GetInlineQueryResults extends TdFunction {
   String offset;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetInlineQueryResults.fromJson(Map<String, dynamic> json) {

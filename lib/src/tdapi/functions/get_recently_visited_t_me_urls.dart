@@ -8,7 +8,7 @@ class GetRecentlyVisitedTMeUrls extends TdFunction {
   String referrer;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetRecentlyVisitedTMeUrls.fromJson(Map<String, dynamic> json) {

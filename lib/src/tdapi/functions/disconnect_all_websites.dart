@@ -5,7 +5,7 @@ class DisconnectAllWebsites extends TdFunction {
   DisconnectAllWebsites({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DisconnectAllWebsites.fromJson(Map<String, dynamic> json) {

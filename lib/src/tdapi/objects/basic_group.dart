@@ -26,7 +26,8 @@ class BasicGroup extends TdObject {
   int upgradedToSupergroupId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory BasicGroup.fromJson(Map<String, dynamic> json) {

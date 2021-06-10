@@ -11,7 +11,7 @@ class GetBackgroundUrl extends TdFunction {
   BackgroundType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetBackgroundUrl.fromJson(Map<String, dynamic> json) {

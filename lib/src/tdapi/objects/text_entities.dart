@@ -8,7 +8,8 @@ class TextEntities extends TdObject {
   List<TextEntity> entities;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory TextEntities.fromJson(Map<String, dynamic> json) {

@@ -280,7 +280,8 @@ class UpdateAuthorizationState extends Update {
   AuthorizationState authorizationState;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateAuthorizationState.fromJson(Map<String, dynamic> json) {
@@ -313,7 +314,8 @@ class UpdateNewMessage extends Update {
   Message message;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewMessage.fromJson(Map<String, dynamic> json) {
@@ -349,7 +351,8 @@ class UpdateMessageSendAcknowledged extends Update {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageSendAcknowledged.fromJson(Map<String, dynamic> json) {
@@ -387,7 +390,8 @@ class UpdateMessageSendSucceeded extends Update {
   int oldMessageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageSendSucceeded.fromJson(Map<String, dynamic> json) {
@@ -435,7 +439,8 @@ class UpdateMessageSendFailed extends Update {
   String errorMessage;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageSendFailed.fromJson(Map<String, dynamic> json) {
@@ -483,7 +488,8 @@ class UpdateMessageContent extends Update {
   MessageContent newContent;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageContent.fromJson(Map<String, dynamic> json) {
@@ -534,7 +540,8 @@ class UpdateMessageEdited extends Update {
   ReplyMarkup? replyMarkup;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageEdited.fromJson(Map<String, dynamic> json) {
@@ -584,7 +591,8 @@ class UpdateMessageIsPinned extends Update {
   bool isPinned;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageIsPinned.fromJson(Map<String, dynamic> json) {
@@ -630,7 +638,8 @@ class UpdateMessageInteractionInfo extends Update {
   MessageInteractionInfo? interactionInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageInteractionInfo.fromJson(Map<String, dynamic> json) {
@@ -672,7 +681,8 @@ class UpdateMessageContentOpened extends Update {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageContentOpened.fromJson(Map<String, dynamic> json) {
@@ -716,7 +726,8 @@ class UpdateMessageMentionRead extends Update {
   int unreadMentionCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageMentionRead.fromJson(Map<String, dynamic> json) {
@@ -756,7 +767,8 @@ class UpdateMessageLiveLocationViewed extends Update {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateMessageLiveLocationViewed.fromJson(Map<String, dynamic> json) {
@@ -790,7 +802,8 @@ class UpdateNewChat extends Update {
   Chat chat;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewChat.fromJson(Map<String, dynamic> json) {
@@ -825,7 +838,8 @@ class UpdateChatTitle extends Update {
   String title;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatTitle.fromJson(Map<String, dynamic> json) {
@@ -862,7 +876,8 @@ class UpdateChatPhoto extends Update {
   ChatPhotoInfo? photo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatPhoto.fromJson(Map<String, dynamic> json) {
@@ -900,7 +915,8 @@ class UpdateChatPermissions extends Update {
   ChatPermissions permissions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatPermissions.fromJson(Map<String, dynamic> json) {
@@ -945,7 +961,8 @@ class UpdateChatLastMessage extends Update {
   List<ChatPosition> positions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatLastMessage.fromJson(Map<String, dynamic> json) {
@@ -989,7 +1006,8 @@ class UpdateChatPosition extends Update {
   ChatPosition position;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatPosition.fromJson(Map<String, dynamic> json) {
@@ -1027,7 +1045,8 @@ class UpdateChatIsMarkedAsUnread extends Update {
   bool isMarkedAsUnread;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatIsMarkedAsUnread.fromJson(Map<String, dynamic> json) {
@@ -1065,7 +1084,8 @@ class UpdateChatIsBlocked extends Update {
   bool isBlocked;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatIsBlocked.fromJson(Map<String, dynamic> json) {
@@ -1103,7 +1123,8 @@ class UpdateChatHasScheduledMessages extends Update {
   bool hasScheduledMessages;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatHasScheduledMessages.fromJson(Map<String, dynamic> json) {
@@ -1147,7 +1168,8 @@ class UpdateChatVoiceChat extends Update {
   bool isVoiceChatEmpty;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatVoiceChat.fromJson(Map<String, dynamic> json) {
@@ -1189,7 +1211,8 @@ class UpdateChatDefaultDisableNotification extends Update {
   bool defaultDisableNotification;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatDefaultDisableNotification.fromJson(
@@ -1234,7 +1257,8 @@ class UpdateChatReadInbox extends Update {
   int unreadCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatReadInbox.fromJson(Map<String, dynamic> json) {
@@ -1276,7 +1300,8 @@ class UpdateChatReadOutbox extends Update {
   int lastReadOutboxMessageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatReadOutbox.fromJson(Map<String, dynamic> json) {
@@ -1314,7 +1339,8 @@ class UpdateChatUnreadMentionCount extends Update {
   int unreadMentionCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatUnreadMentionCount.fromJson(Map<String, dynamic> json) {
@@ -1352,7 +1378,8 @@ class UpdateChatNotificationSettings extends Update {
   ChatNotificationSettings notificationSettings;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatNotificationSettings.fromJson(Map<String, dynamic> json) {
@@ -1391,7 +1418,8 @@ class UpdateScopeNotificationSettings extends Update {
   ScopeNotificationSettings notificationSettings;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateScopeNotificationSettings.fromJson(Map<String, dynamic> json) {
@@ -1430,7 +1458,8 @@ class UpdateChatActionBar extends Update {
   ChatActionBar? actionBar;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatActionBar.fromJson(Map<String, dynamic> json) {
@@ -1469,7 +1498,8 @@ class UpdateChatReplyMarkup extends Update {
   int replyMarkupMessageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatReplyMarkup.fromJson(Map<String, dynamic> json) {
@@ -1513,7 +1543,8 @@ class UpdateChatDraftMessage extends Update {
   List<ChatPosition> positions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatDraftMessage.fromJson(Map<String, dynamic> json) {
@@ -1553,7 +1584,8 @@ class UpdateChatFilters extends Update {
   List<ChatFilterInfo> chatFilters;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatFilters.fromJson(Map<String, dynamic> json) {
@@ -1591,7 +1623,8 @@ class UpdateChatOnlineMemberCount extends Update {
   int onlineMemberCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateChatOnlineMemberCount.fromJson(Map<String, dynamic> json) {
@@ -1631,7 +1664,8 @@ class UpdateNotification extends Update {
   Notification notification;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNotification.fromJson(Map<String, dynamic> json) {
@@ -1696,7 +1730,8 @@ class UpdateNotificationGroup extends Update {
   List<int> removedNotificationIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNotificationGroup.fromJson(Map<String, dynamic> json) {
@@ -1750,7 +1785,8 @@ class UpdateActiveNotifications extends Update {
   List<NotificationGroup> groups;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateActiveNotifications.fromJson(Map<String, dynamic> json) {
@@ -1791,7 +1827,8 @@ class UpdateHavePendingNotifications extends Update {
   bool haveUnreceivedNotifications;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateHavePendingNotifications.fromJson(Map<String, dynamic> json) {
@@ -1840,7 +1877,8 @@ class UpdateDeleteMessages extends Update {
   bool fromCache;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateDeleteMessages.fromJson(Map<String, dynamic> json) {
@@ -1893,7 +1931,8 @@ class UpdateUserChatAction extends Update {
   ChatAction action;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUserChatAction.fromJson(Map<String, dynamic> json) {
@@ -1934,7 +1973,8 @@ class UpdateUserStatus extends Update {
   UserStatus status;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUserStatus.fromJson(Map<String, dynamic> json) {
@@ -1968,7 +2008,8 @@ class UpdateUser extends Update {
   User user;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUser.fromJson(Map<String, dynamic> json) {
@@ -2000,7 +2041,8 @@ class UpdateBasicGroup extends Update {
   BasicGroup basicGroup;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateBasicGroup.fromJson(Map<String, dynamic> json) {
@@ -2033,7 +2075,8 @@ class UpdateSupergroup extends Update {
   Supergroup supergroup;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateSupergroup.fromJson(Map<String, dynamic> json) {
@@ -2066,7 +2109,8 @@ class UpdateSecretChat extends Update {
   SecretChat secretChat;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateSecretChat.fromJson(Map<String, dynamic> json) {
@@ -2103,7 +2147,8 @@ class UpdateUserFullInfo extends Update {
   UserFullInfo userFullInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUserFullInfo.fromJson(Map<String, dynamic> json) {
@@ -2144,7 +2189,8 @@ class UpdateBasicGroupFullInfo extends Update {
   BasicGroupFullInfo basicGroupFullInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateBasicGroupFullInfo.fromJson(Map<String, dynamic> json) {
@@ -2185,7 +2231,8 @@ class UpdateSupergroupFullInfo extends Update {
   SupergroupFullInfo supergroupFullInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateSupergroupFullInfo.fromJson(Map<String, dynamic> json) {
@@ -2224,7 +2271,8 @@ class UpdateServiceNotification extends Update {
   MessageContent content;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateServiceNotification.fromJson(Map<String, dynamic> json) {
@@ -2258,7 +2306,8 @@ class UpdateFile extends Update {
   File file;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateFile.fromJson(Map<String, dynamic> json) {
@@ -2304,7 +2353,8 @@ class UpdateFileGenerationStart extends Update {
   String conversion;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateFileGenerationStart.fromJson(Map<String, dynamic> json) {
@@ -2342,7 +2392,8 @@ class UpdateFileGenerationStop extends Update {
   int generationId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateFileGenerationStop.fromJson(Map<String, dynamic> json) {
@@ -2374,7 +2425,8 @@ class UpdateCall extends Update {
   Call call;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateCall.fromJson(Map<String, dynamic> json) {
@@ -2406,7 +2458,8 @@ class UpdateGroupCall extends Update {
   GroupCall groupCall;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateGroupCall.fromJson(Map<String, dynamic> json) {
@@ -2442,7 +2495,8 @@ class UpdateGroupCallParticipant extends Update {
   GroupCallParticipant participant;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateGroupCallParticipant.fromJson(Map<String, dynamic> json) {
@@ -2481,7 +2535,8 @@ class UpdateNewCallSignalingData extends Update {
   String data;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewCallSignalingData.fromJson(Map<String, dynamic> json) {
@@ -2519,7 +2574,8 @@ class UpdateUserPrivacySettingRules extends Update {
   UserPrivacySettingRules rules;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUserPrivacySettingRules.fromJson(Map<String, dynamic> json) {
@@ -2565,7 +2621,8 @@ class UpdateUnreadMessageCount extends Update {
   int unreadUnmutedCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUnreadMessageCount.fromJson(Map<String, dynamic> json) {
@@ -2623,7 +2680,8 @@ class UpdateUnreadChatCount extends Update {
   int markedAsUnreadUnmutedCount;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUnreadChatCount.fromJson(Map<String, dynamic> json) {
@@ -2668,7 +2726,8 @@ class UpdateOption extends Update {
   OptionValue value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateOption.fromJson(Map<String, dynamic> json) {
@@ -2702,7 +2761,8 @@ class UpdateStickerSet extends Update {
   StickerSet stickerSet;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateStickerSet.fromJson(Map<String, dynamic> json) {
@@ -2739,7 +2799,8 @@ class UpdateInstalledStickerSets extends Update {
   List<int> stickerSetIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateInstalledStickerSets.fromJson(Map<String, dynamic> json) {
@@ -2774,7 +2835,8 @@ class UpdateTrendingStickerSets extends Update {
   StickerSets stickerSets;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateTrendingStickerSets.fromJson(Map<String, dynamic> json) {
@@ -2811,7 +2873,8 @@ class UpdateRecentStickers extends Update {
   List<int> stickerIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateRecentStickers.fromJson(Map<String, dynamic> json) {
@@ -2846,7 +2909,8 @@ class UpdateFavoriteStickers extends Update {
   List<int> stickerIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateFavoriteStickers.fromJson(Map<String, dynamic> json) {
@@ -2879,7 +2943,8 @@ class UpdateSavedAnimations extends Update {
   List<int> animationIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateSavedAnimations.fromJson(Map<String, dynamic> json) {
@@ -2916,7 +2981,8 @@ class UpdateSelectedBackground extends Update {
   Background? background;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateSelectedBackground.fromJson(Map<String, dynamic> json) {
@@ -2961,7 +3027,8 @@ class UpdateLanguagePackStrings extends Update {
   List<LanguagePackString> strings;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateLanguagePackStrings.fromJson(Map<String, dynamic> json) {
@@ -3000,7 +3067,8 @@ class UpdateConnectionState extends Update {
   ConnectionState state;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateConnectionState.fromJson(Map<String, dynamic> json) {
@@ -3038,7 +3106,8 @@ class UpdateTermsOfService extends Update {
   TermsOfService termsOfService;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateTermsOfService.fromJson(Map<String, dynamic> json) {
@@ -3073,7 +3142,8 @@ class UpdateUsersNearby extends Update {
   List<ChatNearby> usersNearby;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateUsersNearby.fromJson(Map<String, dynamic> json) {
@@ -3107,7 +3177,8 @@ class UpdateDiceEmojis extends Update {
   List<String> emojis;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateDiceEmojis.fromJson(Map<String, dynamic> json) {
@@ -3144,7 +3215,8 @@ class UpdateAnimationSearchParameters extends Update {
   List<String> emojis;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateAnimationSearchParameters.fromJson(Map<String, dynamic> json) {
@@ -3183,7 +3255,8 @@ class UpdateSuggestedActions extends Update {
   List<SuggestedAction> removedActions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateSuggestedActions.fromJson(Map<String, dynamic> json) {
@@ -3243,7 +3316,8 @@ class UpdateNewInlineQuery extends Update {
   String offset;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewInlineQuery.fromJson(Map<String, dynamic> json) {
@@ -3305,7 +3379,8 @@ class UpdateNewChosenInlineResult extends Update {
   String inlineMessageId;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewChosenInlineResult.fromJson(Map<String, dynamic> json) {
@@ -3369,7 +3444,8 @@ class UpdateNewCallbackQuery extends Update {
   CallbackQueryPayload payload;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewCallbackQuery.fromJson(Map<String, dynamic> json) {
@@ -3430,7 +3506,8 @@ class UpdateNewInlineCallbackQuery extends Update {
   CallbackQueryPayload payload;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewInlineCallbackQuery.fromJson(Map<String, dynamic> json) {
@@ -3485,7 +3562,8 @@ class UpdateNewShippingQuery extends Update {
   Address shippingAddress;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewShippingQuery.fromJson(Map<String, dynamic> json) {
@@ -3550,7 +3628,8 @@ class UpdateNewPreCheckoutQuery extends Update {
   OrderInfo? orderInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewPreCheckoutQuery.fromJson(Map<String, dynamic> json) {
@@ -3594,7 +3673,8 @@ class UpdateNewCustomEvent extends Update {
   String event;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewCustomEvent.fromJson(Map<String, dynamic> json) {
@@ -3636,7 +3716,8 @@ class UpdateNewCustomQuery extends Update {
   int timeout;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdateNewCustomQuery.fromJson(Map<String, dynamic> json) {
@@ -3672,7 +3753,8 @@ class UpdatePoll extends Update {
   Poll poll;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdatePoll.fromJson(Map<String, dynamic> json) {
@@ -3714,7 +3796,8 @@ class UpdatePollAnswer extends Update {
   List<int> optionIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UpdatePollAnswer.fromJson(Map<String, dynamic> json) {

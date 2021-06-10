@@ -8,7 +8,7 @@ class LeaveGroupCall extends TdFunction {
   int groupCallId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory LeaveGroupCall.fromJson(Map<String, dynamic> json) {

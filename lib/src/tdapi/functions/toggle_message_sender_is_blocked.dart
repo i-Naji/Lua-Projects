@@ -12,7 +12,7 @@ class ToggleMessageSenderIsBlocked extends TdFunction {
   bool isBlocked;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleMessageSenderIsBlocked.fromJson(Map<String, dynamic> json) {

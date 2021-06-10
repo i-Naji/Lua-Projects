@@ -26,7 +26,7 @@ class AddLocalMessage extends TdFunction {
   InputMessageContent inputMessageContent;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddLocalMessage.fromJson(Map<String, dynamic> json) {

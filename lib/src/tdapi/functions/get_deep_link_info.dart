@@ -8,7 +8,7 @@ class GetDeepLinkInfo extends TdFunction {
   String link;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetDeepLinkInfo.fromJson(Map<String, dynamic> json) {

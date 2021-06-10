@@ -18,7 +18,7 @@ class DeleteMessages extends TdFunction {
   bool revoke;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteMessages.fromJson(Map<String, dynamic> json) {

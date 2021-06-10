@@ -11,7 +11,7 @@ class ResendMessages extends TdFunction {
   List<int> messageIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendMessages.fromJson(Map<String, dynamic> json) {

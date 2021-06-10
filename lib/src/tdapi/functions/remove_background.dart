@@ -8,7 +8,7 @@ class RemoveBackground extends TdFunction {
   int backgroundId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveBackground.fromJson(Map<String, dynamic> json) {

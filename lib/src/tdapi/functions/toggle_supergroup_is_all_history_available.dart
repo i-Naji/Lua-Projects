@@ -14,7 +14,7 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction {
   bool isAllHistoryAvailable;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ToggleSupergroupIsAllHistoryAvailable.fromJson(

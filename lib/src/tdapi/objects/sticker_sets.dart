@@ -11,7 +11,8 @@ class StickerSets extends TdObject {
   List<StickerSetInfo> sets;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory StickerSets.fromJson(Map<String, dynamic> json) {

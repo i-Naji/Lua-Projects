@@ -12,7 +12,7 @@ class SetStickerPositionInSet extends TdFunction {
   int position;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetStickerPositionInSet.fromJson(Map<String, dynamic> json) {

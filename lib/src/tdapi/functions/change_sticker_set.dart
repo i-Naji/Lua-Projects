@@ -18,7 +18,7 @@ class ChangeStickerSet extends TdFunction {
   bool isArchived;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ChangeStickerSet.fromJson(Map<String, dynamic> json) {

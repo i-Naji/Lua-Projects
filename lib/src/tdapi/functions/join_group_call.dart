@@ -22,7 +22,7 @@ class JoinGroupCall extends TdFunction {
   bool isMuted;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory JoinGroupCall.fromJson(Map<String, dynamic> json) {

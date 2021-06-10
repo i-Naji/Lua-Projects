@@ -26,7 +26,8 @@ class WebPageInstantView extends TdObject {
   bool isFull;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory WebPageInstantView.fromJson(Map<String, dynamic> json) {

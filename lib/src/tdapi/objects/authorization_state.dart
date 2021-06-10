@@ -61,7 +61,8 @@ class AuthorizationStateWaitTdlibParameters extends AuthorizationState {
   AuthorizationStateWaitTdlibParameters({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitTdlibParameters.fromJson(
@@ -92,7 +93,8 @@ class AuthorizationStateWaitEncryptionKey extends AuthorizationState {
   bool isEncrypted;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitEncryptionKey.fromJson(
@@ -122,7 +124,8 @@ class AuthorizationStateWaitPhoneNumber extends AuthorizationState {
   AuthorizationStateWaitPhoneNumber({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitPhoneNumber.fromJson(
@@ -153,7 +156,8 @@ class AuthorizationStateWaitCode extends AuthorizationState {
   AuthenticationCodeInfo codeInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitCode.fromJson(Map<String, dynamic> json) {
@@ -187,7 +191,8 @@ class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState {
   String link;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitOtherDeviceConfirmation.fromJson(
@@ -221,7 +226,8 @@ class AuthorizationStateWaitRegistration extends AuthorizationState {
   TermsOfService termsOfService;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitRegistration.fromJson(
@@ -265,7 +271,8 @@ class AuthorizationStateWaitPassword extends AuthorizationState {
   String recoveryEmailAddressPattern;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateWaitPassword.fromJson(Map<String, dynamic> json) {
@@ -298,7 +305,8 @@ class AuthorizationStateReady extends AuthorizationState {
   AuthorizationStateReady({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateReady.fromJson(Map<String, dynamic> json) {
@@ -325,7 +333,8 @@ class AuthorizationStateLoggingOut extends AuthorizationState {
   AuthorizationStateLoggingOut({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateLoggingOut.fromJson(Map<String, dynamic> json) {
@@ -352,7 +361,8 @@ class AuthorizationStateClosing extends AuthorizationState {
   AuthorizationStateClosing({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateClosing.fromJson(Map<String, dynamic> json) {
@@ -379,7 +389,8 @@ class AuthorizationStateClosed extends AuthorizationState {
   AuthorizationStateClosed({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthorizationStateClosed.fromJson(Map<String, dynamic> json) {

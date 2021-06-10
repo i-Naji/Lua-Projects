@@ -8,7 +8,7 @@ class GetStickerEmojis extends TdFunction {
   InputFile sticker;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetStickerEmojis.fromJson(Map<String, dynamic> json) {

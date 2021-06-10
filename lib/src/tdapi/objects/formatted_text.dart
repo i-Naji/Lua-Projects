@@ -11,7 +11,8 @@ class FormattedText extends TdObject {
   List<TextEntity> entities;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory FormattedText.fromJson(Map<String, dynamic> json) {

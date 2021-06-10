@@ -40,7 +40,8 @@ class LanguagePackStringValueOrdinary extends LanguagePackStringValue {
   String value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LanguagePackStringValueOrdinary.fromJson(Map<String, dynamic> json) {
@@ -94,7 +95,8 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue {
   String otherValue;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LanguagePackStringValuePluralized.fromJson(
@@ -134,7 +136,8 @@ class LanguagePackStringValueDeleted extends LanguagePackStringValue {
   LanguagePackStringValueDeleted({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LanguagePackStringValueDeleted.fromJson(Map<String, dynamic> json) {

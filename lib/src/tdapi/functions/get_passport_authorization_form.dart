@@ -22,7 +22,7 @@ class GetPassportAuthorizationForm extends TdFunction {
   String nonce;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetPassportAuthorizationForm.fromJson(Map<String, dynamic> json) {

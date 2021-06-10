@@ -5,7 +5,7 @@ class ResendEmailAddressVerificationCode extends TdFunction {
   ResendEmailAddressVerificationCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendEmailAddressVerificationCode.fromJson(

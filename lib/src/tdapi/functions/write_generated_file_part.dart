@@ -18,7 +18,7 @@ class WriteGeneratedFilePart extends TdFunction {
   String data;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory WriteGeneratedFilePart.fromJson(Map<String, dynamic> json) {

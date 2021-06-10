@@ -5,7 +5,7 @@ class Destroy extends TdFunction {
   Destroy({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory Destroy.fromJson(Map<String, dynamic> json) {

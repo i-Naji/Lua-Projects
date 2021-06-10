@@ -8,7 +8,8 @@ class Updates extends TdObject {
   List<Update> updates;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Updates.fromJson(Map<String, dynamic> json) {

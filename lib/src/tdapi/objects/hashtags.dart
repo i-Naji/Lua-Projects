@@ -8,7 +8,8 @@ class Hashtags extends TdObject {
   List<String> hashtags;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Hashtags.fromJson(Map<String, dynamic> json) {

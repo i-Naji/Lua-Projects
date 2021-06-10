@@ -8,7 +8,7 @@ class CheckAuthenticationBotToken extends TdFunction {
   String token;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CheckAuthenticationBotToken.fromJson(Map<String, dynamic> json) {

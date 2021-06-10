@@ -8,7 +8,7 @@ class SearchPublicChats extends TdFunction {
   String query;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchPublicChats.fromJson(Map<String, dynamic> json) {

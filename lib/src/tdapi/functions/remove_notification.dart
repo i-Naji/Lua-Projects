@@ -14,7 +14,7 @@ class RemoveNotification extends TdFunction {
   int notificationId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveNotification.fromJson(Map<String, dynamic> json) {

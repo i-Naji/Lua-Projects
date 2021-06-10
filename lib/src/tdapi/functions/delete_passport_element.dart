@@ -8,7 +8,7 @@ class DeletePassportElement extends TdFunction {
   PassportElementType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeletePassportElement.fromJson(Map<String, dynamic> json) {

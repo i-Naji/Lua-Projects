@@ -18,7 +18,7 @@ class AnswerShippingQuery extends TdFunction {
   String errorMessage;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AnswerShippingQuery.fromJson(Map<String, dynamic> json) {

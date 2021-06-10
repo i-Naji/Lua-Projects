@@ -42,7 +42,7 @@ class OptimizeStorage extends TdFunction {
   int chatLimit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory OptimizeStorage.fromJson(Map<String, dynamic> json) {

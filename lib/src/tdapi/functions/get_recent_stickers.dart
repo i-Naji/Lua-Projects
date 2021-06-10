@@ -8,7 +8,7 @@ class GetRecentStickers extends TdFunction {
   bool isAttached;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetRecentStickers.fromJson(Map<String, dynamic> json) {

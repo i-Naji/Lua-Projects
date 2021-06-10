@@ -5,7 +5,7 @@ class GetFavoriteStickers extends TdFunction {
   GetFavoriteStickers({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetFavoriteStickers.fromJson(Map<String, dynamic> json) {

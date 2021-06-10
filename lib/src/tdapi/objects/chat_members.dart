@@ -11,7 +11,8 @@ class ChatMembers extends TdObject {
   List<ChatMember> members;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatMembers.fromJson(Map<String, dynamic> json) {

@@ -26,7 +26,7 @@ class AnswerCallbackQuery extends TdFunction {
   int cacheTime;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AnswerCallbackQuery.fromJson(Map<String, dynamic> json) {

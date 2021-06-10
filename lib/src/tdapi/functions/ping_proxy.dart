@@ -8,7 +8,7 @@ class PingProxy extends TdFunction {
   int proxyId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory PingProxy.fromJson(Map<String, dynamic> json) {

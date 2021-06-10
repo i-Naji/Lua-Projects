@@ -5,7 +5,7 @@ class GetRecentInlineBots extends TdFunction {
   GetRecentInlineBots({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetRecentInlineBots.fromJson(Map<String, dynamic> json) {

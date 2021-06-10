@@ -5,7 +5,7 @@ class GetTemporaryPasswordState extends TdFunction {
   GetTemporaryPasswordState({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetTemporaryPasswordState.fromJson(Map<String, dynamic> json) {

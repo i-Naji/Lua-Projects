@@ -12,7 +12,8 @@ class NetworkStatistics extends TdObject {
   List<NetworkStatisticsEntry> entries;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory NetworkStatistics.fromJson(Map<String, dynamic> json) {

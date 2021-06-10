@@ -8,7 +8,8 @@ class Emojis extends TdObject {
   List<String> emojis;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Emojis.fromJson(Map<String, dynamic> json) {

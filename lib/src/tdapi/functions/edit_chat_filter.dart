@@ -12,7 +12,7 @@ class EditChatFilter extends TdFunction {
   ChatFilter filter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditChatFilter.fromJson(Map<String, dynamic> json) {

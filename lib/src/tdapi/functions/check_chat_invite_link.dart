@@ -8,7 +8,7 @@ class CheckChatInviteLink extends TdFunction {
   String inviteLink;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CheckChatInviteLink.fromJson(Map<String, dynamic> json) {

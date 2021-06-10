@@ -8,7 +8,7 @@ class RemoveContacts extends TdFunction {
   List<int> userIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveContacts.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class GetMarkdownText extends TdFunction {
   FormattedText text;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMarkdownText.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,8 @@ class LogVerbosityLevel extends TdObject {
   int verbosityLevel;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LogVerbosityLevel.fromJson(Map<String, dynamic> json) {

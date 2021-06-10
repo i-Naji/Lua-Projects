@@ -22,7 +22,8 @@ class AuthenticationCodeInfo extends TdObject {
   int timeout;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AuthenticationCodeInfo.fromJson(Map<String, dynamic> json) {

@@ -5,7 +5,7 @@ class DisableProxy extends TdFunction {
   DisableProxy({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DisableProxy.fromJson(Map<String, dynamic> json) {

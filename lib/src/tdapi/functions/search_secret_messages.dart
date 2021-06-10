@@ -26,7 +26,7 @@ class SearchSecretMessages extends TdFunction {
   SearchMessagesFilter filter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchSecretMessages.fromJson(Map<String, dynamic> json) {

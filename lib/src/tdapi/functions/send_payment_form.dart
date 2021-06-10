@@ -26,7 +26,7 @@ class SendPaymentForm extends TdFunction {
   InputCredentials credentials;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendPaymentForm.fromJson(Map<String, dynamic> json) {

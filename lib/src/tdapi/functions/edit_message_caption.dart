@@ -22,7 +22,7 @@ class EditMessageCaption extends TdFunction {
   FormattedText caption;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditMessageCaption.fromJson(Map<String, dynamic> json) {

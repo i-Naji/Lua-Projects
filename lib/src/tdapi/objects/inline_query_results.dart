@@ -26,7 +26,8 @@ class InlineQueryResults extends TdObject {
   String switchPmParameter;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory InlineQueryResults.fromJson(Map<String, dynamic> json) {

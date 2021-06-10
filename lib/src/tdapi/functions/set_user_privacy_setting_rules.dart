@@ -12,7 +12,7 @@ class SetUserPrivacySettingRules extends TdFunction {
   UserPrivacySettingRules rules;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetUserPrivacySettingRules.fromJson(Map<String, dynamic> json) {

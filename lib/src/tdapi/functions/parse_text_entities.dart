@@ -11,7 +11,7 @@ class ParseTextEntities extends TdFunction {
   TextParseMode parseMode;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ParseTextEntities.fromJson(Map<String, dynamic> json) {

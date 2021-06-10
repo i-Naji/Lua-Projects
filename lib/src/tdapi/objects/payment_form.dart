@@ -34,7 +34,8 @@ class PaymentForm extends TdObject {
   bool needPassword;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PaymentForm.fromJson(Map<String, dynamic> json) {

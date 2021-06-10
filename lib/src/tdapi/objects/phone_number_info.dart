@@ -18,7 +18,8 @@ class PhoneNumberInfo extends TdObject {
   String formattedPhoneNumber;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PhoneNumberInfo.fromJson(Map<String, dynamic> json) {

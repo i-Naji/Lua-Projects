@@ -12,7 +12,7 @@ class GetRemoteFile extends TdFunction {
   FileType fileType;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetRemoteFile.fromJson(Map<String, dynamic> json) {

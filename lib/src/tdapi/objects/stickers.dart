@@ -8,7 +8,8 @@ class Stickers extends TdObject {
   List<Sticker> stickers;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Stickers.fromJson(Map<String, dynamic> json) {

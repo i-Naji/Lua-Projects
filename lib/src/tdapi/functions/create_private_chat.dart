@@ -11,7 +11,7 @@ class CreatePrivateChat extends TdFunction {
   bool force;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreatePrivateChat.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class GetStickerSet extends TdFunction {
   int setId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetStickerSet.fromJson(Map<String, dynamic> json) {

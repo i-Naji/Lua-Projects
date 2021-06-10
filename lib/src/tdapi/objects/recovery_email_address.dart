@@ -8,7 +8,8 @@ class RecoveryEmailAddress extends TdObject {
   String recoveryEmailAddress;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory RecoveryEmailAddress.fromJson(Map<String, dynamic> json) {

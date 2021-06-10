@@ -15,7 +15,7 @@ class GetStatisticalGraph extends TdFunction {
   int x;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetStatisticalGraph.fromJson(Map<String, dynamic> json) {

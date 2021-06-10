@@ -30,7 +30,8 @@ class Proxy extends TdObject {
   ProxyType type;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Proxy.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,8 @@ class Text extends TdObject {
   String text;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Text.fromJson(Map<String, dynamic> json) {

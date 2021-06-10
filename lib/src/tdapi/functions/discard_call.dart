@@ -26,7 +26,7 @@ class DiscardCall extends TdFunction {
   int connectionId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DiscardCall.fromJson(Map<String, dynamic> json) {

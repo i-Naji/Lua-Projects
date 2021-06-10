@@ -12,7 +12,7 @@ class GetTrendingStickerSets extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetTrendingStickerSets.fromJson(Map<String, dynamic> json) {

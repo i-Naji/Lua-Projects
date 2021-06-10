@@ -8,7 +8,8 @@ class ChatInviteLink extends TdObject {
   String inviteLink;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatInviteLink.fromJson(Map<String, dynamic> json) {

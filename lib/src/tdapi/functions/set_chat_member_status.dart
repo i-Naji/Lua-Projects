@@ -18,7 +18,7 @@ class SetChatMemberStatus extends TdFunction {
   ChatMemberStatus status;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatMemberStatus.fromJson(Map<String, dynamic> json) {

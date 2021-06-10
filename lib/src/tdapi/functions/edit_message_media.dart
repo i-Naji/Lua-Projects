@@ -22,7 +22,7 @@ class EditMessageMedia extends TdFunction {
   InputMessageContent inputMessageContent;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditMessageMedia.fromJson(Map<String, dynamic> json) {

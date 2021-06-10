@@ -8,7 +8,7 @@ class RemoveSavedAnimation extends TdFunction {
   InputFile animation;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveSavedAnimation.fromJson(Map<String, dynamic> json) {

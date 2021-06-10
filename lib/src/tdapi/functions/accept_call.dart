@@ -11,7 +11,7 @@ class AcceptCall extends TdFunction {
   CallProtocol protocol;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AcceptCall.fromJson(Map<String, dynamic> json) {

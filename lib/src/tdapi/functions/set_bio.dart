@@ -8,7 +8,7 @@ class SetBio extends TdFunction {
   String bio;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetBio.fromJson(Map<String, dynamic> json) {

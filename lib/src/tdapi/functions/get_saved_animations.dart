@@ -5,7 +5,7 @@ class GetSavedAnimations extends TdFunction {
   GetSavedAnimations({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetSavedAnimations.fromJson(Map<String, dynamic> json) {

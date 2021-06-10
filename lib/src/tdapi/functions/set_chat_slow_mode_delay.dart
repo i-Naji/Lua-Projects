@@ -12,7 +12,7 @@ class SetChatSlowModeDelay extends TdFunction {
   int slowModeDelay;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatSlowModeDelay.fromJson(Map<String, dynamic> json) {

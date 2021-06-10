@@ -12,7 +12,7 @@ class SetAuthenticationPhoneNumber extends TdFunction {
   PhoneNumberAuthenticationSettings settings;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetAuthenticationPhoneNumber.fromJson(Map<String, dynamic> json) {

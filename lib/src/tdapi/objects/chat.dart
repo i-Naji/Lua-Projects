@@ -106,7 +106,8 @@ class Chat extends TdObject {
   String clientData;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Chat.fromJson(Map<String, dynamic> json) {

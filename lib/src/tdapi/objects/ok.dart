@@ -5,7 +5,8 @@ class Ok extends TdObject {
   Ok({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Ok.fromJson(Map<String, dynamic> json) {

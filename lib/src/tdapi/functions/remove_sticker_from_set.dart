@@ -8,7 +8,7 @@ class RemoveStickerFromSet extends TdFunction {
   InputFile sticker;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveStickerFromSet.fromJson(Map<String, dynamic> json) {

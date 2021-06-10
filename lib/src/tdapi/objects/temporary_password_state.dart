@@ -12,7 +12,8 @@ class TemporaryPasswordState extends TdObject {
   int validFor;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory TemporaryPasswordState.fromJson(Map<String, dynamic> json) {

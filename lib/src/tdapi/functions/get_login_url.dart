@@ -22,7 +22,7 @@ class GetLoginUrl extends TdFunction {
   bool allowWriteAccess;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetLoginUrl.fromJson(Map<String, dynamic> json) {

@@ -26,7 +26,7 @@ class TestProxy extends TdFunction {
   double timeout;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestProxy.fromJson(Map<String, dynamic> json) {

@@ -18,7 +18,7 @@ class CreateCall extends TdFunction {
   bool isVideo;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CreateCall.fromJson(Map<String, dynamic> json) {

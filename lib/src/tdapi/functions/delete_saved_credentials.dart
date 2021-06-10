@@ -5,7 +5,7 @@ class DeleteSavedCredentials extends TdFunction {
   DeleteSavedCredentials({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteSavedCredentials.fromJson(Map<String, dynamic> json) {

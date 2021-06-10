@@ -5,7 +5,7 @@ class Close extends TdFunction {
   Close({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory Close.fromJson(Map<String, dynamic> json) {

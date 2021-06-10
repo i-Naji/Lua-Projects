@@ -11,7 +11,7 @@ class SendCallSignalingData extends TdFunction {
   String data;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendCallSignalingData.fromJson(Map<String, dynamic> json) {

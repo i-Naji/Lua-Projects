@@ -18,7 +18,7 @@ class ReportChat extends TdFunction {
   List<int> messageIds;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ReportChat.fromJson(Map<String, dynamic> json) {

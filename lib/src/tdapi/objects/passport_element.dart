@@ -70,7 +70,8 @@ class PassportElementPersonalDetails extends PassportElement {
   PersonalDetails personalDetails;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementPersonalDetails.fromJson(Map<String, dynamic> json) {
@@ -103,7 +104,8 @@ class PassportElementPassport extends PassportElement {
   IdentityDocument passport;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementPassport.fromJson(Map<String, dynamic> json) {
@@ -136,7 +138,8 @@ class PassportElementDriverLicense extends PassportElement {
   IdentityDocument driverLicense;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementDriverLicense.fromJson(Map<String, dynamic> json) {
@@ -169,7 +172,8 @@ class PassportElementIdentityCard extends PassportElement {
   IdentityDocument identityCard;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementIdentityCard.fromJson(Map<String, dynamic> json) {
@@ -202,7 +206,8 @@ class PassportElementInternalPassport extends PassportElement {
   IdentityDocument internalPassport;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementInternalPassport.fromJson(Map<String, dynamic> json) {
@@ -235,7 +240,8 @@ class PassportElementAddress extends PassportElement {
   Address address;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementAddress.fromJson(Map<String, dynamic> json) {
@@ -267,7 +273,8 @@ class PassportElementUtilityBill extends PassportElement {
   PersonalDocument utilityBill;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementUtilityBill.fromJson(Map<String, dynamic> json) {
@@ -300,7 +307,8 @@ class PassportElementBankStatement extends PassportElement {
   PersonalDocument bankStatement;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementBankStatement.fromJson(Map<String, dynamic> json) {
@@ -333,7 +341,8 @@ class PassportElementRentalAgreement extends PassportElement {
   PersonalDocument rentalAgreement;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementRentalAgreement.fromJson(Map<String, dynamic> json) {
@@ -367,7 +376,8 @@ class PassportElementPassportRegistration extends PassportElement {
   PersonalDocument passportRegistration;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementPassportRegistration.fromJson(
@@ -402,7 +412,8 @@ class PassportElementTemporaryRegistration extends PassportElement {
   PersonalDocument temporaryRegistration;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementTemporaryRegistration.fromJson(
@@ -436,7 +447,8 @@ class PassportElementPhoneNumber extends PassportElement {
   String phoneNumber;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementPhoneNumber.fromJson(Map<String, dynamic> json) {
@@ -468,7 +480,8 @@ class PassportElementEmailAddress extends PassportElement {
   String emailAddress;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElementEmailAddress.fromJson(Map<String, dynamic> json) {

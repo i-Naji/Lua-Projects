@@ -8,7 +8,7 @@ class GetTextEntities extends TdFunction {
   String text;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetTextEntities.fromJson(Map<String, dynamic> json) {

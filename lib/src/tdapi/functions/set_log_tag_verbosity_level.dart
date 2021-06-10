@@ -12,7 +12,7 @@ class SetLogTagVerbosityLevel extends TdFunction {
   int newVerbosityLevel;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetLogTagVerbosityLevel.fromJson(Map<String, dynamic> json) {

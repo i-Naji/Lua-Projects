@@ -8,7 +8,7 @@ class DeleteAccount extends TdFunction {
   String reason;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory DeleteAccount.fromJson(Map<String, dynamic> json) {

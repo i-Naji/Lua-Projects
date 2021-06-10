@@ -11,7 +11,8 @@ class MessageLink extends TdObject {
   bool isPublic;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory MessageLink.fromJson(Map<String, dynamic> json) {

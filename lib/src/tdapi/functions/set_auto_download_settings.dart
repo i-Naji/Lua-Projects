@@ -12,7 +12,7 @@ class SetAutoDownloadSettings extends TdFunction {
   NetworkType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetAutoDownloadSettings.fromJson(Map<String, dynamic> json) {

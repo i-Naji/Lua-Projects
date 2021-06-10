@@ -8,7 +8,8 @@ class RecommendedChatFilters extends TdObject {
   List<RecommendedChatFilter> chatFilters;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory RecommendedChatFilters.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class SetLogStream extends TdFunction {
   LogStream logStream;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetLogStream.fromJson(Map<String, dynamic> json) {

@@ -26,7 +26,8 @@ class MessageLinkInfo extends TdObject {
   bool forComment;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory MessageLinkInfo.fromJson(Map<String, dynamic> json) {

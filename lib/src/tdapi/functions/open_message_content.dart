@@ -12,7 +12,7 @@ class OpenMessageContent extends TdFunction {
   int messageId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory OpenMessageContent.fromJson(Map<String, dynamic> json) {

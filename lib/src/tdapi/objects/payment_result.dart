@@ -12,7 +12,8 @@ class PaymentResult extends TdObject {
   String verificationUrl;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PaymentResult.fromJson(Map<String, dynamic> json) {

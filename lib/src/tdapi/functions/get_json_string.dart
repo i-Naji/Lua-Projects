@@ -8,7 +8,7 @@ class GetJsonString extends TdFunction {
   JsonValue jsonValue;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetJsonString.fromJson(Map<String, dynamic> json) {

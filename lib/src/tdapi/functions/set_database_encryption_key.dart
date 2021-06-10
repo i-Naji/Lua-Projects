@@ -8,7 +8,7 @@ class SetDatabaseEncryptionKey extends TdFunction {
   String newEncryptionKey;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetDatabaseEncryptionKey.fromJson(Map<String, dynamic> json) {

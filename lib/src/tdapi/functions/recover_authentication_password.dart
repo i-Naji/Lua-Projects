@@ -8,7 +8,7 @@ class RecoverAuthenticationPassword extends TdFunction {
   String recoveryCode;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RecoverAuthenticationPassword.fromJson(Map<String, dynamic> json) {

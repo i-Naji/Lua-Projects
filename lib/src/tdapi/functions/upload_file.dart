@@ -18,7 +18,7 @@ class UploadFile extends TdFunction {
   int priority;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory UploadFile.fromJson(Map<String, dynamic> json) {

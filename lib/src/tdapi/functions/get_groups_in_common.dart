@@ -18,7 +18,7 @@ class GetGroupsInCommon extends TdFunction {
   int limit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetGroupsInCommon.fromJson(Map<String, dynamic> json) {

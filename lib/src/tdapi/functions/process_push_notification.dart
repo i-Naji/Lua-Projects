@@ -8,7 +8,7 @@ class ProcessPushNotification extends TdFunction {
   String payload;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ProcessPushNotification.fromJson(Map<String, dynamic> json) {

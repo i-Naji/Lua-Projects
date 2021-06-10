@@ -11,7 +11,7 @@ class AddChatToList extends TdFunction {
   ChatList chatList;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddChatToList.fromJson(Map<String, dynamic> json) {

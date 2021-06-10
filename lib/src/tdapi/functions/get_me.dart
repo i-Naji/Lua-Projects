@@ -5,7 +5,7 @@ class GetMe extends TdFunction {
   GetMe({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMe.fromJson(Map<String, dynamic> json) {

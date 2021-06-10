@@ -5,7 +5,7 @@ class GetImportedContactCount extends TdFunction {
   GetImportedContactCount({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetImportedContactCount.fromJson(Map<String, dynamic> json) {

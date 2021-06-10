@@ -8,7 +8,7 @@ class TestCallVectorIntObject extends TdFunction {
   List<TestInt> x;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory TestCallVectorIntObject.fromJson(Map<String, dynamic> json) {

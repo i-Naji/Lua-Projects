@@ -126,7 +126,8 @@ class Message extends TdObject {
   ReplyMarkup? replyMarkup;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Message.fromJson(Map<String, dynamic> json) {

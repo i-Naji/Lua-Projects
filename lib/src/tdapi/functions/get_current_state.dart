@@ -5,7 +5,7 @@ class GetCurrentState extends TdFunction {
   GetCurrentState({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetCurrentState.fromJson(Map<String, dynamic> json) {

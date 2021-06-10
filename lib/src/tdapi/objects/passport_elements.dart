@@ -8,7 +8,8 @@ class PassportElements extends TdObject {
   List<PassportElement> elements;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PassportElements.fromJson(Map<String, dynamic> json) {

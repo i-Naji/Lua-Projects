@@ -8,7 +8,8 @@ class Backgrounds extends TdObject {
   List<Background> backgrounds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Backgrounds.fromJson(Map<String, dynamic> json) {

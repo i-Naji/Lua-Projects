@@ -18,7 +18,7 @@ class SendBotStartMessage extends TdFunction {
   String parameter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendBotStartMessage.fromJson(Map<String, dynamic> json) {

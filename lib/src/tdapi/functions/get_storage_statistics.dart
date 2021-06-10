@@ -8,7 +8,7 @@ class GetStorageStatistics extends TdFunction {
   int chatLimit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetStorageStatistics.fromJson(Map<String, dynamic> json) {

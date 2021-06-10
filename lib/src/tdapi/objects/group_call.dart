@@ -54,7 +54,8 @@ class GroupCall extends TdObject {
   int duration;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory GroupCall.fromJson(Map<String, dynamic> json) {

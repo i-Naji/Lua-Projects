@@ -22,7 +22,7 @@ class AddProxy extends TdFunction {
   ProxyType type;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddProxy.fromJson(Map<String, dynamic> json) {

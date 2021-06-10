@@ -43,7 +43,8 @@ class OptionValueBoolean extends OptionValue {
   bool value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory OptionValueBoolean.fromJson(Map<String, dynamic> json) {
@@ -72,7 +73,8 @@ class OptionValueEmpty extends OptionValue {
   OptionValueEmpty({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory OptionValueEmpty.fromJson(Map<String, dynamic> json) {
@@ -102,7 +104,8 @@ class OptionValueInteger extends OptionValue {
   int value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory OptionValueInteger.fromJson(Map<String, dynamic> json) {
@@ -134,7 +137,8 @@ class OptionValueString extends OptionValue {
   String value;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory OptionValueString.fromJson(Map<String, dynamic> json) {

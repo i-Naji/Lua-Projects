@@ -18,7 +18,7 @@ class SaveApplicationLogEvent extends TdFunction {
   JsonValue data;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SaveApplicationLogEvent.fromJson(Map<String, dynamic> json) {

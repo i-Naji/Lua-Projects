@@ -26,7 +26,8 @@ class PasswordState extends TdObject {
   EmailAddressAuthenticationCodeInfo? recoveryEmailAddressCodeInfo;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory PasswordState.fromJson(Map<String, dynamic> json) {

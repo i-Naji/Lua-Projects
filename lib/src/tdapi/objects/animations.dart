@@ -8,7 +8,8 @@ class Animations extends TdObject {
   List<Animation> animations;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Animations.fromJson(Map<String, dynamic> json) {

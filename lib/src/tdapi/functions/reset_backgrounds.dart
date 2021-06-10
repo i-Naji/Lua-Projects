@@ -5,7 +5,7 @@ class ResetBackgrounds extends TdFunction {
   ResetBackgrounds({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResetBackgrounds.fromJson(Map<String, dynamic> json) {

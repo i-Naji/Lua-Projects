@@ -8,7 +8,7 @@ class AddSavedAnimation extends TdFunction {
   InputFile animation;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddSavedAnimation.fromJson(Map<String, dynamic> json) {

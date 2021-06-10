@@ -8,7 +8,8 @@ class LogTags extends TdObject {
   List<String> tags;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LogTags.fromJson(Map<String, dynamic> json) {

@@ -12,7 +12,7 @@ class GetPassportAuthorizationFormAvailableElements extends TdFunction {
   String password;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetPassportAuthorizationFormAvailableElements.fromJson(

@@ -70,7 +70,8 @@ class User extends TdObject {
   String languageCode;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory User.fromJson(Map<String, dynamic> json) {

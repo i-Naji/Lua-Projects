@@ -12,7 +12,8 @@ class ValidatedOrderInfo extends TdObject {
   List<ShippingOption> shippingOptions;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ValidatedOrderInfo.fromJson(Map<String, dynamic> json) {

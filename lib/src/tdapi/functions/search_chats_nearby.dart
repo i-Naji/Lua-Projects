@@ -8,7 +8,7 @@ class SearchChatsNearby extends TdFunction {
   Location location;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SearchChatsNearby.fromJson(Map<String, dynamic> json) {

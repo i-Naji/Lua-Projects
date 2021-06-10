@@ -8,7 +8,7 @@ class GetSecretChat extends TdFunction {
   int secretChatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetSecretChat.fromJson(Map<String, dynamic> json) {

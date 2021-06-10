@@ -11,7 +11,7 @@ class SetChatLocation extends TdFunction {
   ChatLocation? location;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatLocation.fromJson(Map<String, dynamic> json) {

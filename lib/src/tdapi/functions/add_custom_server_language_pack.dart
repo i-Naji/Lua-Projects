@@ -8,7 +8,7 @@ class AddCustomServerLanguagePack extends TdFunction {
   String languagePackId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddCustomServerLanguagePack.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class CheckRecoveryEmailAddressCode extends TdFunction {
   String code;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CheckRecoveryEmailAddressCode.fromJson(Map<String, dynamic> json) {

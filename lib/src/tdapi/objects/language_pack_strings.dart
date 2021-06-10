@@ -8,7 +8,8 @@ class LanguagePackStrings extends TdObject {
   List<LanguagePackString> strings;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LanguagePackStrings.fromJson(Map<String, dynamic> json) {

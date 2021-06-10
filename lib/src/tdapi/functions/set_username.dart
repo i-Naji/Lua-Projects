@@ -8,7 +8,7 @@ class SetUsername extends TdFunction {
   String username;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetUsername.fromJson(Map<String, dynamic> json) {

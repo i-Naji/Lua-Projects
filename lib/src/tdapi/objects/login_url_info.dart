@@ -40,7 +40,8 @@ class LoginUrlInfoOpen extends LoginUrlInfo {
   bool skipConfirm;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LoginUrlInfoOpen.fromJson(Map<String, dynamic> json) {
@@ -88,7 +89,8 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo {
   bool requestWriteAccess;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory LoginUrlInfoRequestConfirmation.fromJson(Map<String, dynamic> json) {

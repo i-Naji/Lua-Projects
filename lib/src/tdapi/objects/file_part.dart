@@ -8,7 +8,8 @@ class FilePart extends TdObject {
   String data;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory FilePart.fromJson(Map<String, dynamic> json) {

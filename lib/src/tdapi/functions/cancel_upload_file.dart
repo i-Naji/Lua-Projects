@@ -8,7 +8,7 @@ class CancelUploadFile extends TdFunction {
   int fileId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory CancelUploadFile.fromJson(Map<String, dynamic> json) {

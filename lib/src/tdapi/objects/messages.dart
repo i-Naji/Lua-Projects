@@ -11,7 +11,8 @@ class Messages extends TdObject {
   List<Message>? messages;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Messages.fromJson(Map<String, dynamic> json) {

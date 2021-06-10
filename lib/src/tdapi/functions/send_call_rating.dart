@@ -22,7 +22,7 @@ class SendCallRating extends TdFunction {
   List<CallProblem> problems;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendCallRating.fromJson(Map<String, dynamic> json) {

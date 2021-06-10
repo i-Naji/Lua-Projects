@@ -18,7 +18,7 @@ class AddChatMember extends TdFunction {
   int forwardLimit;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AddChatMember.fromJson(Map<String, dynamic> json) {

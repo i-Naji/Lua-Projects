@@ -8,7 +8,7 @@ class GetGroupCall extends TdFunction {
   int groupCallId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetGroupCall.fromJson(Map<String, dynamic> json) {

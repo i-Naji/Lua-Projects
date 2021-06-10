@@ -8,7 +8,7 @@ class GetFileMimeType extends TdFunction {
   String fileName;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetFileMimeType.fromJson(Map<String, dynamic> json) {

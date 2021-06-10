@@ -18,7 +18,7 @@ class EditInlineMessageCaption extends TdFunction {
   FormattedText caption;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditInlineMessageCaption.fromJson(Map<String, dynamic> json) {

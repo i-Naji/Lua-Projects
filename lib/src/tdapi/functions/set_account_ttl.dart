@@ -8,7 +8,7 @@ class SetAccountTtl extends TdFunction {
   AccountTtl ttl;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetAccountTtl.fromJson(Map<String, dynamic> json) {

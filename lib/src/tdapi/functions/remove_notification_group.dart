@@ -14,7 +14,7 @@ class RemoveNotificationGroup extends TdFunction {
   int maxNotificationId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveNotificationGroup.fromJson(Map<String, dynamic> json) {

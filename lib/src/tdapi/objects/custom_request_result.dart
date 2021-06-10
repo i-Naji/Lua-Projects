@@ -8,7 +8,8 @@ class CustomRequestResult extends TdObject {
   String result;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory CustomRequestResult.fromJson(Map<String, dynamic> json) {

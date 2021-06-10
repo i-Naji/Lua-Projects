@@ -18,7 +18,7 @@ class SetStickerSetThumbnail extends TdFunction {
   InputFile thumbnail;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetStickerSetThumbnail.fromJson(Map<String, dynamic> json) {

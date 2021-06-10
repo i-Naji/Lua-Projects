@@ -8,7 +8,8 @@ class UserPrivacySettingRules extends TdObject {
   List<UserPrivacySettingRule> rules;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory UserPrivacySettingRules.fromJson(Map<String, dynamic> json) {

@@ -11,7 +11,8 @@ class Chats extends TdObject {
   List<int> chatIds;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory Chats.fromJson(Map<String, dynamic> json) {

@@ -15,7 +15,7 @@ class SetBackground extends TdFunction {
   bool forDarkTheme;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetBackground.fromJson(Map<String, dynamic> json) {

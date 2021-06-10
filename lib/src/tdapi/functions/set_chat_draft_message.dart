@@ -18,7 +18,7 @@ class SetChatDraftMessage extends TdFunction {
   DraftMessage? draftMessage;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatDraftMessage.fromJson(Map<String, dynamic> json) {

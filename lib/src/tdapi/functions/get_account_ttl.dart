@@ -5,7 +5,7 @@ class GetAccountTtl extends TdFunction {
   GetAccountTtl({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetAccountTtl.fromJson(Map<String, dynamic> json) {

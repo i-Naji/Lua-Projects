@@ -12,7 +12,7 @@ class AnswerCustomQuery extends TdFunction {
   String data;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AnswerCustomQuery.fromJson(Map<String, dynamic> json) {

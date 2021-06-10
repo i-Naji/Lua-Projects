@@ -8,7 +8,7 @@ class GetSupergroup extends TdFunction {
   int supergroupId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetSupergroup.fromJson(Map<String, dynamic> json) {

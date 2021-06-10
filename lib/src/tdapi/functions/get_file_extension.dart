@@ -8,7 +8,7 @@ class GetFileExtension extends TdFunction {
   String mimeType;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetFileExtension.fromJson(Map<String, dynamic> json) {

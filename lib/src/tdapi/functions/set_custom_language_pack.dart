@@ -12,7 +12,7 @@ class SetCustomLanguagePack extends TdFunction {
   List<LanguagePackString> strings;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetCustomLanguagePack.fromJson(Map<String, dynamic> json) {

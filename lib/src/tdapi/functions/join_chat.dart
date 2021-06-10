@@ -8,7 +8,7 @@ class JoinChat extends TdFunction {
   int chatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory JoinChat.fromJson(Map<String, dynamic> json) {

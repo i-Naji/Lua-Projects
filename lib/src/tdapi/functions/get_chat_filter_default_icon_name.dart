@@ -8,7 +8,7 @@ class GetChatFilterDefaultIconName extends TdFunction {
   ChatFilter filter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatFilterDefaultIconName.fromJson(Map<String, dynamic> json) {

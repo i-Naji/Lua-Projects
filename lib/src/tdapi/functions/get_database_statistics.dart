@@ -5,7 +5,7 @@ class GetDatabaseStatistics extends TdFunction {
   GetDatabaseStatistics({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetDatabaseStatistics.fromJson(Map<String, dynamic> json) {

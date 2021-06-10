@@ -22,7 +22,7 @@ class GetMessageLink extends TdFunction {
   bool forComment;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetMessageLink.fromJson(Map<String, dynamic> json) {

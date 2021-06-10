@@ -5,7 +5,7 @@ class ResendPhoneNumberVerificationCode extends TdFunction {
   ResendPhoneNumberVerificationCode({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ResendPhoneNumberVerificationCode.fromJson(

@@ -18,7 +18,8 @@ class AutoDownloadSettingsPresets extends TdObject {
   AutoDownloadSettings high;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory AutoDownloadSettingsPresets.fromJson(Map<String, dynamic> json) {

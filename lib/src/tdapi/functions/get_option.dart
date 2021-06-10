@@ -8,7 +8,7 @@ class GetOption extends TdFunction {
   String name;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetOption.fromJson(Map<String, dynamic> json) {

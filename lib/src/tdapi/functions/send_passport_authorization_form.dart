@@ -12,7 +12,7 @@ class SendPassportAuthorizationForm extends TdFunction {
   List<PassportElementType> types;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendPassportAuthorizationForm.fromJson(Map<String, dynamic> json) {

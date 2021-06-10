@@ -5,7 +5,7 @@ class GetActiveSessions extends TdFunction {
   GetActiveSessions({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetActiveSessions.fromJson(Map<String, dynamic> json) {

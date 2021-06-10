@@ -34,7 +34,7 @@ class AnswerInlineQuery extends TdFunction {
   String switchPmParameter;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory AnswerInlineQuery.fromJson(Map<String, dynamic> json) {

@@ -18,7 +18,7 @@ class SendChatAction extends TdFunction {
   ChatAction action;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SendChatAction.fromJson(Map<String, dynamic> json) {

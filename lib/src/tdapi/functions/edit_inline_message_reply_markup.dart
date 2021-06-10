@@ -12,7 +12,7 @@ class EditInlineMessageReplyMarkup extends TdFunction {
   ReplyMarkup replyMarkup;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory EditInlineMessageReplyMarkup.fromJson(Map<String, dynamic> json) {

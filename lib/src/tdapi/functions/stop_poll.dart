@@ -18,7 +18,7 @@ class StopPoll extends TdFunction {
   ReplyMarkup replyMarkup;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory StopPoll.fromJson(Map<String, dynamic> json) {

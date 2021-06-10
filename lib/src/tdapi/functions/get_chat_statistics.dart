@@ -11,7 +11,7 @@ class GetChatStatistics extends TdFunction {
   bool isDark;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatStatistics.fromJson(Map<String, dynamic> json) {

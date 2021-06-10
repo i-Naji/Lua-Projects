@@ -8,7 +8,8 @@ class ChatAdministrators extends TdObject {
   List<ChatAdministrator> administrators;
 
   /// callback sign
-  dynamic? extra;
+  @override
+  dynamic extra;
 
   /// Parse from a json
   factory ChatAdministrators.fromJson(Map<String, dynamic> json) {

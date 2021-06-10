@@ -12,7 +12,7 @@ class SetChatNotificationSettings extends TdFunction {
   ChatNotificationSettings notificationSettings;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory SetChatNotificationSettings.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class GetChatFilter extends TdFunction {
   int chatFilterId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatFilter.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class RemoveRecentlyFoundChat extends TdFunction {
   int chatId;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory RemoveRecentlyFoundChat.fromJson(Map<String, dynamic> json) {

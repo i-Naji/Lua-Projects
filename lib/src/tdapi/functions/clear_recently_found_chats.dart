@@ -5,7 +5,7 @@ class ClearRecentlyFoundChats extends TdFunction {
   ClearRecentlyFoundChats({this.extra});
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory ClearRecentlyFoundChats.fromJson(Map<String, dynamic> json) {

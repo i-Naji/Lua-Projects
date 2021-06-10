@@ -11,7 +11,7 @@ class GetChatMessageByDate extends TdFunction {
   int date;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetChatMessageByDate.fromJson(Map<String, dynamic> json) {

@@ -8,7 +8,7 @@ class GetPushReceiverId extends TdFunction {
   String payload;
 
   /// callback sign
-  dynamic? extra;
+  dynamic extra;
 
   /// Parse from a json
   factory GetPushReceiverId.fromJson(Map<String, dynamic> json) {
